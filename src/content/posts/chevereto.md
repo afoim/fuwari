@@ -15,7 +15,7 @@ https://b23.tv/E8Z34KM
 
 # 正式开始
 
-资源： https://sb-r2.afo.im/chevereto_4.3.6-Pro_unlock.zip （感谢宝塔开心版站长！）
+资源： https://r2.2x.nz/chevereto_4.3.6-Pro_unlock.zip （感谢宝塔开心版站长！）
 
 使用 **PHP 8.1.29 & MySQL 8.0.36** 创建一个网站，然后将我们刚刚下载的ZIP上传到站点根目录并解压
 
