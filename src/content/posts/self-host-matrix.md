@@ -64,6 +64,8 @@ server_name: "家服务器名称，比如：m.2x.nz"
 public_baseurl: "公共URL，比如：https://m.2x.nz"
 pid_file: /data/homeserver.pid
 
+serve_server_wellknown: true # 启用联邦
+
 listeners:
   - port: 8008
     tls: false
@@ -99,6 +101,25 @@ report_stats: false
 
 trusted_key_servers:
   - server_name: "matrix.org"
+
+# Github OAuth
+oidc_providers:
+  - idp_id: github
+    idp_name: Github
+    idp_brand: "github"  # optional: styling hint for clients
+    discover: false
+    issuer: "https://github.com/"
+    client_id: "Ov23liaHxxYHybb0jRoZ" # TO BE FILLED
+    client_secret: "e937f214ea7c132924ab34c76d83f4b7099d696e" # TO BE FILLED
+    authorization_endpoint: "https://github.com/login/oauth/authorize"
+    token_endpoint: "https://github.com/login/oauth/access_token"
+    userinfo_endpoint: "https://api.github.com/user"
+    scopes: ["read:user"]
+    user_mapping_provider:
+      config:
+        subject_claim: "id"
+        localpart_template: "{{ user.login }}"
+        display_name_template: "{{ user.name }}"
 
 ### ✅ 邮件配置（确保SMTP验证正常）
 email:
@@ -139,6 +160,17 @@ rc_joins:
   remote:
     per_second: 0.01  # 远程用户加入房间的速率
     burst_count: 10
+
+# 媒体保留设置
+media_retention:
+  # 本地媒体文件的保留时间
+  local_media_lifetime: 90d
+  
+  # 远程媒体文件的保留时间（来自其他homeserver的媒体）
+  remote_media_lifetime: 14d
+
+# 删除陈旧设备的时间
+delete_stale_devices_after: 1y
 
 auto_join_rooms:
   - "#XXX:你的家服务器URL" # 需要自动加入的房间

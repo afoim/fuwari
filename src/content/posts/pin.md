@@ -10,6 +10,8 @@ description: 关于如何联系二叉树树~
 
 # 加入群聊
 
-### QQ： 165624236
+### QQ： 165624236 （易封，经常转生）
 
 ### TG： https://t.me/+blyHrp_GihhhMWVl
+
+### Matrix： m.2x.nz [详细教程](/posts/element/)
