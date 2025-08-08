@@ -7,11 +7,11 @@ import { Icon } from "astro-icon/components";
     <div class="card-base p-6 md:p-8">
         <div class="flex items-center gap-2 mb-6">
             <div class="h-8 w-8 rounded-lg bg-[var(--primary)] flex items-center justify-center text-white dark:text-black/70">
-                <Icon name="material-symbols:favorite" class="text-[1.5rem]"/>
+                <Icon name="material-symbols:favorite" class="text-[1.5rem]">
             </div>
             <h1 class="text-2xl font-bold text-black dark:text-white">赞助支持</h1>
         </div>
-        
+
         <div class="mb-8">
             <p class="text-lg text-black/80 dark:text-white/80 mb-4">
                 如果您觉得我的内容对您有帮助，欢迎通过以下方式支持我的创作。您的每一份支持都是我持续创作的动力！
@@ -26,7 +26,7 @@ import { Icon } from "astro-icon/components";
             <div class="donate-card">
                 <div class="flex items-center gap-3 mb-4">
                     <div class="h-10 w-10 rounded-lg bg-blue-500 flex items-center justify-center">
-                        <Icon name="simple-icons:alipay" class="text-[1.5rem] text-white"/>
+                        <Icon name="simple-icons:alipay" class="text-[1.5rem] text-white">
                     </div>
                     <div>
                         <h3 class="text-lg font-bold text-black dark:text-white">支付宝</h3>
@@ -34,7 +34,7 @@ import { Icon } from "astro-icon/components";
                     </div>
                 </div>
                 <div class="qr-code-placeholder">
-                    <img src="/pay/alipay.svg" alt="支付宝二维码" class="w-84 h-84 mx-auto rounded-lg" />
+                    <img src="/donate/alipay.svg" alt="支付宝二维码" class="w-84 h-84 mx-auto rounded-lg" />
                 </div>
             </div>
 
@@ -42,7 +42,7 @@ import { Icon } from "astro-icon/components";
             <div class="donate-card">
                 <div class="flex items-center gap-3 mb-4">
                     <div class="h-10 w-10 rounded-lg bg-green-500 flex items-center justify-center">
-                        <Icon name="simple-icons:wechat" class="text-[1.5rem] text-white"/>
+                        <Icon name="simple-icons:wechat" class="text-[1.5rem] text-white">
                     </div>
                     <div>
                         <h3 class="text-lg font-bold text-black dark:text-white">微信支付</h3>
@@ -50,7 +50,7 @@ import { Icon } from "astro-icon/components";
                     </div>
                 </div>
                 <div class="qr-code-placeholder">
-                    <img src="/pay/wechat.svg" alt="微信支付二维码" class="w-84 h-84 mx-auto rounded-lg" />
+                    <img src="/donate/wechat.svg" alt="微信支付二维码" class="w-84 h-84 mx-auto rounded-lg" />
                 </div>
             </div>
 
@@ -58,7 +58,7 @@ import { Icon } from "astro-icon/components";
             <div class="donate-card">
                 <div class="flex items-center gap-3 mb-4">
                     <div class="h-10 w-10 rounded-lg bg-orange-500 flex items-center justify-center">
-                        <Icon name="simple-icons:bitcoin" class="text-[1.5rem] text-white"/>
+                        <Icon name="simple-icons:bitcoin" class="text-[1.5rem] text-white">
                     </div>
                     <div>
                         <h3 class="text-lg font-bold text-black dark:text-white">加密货币</h3>
@@ -88,27 +88,27 @@ import { Icon } from "astro-icon/components";
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div class="support-card">
                     <div class="flex items-center gap-2 mb-2">
-                        <Icon name="material-symbols:share" class="text-[1.2rem] text-[var(--primary)]"/>
+                        <Icon name="material-symbols:share" class="text-[1.2rem] text-[var(--primary)]">
                         <span class="font-semibold text-black dark:text-white">分享推荐</span>
                     </div>
                     <p class="text-sm text-black/60 dark:text-white/60">
                         将我的博客分享给更多朋友
                     </p>
                 </div>
-                
+
                 <div class="support-card">
                     <div class="flex items-center gap-2 mb-2">
-                        <Icon name="material-symbols:comment" class="text-[1.2rem] text-[var(--primary)]"/>
+                        <Icon name="material-symbols:comment" class="text-[1.2rem] text-[var(--primary)]">
                         <span class="font-semibold text-black dark:text-white">留言互动</span>
                     </div>
                     <p class="text-sm text-black/60 dark:text-white/60">
                         在文章下方留下您的想法
                     </p>
                 </div>
-                
+
                 <div class="support-card">
                     <div class="flex items-center gap-2 mb-2">
-                        <Icon name="material-symbols:star" class="text-[1.2rem] text-[var(--primary)]"/>
+                        <Icon name="material-symbols:star" class="text-[1.2rem] text-[var(--primary)]">
                         <span class="font-semibold text-black dark:text-white">关注订阅</span>
                     </div>
                     <p class="text-sm text-black/60 dark:text-white/60">
@@ -121,137 +121,103 @@ import { Icon } from "astro-icon/components";
         <!-- 感谢信息 -->
         <div class="thank-you-section">
             <div class="text-center p-6 rounded-lg bg-[var(--primary)]/10">
-                <Icon name="material-symbols:favorite" class="text-[2rem] text-[var(--primary)] mx-auto mb-2"/>
+                <Icon name="material-symbols:favorite" class="text-[2rem] text-[var(--primary)] mx-auto mb-2">
                 <h3 class="text-lg font-bold text-black dark:text-white mb-2">感谢您的支持</h3>
                 <p class="text-sm text-black/70 dark:text-white/70">
                     每一份支持都让我更有动力创作更好的内容。无论金额大小，您的心意我都深深感激！
                 </p>
             </div>
         </div>
-
-        <!-- 已赞助的小伙伴 -->
         <div class="sponsors-section mt-8">
             <h2 class="text-xl font-bold text-black dark:text-white mb-4 flex items-center gap-2">
-                <Icon name="material-symbols:group" class="text-[1.5rem] text-[var(--primary)]"/>
+                <Icon name="material-symbols:group" class="text-[1.5rem] text-[var(--primary)]">
                 已赞助的小伙伴
             </h2>
             <p class="text-sm text-black/60 dark:text-white/60">
             如果您已赞助，并且想加入赞助名单，请自行提交PR <a target="_blank" href="https://github.com/afoim/fuwari/blob/main/src/pages/donate.astro" class="transition link text-[var(--primary)] font-medium underline">点击这里提交</a>
-
             </p>
+
             <br>
             <div class="sponsors-grid">
+            <!-- 已赞助的小伙伴 -->
+
                 <div class="sponsor-card">
                     <div class="flex items-center gap-3 p-4 rounded-lg bg-[var(--card-bg)] border border-black/10 dark:border-white/10">
-                        <!-- 本地头像示例（需要将头像放在 public/avatars/ 目录下） -->
+                        <!-- 本地头像示例（需要将头像放在 public/donate/ 目录下） -->
                         <div class="w-10 h-10 rounded-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center overflow-hidden">
-                            <!-- 如果有本地头像文件，使用: <img src="/avatars/user1.jpg" alt="用户头像" class="w-full h-full object-cover" /> -->
+                            <!-- 如果有本地头像文件，使用: <img src="/donate/user1.jpg" alt="用户头像" loading="lazy" class="w-full h-full object-cover" /> -->
                             <!-- 如果没有头像文件，显示默认图标 -->
-                            <!-- <Icon name="material-symbols:person" class="text-gray-500 dark:text-gray-400 text-[1.2rem]"/> -->
-                             <img src="/favicon/mjt.jpg" alt="" class="w-full h-full object-cover">
+                            <!-- <Icon name="material-symbols:person" class="text-gray-500 dark:text-gray-400 text-[1.2rem]"> -->
+                            <img src="/donate/mjt.jpg" alt="" class="w-full h-full object-cover">
                         </div>
                         <div class="flex-1">
                             <h4 class="font-semibold text-black dark:text-white text-sm">明镜台</h4>
                             <p class="text-xs text-black/60 dark:text-white/60">2025-08-02</p>
                         </div>
-                        <div class="text-xs text-[var(--primary)] font-medium">
-                            100 ￥
-                        </div>
+                        <div class="text-xs text-[var(--primary)] font-medium">100 ￥</div>
                     </div>
                 </div>
-            
-
                 <div class="sponsor-card">
                     <div class="flex items-center gap-3 p-4 rounded-lg bg-[var(--card-bg)] border border-black/10 dark:border-white/10">
-                        <!-- 本地头像示例（需要将头像放在 public/avatars/ 目录下） -->
                         <div class="w-10 h-10 rounded-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center overflow-hidden">
-                            <!-- 如果有本地头像文件，使用: <img src="/avatars/user1.jpg" alt="用户头像" class="w-full h-full object-cover" /> -->
-                            <!-- 如果没有头像文件，显示默认图标 -->
-                            <!-- <Icon name="material-symbols:person" class="text-gray-500 dark:text-gray-400 text-[1.2rem]"/> -->
-                             <img src="https://blog.yeqing.net/favicon.ico" alt="" class="w-full h-full object-cover">
+                        	<img src="https://blog.yeqing.net/favicon.ico" alt="" class="w-full h-full object-cover">
                         </div>
                         <div class="flex-1">
                             <h4 class="font-semibold text-black dark:text-white text-sm">夜轻</h4>
                             <p class="text-xs text-black/60 dark:text-white/60">2025-07-11</p>
                         </div>
-                        <div class="text-xs text-[var(--primary)] font-medium">
-                            78 ￥
-                        </div>
+                        <div class="text-xs text-[var(--primary)] font-medium">78 ￥</div>
                     </div>
                 </div>
-                <!-- MingTone 赞助者 -->
                 <div class="sponsor-card">
                     <div class="flex items-center gap-3 p-4 rounded-lg bg-[var(--card-bg)] border border-black/10 dark:border-white/10">
                         <div class="w-10 h-10 rounded-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center overflow-hidden">
-                            <img src="https://q.qlogo.cn/g?b=qq&nk=2244347713&s=160" alt="用户头像" class="w-full h-full object-cover" />
+                            <img src="https://q.qlogo.cn/g?b=qq&nk=2244347713&s=160" alt="用户头像" loading="lazy" class="w-full h-full object-cover">
                         </div>
                         <div class="flex-1">
                             <h4 class="font-semibold text-black dark:text-white text-sm">MingTone</h4>
                             <p class="text-xs text-black/60 dark:text-white/60">2025-07-21</p>
                         </div>
-                        <div class="text-xs text-[var(--primary)] font-medium">
-                            50 ￥
-                        </div>
+                        <div class="text-xs text-[var(--primary)] font-medium">50 ￥</div>
                     </div>
                 </div>
-
-                <!-- 示例赞助者卡片 - 使用本地头像 -->
                 <div class="sponsor-card">
                     <div class="flex items-center gap-3 p-4 rounded-lg bg-[var(--card-bg)] border border-black/10 dark:border-white/10">
-                        <!-- 本地头像示例（需要将头像放在 public/avatars/ 目录下） -->
                         <div class="w-10 h-10 rounded-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center overflow-hidden">
-                            <!-- 如果有本地头像文件，使用: <img src="/avatars/user1.jpg" alt="用户头像" class="w-full h-full object-cover" /> -->
-                            <!-- 如果没有头像文件，显示默认图标 -->
-                            <!-- <Icon name="material-symbols:person" class="text-gray-500 dark:text-gray-400 text-[1.2rem]"/> -->
-                             <img src="https://coldin.top/src/avatar.webp" alt="用户头像" class="w-full h-full object-cover" />
+                        	<img src="https://coldin.top/src/avatar.webp" alt="用户头像" loading="lazy" class="w-full h-full object-cover">
                         </div>
                         <div class="flex-1">
                             <h4 class="font-semibold text-black dark:text-white text-sm">酷丁同学</h4>
                             <p class="text-xs text-black/60 dark:text-white/60">2025-07-15</p>
                         </div>
-                        <div class="text-xs text-[var(--primary)] font-medium">
-                            5 USDC
-                        </div>
+                        <div class="text-xs text-[var(--primary)] font-medium">5 USDC</div>
                     </div>
                 </div>
                 <div class="sponsor-card">
                     <div class="flex items-center gap-3 p-4 rounded-lg bg-[var(--card-bg)] border border-black/10 dark:border-white/10">
-                        <!-- 本地头像示例（需要将头像放在 public/avatars/ 目录下） -->
                         <div class="w-10 h-10 rounded-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center overflow-hidden">
-                            <!-- 如果有本地头像文件，使用: <img src="/avatars/user1.jpg" alt="用户头像" class="w-full h-full object-cover" /> -->
-                            <!-- 如果没有头像文件，显示默认图标 -->
-                            <!-- <Icon name="material-symbols:person" class="text-gray-500 dark:text-gray-400 text-[1.2rem]"/> -->
-                             <Icon name="material-symbols:person" class="text-gray-500 dark:text-gray-400 text-[1.2rem]"/>
+                        	<Icon name="material-symbols:person" class="text-gray-500 dark:text-gray-400 text-[1.2rem]">
                         </div>
                         <div class="flex-1">
                             <h4 class="font-semibold text-black dark:text-white text-sm">匿名用户</h4>
                             <p class="text-xs text-black/60 dark:text-white/60">2025-07-15</p>
                         </div>
-                        <div class="text-xs text-[var(--primary)] font-medium">
-                            19.80￥
-                        </div>
+                        <div class="text-xs text-[var(--primary)] font-medium">19.80￥</div>
                     </div>
                 </div>
                 <div class="sponsor-card">
                     <div class="flex items-center gap-3 p-4 rounded-lg bg-[var(--card-bg)] border border-black/10 dark:border-white/10">
-                        <!-- 本地头像示例（需要将头像放在 public/avatars/ 目录下） -->
                         <div class="w-10 h-10 rounded-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center overflow-hidden">
-                            <!-- 如果有本地头像文件，使用: <img src="/avatars/user1.jpg" alt="用户头像" class="w-full h-full object-cover" /> -->
-                            <!-- 如果没有头像文件，显示默认图标 -->
-                            <!-- <Icon name="material-symbols:person" class="text-gray-500 dark:text-gray-400 text-[1.2rem]"/> -->
-                             
-                             <img src="https://blog-backend.alexma.top/api/v2/objects/avatar/112zjnt1f3c2cf3prp.webp" alt="用户头像" class="w-full h-full object-cover" />
+                        	<img src="https://blog-backend.alexma.top/api/v2/objects/avatar/112zjnt1f3c2cf3prp.webp" alt="用户头像" loading="lazy" class="w-full h-full object-cover">
                         </div>
                         <div class="flex-1">
                             <h4 class="font-semibold text-black dark:text-white text-sm">AlexMa233</h4>
                             <p class="text-xs text-black/60 dark:text-white/60">2025-07-27</p>
                         </div>
-                        <div class="text-xs text-[var(--primary)] font-medium">
-                            5 B币
-                        </div>
+                        <div class="text-xs text-[var(--primary)] font-medium">5 B币</div>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>

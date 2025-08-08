@@ -2,7 +2,7 @@
 category: 记录
 description: 一些记录，不定时更新
 draft: false
-image: https://eo-r2.2x.nz/myblog/img/xinghui.avif
+image: https://eo-pic.2x.nz/h
 lang: zh_CN
 published: 1999-01-01
 tags:
