@@ -1,0 +1,407 @@
+---
+import MainGridLayout from '@layouts/MainGridLayout.astro'
+import { Icon } from 'astro-icon/components'
+import { siteConfig } from '@/config'
+
+const baseUrl = import.meta.env.BASE_URL || '/'
+const title = `404 - ${siteConfig.title}`
+---
+
+<MainGridLayout title={title} description="页面未找到">
+  <div class="flex flex-col items-center justify-center min-h-[70vh] gap-8 px-4 py-12">
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="floating-bubble bubble-1"></div>
+      <div class="floating-bubble bubble-2"></div>
+      <div class="floating-bubble bubble-3"></div>
+    </div>
+    
+    <div class="relative z-10 flex flex-col items-center gap-8">
+      <div class="relative group">
+        <div class="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full blur-3xl opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
+        
+        <div class="relative flex items-center gap-4">
+          <span class="error-number">4</span>
+          <div class="planet-container">
+            <div class="planet">
+              <div class="crater crater1"></div>
+              <div class="crater crater2"></div>
+              <div class="crater crater3"></div>
+            </div>
+            <div class="orbit">
+              <div class="satellite"></div>
+            </div>
+          </div>
+          <span class="error-number">4</span>
+        </div>
+      </div>
+      
+      <div class="text-center space-y-4 max-w-lg">
+        <h1 class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+          迷失在宇宙中了
+        </h1>
+        <p class="text-lg text-neutral-600 dark:text-neutral-400">
+          看起来这个页面已经飘向了外太空 🚀
+        </p>
+      </div>
+      
+      <div class="glass-card">
+        <div class="flex items-center gap-3">
+          <div class="countdown-circle">
+            <svg class="countdown-svg" viewBox="0 0 36 36">
+              <path class="countdown-bg"
+                d="M18 2.0845
+                  a 15.9155 15.9155 0 0 1 0 31.831
+                  a 15.9155 15.9155 0 0 1 0 -31.831"
+              />
+              <path class="countdown-progress"
+                stroke-dasharray="100, 100"
+                d="M18 2.0845
+                  a 15.9155 15.9155 0 0 1 0 31.831
+                  a 15.9155 15.9155 0 0 1 0 -31.831"
+              />
+            </svg>
+            <span id="countdown" class="countdown-number">10</span>
+          </div>
+          <div class="text-left">
+            <p class="text-sm text-neutral-500 dark:text-neutral-400">正在准备返航</p>
+            <p class="text-xs text-neutral-400 dark:text-neutral-500">即将返回首页...</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="flex flex-col sm:flex-row gap-3">
+        <a 
+          href={baseUrl}
+          class="group flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 hover:-translate-y-0.5"
+        >
+          <Icon name="material-symbols:rocket-launch" class="w-5 h-5 group-hover:rotate-12 transition-transform" />
+          <span>立即返回首页</span>
+        </a>
+        <button 
+          onclick="history.back()"
+          class="flex items-center gap-2 px-6 py-3 border border-neutral-300 dark:border-neutral-700 rounded-full hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all duration-300 text-neutral-700 dark:text-white"
+        >
+          <Icon name="material-symbols:arrow-back" class="w-5 h-5 text-neutral-700 dark:text-white" />
+          <span>返回上一页</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</MainGridLayout>
+
+<script define:vars={{ baseUrl }}>
+  // 倒计时 10 秒
+  const TOTAL_SECONDS = 10;
+  let seconds = TOTAL_SECONDS;
+
+  const countdownElement = document.getElementById('countdown');
+  const progressPath = document.querySelector('.countdown-progress');
+
+  // 初始化
+  if (countdownElement) {
+    countdownElement.textContent = seconds.toString();
+  }
+  if (progressPath) {
+    progressPath.style.strokeDasharray = '100, 100';
+  }
+
+  const countdown = setInterval(() => {
+    seconds--;
+
+    if (countdownElement) {
+      countdownElement.textContent = Math.max(seconds, 0).toString();
+    }
+
+    if (progressPath) {
+      const progress = Math.max((seconds / TOTAL_SECONDS) * 100, 0);
+      progressPath.style.strokeDasharray = `${progress}, 100`;
+    }
+
+    if (seconds <= 0) {
+      clearInterval(countdown);
+      setTimeout(() => {
+        window.location.href = baseUrl;
+      }, 200);
+    }
+  }, 1000);
+</script>
+// 我可太爱写这部分了
+
+<style>
+  .error-number {
+    font-size: clamp(4rem, 10vw, 6rem);
+    font-weight: 900;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 10px 30px rgba(102, 126, 234, 0.1);
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  .planet-container {
+    position: relative;
+    width: clamp(80px, 15vw, 120px);
+    height: clamp(80px, 15vw, 120px);
+  }
+  
+  .planet {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 50%, #e17055 100%);
+    box-shadow: 
+      inset -20px -20px 40px rgba(0, 0, 0, 0.2),
+      0 0 50px rgba(253, 203, 110, 0.4);
+    animation: rotate 20s linear infinite;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .crater {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.1);
+  }
+  
+  .crater1 {
+    width: 20%;
+    height: 20%;
+    top: 25%;
+    left: 40%;
+  }
+  
+  .crater2 {
+    width: 15%;
+    height: 15%;
+    top: 50%;
+    left: 25%;
+  }
+  
+  .crater3 {
+    width: 10%;
+    height: 10%;
+    top: 40%;
+    right: 30%;
+  }
+  
+  .orbit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150%;
+    height: 150%;
+    transform: translate(-50%, -50%);
+    border: 2px dashed rgba(147, 51, 234, 0.2);
+    border-radius: 50%;
+    animation: rotate 5s linear infinite reverse;
+  }
+  
+  .satellite {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #9333ea;
+    border-radius: 50%;
+    top: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 10px #9333ea;
+  }
+  
+  .glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 20px 30px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+  }
+  
+  .countdown-circle {
+    position: relative;
+    width: 36px;
+    height: 36px;
+  }
+  
+  .countdown-svg {
+    transform: rotate(-90deg);
+    width: 36px;
+    height: 36px;
+  }
+  
+  .countdown-bg {
+    fill: none;
+    stroke: rgba(147, 51, 234, 0.1);
+    stroke-width: 3;
+  }
+  
+  .countdown-progress {
+    fill: none;
+    stroke: url(#gradient);
+    stroke-width: 3;
+    stroke-linecap: round;
+    transition: stroke-dasharray 0.3s ease;
+    stroke: #9333ea;
+  }
+  
+  .countdown-number {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    font-weight: bold;
+    color: #9333ea;
+  }
+  
+  .floating-bubble {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.1;
+    animation: float-bubble 20s infinite ease-in-out;
+  }
+  
+  .bubble-1 {
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    left: -100px;
+    top: 20%;
+    animation-delay: 0s;
+  }
+  
+  .bubble-2 {
+    width: 150px;
+    height: 150px;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    right: -75px;
+    top: 60%;
+    animation-delay: 5s;
+  }
+  
+  .bubble-3 {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    left: 30%;
+    bottom: -50px;
+    animation-delay: 10s;
+  }
+  
+  /* 动画 */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes float-bubble {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+    }
+    33% {
+      transform: translate(30px, -30px) scale(1.1);
+    }
+    66% {
+      transform: translate(-20px, 20px) scale(0.9);
+    }
+  }
+  
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .relative.z-10 > * {
+    animation: slideUp 0.6s ease-out forwards;
+    opacity: 0;
+  }
+  
+  .relative.z-10 > *:nth-child(1) { animation-delay: 0.1s; }
+  .relative.z-10 > *:nth-child(2) { animation-delay: 0.2s; }
+  .relative.z-10 > *:nth-child(3) { animation-delay: 0.3s; }
+  .relative.z-10 > *:nth-child(4) { animation-delay: 0.4s; }
+
+  @media (prefers-color-scheme: dark) {
+    .glass-card {
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .error-number {
+      background: linear-gradient(135deg, #a78bfa 0%, #f472b6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 10px 30px rgba(168, 85, 247, 0.25);
+    }
+    .countdown-bg {
+      stroke: rgba(147, 51, 234, 0.22);
+    }
+    .countdown-progress {
+      stroke: #c084fc;
+    }
+    .countdown-number {
+      color: #c084fc;
+    }
+    .floating-bubble {
+      opacity: 0.16;
+    }
+    .orbit {
+      border: 2px dashed rgba(147, 51, 234, 0.35);
+    }
+    .planet {
+      box-shadow:
+        inset -20px -20px 40px rgba(0, 0, 0, 0.35),
+        0 0 50px rgba(253, 203, 110, 0.25);
+    }
+  }
+
+  .dark .glass-card {
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .dark .error-number {
+    background: linear-gradient(135deg, #a78bfa 0%, #f472b6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 10px 30px rgba(168, 85, 247, 0.25);
+  }
+  .dark .countdown-bg {
+    stroke: rgba(147, 51, 234, 0.22);
+  }
+  .dark .countdown-progress {
+    stroke: #c084fc;
+  }
+  .dark .countdown-number {
+    color: #c084fc;
+  }
+  .dark .floating-bubble {
+    opacity: 0.16;
+  }
+  .dark .orbit {
+    border: 2px dashed rgba(147, 51, 234, 0.35);
+  }
+  .dark .planet {
+    box-shadow:
+      inset -20px -20px 40px rgba(0, 0, 0, 0.35),
+      0 0 50px rgba(253, 203, 110, 0.25);
+  }
+</style>
