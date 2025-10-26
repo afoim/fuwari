@@ -1,6 +1,85 @@
 ---
 import MainGridLayout from "@layouts/MainGridLayout.astro";
 import { Icon } from "astro-icon/components";
+
+const friends: {name: string, desc: string, url: string, avatar?: string}[] = [
+  { name: "yCENzh's Blog", desc: "Ciallo～(∠・ω&lt; )⌒☆", url: "https://fuwari.oh1.top/", avatar: "https://fuwari.oh1.top/avatar.webp" },
+  { name: "Wer Blog", desc: "The only way to do great is to love what you do", url: "https://blog.isyyo.com/", avatar: "https://blog.isyyo.com/favicon/logo.png" },
+  { name: "带我入坑网站的超级大坏比", desc: "Dmocken的免费推广位", url: "https://phira.dmocken.top", avatar: "https://q2.qlogo.cn/headimg_dl?dst_uin=3347510139&spec=5" },
+  { name: "Dahi Blog", desc: "時光流轉，願你有一天能與重要的人重逢", url: "https://dahi.icu/", avatar: "https://oxs.dahi.icu/pic/avatar.png" },
+  { name: "AlexMa's Blog", desc: "Create things with love.", url: "https://blog.alexma.top", avatar: "https://blog-backend.alexma.top/api/v2/objects/avatar/112zjnt1f3c2cf3prp.webp" },
+  { name: "YoungLee的手帳", desc: "写作恐惧症患者，需要咖啡续命的学者", url: "https://younglee.cn", avatar: "https://younglee.cn/icon.svg" },
+  { name: "Google搜索 site&colon;rbq.* 找到的", desc: "「Tragedy is coming 'as I wish'......」", url: "https://saltedfishes.com", avatar: "https://saltedfishes.com/favicon.ico" },
+  { name: "雾创岛", desc: "https://www.tr0.cn", url: "https://www.tr0.cn", avatar: "https://www.tr0.cn/favicon.ico" },
+  { name: "Eunie的博客", desc: "https://www.eunie.online/", url: "https://www.eunie.online/", avatar: "https://www.eunie.online/upload/tMZ6yUjk7rxhCqQ.png" },
+  { name: "MXTAG", desc: "探索AI与数字未来", url: "https://www.mxtag.com", avatar: "https://www.mxtag.com/wp-content/uploads/favicon.ico" },
+  { name: "巳忆笔记", desc: "记住所有美好回忆", url: "https://siyi171.xyz/", avatar: "https://tc.siyi171.xyz/PicGo/logo.png" },
+  { name: "Petric Blog", desc: "代码如诗 / 逻辑为歌", url: "https://www.petricw.com", avatar: "https://www.petricw.com/photo.jpg" },
+  { name: "在***教了我很多的好朋友", desc: "https://ie.cx", url: "https://ie.cx", avatar: "/favicon/ie-cx.png" },
+  { name: "RukaaX Blogs", desc: "RukaaX-一名高中牲的博客", url: "https://blogs.rukaax.top/", avatar: "https://blogs.rukaax.top/wp-content/uploads/2025/07/cropped-1753627554-ICON.webp" },
+  { name: "AirTouch’s Blog", desc: "岩间琉璃云间月", url: "https://xsl.im", avatar: "https://blog.airtouch.top/avatar.webp" },
+  { name: "Falling42", desc: "Fate lies within the light cone.", url: "https://falling42.net/", avatar: "https://s2.loli.net/2025/05/17/Cbm7ogkBWAq3ST8.png" },
+  { name: "青序栈", desc: "青序成栈·向简而生", url: "https://qxzhan.cn/", avatar: "https://qxzhan.cn/favicon.png" },
+  { name: "夜轻Blog", desc: "一个人", url: "https://blog.yeqing.net/", avatar: "https://blog.yeqing.net/favicon.ico" },
+  { name: "fishcpy的小破站", desc: "非淡泊无以明志，非宁静无以致远", url: "https://blog.fis.ink", avatar: "https://www.fis.ink/img/logo.png" },
+  { name: "晓晴博客", desc: "https://www.toubiec.cn", url: "https://www.toubiec.cn", avatar: "https://www.toubiec.cn/usr/themes/Joe/logo.ico" },
+  { name: "酷丁博客", desc: "https://coldin.top", url: "https://coldin.top", avatar: "https://coldin.top/favicon.ico" },
+  { name: "Codfish Blog", desc: "🐟🐟🐟", url: "https://codfish.top", avatar: "https://codfish.top/favicon/1.jpg" },
+  { name: "随思南游", desc: "生如夏欢之绚烂，死如秋叶之静", url: "https://ssnur.com/", avatar: "https://ssnur.com/tx.jpg" },
+  { name: "Eilo's Blog", desc: "等等我记一下", url: "https://www.eilo.uk/", avatar: "https://www.eilo.uk/img/logo.png" },
+  { name: "Shattered217のblog", desc: "成分复杂", url: "https://blog.shattered.top/", avatar: "https://blog.shattered.top/wp-content/uploads/2023/06/cropped-android-chrome-512x512-1.png" },
+  { name: "wyf9's Blog", desc: "什么都有的个人 blog?", url: "https://wyf9.top/", avatar: "https://wyf9.top/favicon/android-chrome-192x192.png" },
+  { name: "fulie blog", desc: "永不后悔", url: "https://pcb.im/", avatar: "https://q2.qlogo.cn/headimg_dl?dst_uin=3672492995&spec=5" },
+  { name: "呐吼", desc: "不止于沉默", url: "https://www.nahou.com/", avatar: "https://www.nahou.com/i/icon.webp" },
+  { name: "私人grgk", desc: "https://sub.grgk.me", url: "https://sub.grgk.me", avatar: "https://q2.qlogo.cn/headimg_dl?dst_uin=1662352474&spec=5" },
+  { name: "Gunbrad的博客", desc: "https://gunbrad.xyz", url: "https://gunbrad.xyz", avatar: "https://gunbrad.xyz/favicon/icon.jpg" },
+  { name: "幻空博客", desc: "https://blog.huankong.top", url: "https://blog.huankong.top", avatar: "https://img.huankong.top/i/2022/11/29/6385ef8c7a675.ico" },
+  { name: "小白のBlog", desc: "Ciallo～(∠・ω&lt; )⌒☆", url: "https://www.showby.top/", avatar: "https://r2cfimg.showby.top/2024/09/19/66eb06a884fb9.jpg" },
+  { name: "曾经天天和我斗嘴并且抄我博客的😡", desc: "https://blog.muyoung.com", url: "https://blog.muyoung.com", avatar: "https://obj.muyoung.com/logo/favicon.ico" },
+  { name: "非常酷的Kotlin Compose Web WASM 全Canvas网站", desc: "https://nyayurin.github.io/Yutori-Docs/", url: "https://nyayurin.github.io/Yutori-Docs/", avatar: "/favicon/yurn.png" },
+  { name: "钨鸮的孤岛电台", desc: "钨在所有金属中排名第七，因此这是一只重磅鸮", url: "https://blog.2w2.top", avatar: "https://blog.2w2.top/img/avatar.webp" },
+  { name: "奶昔论坛", desc: "https://forum.naixi.net/", url: "https://forum.naixi.net/", avatar: "https://forum.naixi.net/favicon.ico" },
+  { name: "LINUX.DO", desc: "https://linux.do", url: "https://linux.do", avatar: "https://linux.do/uploads/default/optimized/3X/7/d/7de31932a4fd533496cfe35979a4d9d995bb5c63_2_180x180.png" },
+  { name: "宝塔开心版", desc: "https://bt.sb", url: "https://bt.sb", avatar: "https://www.bt.cn/favicon.ico" },
+  { name: "NodeSeek", desc: "https://www.nodeseek.com", url: "https://www.nodeseek.com", avatar: "/favicon/nodeseek.png" },
+  { name: "粉白妙妙屋", desc: "我见青山多妩媚", url: "https://383842.xyz", avatar: "https://dlink.host/wx2.sinaimg.cn/large/007udx8Wly8i0h6etwni7g301j01lq3k.gif" },
+  { name: "或许是一只龙的博客", desc: "写点小东西", url: "https://www.497995.xyz/", avatar: "https://fastr2.497995.xyz/image.jpg" },
+  { name: "22", desc: "https://space.bilibili.com/44681442", url: "https://space.bilibili.com/44681442", avatar: "/favicon/22.png" },
+  { name: "Stanley的技术博客", desc: "给时光以生命 给岁月以文明。", url: "https://www.lixvyao.com", avatar: "https://main.lixvyao.com/favicon.png" },
+  { name: "Tavre Blog", desc: "Tavre的个人技术记录博客", url: "https://blog.tsd.my", avatar: "https://q1.qlogo.cn/g?b=qq&nk=2987304764&s=640" },
+  { name: "鈴奈咲桜のブログ", desc: "愛することを忘れないで", url: "https://blog.sakura.ink", avatar: "https://blog.sakura.ink/_astro/avatar.B8d6PP-N_2a0uDN.webp" },
+  { name: "yunsen2025的小窝", desc: "纯粹的计算机爱好者", url: "https://www.yunsen2025.top", avatar: "https://img.alicdn.com/bao/uploaded/i4/O1CN01TWOpM42DSyY5nC0hM_!!0-mtopupload.jpg" },
+  { name: "百里博客", desc: "一个高中生的博客", url: "https://blog.my0811.cn", avatar: "https://q2.qlogo.cn/headimg_dl?dst_uin=3166269605&spec=5" },
+  { name: "Zirkeln", desc: "欢迎来到我的个人网站！这里是我作为一名计算机科学爱好者和 ACG（动画、漫画、游戏）迷，分享我对计算机技术、动画、漫画小说和电子音乐（EDM）等多元兴趣的乐园。", url: "https://zrn.net", avatar: "https://zrn.net/wp-content/uploads/2025/07/seia_avatar.jpg.webp" },
+  { name: "mxd's Planet", desc: "平平无奇的菜鸟，喜欢干点自己喜欢做的事情。在这里学习更多有关Linux、*BSD知识，加入我们的大家庭一起交流分享！欢迎在此列表的其他网站互换友链！", url: "https://www.mxdyeah.top/", avatar: "https://res.mxdyeah.top/favicon.webp" },
+  { name: "森资源", desc: "牛逼的资源网站（没开站还）", url: "https://senziyuan.236668.xyz", avatar: "https://img.alicdn.com/bao/uploaded/i4/O1CN01TWOpM42DSyY5nC0hM_!!0-mtopupload.jpg" },
+  { name: "小宇blog", desc: "很烂的blog，不怎么更新", url: "https://blog.skyxy.qzz.io/", avatar: "https://blog.skyxy.qzz.io/images/favicon.svg" },
+  { name: "QC3284's Blog", desc: "欢迎来到我的博客！ 一名乐于探索新事物的爱好者-QC3284", url: "https://www.xcqcoo.top", avatar: "https://cdn4.xcqcoo.top/gh/QC3284/233@main/test_db_qc3284.png" },
+  { name: "zty012 blog (2y.nz)", desc: "一个初中生的blog", url: "https://2y.nz", avatar: "https://2y.nz/favicon.png" },
+  { name: "Elysiam", desc: "个人的博客小站，分享下技术和生活。May you, the beauty of this world, always shine", url: "https://blog.170529.xyz", avatar: "https://img.170529.xyz/2025/08/favicon-compress.avif" },
+  { name: "Gavin's Blog", desc: "一个内容成分复杂的博客小站。", url: "https://gavin-blog.pages.dev", avatar: "https://gavin-blog.pages.dev/assets/website/avatar.webp" },
+  { name: "小张の小站", desc: "🌟 随时一起探索新事物，让我们一起成长、一起分享，让这片小小的数字世界充满更多的光辉✨！", url: "https://hub.xiaozhangya.xin", avatar: "https://img.xiaozhangya.xin/file/1753185126703_avatar.jpg" },
+  { name: "星辰の笔记", desc: "Code | Think | Share | Repeat", url: "https://blog.strarry.top/", avatar: "https://blog.strarry.top/avatar.jpg" },
+  { name: "Ad_closeNN の Blog", desc: "Ad_closeNN 的小站，时不时会刷新一些野生东西 | ✨ 欢迎友链，祝大家天天开心！ ✨", url: "https://adclosenn.top", avatar: "https://adclosenn.top/assets/avatar.jpg" },
+  { name: "MC_Kero blog", desc: "MC_Kero的博客", url: "https://blog.mckero.com", avatar: "https://pub-3f1fec3195b64bb4974955567a77da00.r2.dev/OIP.jpeg" },
+  { name: "石墨烯积木的个人博客", desc: "分享一些有趣的东西", url: "https://www.shimoxi.qzz.io/", avatar: "https://cdn.jsdelivr.net/gh/shimoxi123/img/img/6894b49f58cb8da5c80fd8e5.webp" },
+  { name: "Aliom的个人博客", desc: "Aliom的线上小窝", url: "https://bailanwa.dpdns.org", avatar: "https://avatars.githubusercontent.com/u/182760295?v=4" },
+  { name: "THW's Blog", desc: "Live a good life meet slowly", url: "https://thw.lol/", avatar: "https://img.dooki.cloud/i/2025/08/29/68b09e116c4b6.webp" },
+  { name: "尘の个人博客", desc: "一个高中生 UP 搭的博客  QwQ", url: "https://blog.mcxiaochen.top/", avatar: "https://blog.mcxiaochen.top/favicon.ico" },
+  { name: "PARKSI's Blog", desc: "Redefine Yourself", url: "https://blog.lparksi.com/", avatar: "https://blog.lparksi.com/images/icon.webp" },
+  { name: "Zero - Higanbana", desc: "https://vtdd.vip/", url: "https://vtdd.vip/", avatar: "https://vtdd.vip/_astro/lx.U15Ju0Ce_1mLhMp.webp" },
+  { name: "硅基漫游指南", desc: "Face life with hope.", url: "https://blog.helong.online/", avatar: "https://blog.lparksi.com/images/icon.webp" },
+  { name: "chuzouX Blog", desc: "欢迎大家光临本站，希望大家在这里可以找到自己想要的东西，祝大家玩的开心！！", url: "https://chuzoux.top", avatar: "https://q2.qlogo.cn/headimg_dl?dst_uin=3451860760&spec=0" },
+  { name: "千年共振", desc: "安卓人写的苹果博客", url: "https://blog.01101.top", avatar: "https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAEBfBVovV-BBiGQfhx8x5AqxWQsf6Yh8QACEz4AAk_q6VViPZEKaaiLvDYE.jpg/" },
+  { name: "Mo的记事簿", desc: "万年鸽王，哈哈OvO", url: "https://blog.xiowo.net/", avatar: "https://blog.xiowo.net/img/avatar.png" },
+  { name: "Elykia", desc: "致以无暇之人", url: "https://blog.elykia.cn", avatar: "https://bu.dusays.com/2024/10/25/671b2438203a6.gif" },
+  { name: "JustPureH₂O", desc: "穷方圆平直之情，尽规矩准绳之用", url: "https://justpureh2o.cn", avatar: "https://justpureh2o.cn/favicon.jpg" },
+  { name: "DailyFunctions-生活常用工具", desc: "hi~", url: "https://dailyfunctions.top/", avatar: "" },
+  { name: "CappuccinoZ's Blog", desc: "良机一直就在你眼前", url: "https://kitakita.top", avatar: "https://kitakita.top/img/avatar2.png" },
+  { name: "iAmKevin Blog", desc: "自律和不自律，都会吃苦，不同的是，自律的苦会让人生越来越甜。", url: "https://imkn.top", avatar: "https://n1.img.111pan.cn/api/v4/slave/file/content/0/ZGF0YS91cGxvYWRzLzE0L2M3MWU3ZjJjLTJkOGUtNGRkNi04OGZhLTZkMGIyMWIzZmNkZF9ibG9nLnBuZw==/0/blog.png?sign=xWijnCd9J9SNtUadG_OjD_0TJyTk3ZR7GCBKH98VIQw%3D%3A1759574603" },
+  { name: "XUIOO", desc: "一叶障目，不见泰山；两耳塞豆，不闻雷霆。", url: "https://blog.xuioo.com", avatar: "https://blog.xuioo.com/27c69590279fdc3be2cd7c901e3d07ad.jpg" },
+];
+
 ---
 
 <MainGridLayout title="友链">
@@ -12,541 +91,15 @@ import { Icon } from "astro-icon/components";
             <h1 class="text-2xl font-bold text-black dark:text-white">友链</h1>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <a href="https://fuwari.oh1.top/" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://fuwari.oh1.top/avatar.webp"  loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">yCENzh's Blog</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">Ciallo～(∠・ω&lt; )⌒☆ </div>
-            </a>
-            <a href="https://blog.isyyo.com/" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://blog.isyyo.com/favicon/logo.png" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">Wer Blog</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">The only way to do great is to love what you do</div>
-            </a>
-            <a href="https://phira.dmocken.top" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://q2.qlogo.cn/headimg_dl?dst_uin=3347510139&spec=5" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">带我入坑网站的超级大坏比</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">Dmocken的免费推广位</div>
-            </a>
-            <a href="https://dahi.icu/" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://oxs.dahi.icu/pic/avatar.png" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">Dahi Blog</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">時光流轉，願你有一天能與重要的人重逢</div>
-            </a>
-            <a href="https://blog.alexma.top" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://blog-backend.alexma.top/api/v2/objects/avatar/112zjnt1f3c2cf3prp.webp" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">AlexMa's Blog</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">Create things with love.</div>
-            </a>
-            <a href="https://younglee.cn" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://younglee.cn/icon.svg" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">YoungLee的手帐</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">写作恐惧症患者，需要咖啡续命的学者</div>
-            </a>
-            <a href="https://saltedfishes.com" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://saltedfishes.com/favicon.ico" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">Google搜索 site&colon;rbq.* 找到的</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">「Tragedy is coming 'as I wish'......」</div>
-            </a>
-            <a href="https://www.tr0.cn" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://www.tr0.cn/favicon.ico"  loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">雾创岛</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">https://www.tr0.cn</div>
-            </a>
-            <a href="https://www.eunie.online/" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://www.eunie.online/upload/tMZ6yUjk7rxhCqQ.png" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">Eunie的博客</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">https://www.eunie.online/</div>
-            </a>
-            <a href="https://www.qmye.com" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://www.qmye.com/wp-content/uploads/favicon.ico" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">奇妙页</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">探索AI创意与灵感的奇妙世界</div>
-            </a>
-            <a href="https://siyi171.xyz/" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://tc.siyi171.xyz/PicGo/logo.png" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">巳忆笔记</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">记住所有美好回忆</div>
-            </a>
-            <a href="https://www.petricw.com" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://www.petricw.com/photo.jpg" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">Petric Blog</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">代码如诗 / 逻辑为歌</div>
-            </a>
-            <a href="https://ie.cx" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="/favicon/ie-cx.png"  loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">在***教了我很多的好朋友</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">https://ie.cx</div>
-            </a>
-            <a href="https://blogs.rukaax.top/" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://blogs.rukaax.top/wp-content/uploads/2025/07/cropped-1753627554-ICON.webp" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">RukaaX Blogs</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">RukaaX-一名高中牲的博客</div>
-            </a>
-            <a href="https://xsl.im" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://blog.airtouch.top/avatar.webp" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">AirTouch’s Blog</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">岩间琉璃云间月</div>
-            </a>
-            <a href="https://falling42.net/" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://s2.loli.net/2025/05/17/Cbm7ogkBWAq3ST8.png" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">Falling42</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">Fate lies within the light cone. </div>
-            </a>
-                        <a href="https://qxzhan.cn/" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://qxzhan.cn/favicon.png" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">青序栈</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">青序成栈·向简而生</div>
-            </a>
-            <a href="https://blog.yeqing.net/" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://blog.yeqing.net/favicon.ico" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">夜轻Blog</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">一个人</div>
-            </a>
-            <a href="https://blog.fis.ink" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://www.fis.ink/img/logo.png"  loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">fishcpy的小破站</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">非淡泊无以明志，非宁静无以致远</div>
-            </a>
-            <a href="https://www.toubiec.cn" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://www.toubiec.cn/usr/themes/Joe/logo.ico"  loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">晓晴博客</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">https://www.toubiec.cn</div>
-            </a>
-            <a href="https://coldin.top" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://coldin.top/favicon.ico" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">酷丁博客</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">https://coldin.top</div>
-            </a>
-            <a href="https://codfish.top" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://codfish.top/favicon/1.jpg" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">Codfish Blog</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">🐟🐟🐟</div>
-            </a>
-            <a href="https://ssnur.com/" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://ssnur.com/tx.jpg" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">随思南游</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">生如夏欢之绚烂，死如秋叶之静</div>
-            </a>
-            <a href="https://www.eilo.uk/" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://www.eilo.uk/img/logo.png" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">Eilo's Blog</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">等等我记一下</div>
-            </a>
-            <a href="https://blog.shattered.top/" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://blog.shattered.top/wp-content/uploads/2023/06/cropped-android-chrome-512x512-1.png" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">Shattered217のblog</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">成分复杂</div>
-            </a>
-            <a href="https://wyf9.top/" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://wyf9.top/favicon/android-chrome-192x192.png" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">wyf9's Blog</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">什么都有的个人 blog?</div>
-            </a>
-            <a href="https://pcb.im/" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://q2.qlogo.cn/headimg_dl?dst_uin=3672492995&spec=5" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">fulie blog</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">永不后悔</div>
-            </a>
-            <a href="https://www.nahou.com/" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://www.nahou.com/i/icon.webp" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">呐吼</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">不止于沉默</div>
-            </a>
-            <a href="https://sub.grgk.me" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://q2.qlogo.cn/headimg_dl?dst_uin=1662352474&spec=5" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">私人grgk</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">https://sub.grgk.me</div>
-            </a>
-            <a href="https://gunbrad.xyz" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://gunbrad.xyz/favicon/icon.jpg"  loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">Gunbrad的博客</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">https://gunbrad.xyz</div>
-            </a>
-            <a href="https://blog.huankong.top" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://img.huankong.top/i/2022/11/29/6385ef8c7a675.ico" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">幻空博客</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">https://blog.huankong.top</div>
-            </a>
-            <a href="https://www.showby.top/" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://r2cfimg.showby.top/2024/09/19/66eb06a884fb9.jpg"  loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">小白のBlog</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">Ciallo～(∠・ω&lt; )⌒☆</div>
-            </a>
-            <a href="https://blog.muyoung.com" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://obj.muyoung.com/logo/favicon.ico"  loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">曾经天天和我斗嘴并且抄我博客的😡</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">https://blog.muyoung.com</div>
-            </a>
-            <a href="https://nyayurin.github.io/Yutori-Docs/" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="/favicon/yurn.png"  loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">非常酷的Kotlin Compose Web WASM 全Canvas网站</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">https://nyayurin.github.io/Yutori-Docs/</div>
-            </a>
-            <a href="https://blog.2w2.top" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://blog.2w2.top/img/avatar.webp"  loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">钨鸮的孤岛电台</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">钨在所有金属中排名第七，因此这是一只重磅鸮</div>
-            </a>
-            <a href="https://forum.naixi.net/" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://forum.naixi.net/favicon.ico"  loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">奶昔论坛</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">https://forum.naixi.net/</div>
-            </a>
-            <a href="https://linux.do" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://linux.do/uploads/default/optimized/3X/7/d/7de31932a4fd533496cfe35979a4d9d995bb5c63_2_180x180.png" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">LINUX.DO</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">https://linux.do</div>
-            </a>
-            <a href="https://bt.sb" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://www.bt.cn/favicon.ico" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">宝塔开心版</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">https://bt.sb</div>
-            </a>
-            <a href="https://www.nodeseek.com" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="/favicon/nodeseek.png" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">NodeSeek</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">https://www.nodeseek.com</div>
-            </a>
-            <a href="https://383842.xyz" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://dlink.host/wx2.sinaimg.cn/large/007udx8Wly8i0h6etwni7g301j01lq3k.gif" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">粉白妙妙屋</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">我见青山多妩媚</div>
-            </a>
-            <a href="https://www.497995.xyz/" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://fastr2.497995.xyz/image.jpg" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">或许是一只龙的博客</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">写点小东西</div>
-            </a>
-            <a href="https://space.bilibili.com/44681442" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="/favicon/22.png" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">22</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">https://space.bilibili.com/44681442</div>
-            </a>
-            <a href="https://www.lixvyao.com" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://main.lixvyao.com/favicon.png" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">Stanley的技术博客</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">给时光以生命 给岁月以文明。</div>
-            </a>
-            <a href="https://blog.tsd.my" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://q1.qlogo.cn/g?b=qq&nk=2987304764&s=640" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">Tavre Blog</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">Tavre的个人技术记录博客</div>
-            </a>
-            <a href="https://blog.sakura.ink" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://blog.sakura.ink/_astro/avatar.B8d6PP-N_2a0uDN.webp" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">鈴奈咲桜のブログ</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">愛することを忘れないで</div>
-            </a>
-            <a href="https://www.yunsen2025.top" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://img.alicdn.com/bao/uploaded/i4/O1CN01TWOpM42DSyY5nC0hM_!!0-mtopupload.jpg" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">yunsen2025的小窝</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">纯粹的计算机爱好者</div>
-            </a>
-            <a href="https://blog.my0811.cn" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://q2.qlogo.cn/headimg_dl?dst_uin=3166269605&spec=5" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">百里博客</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">一个高中生的博客</div>
-            </a>
-            <a href="https://zrn.net" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://zrn.net/wp-content/uploads/2025/07/seia_avatar.jpg.webp" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">Zirkeln</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">欢迎来到我的个人网站！这里是我作为一名计算机科学爱好者和 ACG（动画、漫画、游戏）迷，分享我对计算机技术、动画、漫画小说和电子音乐（EDM）等多元兴趣的乐园。</div>
-            </a>
-            <a href="https://www.mxdyeah.top/" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://res.mxdyeah.top/favicon.webp" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">mxd's Planet</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">平平无奇的菜鸟，喜欢干点自己喜欢做的事情。在这里学习更多有关Linux、*BSD知识，加入我们的大家庭一起交流分享！欢迎在此列表的其他网站互换友链！</div>
-            </a>
-            <a href="https://senziyuan.236668.xyz" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://img.alicdn.com/bao/uploaded/i4/O1CN01TWOpM42DSyY5nC0hM_!!0-mtopupload.jpg" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">森资源</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">牛逼的资源网站（没开站还）</div>
-            </a>
-            <a href="https://blog.skyxy.qzz.io/" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://blog.skyxy.qzz.io/images/favicon.svg" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">小宇blog</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">很烂的blog，不怎么更新</div>
-            </a>
-            <a href="https://www.xcqcoo.top" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://cdn4.xcqcoo.top/gh/QC3284/233@main/test_db_qc3284.png" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">QC3284's Blog</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">欢迎来到我的博客！ 一名乐于探索新事物的爱好者-QC3284</div>
-            </a>
-            <a href="https://2y.nz" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://2y.nz/favicon.png" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">zty012 blog (2y.nz)</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">一个初中生的blog</div>
-            </a>
-            <a href="https://blog.170529.xyz" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://img.170529.xyz/2025/08/favicon-compress.avif" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">Elysiam</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">个人的博客小站，分享下技术和生活。May you, the beauty of this world, always shine</div>
-            </a>
-            <a href="https://gavin-blog.pages.dev" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://gavin-blog.pages.dev/assets/website/avatar.webp" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">Gavin's Blog</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">一个内容成分复杂的博客小站。</div>
-            </a>
-            <a href="https://hub.xiaozhangya.xin" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://img.xiaozhangya.xin/file/1753185126703_avatar.jpg" class="w-5 h-5 rounded"/>
-                    <div class="font-bold text-black dark:text-white">小张の小站</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">🌟 随时一起探索新事物，让我们一起成长、一起分享，让这片小小的数字世界充满更多的光辉✨！</div>
-            </a>  
-            <a href="https://blog.strarry.top/" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://blog.strarry.top/avatar.jpg" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">星辰の笔记</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">Code | Think | Share | Repeat</div>
-            </a>
-            <a href="https://adclosenn.top" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://adclosenn.top/assets/avatar.jpg" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">Ad_closeNN の Blog</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">Ad_closeNN 的小站，时不时会刷新一些野生东西 | ✨ 欢迎友链，祝大家天天开心！ ✨</div>
-            </a>
-            <a href="https://blog.mckero.com" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://pub-3f1fec3195b64bb4974955567a77da00.r2.dev/OIP.jpeg" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">MC_Kero blog</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">MC_Kero的博客</div>
-            </a>
-            <a href="https://www.shimoxi.qzz.io/" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://cdn.jsdelivr.net/gh/shimoxi123/img/img/6894b49f58cb8da5c80fd8e5.webp" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">石墨烯积木的个人博客</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">分享一些有趣的东西</div>
-            </a>
-            <a href="https://bailanwa.dpdns.org" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://avatars.githubusercontent.com/u/182760295?v=4" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">Aliom的个人博客</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">Aliom的线上小窝</div>
-            </a>
-            <a href="https://thw.lol/" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://img.dooki.cloud/i/2025/08/29/68b09e116c4b6.webp" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">THW's Blog</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">Live a good life meet slowly</div>
-            </a>
-            <a href="https://blog.mcxiaochen.top/" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://blog.mcxiaochen.top/favicon.ico" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">尘の个人博客</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">一个高中生 UP 搭的博客  QwQ</div>
-            </a>
-            <a href="https://blog.lparksi.com/" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://blog.lparksi.com/images/icon.webp" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">PARKSI's Blog</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">Redefine Yourself</div>
-            </a>
-            <a href="https://vtdd.vip/" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://vtdd.vip/_astro/lx.U15Ju0Ce_1mLhMp.webp"  loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">Zero - Higanbana</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">https://vtdd.vip/</div>
-            <a href="https://blog.helong.online/" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://blog.lparksi.com/images/icon.webp" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">硅基漫游指南</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">Face life with hope.</div>
-            </a>
-            <a href="https://chuzoux.top" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://q2.qlogo.cn/headimg_dl?dst_uin=3451860760&spec=0" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">chuzouX Blog</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">欢迎大家光临本站，希望大家在这里可以找到自己想要的东西，祝大家玩的开心！！</div>
-            </a>
-            <a href="https://blog.01101.top" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAEBfBVovV-BBiGQfhx8x5AqxWQsf6Yh8QACEz4AAk_q6VViPZEKaaiLvDYE.jpg/" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">千年共振</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">安卓人写的苹果博客</div>
-            </a>
-            <a href="https://blog.xiowo.net/" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://blog.xiowo.net/img/avatar.png" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">Mo的记事簿</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">万年鸽王，哈哈OvO</div>
-            <a href="https://blog.elykia.cn" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://bu.dusays.com/2024/10/25/671b2438203a6.gif" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">Elykia</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">致以无暇之人</div>
-            </a>
-            <a href="https://justpureh2o.cn" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://justpureh2o.cn/favicon.jpg" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">JustPureH<sub>2</sub>O</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">穷方圆平直之情，尽规矩准绳之用</div>
-            </a>
-            <a href="https://dailyfunctions.top/" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <div class="font-bold text-black dark:text-white">DailyFunctions-生活常用工具</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">hi~</div>
-            </a>
-            <a href="https://kitakita.top" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://kitakita.top/img/avatar2.png" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">CappuccinoZ's Blog</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">良机一直就在你眼前</div>
-            </a>
-            <a href="https://imkn.top" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://n1.img.111pan.cn/api/v4/slave/file/content/0/ZGF0YS91cGxvYWRzLzE0L2M3MWU3ZjJjLTJkOGUtNGRkNi04OGZhLTZkMGIyMWIzZmNkZF9ibG9nLnBuZw==/0/blog.png?sign=xWijnCd9J9SNtUadG_OjD_0TJyTk3ZR7GCBKH98VIQw%3D%3A1759574603" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">iAmKevin Blog</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">自律和不自律，都会吃苦，不同的是，自律的苦会让人生越来越甜。</div>
-            </a>
-            <a href="https://blog.xuioo.com" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://blog.xuioo.com/27c69590279fdc3be2cd7c901e3d07ad.jpg" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">XUIOO</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">一叶障目，不见泰山；两耳塞豆，不闻雷霆。</div>
-            </a>
-            <a href="https://yaotustarlight.im" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://img.yaotustarlight.im/random/ProfilePicture" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">静谧小窝</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">星河低语，夜风轻拂</div>
-            <a href="https://blog.cuteleaf.cn" target="_blank" class="friend-card">
-                <div class="flex items-center gap-2">
-                    <img src="https://q2.qlogo.cn/headimg_dl?dst_uin=7618557&spec=0" loading="lazy" class="w-5 h-5 rounded">
-                    <div class="font-bold text-black dark:text-white">夏夜流萤</div>
-                </div>
-                <div class="text-sm text-black/50 dark:text-white/50">总有一场相遇，是互相喜欢的！</div>
-            </a>
+            {friends.map(friend => (
+                <a href={friend.url} target="_blank" class="friend-card">
+                    <div class="flex items-center gap-2">
+                        {friend.avatar && <img src={friend.avatar} loading="lazy" class="w-5 h-5 rounded">}
+                        <div class="font-bold text-black dark:text-white">{friend.name}</div>
+                    </div>
+                    <div class="text-sm text-black/50 dark:text-white/50">{friend.desc}</div>
+                </a>
+            ))}
         </div>
 
         <!-- 申请友链 -->
