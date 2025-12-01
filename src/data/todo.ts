@@ -10,5 +10,6 @@ export const todoConfig: TodoConfig = {
 		{ content: "做视频：Cloudflare 利用Origin Rules 6转4 访问家里云", completed: false },
         { content: "做视频：anuneko.com米哈游AI上手体验", completed: false },
         { content: "做Bot插件：anuneko.com米哈游AI聊天机器人", completed:true },
+		{ content: "UP养成计划-目标一：10000", completed: false },
     ],
 };
