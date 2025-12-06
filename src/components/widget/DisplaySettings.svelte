@@ -1,10 +1,13 @@
 <script lang="ts">
 
 import Icon from "@iconify/svelte";
-import { getDefaultHue, getHue, setHue } from "@utils/setting-utils";
+import { getDefaultHue, getHue, setHue, getStoredTheme, setTheme } from "@utils/setting-utils";
+import { AUTO_MODE, DARK_MODE, LIGHT_MODE } from "@constants/constants";
 
 let hue = getHue();
 const defaultHue = getDefaultHue();
+
+let theme = getStoredTheme();
 
 function resetHue() {
 	hue = getDefaultHue();
@@ -13,9 +16,45 @@ function resetHue() {
 $: if (hue || hue === 0) {
 	setHue(hue);
 }
+
+function switchTheme(newTheme: string) {
+	theme = newTheme;
+	setTheme(newTheme);
+}
 </script>
 
 <div id="display-setting" class="float-panel float-panel-closed absolute transition-all w-80 right-4 px-4 py-4">
+    <div class="flex flex-row gap-2 mb-3 items-center justify-between">
+        <div class="flex gap-2 font-bold text-lg text-neutral-900 dark:text-neutral-100 transition relative ml-3
+            before:w-1 before:h-4 before:rounded-md before:bg-[var(--primary)]
+            before:absolute before:-left-3 before:top-[0.33rem]"
+        >
+            主题模式
+        </div>
+        <div class="flex gap-1">
+            <button aria-label="Light Mode" class="btn-regular w-10 h-10 rounded-md active:scale-90"
+                    class:!bg-[var(--primary)]={theme === LIGHT_MODE}
+                    class:!text-white={theme === LIGHT_MODE}
+                    on:click={() => switchTheme(LIGHT_MODE)}
+            >
+                <Icon icon="material-symbols:wb-sunny-outline-rounded" class="text-[1.25rem]"></Icon>
+            </button>
+            <button aria-label="Dark Mode" class="btn-regular w-10 h-10 rounded-md active:scale-90"
+                    class:!bg-[var(--primary)]={theme === DARK_MODE}
+                    class:!text-white={theme === DARK_MODE}
+                    on:click={() => switchTheme(DARK_MODE)}
+            >
+                <Icon icon="material-symbols:dark-mode-outline-rounded" class="text-[1.25rem]"></Icon>
+            </button>
+            <button aria-label="System Mode" class="btn-regular w-10 h-10 rounded-md active:scale-90"
+                    class:!bg-[var(--primary)]={theme === AUTO_MODE}
+                    class:!text-white={theme === AUTO_MODE}
+                    on:click={() => switchTheme(AUTO_MODE)}
+            >
+                <Icon icon="material-symbols:desktop-windows-outline-rounded" class="text-[1.25rem]"></Icon>
+            </button>
+        </div>
+    </div>
     <div class="flex flex-row gap-2 mb-3 items-center justify-between">
         <div class="flex gap-2 font-bold text-lg text-neutral-900 dark:text-neutral-100 transition relative ml-3
             before:w-1 before:h-4 before:rounded-md before:bg-[var(--primary)]
@@ -90,3 +129,4 @@ $: if (hue || hue === 0) {
             background rgba(255, 255, 255, 0.6)
 
 </style>
+
