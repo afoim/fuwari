@@ -5,7 +5,6 @@ import "@fontsource/roboto/700.css";
 
 import { profileConfig, siteConfig } from "@/config";
 import ConfigCarrier from "@components/ConfigCarrier.astro";
-import NewPostNotification from "@components/widget/NewPostNotification.astro";
 import {
 	AUTO_MODE,
 	BANNER_HEIGHT,
@@ -232,9 +231,6 @@ const bannerOffset =
 
 		<slot name="head"></slot>
 
-
-		<link rel="alternate" type="application/rss+xml" title={profileConfig.name} href={`${Astro.site}rss.xml`}/>
-
 	</head>
 	<body class=" min-h-screen transition " class:list={[{"lg:is-home": isHomePage, "enable-banner": enableBanner}]}
 		  data-overlayscrollbars-initialize
@@ -425,7 +421,6 @@ var _hmt = _hmt || [];
 		</noscript>
 		<div id="bg-box"></div>
 		<ConfigCarrier></ConfigCarrier>
-        <NewPostNotification></NewPostNotification>
 		<slot />
 
 		<!-- increase the page height during page transition to prevent the scrolling animation from jumping -->

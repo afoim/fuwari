@@ -12,12 +12,17 @@ interface SearchResult {
 	urlPath?: string;
 }
 
+interface PostData {
+    title: string;
+    description: string;
+    slug: string;
+}
+
 let keywordDesktop = "";
 let keywordMobile = "";
 let result: SearchResult[] = [];
 let isSearching = false;
-// biome-ignore lint/suspicious/noExplicitAny: Temporary usage of any for posts array
-let posts: any[] = [];
+let posts: PostData[] = [];
 
 const togglePanel = () => {
 	const panel = document.getElementById("search-panel");
@@ -60,39 +65,26 @@ const search = async (keyword: string, isDesktop: boolean): Promise<void> => {
 			.filter((post) => {
 				const keywordLower = keyword.toLowerCase();
 				const searchText =
-					`${post.title} ${post.description} ${post.content}`.toLowerCase();
-				const urlPath = `/posts/${post.link}`;
+					`${post.title} ${post.description}`.toLowerCase();
+				const urlPath = `/posts/${post.slug}`;
 
 				// 支持内容搜索和URL后缀搜索
 				return (
 					searchText.includes(keywordLower) ||
 					urlPath.toLowerCase().includes(keywordLower) ||
-					post.link.toLowerCase().includes(keywordLower)
+					post.slug.toLowerCase().includes(keywordLower)
 				);
 			})
 			.map((post) => {
-				const contentLower = post.content.toLowerCase();
-				const keywordLower = keyword.toLowerCase();
-				const contentIndex = contentLower.indexOf(keywordLower);
-
-				let excerpt = "";
-				if (contentIndex !== -1) {
-					const start = Math.max(0, contentIndex - 50);
-					const end = Math.min(post.content.length, contentIndex + 100);
-					excerpt = post.content.substring(start, end);
-					if (start > 0) excerpt = `...${excerpt}`;
-					if (end < post.content.length) excerpt = `${excerpt}...`;
-				} else {
-					excerpt = post.description || `${post.content.substring(0, 150)}...`;
-				}
-
+				const excerpt = highlightText(post.description || "", keyword);
+				
 				return {
-					url: url(`/posts/${post.link}/`),
+					url: url(`/posts/${post.slug}/`),
 					meta: {
 						title: post.title,
 					},
-					excerpt: highlightText(excerpt, keyword),
-					urlPath: `/posts/${post.link}`,
+					excerpt: excerpt,
+					urlPath: `/posts/${post.slug}`,
 				};
 			});
 
@@ -109,36 +101,11 @@ const search = async (keyword: string, isDesktop: boolean): Promise<void> => {
 
 onMount(async () => {
 	try {
-		const response = await fetch("/rss.xml");
-		const text = await response.text();
-		const parser = new DOMParser();
-		const xml = parser.parseFromString(text, "text/xml");
-		const items = xml.querySelectorAll("item");
-
-		posts = Array.from(items).map((item) => {
-			// 尝试多种方式获取content:encoded内容
-			let content = "";
-			const contentEncoded =
-				item.getElementsByTagNameNS("*", "encoded")[0]?.textContent ||
-				item.querySelector("*|encoded")?.textContent ||
-				"";
-
-			if (contentEncoded) {
-				content = contentEncoded.replace(/<[^>]*>/g, "");
-			}
-
-			return {
-				title: item.querySelector("title")?.textContent || "",
-				description: item.querySelector("description")?.textContent || "",
-				content: content,
-				link:
-					item
-						.querySelector("link")
-						?.textContent?.replace(/.*\/posts\/(.*?)\//, "$1") || "",
-			};
-		});
+		const response = await fetch("/search.json");
+		if (!response.ok) throw new Error("Failed to load search index");
+		posts = await response.json();
 	} catch (error) {
-		console.error("Error fetching RSS:", error);
+		console.error("Error fetching search index:", error);
 	}
 });
 
