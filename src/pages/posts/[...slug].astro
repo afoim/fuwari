@@ -12,6 +12,7 @@ import PostMetadata from "../../components/PostMeta.astro";
 import ImageWrapper from "../../components/misc/ImageWrapper.astro";
 import { profileConfig, siteConfig, umamiConfig } from "../../config";
 import { formatDateToYYYYMMDD } from "../../utils/date-utils";
+import Obfuscator from "../../components/Obfuscator.astro";
 
 export async function getStaticPaths() {
 	const blogEntries = await getSortedPosts();
@@ -23,6 +24,24 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content, headings } = await entry.render();
+
+// Render the Content component to HTML string for obfuscation
+// Note: We need to use a container to render the slot content
+// Since we can't easily get the HTML string of a component instance in Astro frontmatter without a slot render hack
+// We will move the logic to use the Obfuscator component to wrap the Content
+// But Obfuscator needs the HTML string as a prop, OR it can use slot?
+// If Obfuscator uses <slot />, the source code will still contain the HTML in the template before JS execution?
+// No, Astro SSG outputs the slot content into the HTML.
+// So Obfuscator MUST accept the HTML string as a prop and NOT render a slot.
+// BUT, how to get <Content /> as string in the frontmatter?
+// "await entry.render()" gives us the Component.
+// We can use the Astro container API if available (experimental).
+// Or, we can simply rely on the fact that we can't easily get the string in frontmatter.
+// WAIT. The previous plan was: <Obfuscator><Content /></Obfuscator>
+// And inside Obfuscator: const html = await Astro.slots.render('default');
+// Yes, `Astro.slots.render('default')` works in the component script!
+// So Obfuscator.astro can capture the slot content, Process it, and then render the script.
+// It will NOT render <slot /> in its template, so the original HTML won't be in the output.
 
 const { remarkPluginFrontmatter } = await entry.render();
 
@@ -108,7 +127,9 @@ const jsonLd = {
 
 
             <Markdown class="mb-6 markdown-content onload-animation">
-                <Content />
+                <Obfuscator>
+                    <Content />
+                </Obfuscator>
             </Markdown>
 
             <!-- 文章反馈与编辑区域 -->

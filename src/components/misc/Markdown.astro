@@ -23,20 +23,58 @@ document.addEventListener("click", function (e: MouseEvent) {
             .map(el => el.textContent)
             .map(t => t === "\n" ? "" : t)
             .join("\n");
-        navigator.clipboard.writeText(code);
-
-        const timeoutId = target.getAttribute("data-timeout-id");
-        if (timeoutId) {
-            clearTimeout(parseInt(timeoutId));
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(code).then(() => {
+                showSuccess(target);
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+                fallbackCopy(code, target);
+            });
+        } else {
+            fallbackCopy(code, target);
         }
-
-      target.classList.add("success");
-
-      // 设置新的timeout并保存ID到按钮的自定义属性中
-        const newTimeoutId = setTimeout(() => {
-            target.classList.remove("success");
-        }, 1000);
-        target.setAttribute("data-timeout-id", newTimeoutId.toString());
     }
 });
+
+function showSuccess(target: Element) {
+    const timeoutId = target.getAttribute("data-timeout-id");
+    if (timeoutId) {
+        clearTimeout(parseInt(timeoutId));
+    }
+
+    target.classList.add("success");
+
+    const newTimeoutId = setTimeout(() => {
+        target.classList.remove("success");
+    }, 1000);
+    target.setAttribute("data-timeout-id", newTimeoutId.toString());
+}
+
+function fallbackCopy(text: string, target: Element) {
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+    
+    // Avoid scrolling to bottom
+    textArea.style.top = "0";
+    textArea.style.left = "0";
+    textArea.style.position = "fixed";
+    textArea.style.opacity = "0";
+
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+
+    try {
+        const successful = document.execCommand('copy');
+        if (successful) {
+            showSuccess(target);
+        } else {
+            console.error('Fallback: Copying text command was unsuccessful');
+        }
+    } catch (err) {
+        console.error('Fallback: Oops, unable to copy', err);
+    }
+
+    document.body.removeChild(textArea);
+}
 </script>

@@ -1,0 +1,113 @@
+---
+// Obfuscator.astro
+// This component captures its slot content, obfuscates it, and renders a script to restore it.
+
+const html = await Astro.slots.render('default');
+
+// 1. Base64 Encoding
+const base64 = Buffer.from(html).toString('base64');
+
+// 2. Insert random noise
+// Strategy: Insert a random 5-char string every 10 characters
+const chunkSize = 10;
+const noiseSize = 5;
+let obfuscated = '';
+const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()';
+
+function generateNoise(length) {
+    let result = '';
+    for (let i = 0; i < length; i++) {
+        result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return result;
+}
+
+for (let i = 0; i < base64.length; i += chunkSize) {
+    obfuscated += base64.slice(i, i + chunkSize);
+    if (i + chunkSize < base64.length) {
+        obfuscated += '<<' + generateNoise(noiseSize) + '>>'; // Use <<...>> as delimiter wrapper for noise
+    }
+}
+
+// 3. Generate a random ID for the container
+const containerId = 'content-' + Math.random().toString(36).substring(2, 9);
+---
+
+<div id={containerId}></div>
+
+<script is:inline define:vars={{ obfuscated, containerId }}>
+    (function() {
+        try {
+            // 1. Remove noise
+            // We know the pattern is: chunk + <<noise>> + chunk...
+            // So we can just split by regex /<<.{5}>>/ or simpler replacement
+            // Since noise is always wrapped in << >> and noise length is 5
+            
+            const cleanBase64 = obfuscated.replace(/<<.{5}>>/g, '');
+            
+            // 2. Decode Base64
+            // Handle UTF-8 correctly
+            const decoded = decodeURIComponent(escape(atob(cleanBase64)));
+            
+            // 3. Insert into DOM
+            const container = document.getElementById(containerId);
+            if (container) {
+                // Shadow DOM could be used for even more isolation, but might break styles
+                // container.attachShadow({mode: 'open'}).innerHTML = decoded;
+                container.innerHTML = decoded;
+            }
+        } catch (e) {
+            console.error('Content decoding failed');
+        }
+
+        // Anti-Copy Measures
+        document.addEventListener('copy', function(e) {
+            // Allow copy if selection is within a code block (pre or code)
+            const selection = window.getSelection();
+            if (selection.rangeCount > 0) {
+                const range = selection.getRangeAt(0);
+                const container = range.commonAncestorContainer;
+                const element = container.nodeType === 1 ? container : container.parentNode;
+                
+                // Check if the selection is inside a code block
+                // Also check if the user is clicking the copy button
+                if (element.closest('pre') || element.closest('code') || element.closest('.copy-button') || element.closest('button')) {
+                    return; // Allow default copy behavior
+                }
+            }
+            
+            // Check if the target element (where the event originated) is inside a code block or is a button
+            // This is crucial for button clicks which might not have a range selection
+            // Also allow copy from inputs and textareas (e.g. comment forms, or fallback copy methods)
+            if (e.target && (
+                e.target.closest('pre') || 
+                e.target.closest('code') || 
+                e.target.closest('button') ||
+                e.target.tagName === 'INPUT' ||
+                e.target.tagName === 'TEXTAREA'
+            )) {
+                return;
+            }
+
+            e.preventDefault();
+            // Silent fail - set empty data
+            e.clipboardData.setData('text/plain', '');
+            e.clipboardData.setData('text/html', '');
+        });
+        
+        // Disable context menu
+        document.addEventListener('contextmenu', function(e) {
+            // Allow context menu on code blocks
+            const target = e.target;
+            if (target.closest('pre') || target.closest('code')) {
+                return;
+            }
+            e.preventDefault();
+        });
+
+        // Disable select start (optional, maybe too aggressive if user wants to highlight for reading aid)
+        // User asked for "Silent refuse on copy", implies selection might be allowed but copy fails.
+        // But preventing selection is also a valid interpretation of "Anti-Piracy".
+        // Let's stick to copy interception as requested primarily.
+    })();
+</script>
