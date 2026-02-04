@@ -21,11 +21,13 @@
     },
     "noImplicitAny": false,
     "jsx": "preserve",
-    "jsxImportSource": "astro"
+    "jsxImportSource": "astro",
+    "moduleResolution": "bundler"
   },
   "include": [
-    ".astro/types.d.ts",
-    "**/*"
+    "src/**/*",
+    "src/env.d.ts",
+    ".astro/types.d.ts"
   ],
   "exclude": [
     "dist"
