@@ -2,7 +2,7 @@
 title: 静态网站也需要WAF？Cloudflare不需要但是EdgeOne/ESA需要！
 published: 2026-01-18
 description: 在几周前，我的网站累计被DDoS了约100TB的流量，哪怕我是静态网站，并不会被“打死”，但因为流量过大，还是被EdgeOne取消接入了，其实这件事本不会发生...
-image: ../assets/images/waf.png
+image: https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/waf.png
 draft: false
 lang: ""
 ---
@@ -23,7 +23,7 @@ lang: ""
 首先，如果你使用的CDN是国内节点，就直接拦截海外访问
 
 因为大部分刷子的IP都来自海外（大陆IP金贵），直接拦截可以很好防止大文件被刷取，如图片等。我就是个例子
-![](../assets/images/waf-1.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/waf-1.png)
 
 其实做好这一步，你已经 **99%** 不会被刷死了，因为海外刷子本来可以刷 **100~1000KB**不等的图片，但现在只能刷 **拦截页面** 了（一般不到 **5KB** ），而一般拦截页面没有太多信息，甚至有些平台能自定义拦截页面，使其返回空报文（**小于1KB**）
 
@@ -52,23 +52,23 @@ lang: ""
 
 ### ESA禁海外访问
 针对于ESA，免费版用户可能无法设置区域限制
-![](../assets/images/waf-3.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/waf-3.png)
 
 但是我们可以 **曲线救国** ，先设置一个规则将所有请求默认拦截，再判断是不是大陆IP，如果是，则跳过这个规则
 
-![](../assets/images/waf-4.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/waf-4.png)
 
-![](../assets/images/waf-5.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/waf-5.png)
 
 视频： https://www.bilibili.com/video/BV1fKimBnE3T/
 
 ### EdgeOne Page使用CDN WAF
 EdgeOne是个奇葩，它的CDN和Page的WAF是分开的，并且Page的WAF防护非常烂，只能 **针对单个IP** 进行拦截
-![](../assets/images/waf-8.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/waf-8.png)
 
 我们可以让CDN回源Page让Page吃上CDN的WAF策略，左边为CDN创建域名界面，右边悬浮窗为Page界面
 
 > [!WARNING]
 > 这样设置后你会在总览看到双倍的流量，因为CDN回源Page记一次，而Page真正提供源站内容再记一次。可以通过开启缓存来缓解
 
-![](../assets/images/waf-7.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/waf-7.png)

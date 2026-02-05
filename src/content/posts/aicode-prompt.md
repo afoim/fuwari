@@ -2,7 +2,7 @@
 title: AI写不出优质的代码？其实是你引导错了！
 published: 2025-06-17
 description: '如今，大语言模型百花齐放，有开山鼻祖OpenAI的ChatGPT系列，也有Anthropic开发的代码神器Claude系列。但是，哪怕模型再先进再聪明，如果用它的人使用的方法不对，那再好的模型用起来也是笨笨的'
-image: ../assets/images/65f8862e-2a66-4acc-8fef-c8b3dc7f5c29.webp
+image: https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/65f8862e-2a66-4acc-8fef-c8b3dc7f5c29.webp
 tags: [AI, Prompt]
 category: '教程'
 draft: false 
@@ -44,22 +44,22 @@ AI也会犯错，并且极其容易瞎猜。不要尽信AI给出的内容，在�
 # AI推荐
 
 [ChatGPT](https://chatgpt.com)：快速，不限额。适合解决你的疑问
-![](../assets/images/c2e37057-78c9-403f-b3af-e84bdad98f1e.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/c2e37057-78c9-403f-b3af-e84bdad98f1e.webp)
 
 [Claude](https://claude.ai)：相比于GPT更强大，更擅长编写代码，尤其是前端，目前大部分AI IDE都接入了Claude 3.5 Sonnet及以上的模型，非常适合编写可拆解，易维护的小脚本
 
-![](../assets/images/f9adcc5e-64bc-48f0-8845-893242abec33.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/f9adcc5e-64bc-48f0-8845-893242abec33.webp)
 
 [VS Code（Github Copilot）](https://code.visualstudio.com/)：AI IDE。由微软开发，免费用户可以使用Claude 3.5 Sonnet模型，但是份额较少。Pro计划10USD/m，仅支持Paypal和海外卡支付
 
-![](../assets/images/70b6f916-ba70-45a6-b572-3b32214f0c1f.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/70b6f916-ba70-45a6-b572-3b32214f0c1f.webp)
 
 [Cursor](https://www.cursor.com)：AI IDE。由Anysphere开发，免费用户仅能使用Auto模型（一般不会分配到Claude模型）。Pro计划10USD/m，仅支持Paypal和海外卡支付
 
-![](../assets/images/4287002f-eb0e-43b0-87b7-1fa43c37a497.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/4287002f-eb0e-43b0-87b7-1fa43c37a497.webp)
 
 [Trae（国际版）](https://www.trae.ai)：AI IDE。由字节跳动开发，需要国外IP。新用户Pro计划开通首月仅需3USD/m（之后为10USD/m），支持支付宝和海外卡支付。本人目前在用
 
-![](../assets/images/40b76f69-2c50-49d0-b861-05f8879accab.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/40b76f69-2c50-49d0-b861-05f8879accab.webp)
 
 > 写任何项目都完全不推荐使用网页版的任何大模型编写！请使用AI IDE！

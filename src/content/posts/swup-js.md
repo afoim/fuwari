@@ -2,7 +2,7 @@
 title: 解决困扰我多时的JS重复请求问题
 published: 2025-11-18T08:46:02
 description: 如果你在我的博客初创就关注了，且具有一定的技术能力，你会发现我的博客曾经有一段时间在疯狂魔改，这可能会导致一些问题，并影响至今
-image: ../assets/images/swup-js.png
+image: https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/swup-js.png
 tags:
   - Swup
   - JS
@@ -23,12 +23,12 @@ lang: ""
 但是这个全局分享Token在极长一段时间内根本不变，也就是会有特别多的冗余请求，于是当时我写了个中间件，将这个Token请求一次后就存到用户的浏览器，接下来需要用到的时候直接用，无需再次从网络请求中获取
 
 但是在今天，有一位粉丝发现某些页面仍然会多次请求 Umami ，如图
-![](../assets/images/swup-js-1.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/swup-js-1.png)
 
 于是，它开了一个 issue  [Bug: 站内转跳时由于swup处理不当导致的多umami实例 · Issue #79 · afoim/fuwari](https://github.com/afoim/fuwari/issues/79) ，告知我是Swup的问题，让Swup不管理这类JS即可，设置后的确可用
 
 最终，使用该issue的方法后，我们随便打开一个页面，尝试分析，看看是否有问题
-![](../assets/images/swup-js-2.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/swup-js-2.png)
 我们只看Umami请求：
 - https://cloud.umami.is/script.js ：Umami官方的全局JS，注入在所有页面中，用于后续将访客行为告知给Umami
 - http://localhost:4321/js/umami-share.js ：之前写的中间件，用于避免多次请求Umami拿全局Token

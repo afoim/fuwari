@@ -2,7 +2,7 @@
 title: 关于本站为什么不进行ICP备案
 published: 2025-07-29
 description: '由于诸多原因，本站并未进行ICP备案，这里记录了一些原因'
-image: '../assets/images/d24c6c12-a8c9-4577-a4bc-0de768c23337.webp'
+image: 'https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/d24c6c12-a8c9-4577-a4bc-0de768c23337.webp'
 tags: [ICP]
 category: '记录'
 draft: false 
@@ -24,7 +24,7 @@ ICP备案是针对于域名的，本人名下的 2x.nz 并不在ICP备案支持�
 
 目前本站使用的CDN为Netlify CDN，Netlify采用AWS的IP，速度极快，在中国大陆可用性很高，延迟如下图
 
-![](../assets/images/96375c6a-f807-42b7-b1f0-33c0c7231037.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/96375c6a-f807-42b7-b1f0-33c0c7231037.webp)
 
 由于本站为静态站，若进行备案可以直接使用EdgeOne Page中的中国大陆节点，延迟固然会更低，但是对比目前的速度收效甚微
 

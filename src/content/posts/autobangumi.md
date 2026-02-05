@@ -1,7 +1,7 @@
 ---
 category: 教程
 description: 使用AutoBangumi连接qBittorrent下载番剧，然后使用刮削软件刮削，设置一遍，享受终身
-image: ../assets/images/QmXYf2u6BZMseAzjPUhcHsdfdhQpc3XkdjuEi4VvE1BkTn.webp
+image: https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/QmXYf2u6BZMseAzjPUhcHsdfdhQpc3XkdjuEi4VvE1BkTn.webp
 lang: zh_CN
 published: 2025-02-25
 tags: [AutoBangumi]
@@ -28,7 +28,7 @@ Docker：https://github.com/linuxserver/docker-qbittorrent
 
 Tracker服务器大全：[中国可用的 BT Tracker 服务器列表，每24小时自动更新 - 小小编程](https://www.yaozuopan.top/index.php/archives/1014/#:~:text=%E4%B8%AD%E5%9B%BD%E5%8F%AF%E7%94%A8%E7%9A%84%20BT%20T)
 
-![8938ee430e5f74109c34c8c6d48e0e4f619cbeff.webp](../assets/images/29e0e4c26c15463ff692aabcee747950e2d029d3.webp)
+![8938ee430e5f74109c34c8c6d48e0e4f619cbeff.webp](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/29e0e4c26c15463ff692aabcee747950e2d029d3.webp)
 
 ### 安装[AutoBangumi](https://www.autobangumi.org/)
 
@@ -67,10 +67,10 @@ services:
 
 5. 点左边的设置图标 -> 下载设置，填入下载器信息，然后点击右下角的应用，直到右上角亮绿灯
 
-![QmbVcrgZ2C2FTt6QdfKsUkVQz9SCiQiyq1WCbphDiGW2mM.webp](../assets/images/94f407121de7816ee2dff78f948dcc2ded27b28f.webp)
+![QmbVcrgZ2C2FTt6QdfKsUkVQz9SCiQiyq1WCbphDiGW2mM.webp](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/94f407121de7816ee2dff78f948dcc2ded27b28f.webp)
 
 6. 前往蜜柑计划，注册账号，并订阅你想要的番剧（复制）
-   ![QmXq7DcBkA4EecJikQE4snvPkNU2NQLy1EXUpAructteah.webp](../assets/images/0e22eab8db6ed2441f3d3be0b10d51944867df0a.webp)
+   ![QmXq7DcBkA4EecJikQE4snvPkNU2NQLy1EXUpAructteah.webp](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/0e22eab8db6ed2441f3d3be0b10d51944867df0a.webp)
 
 7. 回到 AutoBangumi，点击右上角的 +，添加 RSS（粘贴）
 
@@ -105,7 +105,7 @@ services:
 2. Win 可以通过右键菜单自动获取路径版.bat 通过右键一级目录选择自动剧集命名 。若使用.py 脚本则只能通过`python3 EpisodeReName.py "D:/qbdownloads/bangumi"`
 
 **小贴士：** 可以使用[RaiDrive](https://onani.cn/RaiDrive)或[SSHFS](/SSHFS)将远程的Linux文件映射到Windows上，管理番剧更方便
-![QmY7KM2MjudNksqvSkkFmwFgjjdD7ZQKLDaVPXR3jnXoxw.webp](../assets/images/5cf6dfe73164f6a869a59817df53f939e936ab00.webp)
+![QmY7KM2MjudNksqvSkkFmwFgjjdD7ZQKLDaVPXR3jnXoxw.webp](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/5cf6dfe73164f6a869a59817df53f939e936ab00.webp)
 
 ### 安装 Plex（或者安装飞牛云NAS）
 
@@ -121,6 +121,6 @@ services:
 
 图为飞牛影视
 
-![Qmf8Q1D9fUoFbu9MQsQHvaz13p3YV2XguR3RqUAse2KBEa.webp](../assets/images/acbde8bfd7395a8b5c744b9f1c550f3caac6c342.webp)
+![Qmf8Q1D9fUoFbu9MQsQHvaz13p3YV2XguR3RqUAse2KBEa.webp](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/acbde8bfd7395a8b5c744b9f1c550f3caac6c342.webp)
 
 爽看

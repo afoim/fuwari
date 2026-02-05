@@ -2,7 +2,7 @@
 title: 微信，支付宝，储蓄卡与信用卡的爱恨情仇
 published: 2025-11-11T08:20:44
 description: 在中国，一卡并不能通刷，鉴于二维码的普及，大部分商户使用扫码付款而不是刷卡付款，这可能会导致一些问题...
-image: ../assets/images/wx-zfb-card.png
+image: https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/wx-zfb-card.png
 tags:
   - 微信
   - 支付宝

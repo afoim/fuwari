@@ -2,7 +2,7 @@
 title: QQ微信不够私密？自建自己的聊天服务器！
 published: 2025-08-02
 description: '通过自建Synapse，用户可以通过Element等软件来直接在你的服务器上聊天'
-image: '../assets/images/2025-08-02-17-20-32-image.png'
+image: 'https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-08-02-17-20-32-image.png'
 tags: [Matrix, Synapse]
 category: '教程'
 draft: false 
@@ -19,35 +19,35 @@ lang: ''
 
 前往应用商店安装 `PGAdmin4`
 
-![](../assets/images/2025-08-02-17-24-58-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-08-02-17-24-58-image.png)
 
 接着点击添加服务器
 
-![](../assets/images/2025-08-02-17-27-10-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-08-02-17-27-10-image.png)
 
 相关信息可以在连接信息看到
 
-![](../assets/images/2025-08-02-17-27-53-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-08-02-17-27-53-image.png)
 
 **删除**刚刚创建的 `synapse` 这个数据库
 
-![](../assets/images/2025-08-02-17-28-49-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-08-02-17-28-49-image.png)
 
 重新创建同名数据库
 
 设置所有者（即用户名）为 `synapse` 
 
-![](../assets/images/2025-08-02-17-29-36-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-08-02-17-29-36-image.png)
 
 将 `排序规则` 和 `字符类型` 都改为 `C`
 
-![](../assets/images/2025-08-02-17-30-34-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-08-02-17-30-34-image.png)
 
 # 部署Synapse
 
 首先参照1Panel官方的教程去创建一个存储卷，否则安装 `synapse` 会失败
 
-![](../assets/images/2025-08-02-17-32-00-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-08-02-17-32-00-image.png)
 
 安装 `synapse` 
 
@@ -55,7 +55,7 @@ lang: ''
 
 你应该可以看到
 
-![](../assets/images/2025-08-02-17-33-50-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-08-02-17-33-50-image.png)
 
 编辑 `homeserver.yaml` ，并按需配置
 

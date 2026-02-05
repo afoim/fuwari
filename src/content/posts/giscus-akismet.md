@@ -2,7 +2,7 @@
 title: 为任何站点对接Giscus并且配置反垃圾！
 published: 2025-08-04
 description: '你是否在寻找一个评论系统而又不想自托管？又饱受垃圾评论的叨扰？'
-image: '../assets/images/2025-08-04-12-14-21-image.png'
+image: 'https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-08-04-12-14-21-image.png'
 tags: [Giscus, 评论区]
 category: '教程'
 draft: false 
@@ -17,13 +17,13 @@ lang: ''
 
 然后在仓库设置中 **启用** `Discussion` 功能
 
-![](../assets/images/2025-08-04-12-16-36-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-08-04-12-16-36-image.png)
 
 前往 https://giscus.app/zh-CN
 
 首先填写你的仓库，通过检查
 
-![](../assets/images/2025-08-04-12-17-42-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-08-04-12-17-42-image.png)
 
 接下来的 `映射关系` 十分重要！
 
@@ -33,23 +33,23 @@ lang: ''
 
 - title：只要你换**标题**了，评论和页面就无法匹配
 
-![](../assets/images/2025-08-04-12-18-21-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-08-04-12-18-21-image.png)
 
 分类推荐选择 **公告（announcements）**
 
-![](../assets/images/2025-08-04-12-22-07-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-08-04-12-22-07-image.png)
 
 特性按需勾选
 
-![](../assets/images/2025-08-04-12-22-25-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-08-04-12-22-25-image.png)
 
 主题按喜好选择。更改后主题会立即呈现
 
-![](../assets/images/2025-08-04-12-22-57-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-08-04-12-22-57-image.png)
 
 最后将这段JS复制，放置在你想作为评论区的区块即可
 
-![](../assets/images/2025-08-04-12-23-41-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-08-04-12-23-41-image.png)
 
 # 配置Akismet
 
@@ -59,7 +59,7 @@ lang: ''
 
 选择 Akismet Personal 订阅，将滑块拉到0$，记录得到的 Akismet API Key
 
-![](../assets/images/2025-08-04-12-27-58-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-08-04-12-27-58-image.png)
 
 前往 https://github.com/afoim/giscus-fuwari/blob/main/.github/workflows/akismet-comment-check.yml
 
@@ -69,13 +69,13 @@ lang: ''
 
 - AKISMET_API_KEY：你的Akismet API Key
 
-- GH_TOKEN：前往 https://github.com/settings/tokens 创建一个具有 `repo` `write:discussion` `user` 权限的Github个人令牌![](../assets/images/2025-08-04-12-29-06-image.png)
+- GH_TOKEN：前往 https://github.com/settings/tokens 创建一个具有 `repo` `write:discussion` `user` 权限的Github个人令牌![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-08-04-12-29-06-image.png)
 
 测试反垃圾是否有效，发送内容为 `viagra-test-123` 的评论。该评论一定会被当作垃圾评论
 
 查看Github Action是否做出删评行为
 
-![](../assets/images/2025-08-04-12-30-37-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-08-04-12-30-37-image.png)
 
 # 封禁用户
 
@@ -95,4 +95,4 @@ lang: ''
 
 配置临时交互限制，这样新用户就无法对您的存储库进行任何操作
 
-![](../assets/images/2025-08-04-20-43-06-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-08-04-20-43-06-image.png)

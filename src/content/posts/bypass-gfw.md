@@ -2,7 +2,7 @@
 category: 随笔
 description: GFW俗称中国网络国家防火墙，它运用多种技术阻断境内对境外某些网站的访问，比如谷歌、Discord。但对于某些阻断方式，通过一些手段，我们可以绕过GFW来进行访问
 draft: true
-image: ../assets/images/Snipaste_2024-10-21_19-36-34.webp
+image: https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/Snipaste_2024-10-21_19-36-34.webp
 lang: ''
 published: 2024-10-21
 tags:
@@ -25,33 +25,33 @@ title: 让我们来探讨一下如何绕过GFW
 
 - 首先尝试访问 `www.baidu.com` 这是一个没有被GFW封锁的域名
   
-  1. 我们先ping一下![](../assets/images/2024-10-21-20-16-48-image.webp)
+  1. 我们先ping一下![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2024-10-21-20-16-48-image.webp)
   
   2. 得到ip： `2408:873d:22:18ac:0:ff:b021:1393` 
   
-  3. 通过Hosts强制绑定![](../assets/images/2024-10-21-20-18-10-image.webp)
+  3. 通过Hosts强制绑定![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2024-10-21-20-18-10-image.webp)
   
-  4. 通过WireShark进行抓包，可以看到，客户端发送的 `Client Hello` 可以清晰地看到 `Server Name` 字段，并且也能正常收到 `Server Hello` 然后双方便开始通信![](../assets/images/2024-10-21-20-24-03-image.webp)
+  4. 通过WireShark进行抓包，可以看到，客户端发送的 `Client Hello` 可以清晰地看到 `Server Name` 字段，并且也能正常收到 `Server Hello` 然后双方便开始通信![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2024-10-21-20-24-03-image.webp)
   
-  5. 查看浏览器，网站正常访问![](../assets/images/2024-10-21-20-35-29-image.webp)
+  5. 查看浏览器，网站正常访问![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2024-10-21-20-35-29-image.webp)
 
 - 让我们试试访问 `discord.com`
   
-  1. 我们先ping一下，可以发现，域名和解析到的IP均不通![](../assets/images/2024-10-21-20-27-57-image.webp)
+  1. 我们先ping一下，可以发现，域名和解析到的IP均不通![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2024-10-21-20-27-57-image.webp)
   
-  2. 此时我们尝试使用 `itdog.cn` 进行v4 ping，并且依次对解析出的域名进行ping![](../assets/images/2024-10-21-20-28-51-image.webp)
+  2. 此时我们尝试使用 `itdog.cn` 进行v4 ping，并且依次对解析出的域名进行ping![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2024-10-21-20-28-51-image.webp)
   
-  3. 可见，第一个IP通![](../assets/images/2024-10-21-20-29-40-image.webp)
+  3. 可见，第一个IP通![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2024-10-21-20-29-40-image.webp)
   
-  4. 强制绑定Hosts，尝试抓包![](../assets/images/2024-10-21-20-35-58-image.webp)![](../assets/images/2024-10-21-20-31-49-image.webp)
+  4. 强制绑定Hosts，尝试抓包![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2024-10-21-20-35-58-image.webp)![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2024-10-21-20-31-49-image.webp)
   
-  5. 可见，在通过强制Hosts绑定后，在客户端发送 `Client Hello` 后被GFW检测到`Server Name` 字段，然后GFW向客户端发送一个 `RST` 报文，即要求重置客户端连接。在客户端侧，则会收到 `ERR_CONNECTION_RESET` 即：连接已重置。用户无法访问网页。![](../assets/images/2024-10-21-20-33-23-image.webp)
+  5. 可见，在通过强制Hosts绑定后，在客户端发送 `Client Hello` 后被GFW检测到`Server Name` 字段，然后GFW向客户端发送一个 `RST` 报文，即要求重置客户端连接。在客户端侧，则会收到 `ERR_CONNECTION_RESET` 即：连接已重置。用户无法访问网页。![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2024-10-21-20-33-23-image.webp)
 
 ### 继续，尝试发送空 `Server Name` 报文
 
-![](../assets/images/2024-10-21-20-41-37-image.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2024-10-21-20-41-37-image.webp)
 
-![](../assets/images/2024-10-21-20-41-54-image.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2024-10-21-20-41-54-image.webp)
 
 成功访问。在WireShark中并未发现 `Server Name` 字段
 
@@ -89,9 +89,9 @@ Accesser是一个HTTP代理。它通过中间人的身份处理终端的HTTP出�
 
 - 下载最新的Release。一般有一个`accesser.exe`
 
-- 直接打开这个软件，看到这个画面即可![](../assets/images/c2eed28c-6e5d-43a3-a016-8f1a38a53cbd.webp)
+- 直接打开这个软件，看到这个画面即可![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/c2eed28c-6e5d-43a3-a016-8f1a38a53cbd.webp)
 
-- 它的原理是自动设置系统代理，如果你使用了一些别的代理软件，会被覆盖![](../assets/images/d0d8fac1-a2e5-4db2-8e25-ca5e04eb9951.webp)
+- 它的原理是自动设置系统代理，如果你使用了一些别的代理软件，会被覆盖![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/d0d8fac1-a2e5-4db2-8e25-ca5e04eb9951.webp)
 
 ### Linux（以Debian12为例）
 

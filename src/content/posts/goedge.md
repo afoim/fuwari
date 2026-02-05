@@ -2,7 +2,7 @@
 title: GoEdge自建CDN系统踩坑记录
 published: 2025-09-09T06:28:06
 description: '卧槽，一不小心搞到了3台免费VPS，可是不用容易被回收，这可咋办啊！欸？不如让他们都干点活吧！'
-image: '../assets/images/2025-09-09-06-29-44-image.png'
+image: 'https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-09-09-06-29-44-image.png'
 tags: [CDN, GoEdge]
 
 draft: false 
@@ -61,33 +61,33 @@ root@AcoFork-NAS:~/oci#
 
 首先前往
 
-![](../assets/images/2025-09-09-07-00-37-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-09-09-07-00-37-image.png)
 
 添加你的DNS账号。**hw** 用来做CDN域名的自治解析，**cf** 用来后续签发SSL
 
-![](../assets/images/2025-09-09-06-59-59-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-09-09-06-59-59-image.png)
 
 点进去，确保能获取到域名
 
-![](../assets/images/2025-09-09-06-44-54-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-09-09-06-44-54-image.png)
 
 # 设置CDN域名
 
 前往
 
-![](../assets/images/2025-09-09-06-45-52-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-09-09-06-45-52-image.png)
 
 设置好DNS子域名
 
-![](../assets/images/2025-09-09-06-46-12-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-09-09-06-46-12-image.png)
 
 # 添加节点
 
 前往
 
-![](../assets/images/2025-09-09-06-47-14-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-09-09-06-47-14-image.png)
 
-![](../assets/images/2025-09-09-06-47-30-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-09-09-06-47-30-image.png)
 
 然后填写节点IP+SSH认证方式（密码/密钥），之后goedge会主动通过SSH连接节点安装服务
 
@@ -95,7 +95,7 @@ root@AcoFork-NAS:~/oci#
 
 前往
 
-![](../assets/images/2025-09-09-06-49-35-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-09-09-06-49-35-image.png)
 
 会让你填写每个节点的DNS IP，填写节点的 **公网IP** 即可
 
@@ -103,36 +103,36 @@ root@AcoFork-NAS:~/oci#
 
 前往
 
-![](../assets/images/2025-09-09-06-50-43-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-09-09-06-50-43-image.png)
 
-![](../assets/images/2025-09-09-06-50-50-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-09-09-06-50-50-image.png)
 
-![](../assets/images/2025-09-09-06-50-57-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-09-09-06-50-57-image.png)
 
-![](../assets/images/2025-09-09-06-51-10-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-09-09-06-51-10-image.png)
 
 随便写个邮箱
 
-![](../assets/images/2025-09-09-06-51-23-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-09-09-06-51-23-image.png)
 
 写域名（支持泛域名）
 
-![](../assets/images/2025-09-09-06-51-52-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-09-09-06-51-52-image.png)
 
 稍等片刻就签发成功
 
-![](../assets/images/2025-09-09-06-52-20-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-09-09-06-52-20-image.png)
 
 # 禁止未绑定域名访问/禁止IP直接访问
 
 字面意思，如图设置
 
-![](../assets/images/2025-09-09-06-53-52-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-09-09-06-53-52-image.png)
 
 # 创建网站
 
 前往
 
-![](../assets/images/2025-09-09-06-54-16-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-09-09-06-54-16-image.png)
 
 接下来你们自己研究吧 我要睡了

@@ -2,7 +2,7 @@
 title: 测评一下SecBit MCDN HK区域的质量
 published: 2025-07-02
 description: '在我哥们的帮助下也是成功通过我的博客拿到了Secbit的免费MCDN服务，再见EdgeOne（'
-image: ../assets/images/8fd87117-9ab0-4ae5-b9b5-8202f47fbc0b.webp
+image: https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/8fd87117-9ab0-4ae5-b9b5-8202f47fbc0b.webp
 tags: [Secbit]
 category: '记录'
 draft: false 
@@ -23,41 +23,41 @@ https://secbit.ai
 
 ## 直连Cloudflare R2
 
-![](../assets/images/5eaa947d-9363-4eac-b375-0c3830614571.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/5eaa947d-9363-4eac-b375-0c3830614571.webp)
 
 ## Secbit回源Cloudflare R2
 
-![](../assets/images/e1986e03-7b69-467a-92f0-cea88c118924.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/e1986e03-7b69-467a-92f0-cea88c118924.webp)
 
 # ITDog Tcping测试
 
 ## 直连Cloudflare R2
 
-![](../assets/images/6c8efb56-4fe8-44d5-82e2-45ca063014b1.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/6c8efb56-4fe8-44d5-82e2-45ca063014b1.webp)
 
 ## Secbit回源Cloudflare R2
 
-![](../assets/images/a4654458-3b03-4ec3-9cfc-9d94615abaf9.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/a4654458-3b03-4ec3-9cfc-9d94615abaf9.webp)
 
 # ITDog 网站测速
 
 ## 直连Cloudflare R2
 
-![](../assets/images/2bb7aee3-9ae7-48e8-bef7-37dbe0c8818c.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2bb7aee3-9ae7-48e8-bef7-37dbe0c8818c.webp)
 
 ## Secbit回源Cloudflare R2
 
-![](../assets/images/1a9a1ce4-720f-48dc-8fb7-8a9822caed68.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/1a9a1ce4-720f-48dc-8fb7-8a9822caed68.webp)
 
 # 大文件下载
 
 ## 直连Cloudflare R2
 
-![](../assets/images/6887e3eb-59cf-41ce-bda4-31b0ffc87c5a.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/6887e3eb-59cf-41ce-bda4-31b0ffc87c5a.webp)
 
 ## Secbit回源Cloudflare R2
 
-![](../assets/images/3328a47b-417a-4ba0-b3b8-5013c1ef89bf.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/3328a47b-417a-4ba0-b3b8-5013c1ef89bf.webp)
 
 ---
 

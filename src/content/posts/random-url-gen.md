@@ -2,7 +2,7 @@
 title: 完全免费！从架构，开发到部署，一条龙实打实的教你做一言/随机图等随机URL的最佳实践
 published: 2025-12-29T10:10:40
 description: 我曾于2024搭建了第一个随机图网站，最近几周又深度研究了类似项目，发现这类项目有很多坑也有很多神秘的捷径，并且某些架构还可以做到“永生”...
-image: ../assets/images/random-url-gen.png
+image: https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/random-url-gen.png
 draft: false
 lang: ""
 ---
@@ -18,16 +18,16 @@ lang: ""
 能实现吗？
 
 当然可以！这是你的流程图！
-![](../assets/images/random-url-gen-5.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/random-url-gen-5.png)
 但也会带来一些问题，比如，图片存在本地，给客户端响应图片的时候走的是你机子的流量，那么你就需要一个 **高带宽** 的服务器，这无疑是一个 **高昂** 的成本
 
 那可能你会有新的方案： **前后端分离** （逻辑与资产分离），只将返回这个图片的逻辑存放在服务器上，而图片存到其他地方，如对象存储（Cloudflare R2）、IPFS等等
-![](../assets/images/random-url-gen-6.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/random-url-gen-6.png)
 那么问题又来了，假如说你的项目太多人用了，那你的服务器性能可能不够，在后期，你仍然需要一个 **高昂** 的 **维护成本** 
 
 那么那么那么，现在是 **2025** 年，传统的架构已经无法满足我们了，我们不妨可以试试 **云函数** 
 仍然是前后端分离，我们现在将逻辑放到一个函数上面，如Cloudflare Worker、EdgeOne Function、Vercel Function等等
-![](../assets/images/random-url-gen-8.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/random-url-gen-8.png)
 那么现在是不是无敌了？
 
 并非，虽然前端因为使用了 **云函数** 也就是直接接入了CDN，高并发已经不是问题了，但是由于资产并不直接托管在 **云函数** 中，**云函数** 仍然需要创建一个长连接从你的后端，如对象存储获取图片，这样一折腾，你的服务可能并不算快
@@ -40,7 +40,7 @@ lang: ""
 
 那么接下来，你就得到了一个完全不需要你买服务器托管，也不需要你担心存储爆仓导致天价账单的随机图...了吗？
 
-![](../assets/images/random-url-gen-4.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/random-url-gen-4.png)
 # 探索随机图（随机URL）的本质
 我们刚刚只是在抽象的说明某种架构 **好像** 可行，**好像** 又有什么问题，然后又有一种什么新思路 **好像** 可以解决这个问题
 
@@ -70,7 +70,7 @@ lang: ""
 # 奇技淫巧1：利用Cloudflare Origin Rules实现无计费的随机URL
 > Video: https://www.bilibili.com/video/BV19ZBzB8EDQ/
 起因于有一天一位粉丝在我视频下留言
-![](../assets/images/random-url-gen-9.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/random-url-gen-9.png)
 
 他提到的仓库为
 
@@ -85,7 +85,7 @@ lang: ""
 那如果说我图比这多呢？加一位，16^5 = 1048576，够用了吧
 那如果说我图比这少呢？那我们可以让图片填充，说个极端的例子，假如你只有2张图，每张图创建32768个副本即可，依此类推
 
-![](../assets/images/random-url-gen-10.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/random-url-gen-10.png)
 
 ::github{repo="afoim/cf-rule-random-url"}
 
@@ -101,7 +101,7 @@ lang: ""
 
 大致原理为编写一个客户端JS，生成一个随机数，然后拼接URL得到最终的随机图，然后寻找需要替换为随机图的img容器或者背景图容器，替换其中内容
 
-![](../assets/images/random-url-gen-11.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/random-url-gen-11.png)
 
 ::github{repo="afoim/Static_RandomPicAPI"}
 

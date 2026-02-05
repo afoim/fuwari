@@ -2,7 +2,7 @@
 title: 静态博客也想展示文章浏览量？当然可以！
 published: 2025-06-18
 description: '利用Umami等站点分析软件可以让管理员了解站点活跃度，但是如果我们想向用户展示一些数据呢？'
-image: ../assets/images/acacac41-e1e1-4a15-bdae-05683656916c.webp
+image: https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/acacac41-e1e1-4a15-bdae-05683656916c.webp
 tags: [Cloudflare, Umami]
 category: '教程'
 draft: false 
@@ -21,7 +21,7 @@ lang: ''
 
 我们可以依赖一些第三方服务，比如[Umami Cloud](https://umami.is)。在你的静态博客的head注入一个js，这样你就可以看到你的站点分析了，类似下图
 
-![](../assets/images/2c1e7d81-6f6d-4323-b0de-013b2d168be1.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2c1e7d81-6f6d-4323-b0de-013b2d168be1.webp)
 
 现在我们确实可以看到每个文章（即/posts/xxx）的访问量了，但是我们要如何展示给用户呢？
 
@@ -31,7 +31,7 @@ lang: ''
 
 首先我们启用分享URL
 
-![](../assets/images/023f687b-6e4a-46d8-b7f2-4778f20ebe99.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/023f687b-6e4a-46d8-b7f2-4778f20ebe99.webp)
 
 注意这里的 `7PoDRgCzHFTs2vWB` ，每个站点都不一样
 
@@ -84,4 +84,4 @@ Enjoy it！
 
 最终效果：
 
-![](../assets/images/ce822960-f7ef-444e-84d1-fa0758e2b5e8.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/ce822960-f7ef-444e-84d1-fa0758e2b5e8.webp)

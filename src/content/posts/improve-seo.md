@@ -2,7 +2,7 @@
 title: 如何提高网站的SEO？
 published: 2025-07-30
 description: '很多人做个网站后就不管了，殊不知想让搜索引擎快速收录并且提高排名要做的事情还不少呢！'
-image: '../assets/images/f334c97b-bb75-4920-8bd1-e62c9e5c675c.webp'
+image: 'https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/f334c97b-bb75-4920-8bd1-e62c9e5c675c.webp'
 tags: [SEO]
 category: '记录'
 draft: false 
@@ -89,11 +89,11 @@ Lighthouse是一个浏览器插件，可以分析站点的性能、无障碍、�
 
 注意需要使用无痕模式进行测试，以免其他浏览器插件影响Lighthouse的测试结果
 
-![](../assets/images/579087ce-3a48-4390-8ba3-e42dea60135e.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/579087ce-3a48-4390-8ba3-e42dea60135e.webp)
 
 对于每一项出现的问题以及如何解决都有明确的指示。可以根据警告对您的站点进行优化
 
-![](../assets/images/5174f53e-5c7f-49a9-86fc-ea6797975d59.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/5174f53e-5c7f-49a9-86fc-ea6797975d59.webp)
 
 # 接入必应网站管理员
 
@@ -103,9 +103,9 @@ Lighthouse是一个浏览器插件，可以分析站点的性能、无障碍、�
 
 必应爬虫还会针对它的视角提出您网站的问题，您可以根据提出的问题进行优化
 
-![](../assets/images/eabc21ac-c306-4165-afe0-1b9da3d2a179.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/eabc21ac-c306-4165-afe0-1b9da3d2a179.webp)
 
-![](../assets/images/081682fd-2d05-4d3f-a191-1c0f5c9b624c.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/081682fd-2d05-4d3f-a191-1c0f5c9b624c.webp)
 
 # 接入各大分析
 
@@ -125,7 +125,7 @@ Lighthouse是一个浏览器插件，可以分析站点的性能、无障碍、�
 
 尽管大部分搜索引擎都会主动通过探测 `/robots.txt` `/sitemap.xml` `rss.xml` `atom.xml` 等路径来得知网站的架地图，但还是建议主动提交站点地图
 
-![](../assets/images/improve-seo-1.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/improve-seo-1.png)
 
 
 # 使用IndexNow
@@ -136,4 +136,4 @@ Lighthouse是一个浏览器插件，可以分析站点的性能、无障碍、�
 
 如果您使用Cloudflare CDN，这是开箱即用的只需要导航到您的域名 -> 缓存 -> 配置 -> 启用 **Crawler Hints** 即可
 
-![](../assets/images/303b37e5-4104-4e2a-8a3b-bdb6094159e7.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/303b37e5-4104-4e2a-8a3b-bdb6094159e7.webp)

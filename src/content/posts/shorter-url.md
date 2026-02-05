@@ -2,7 +2,7 @@
 title: 无需服务器！从零教你自建一个短链服务！
 published: 2026-01-09T10:55:33
 description: 你是否有一个短域名？没有也没关系，马上教你从域名开始搭建一个短链服务！
-image: ../assets/images/shorter-url.png
+image: https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/shorter-url.png
 draft: false
 lang: ""
 ---
@@ -33,5 +33,5 @@ Cloudflare Page/Worker的重定向文件提供了基于文件的重定向功能�
 
 # 服务架构图
 
-![](../assets/images/MermaidChart-Createcomplexvisualdiagramswithtext-2026-01-09-031619.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/MermaidChart-Createcomplexvisualdiagramswithtext-2026-01-09-031619.png)
 

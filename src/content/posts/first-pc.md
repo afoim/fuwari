@@ -2,7 +2,7 @@
 title: 人生中的第一台自己组装的台式！键盘亮显示器必亮！
 published: 2025-10-11T05:15:38
 description: 很早就想装一个台式常驻家里了，这次阴差阳错的获得了一个机会，至于为什么我称它为阴差阳错，请看VCR
-image: ../assets/images/IMG20251010160613.jpg
+image: https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/IMG20251010160613.jpg
 tags:
   - 台式
 draft: false
@@ -13,9 +13,9 @@ lang: ""
 
 让我们将时间轴拨动到我还持有着 **极光X笔记本** 的时候，虽然前几期文章大致讲过了，我把极光X卖了换了Mac，但是就仅止于此了，实际上这仅仅只是一个平庸的开始
 
-![](../assets/images/Screenshot_2025-10-11-05-45-03-97_e41039de8eaacf2.jpg)
-![](../assets/images/Screenshot_2025-10-11-05-47-07-88_c03b3f779c2dfd4.jpg)
-![](../assets/images/IMG20250929204541.jpg)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/Screenshot_2025-10-11-05-45-03-97_e41039de8eaacf2.jpg)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/Screenshot_2025-10-11-05-47-07-88_c03b3f779c2dfd4.jpg)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/IMG20250929204541.jpg)
 那么首先，因为我和朋友打 **卡拉彼丘** 红温了，那天就觉得 **我从来没有觉得打游戏开心过** ，于是便决定将手上的Windows笔记本，也就是极光X卖掉，然后买一个MacBook专注生产力（难绷）
 
 我这个人执行力很高，第一天就上 **转转** 把极光X卖了，然后立马下单了一个25年的MacBook Air，也就是前几期文章说的 **我为什么买了个Mac** 
@@ -29,13 +29,13 @@ lang: ""
 我这个人考虑事情都是顾全大局，当我认为Mac不可能陪伴我较长时间这个结论得出时，抛弃Mac只是时间问题
 
 而后，顺理成章的在 **爱回收** （因为报价多300）把Mac卖了，质检小哥问我用了几天的时候，我说5天，他愣住了，我说： **哎，还是Windows好用，macOS真用不明白** ，随后他也附和道： **是的是的** 
-![](../assets/images/Screenshot_2025-10-11-05-48-04-91_4fbb30eb7b71661.jpg)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/Screenshot_2025-10-11-05-48-04-91_4fbb30eb7b71661.jpg)
 
 总之，无论过程如何，我现在已经没有电脑可以用了，那么下一步肯定是抓紧再整个电脑过来
 
 可能是一时心急，一不小心发现了京东有一个闪购功能，又一不小心溢价了一千买了个 **暗影精灵11锐龙版** ，闪购确实很闪啊，半小时不到就送到了
 
-![](../assets/images/Screenshot_2025-10-11-05-48-41-11_4fbb30eb7b71661.jpg)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/Screenshot_2025-10-11-05-48-41-11_4fbb30eb7b71661.jpg)
 
 当即就开机，嗯！还是Windows味正！
 
@@ -43,16 +43,16 @@ lang: ""
 
 不用我说，你们应该也猜到了，没错！又是5天之后，我把 **暗影精灵11锐龙版** 在 **转转** 上出掉了。当质检小哥再次问我的你机子买了几天的时候，我说5天，他愣住了，随后说道：**这我还测集贸了** 随后不到十分钟我就收到打款了
 
-![](../assets/images/Screenshot_2025-10-11-05-49-05-90_c03b3f779c2dfd4.jpg)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/Screenshot_2025-10-11-05-49-05-90_c03b3f779c2dfd4.jpg)
 
 好的，那么第二次轮回又结束了，此时我仍然处于一个没电脑用的情况（虽然也不是刚需）。不过这次，我下定决心了： **一定要整个台式机玩玩！** 
 
 恰巧，朋友准备换CPU了，又恰巧，要从Intel换成AMD，也就是说，他的主板和U都闲置了，就问我要不要。那我肯定是求之不得，然后便顺理成章的拿到了板U，接下来只需要自己买显卡内存硬盘电源散热机箱即可，因为板U暂时不需要我掏钱了，所以预算非常充足，又因为我这个人心急吧，于是便找了 **京东当日达** 也就是本地仓发货的，可能要加个几百块，但是刚好可以治我的“心急病”，但是吧，朋友的板U本来是走飞机的，但是安检没过，所以转陆运了，那么陆运就不能当日达了，也就是说就算我的其他配件当日达，板U不能当日达那我这加的钱就是白加，不过算了，既来之则安之，那么以下是我的配置单
-![](../assets/images/Screenshot_2025-10-09-20-06-36-95_ae1f93045b87aac.jpg)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/Screenshot_2025-10-09-20-06-36-95_ae1f93045b87aac.jpg)
 
 那么装机后效果如图
 
-![](../assets/images/IMG202510101606131.jpg)![](../assets/images/IMG20251011055119.jpg)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/IMG202510101606131.jpg)![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/IMG20251011055119.jpg)
 
 # 装机教程
 
@@ -74,14 +74,14 @@ lang: ""
 
 首先这是最终上机配置
 
-![](../assets/images/first-pc.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/first-pc.png)
 CPU-Z跑分
-![](../assets/images/first-pc-1.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/first-pc-1.png)
 甜甜圈一键烤鸡（1280x720）帧数
-![](../assets/images/d1122f2dcca5ea532c7aa45483120e3d.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/d1122f2dcca5ea532c7aa45483120e3d.png)
 AIDA64内存和三缓测试
-![](../assets/images/first-pc-2.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/first-pc-2.png)
 单烤FPU最高功耗及温度
-![](../assets/images/first-pc-3.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/first-pc-3.png)
 AS SSD Benchmark（硬盘测速）
-![](../assets/images/first-pc-4.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/first-pc-4.png)

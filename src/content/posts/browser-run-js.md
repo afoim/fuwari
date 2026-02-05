@@ -2,7 +2,7 @@
 category: 记录
 description: 本文深度剖析浏览器的JS运行原理以及浏览器内部事件处理的根本操作：事件循环
 draft: false
-image: ../assets/images/4b040799-eec9-457e-a04e-edf8b7e35b94.webp
+image: https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/4b040799-eec9-457e-a04e-edf8b7e35b94.webp
 lang: ''
 published: 2025-04-25
 tags:

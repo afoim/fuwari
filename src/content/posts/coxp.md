@@ -2,7 +2,7 @@
 title: 你真的懂了浏览器跨域吗？COOP，COEP，CORP，CORS都是管什么的？
 published: 2026-02-03T04:54:03
 description: 你是否在浏览或开发网站时在浏览器控制台看到过“由于跨域XXX，已阻止加载XXX”，或“200 Failed”状态？今天带你搞懂浏览器的跨域安全模型
-image: ../assets/images/coxp.png
+image: https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/coxp.png
 draft: false
 lang: ""
 ---
@@ -15,7 +15,7 @@ lang: ""
 
 那我们肯定不能让他这样，怎么办呢，所以我们需要让我们的图片在被拉取时返回一个 **CORP 响应头**，并且值为 **same-site** ，这样，只要不是你的域名写 `<img>` ，浏览器会统统阻断加载
 
-![](../assets/images/coxp-1.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/coxp-1.png)
 
 这就是 **CORP（Cross-Origin Resource Policy） - 跨域资源策略**，它管的是 **资源给不给用** 
 
@@ -33,7 +33,7 @@ lang: ""
 
 再然后，你将该头的值改为了 `yoursite.com` 这样，就只允许你自己的网站来调用该API了。其他人调用依旧会被浏览器拦截
 
-![](../assets/images/coxp-4.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/coxp-4.png)
 
 接着，你又做了个网站，并且为各个地区访问的访客配置了不同的CDN图床，你想让该网站告诉用户您正在使用什么CDN
 
@@ -45,7 +45,7 @@ lang: ""
 
 然后你费劲千辛万苦，终于在各大CDN都配置了返回 `Access-Control-Expose-Headers: server` ，然后，你的代码终于工作了！
 
-![](../assets/images/coxp-2.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/coxp-2.png)
 
 接着，随着你的网站越做越大，你想给网站添加一个访问量显示模块，但是由于网站本身是静态的，你又不想在全是前端代码的项目里面插后端代码，于是你很聪明，想到了搭建另一个服务，Umami，然后将追踪JS嵌入你的网站，你再通过客户端JS读取Umami的公开页面获取访问量
 
@@ -61,7 +61,7 @@ lang: ""
 
 接着，你配置了该响应头，为了方便，你直接写了 `Access-Control-Allow-Headers: *` ，终于，你的代码成功工作了，也拿到了正确的访问量
 
-![](../assets/images/coxp-3.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/coxp-3.png)
 
 这就是 **CORS（Cross-Origin Resource Sharing）- 跨域资源共享** ，它管的是 **API给不给调，只能给谁调** 
 
@@ -173,4 +173,4 @@ COEP 并不会阻止浏览器发起网络请求，但会在资源返回后决定
 
 # 浏览器安全模型完整流程图
 
-![](../assets/images/coxp.svg)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/coxp.svg)

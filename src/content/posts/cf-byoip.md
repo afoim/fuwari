@@ -2,7 +2,7 @@
 title: 还在用Cloudflare传统优选？来看看Cloudflare Byoip！
 published: 2025-07-22
 description: 'Cloudflare Byoip是一些用户将自有IP托管给Cloudflare，使其接入Cloudflare全球网络，大部分IP质量比官方IP好得多，但，代价是什么呢？'
-image: '../assets/images/1987022f-8524-4774-b6ca-2caf38d9820a.webp'
+image: 'https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/1987022f-8524-4774-b6ca-2caf38d9820a.webp'
 tags: [Cloudflare Byoip]
 category: '记录'
 draft: false 
@@ -23,7 +23,7 @@ Cloudflare Byoip，即如果用户自己拥有一个IP、IP段，可以将其托
 
 > 我这里返回404是正常的，因为 r2.afo.im 直接连接到Cloudflare R2对象存储，直接访问就是404
 
-![](../assets/images/838f685e-3913-4b21-995e-5ee149f4bffa.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/838f685e-3913-4b21-995e-5ee149f4bffa.webp)
 
 需要注意，有一些Byoip可能会强制跳转到它自己的网站。需要查看ITDog的测试日志是否有重定向，别让你的网站成为他人的引流站
 

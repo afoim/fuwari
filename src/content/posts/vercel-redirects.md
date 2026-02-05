@@ -2,7 +2,7 @@
 title: 配置 Vercel.json 以支持服务器级别的重定向
 published: 2025-09-02T06:33:27
 description: '如果你的站点（无论静态/动态）正在使用Vercel，则配置重定向是一件非常轻松的事情'
-image: '../assets/images/2025-09-02-06-34-54-image.png'
+image: 'https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-09-02-06-34-54-image.png'
 tags: [Vercel, 重定向]
 
 draft: false 

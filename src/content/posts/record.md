@@ -221,13 +221,13 @@ masquerade:
 
 二叉树树自用： fenliu.072103.xyz
 
-![](../assets/images/0cfff651-0590-4700-81f4-79c9e576c38d.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/0cfff651-0590-4700-81f4-79c9e576c38d.webp)
 
-[CM大佬](https://blog.cmliussss.com/)： cf.090227.xyz![](../assets/images/8f2ac2b4-b5b7-4d9e-8d80-103181e975a9.webp)
+[CM大佬](https://blog.cmliussss.com/)： cf.090227.xyz![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/8f2ac2b4-b5b7-4d9e-8d80-103181e975a9.webp)
 
 [微测网](https://www.wetest.vip/page/cloudflare/cname.html)：cloudflare.182682.xyz
 
-![](../assets/images/1b8b0adb-f3bc-4513-814e-4f20529a86cf.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/1b8b0adb-f3bc-4513-814e-4f20529a86cf.webp)
 
 ---
 

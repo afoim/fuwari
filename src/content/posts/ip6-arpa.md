@@ -2,7 +2,7 @@
 title: IPv6反解域名是什么？嫩长一坨还能托管到Cloudflare？SSL签发也没问题？
 published: 2025-08-09
 description: '你是否见过类似 e.b.9.f.0.7.4.0.1.0.0.2.ip6.arpa 这样的域名，今天就教你搞一个！'
-image: '../assets/images/2025-08-09-04-50-44-image.png'
+image: 'https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-08-09-04-50-44-image.png'
 tags: [IPv6, ip6.arpa]
 category: '教程'
 draft: false 
@@ -32,11 +32,11 @@ lang: ''
 
 如果该IP曾被绑定，则需要进行HTTP验证
 
-![](../assets/images/2025-08-09-04-53-04-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-08-09-04-53-04-image.png)
 
 进入这个页面，查看TunnelBroker为你分配的路由IPv6
 
-![](../assets/images/2025-08-09-04-55-24-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-08-09-04-55-24-image.png)
 
 以 `2001:470:24:386::/64` 为例
 
@@ -48,15 +48,15 @@ lang: ''
 
 将其添加到Cloudflare
 
-![](../assets/images/2025-08-09-04-59-05-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-08-09-04-59-05-image.png)
 
 查看Cloudflare要求你设置的NS服务器
 
-![](../assets/images/2025-08-09-04-59-25-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-08-09-04-59-25-image.png)
 
 回到TunnelBroker进行设置
 
-![](../assets/images/2025-08-09-04-59-49-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-08-09-04-59-49-image.png)
 
 等待域被激活即可
 
@@ -74,7 +74,7 @@ curl --location --request PATCH 'https://api.cloudflare.com/client/v4/zones/<zon
 
 稍等片刻，CF会自动使用新的SSL提供商签发SSL
 
-![](../assets/images/2025-08-09-05-07-40-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-08-09-05-07-40-image.png)
 
 # 局限性
 

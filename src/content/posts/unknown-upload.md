@@ -2,7 +2,7 @@
 title: 自建一个匿名文件上传终结点
 published: 2025-11-08T11:02:04
 description: 你有没有遇到过一种场景？在学校/公司电脑需要带一个文件走，但是又不想安装远程软件。那么今天，教你无需U盘，让你在任何地方将你想要的文件带回你家！
-image: ../assets/images/unknown-upload.png
+image: https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/unknown-upload.png
 tags:
   - EdgeOne
   - 对象存储
@@ -28,7 +28,7 @@ https://www.bilibili.com/video/BV1Hz1DBZEov/
 1. 若我的家庭电脑离线，服务将不可用
 2. 使用时会占用家中的下载带宽
 
-![](../assets/images/unknown-upload-1.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/unknown-upload-1.png)
 
 那么换个思路，我们是否可以借助对象存储？
 
@@ -38,7 +38,7 @@ https://www.bilibili.com/video/BV1Hz1DBZEov/
 
 于是我找到了EdgeOne Pages，它的Functions非常适合做这件事，且支持原生Node运行时，也就是 `node-functions` 直接使用 `AWS-S3` 这个NPM包再做一个最简单的前端上传页面，搞定！
 
-![](../assets/images/unknown-upload-2.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/unknown-upload-2.png)
 
 为了防止上传重名文件，每个文件上传后都会被重命名为 `原文件名_时间戳_IP` 
 

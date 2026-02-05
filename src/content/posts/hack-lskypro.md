@@ -2,7 +2,7 @@
 title: 记录破解兰空图床（Lsky-Pro）
 published: 2025-08-19T21:09:47
 description: '兰空图床是一个简洁易用（？）的图床框架，抓包了一下激活过程，这玩意居然没加密...记录一下'
-image: '../assets/images/2025-08-20-21-11-48-image.png'
+image: 'https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-08-20-21-11-48-image.png'
 tags: [兰空图床]
 category: '记录'
 draft: false 
@@ -56,45 +56,45 @@ export http_proxy="http://127.0.0.1:8080"
 export https_proxy="http://127.0.0.1:8080"
 ```
 
-![](../assets/images/a5fd2695975981d785cea1af5c0ee9588dc1b9ee.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/a5fd2695975981d785cea1af5c0ee9588dc1b9ee.png)
 
 默认Burp仅拦截请求，不拦截响应，需要手动设置一下
 
-![](../assets/images/2690f8470df19d0c4a0f134835a7cbc95c9798fd.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2690f8470df19d0c4a0f134835a7cbc95c9798fd.png)
 
 然后启用拦截
 
-![](../assets/images/52650c556acc9406923fb824823fe3a04e153d5d.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/52650c556acc9406923fb824823fe3a04e153d5d.png)
 
 当你通过官方教程到执行 `./install.sh` 的时候
 
 会要求输入域名和授权密钥，域名填你自己的，否则之后上传的图片的预览地址将会不正确！授权密钥随便填！
 
-![](../assets/images/67b17d4c5f5d7ba8d2e2ee348d19bc01c6d42b1d.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/67b17d4c5f5d7ba8d2e2ee348d19bc01c6d42b1d.png)
 
 回车，会开始转圈圈
 
-![](../assets/images/fb540faa472d476e8d6b05a04d01be5a19adb236.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/fb540faa472d476e8d6b05a04d01be5a19adb236.png)
 
 查看Burp，发现多了一个请求，首先点击放行
 
-![](../assets/images/8a6dd20b7ad55a9fdad795be358b8486b75de5b7.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/8a6dd20b7ad55a9fdad795be358b8486b75de5b7.png)
 
 现在出现了响应，并且状态码为401
 
-![](../assets/images/ce862cb4eeefc2a7a52bea44e4e6ab137a7cd3da.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/ce862cb4eeefc2a7a52bea44e4e6ab137a7cd3da.png)
 
 响应那块是可以编辑的，用 https://r2.072103.xyz/lsky_success_223.txt 中的内容替换原响应。然后点击放行
 
-![](../assets/images/b8545b978629815aec471489890a0be62f0a8f89.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/b8545b978629815aec471489890a0be62f0a8f89.png)
 
 恭喜，通过授权了
 
-![](../assets/images/fdda3a54fd4a6da5d0c0c9d5ac0fbd5b79ef2b51.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/fdda3a54fd4a6da5d0c0c9d5ac0fbd5b79ef2b51.png)
 
 安装完毕后也一样
 
-![](../assets/images/79f0f4645235e7cb3ecbe554cb13295bed326be5.png)38dd52c6e.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/79f0f4645235e7cb3ecbe554cb13295bed326be5.png)38dd52c6e.png)
 
 > 注意。如果需要更新新版本，仍然需要有效的授权密钥，否则无法得到新版包体
 

@@ -2,7 +2,7 @@
 title: 公开架构，我的二次元随机图API是怎么做的
 published: 2025-09-06T02:22:00
 description: '发现很多小伙伴也想搭建一个自己的随机图API，这里我就公开一下我的架构，打磨2年了，供大家参考~'
-image: '../assets/images/2025-08-31-04-09-37-image.png'
+image: 'https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-08-31-04-09-37-image.png'
 tags: [随机图API]
 
 draft: false 
@@ -29,15 +29,15 @@ lang: ''
 
 图源全部存在 **Cloudflare R2**，全部采用 **Webp** 格式，仅分类为 **横屏、竖屏** ，如图
 
-![](../assets/images/2025-08-31-04-13-08-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-08-31-04-13-08-image.png)
 
-![](../assets/images/2025-08-31-04-13-17-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-08-31-04-13-17-image.png)
 
 API就拿我正投入使用的 https://eopfapi.acofork.com/pic?img=ua 来说
 
 看域名也可以看出来，这是一个 **EdgeOne Pages Functions** 服务（下文简称 **eopf** ），什么？你问为什么用这个？那当然是因为！ **目前所有功能完全免费！**
 
-![](../assets/images/2025-08-31-04-18-45-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-08-31-04-18-45-image.png)
 
 源码在 [afoim/EdgeOne_Function_PicAPI: 适用于EdgeOne边缘函数的随机图API](https://github.com/afoim/EdgeOne_Function_PicAPI)
 

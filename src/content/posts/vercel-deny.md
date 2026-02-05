@@ -2,7 +2,7 @@
 title: 配置Vercel让ITDog测试全部403！
 published: 2025-07-10
 description: '很讨厌别人用ITDog等拨测服务疯狂测试你的站点？拒绝他们！'
-image: ../assets/images/d81562f3-8efb-45f3-8dd1-72cb9c032bc2.webp
+image: https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/d81562f3-8efb-45f3-8dd1-72cb9c032bc2.webp
 tags: [Vercel]
 category: '教程'
 draft: false 
@@ -23,7 +23,7 @@ https://www.bilibili.com/video/BV1w7GTzMEy7
 
 结论，你已经获得了你要屏蔽的拨测网站的IP
 
-![](../assets/images/91daff1e-b248-4f90-9b97-31bff7fa2c14.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/91daff1e-b248-4f90-9b97-31bff7fa2c14.webp)
 
 # 创建Vercel API Token
 
@@ -35,11 +35,11 @@ https://www.bilibili.com/video/BV1w7GTzMEy7
 
 新增规则
 
-![](../assets/images/84645ada-92bd-42f7-827f-96a93bd54997.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/84645ada-92bd-42f7-827f-96a93bd54997.webp)
 
 随便写点东西然后抓包
 
-![](../assets/images/0f60d87a-df45-42d3-a692-c172982899cc.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/0f60d87a-df45-42d3-a692-c172982899cc.webp)
 
 ```http
 PATCH https://vercel.com/api/v1/security/firewall/config/draft?projectId=prj_UfvbpIvawjL2eAETAiZT7hPLR8W2&teamId=team_lemndzHQNJAcTipIF6elB5Md
@@ -51,7 +51,7 @@ PATCH https://vercel.com/api/v1/security/firewall/config/draft?projectId=prj_Ufv
 
 可以看到已经200 OK
 
-![](../assets/images/b87a06b5-e33c-4d1d-aede-18ecba95d8cc.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/b87a06b5-e33c-4d1d-aede-18ecba95d8cc.webp)
 
 # 使用Python脚本创建大批量IP拒绝规则
 
@@ -1447,21 +1447,21 @@ if __name__ == "__main__":
 
 # 调用脚本更新规则
 
-![](../assets/images/3b44fed2-5dda-4dec-a009-8618b18370ee.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/3b44fed2-5dda-4dec-a009-8618b18370ee.webp)
 
-![](../assets/images/c9fa44c0-c313-47b1-8b03-804b2b4324b9.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/c9fa44c0-c313-47b1-8b03-804b2b4324b9.webp)
 
 最后 `Review Changes` 并且 `Publish` 即可
 
-![](../assets/images/aada66d2-b090-4959-b031-cbdb738def50.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/aada66d2-b090-4959-b031-cbdb738def50.webp)
 
-![](../assets/images/831bf953-5895-4a62-894c-ab8b24dc8697.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/831bf953-5895-4a62-894c-ab8b24dc8697.webp)
 
 # ITDog测试
 
 大部分测试节点已经403
 
-![](../assets/images/127a5bc0-6504-4c98-a573-1e3da60b9c8e.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/127a5bc0-6504-4c98-a573-1e3da60b9c8e.webp)
 
 # 有什么用？
 

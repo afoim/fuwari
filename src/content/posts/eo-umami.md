@@ -2,7 +2,7 @@
 title: WTF？！直接将Umami部署到EdgeOne Pages？扔掉VPS！直接跑在云函数！
 published: 2026-01-19T10:14:32
 description: 我们都知道，EdgeOne Pages有个完整的Node.js环境，那Umami是Next.js也基于Node.js，那我们是不是可以...
-image: ../assets/images/eo-umami-1.png
+image: https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/eo-umami-1.png
 draft: false
 lang: ""
 ---
@@ -19,14 +19,14 @@ Error: SSR functions package size exceeds 128MiB limit (157MiB)
 我将Umami v3中的无关紧要的东西，如 `像素统计` `链接统计` `团队` `地理位置文件` 删去了，最终可以在EO上部署一个残血版的Umami
 
 至于数据库，我用的是 https://supabase.com/ 需要注意，连接方式不能用 `Direct Connection`
-![](../assets/images/eo-umami-2.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/eo-umami-2.png)
 
 Demo： [Umami](https://eo-umami.acofork.com/share/rC995W8J6CT4uLDo)
 
 视频： https://www.bilibili.com/video/BV1JiqSBaEY1/
 
 唯一的缺陷，无法获取用户地区（原逻辑有个高达60M的本地Geo文件）
-![](../assets/images/eo-umami.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/eo-umami.png)
 
 # 上手部署
 

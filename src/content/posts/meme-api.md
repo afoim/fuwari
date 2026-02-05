@@ -2,7 +2,7 @@
 title: meme-generator部署指南以及对接Koishi
 published: 2025-06-30
 description: '很早之前我就很好奇那些用群友的头像做的表情包真的是人工p的吗，实则不然！'
-image: ../assets/images/ee29b679-3355-453e-917b-2b85ae9106a0.webp
+image: https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/ee29b679-3355-453e-917b-2b85ae9106a0.webp
 tags: [meme, Koishi, QQBot]
 category: '教程'
 draft: false 
@@ -92,20 +92,20 @@ Fontconfig warning: "/usr/share/fontconfig/conf.avail/05-reset-dirs-sample.conf"
 
 Koishi插件市场安装此插件的1.0.3版本
 
-![](../assets/images/47f3db05-48bf-4382-817b-7a2b733dcd72.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/47f3db05-48bf-4382-817b-7a2b733dcd72.webp)
 
-![](../assets/images/3ffb0585-eb36-46fe-b32a-0162514e6e63.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/3ffb0585-eb36-46fe-b32a-0162514e6e63.webp)
 
 启用插件。可以看到 `插件初始化完毕，共载入 455 个表情。` 
 
-![](../assets/images/50da2a0d-7e49-491a-bad3-d9fde22a9df6.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/50da2a0d-7e49-491a-bad3-d9fde22a9df6.webp)
 
 ## 使用
 
 向Bot发送 `表情列表` 
 
-![](../assets/images/ed053d82-535e-47af-ac17-b27025d25dab.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/ed053d82-535e-47af-ac17-b27025d25dab.webp)
 
 生成表情
 
-![](../assets/images/572c88c4-301b-4048-81bf-fcbb70d4064e.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/572c88c4-301b-4048-81bf-fcbb70d4064e.webp)

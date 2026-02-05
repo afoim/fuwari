@@ -2,7 +2,7 @@
 title: lskypro+本地无需授权开心版！
 published: 2025-08-22T04:16:23
 description: '突然发现交付给我的项目是源码，那还逆向什么授权，直接永远返回true呗~'
-image: '../assets/images/2025-08-22-04-17-46-18322f2da2a90304be50614169ab655a.png'
+image: 'https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-08-22-04-17-46-18322f2da2a90304be50614169ab655a.png'
 tags: [兰空图床]
 category: '记录'
 draft: false 
@@ -36,12 +36,12 @@ zpaq可以使用 [Bandizip 官方网站 - 免费压缩软件下载 (Windows)](ht
 
 授权密钥随便填直接过
 
-![](../assets/images/2025-08-22-04-21-45-8d13151d19e627bd9e614517aeb5dbe6.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-08-22-04-21-45-8d13151d19e627bd9e614517aeb5dbe6.png)
 
 系统升级已Hook，定死版本
 
-![](../assets/images/2025-08-22-04-22-19-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-08-22-04-22-19-image.png)
 
 最终效果
 
-![](../assets/images/2025-08-22-04-22-37-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-08-22-04-22-37-image.png)

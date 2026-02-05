@@ -2,7 +2,7 @@
 title: 你需要为你的网站上水印吗？水印怎么打才有效？
 published: 2026-02-04T15:21:17
 description: 很早之前，我得知了我的文章被盗了，当时觉得也没啥，今天又翻到当时的聊天记录，还是觉得就算文章被盗了，也应该让看文章的所有用户都知道原文章到底是谁写的
-image: ../assets/images/watermark.png
+image: https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/watermark.png
 draft: false
 lang: ""
 ---
@@ -16,15 +16,15 @@ lang: ""
 
 并且不难发现，它的文章发布日期为
 
-![](../assets/images/watermark-1.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/watermark-1.png)
 
 而我的文章发布日期为
 
-![](../assets/images/watermark-3.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/watermark-3.png)
 
 有人可能会说，你是静态博客，发布日期只是一串数字，可以随便改，那么我拿出Github当时的提交记录
 
-![](../assets/images/watermark-4.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/watermark-4.png)
 
 又有人可能会说了，浏览器中的HTML是可以改的，那么我给出当时的提交URL，你们可以自行查阅： [posts: 发布文章：关于我折腾了一晚上 EdgeOne（ps：腾讯云我草泥马😅） · afoim/fuwari@4e8fa65](https://github.com/afoim/fuwari/commit/4e8fa6581466db98334d1f5a70327ab586227766)
 
@@ -34,7 +34,7 @@ lang: ""
 
 其实被盗文章也没啥，我本身也不通过文章来盈利。但是，当我看到我自己拿我自己电脑使用QQ截的图片被发到微信公众号上并默认添加了他的水印，就有点膈应了
 
-![](../assets/images/watermark-5.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/watermark-5.png)
 
 我向来视我的文章如老婆，他这样一整就好像我被NTR了一样
 
@@ -46,7 +46,7 @@ lang: ""
 
 它的原理非常简单，就是对图像做一点很细微的改动，通过改动像素来插入一个编码后的二维码，由于二维码天生抗干扰，再加上一张正常规格的图片像素点非常多，该项目README演示了对添加水印的图片做旋转，缩放，遮挡都可以完整提取出水印
 
-![](../assets/images/watermark-6.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/watermark-6.png)
 
 我当场就扒下来看了看用了用，发现并不是很适用
 

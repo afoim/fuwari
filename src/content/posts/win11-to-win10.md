@@ -2,7 +2,7 @@
 title: Win11保留数据无损降级Win10！
 published: 2025-11-23T15:18:40
 description: 我真的受够了Win11那黏黏的感觉了，什么？能降级？还是官方手段？还能保留数据？？?
-image: ../assets/images/win11-to-win10.png
+image: https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/win11-to-win10.png
 tags:
   - Windows
   - 降级
@@ -40,45 +40,45 @@ Win11有但Win10没有的东西会消失，两者都有的会保留。专为Win1
 首先确保你正在运行Win11的 **正式版** ，如果你加入了 **Windows Insider Preivew** ，请想办法回到 **正式版** 
 
 接下来我们先去下载Win10的ISO，前往 https://www.microsoft.com/zh-cn/software-download/windows10 ，如果你发现你没有可以下载ISO文件的地方，如图
-![](../assets/images/win11-to-win10-1.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/win11-to-win10-1.png)
 
 点击F12，打开Devtools，切换为设备仿真
-![](../assets/images/win11-to-win10-2.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/win11-to-win10-2.png)
 
 按F5，刷新页面，此时网页就会认为你是手机，就会让你下载ISO了
-![](../assets/images/win11-to-win10-3.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/win11-to-win10-3.png)
 
 选择版本 **Windows 10 （多版本ISO）**
-![](../assets/images/win11-to-win10-5.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/win11-to-win10-5.png)
 
 选择 **简体中文**
-![](../assets/images/win11-to-win10-6.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/win11-to-win10-6.png)
 
 下载 **64位版本的ISO**
-![](../assets/images/win11-to-win10-7.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/win11-to-win10-7.png)
 
 得到ISO文件
-![](../assets/images/win11-to-win10-8.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/win11-to-win10-8.png)
 
 确保你安装了 **支持解压缩ISO** 的软件，如 [Bandizip 官方网站 - 免费压缩软件下载 (Windows)](https://www.bandisoft.com/bandizip/) ，**解压ISO文件**
 
 打开 **已解压的ISO** 文件夹，重命名 `setup.exe` 为 `setup1.exe`
-![](../assets/images/win11-to-win10-11.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/win11-to-win10-11.png)
 
 更改文件属性 - 兼容性为 **Windows 8** 
 
 下载伪装文件： [Win11ToWin10.zip](https://acofork-my.sharepoint.com/:u:/g/personal/af_acofork_onmicrosoft_com/ESxJWKgjjHVEhlNoBG4oNWUB_-rGTlLRh1CkXdLoxJsGpw?e=8s79zt) 目的是强制激活安装程序中的 **保数据升级** 
 
 解压出 `ei.cfg` 和 `setupcompat.dll` 。将其复制到ISO文件夹下的 `sources` 文件夹并替换其中已有的文件
-![](../assets/images/win11-to-win10-13.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/win11-to-win10-13.png)
 
 打开 `setup1.exe` ，**更改 Windows 安装程序下载更新的方式**，选择 **不是现在**，然后一路下一步
 
 等待变为 **准备就绪，可以安装** ，并确保 **保留个人文件和应用** ，选择 **安装** 
-![](../assets/images/win11-to-win10.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/win11-to-win10.png)
 
 等待设备开机时从 **白条转圈** 变为 **白点转圈** ，即Windows10已被安装
-![](../assets/images/win11-to-win10-15.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/win11-to-win10-15.png)
 
 接下来你第一次开机可能会黑屏。表现为用户登录后随着一声警告声并且黑屏，此时移动鼠标可以看到光标移动，但无法点击屏幕上的任何元素
 

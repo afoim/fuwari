@@ -2,7 +2,7 @@
 title: 给想买麦克风的朋友一些建议
 published: 2025-09-02T10:34:12
 description: '这几年大大小小的麦都玩过了，无论是几千的舒尔，RODE，还是几百的闪克，绿联，又或是仅100的带麦半入耳，今天就给大家总结一下坑点'
-image: '../assets/images/2025-09-02-10-39-10-5f50a607bf666647544c19515aaa15f3.jpg'
+image: 'https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-09-02-10-39-10-5f50a607bf666647544c19515aaa15f3.jpg'
 tags: [麦克风]
 
 draft: false 
@@ -33,7 +33,7 @@ lang: ''
 
 这款麦的缺点是使用远古的 Mini USB以及裸机不配备支架，需要自己搭配桌面支架和悬臂支架使用
 
-![](../assets/images/2025-09-02-10-54-48-IMG20250902105434.jpg)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-09-02-10-54-48-IMG20250902105434.jpg)
 
 我有钱！我要加钱！
 
@@ -41,7 +41,7 @@ lang: ''
 
 开箱体验视频： [简单开箱舒尔MV6麦克风_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1JoJqzBEyA)
 
-![](../assets/images/2025-09-02-11-00-14-Screenshot_2025-09-02-10-59-56-76_4fbb30eb7b71661.jpg)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-09-02-11-00-14-Screenshot_2025-09-02-10-59-56-76_4fbb30eb7b71661.jpg)
 
 # 我现在用的麦克风？
 
@@ -51,11 +51,11 @@ lang: ''
 
 - 绿联 USB MIC-CM727：音质一般，但是价格仅不到200 CNY。电容麦，收音范围广，作为日常使用麦（我现在几乎已经无所谓音质了）
 
-- ![](../assets/images/2025-09-02-11-07-46-IMG20250902110659.jpg)
+- ![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-09-02-11-07-46-IMG20250902110659.jpg)
 
 - 全民K歌KPods SE：这严格上来说是个常规半入耳+电容领夹麦，但是奈何产品经理太天才了，可以将麦挂在下唇下面，这样收音又清晰又可以随便动来动去，唯一的缺点还是我太懒了，感觉下唇下面挂个东西有异物感，并且如果勒的太紧一天下来耳朵会痛，所以一般也是唱歌的时候用用，价格 109 CNY（国补）
 
-- ![](../assets/images/2025-09-02-11-07-54-IMG20250902110730.jpg)
+- ![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-09-02-11-07-54-IMG20250902110730.jpg)
 
 # 坑点
 

@@ -2,7 +2,7 @@
 title: 想要一个Cookie管理器？无需手搓！
 published: 2026-01-30T20:27:05
 description: Cookie Consent是一个开源简单实现的Cookie管理器，能让您的网站GDPR合规，仅需复制粘贴！
-image: ../assets/images/cookie-consent.png
+image: https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/cookie-consent.png
 draft: false
 lang: ""
 ---
@@ -30,13 +30,13 @@ lang: ""
 - 电子隐私指令：当用户未进行Cookie管理时，这往往是用户第一次进入你的网站，允许所有受管理的JavaScript脚本执行
 - GDPR + 电子隐私指令：字面意思，用户不允许就永远不加载
 
-![](../assets/images/cookie-consent-1.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/cookie-consent-1.png)
 
 第二步，设置网站名称，布局样式以及提供您的隐私政策页面
 
 首先填写网站名称，这会在用户管理Cookie时显示
 
-![](../assets/images/cookie-consent-3.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/cookie-consent-3.png)
 
 接下来选择布局，你可以在网站中看到实时更改与实际交互样式，这里不再赘述
 
@@ -46,7 +46,7 @@ lang: ""
 
 最终，对于隐私政策，这是个可选项，但是强烈建议配置。不过如果您暂时没有配置，也不用着急，先预填写一个将来的隐私政策URL（http/https开头），后续我会说明为什么这几乎是一个必填项
 
-![](../assets/images/cookie-consent-2.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/cookie-consent-2.png)
 
 第三步，导入您的JS
 
@@ -54,7 +54,7 @@ Ok，终于到重头戏了，接下来，我们需要将我们网站上原来安
 
 这里的名称仅会在最终代码中展示出来，站点访客仅能管理这四种类型是开是关（这也是为什么上文说你几乎配置一个隐私政策页面，否则用户根本不知道这四种类型分别对应着什么），其中，第一个类型是必开的，所以你可以在其中放入一些不运行这些JS网站就不正常的脚本（如评论区）
 
-![](../assets/images/cookie-consent-4.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/cookie-consent-4.png)
 
 第四步，复制网站提供的JS，将其粘贴到您网站的 `<body>` 后。并移除重复的JS片段
 
@@ -62,24 +62,24 @@ Ok，终于到重头戏了，接下来，我们需要将我们网站上原来安
 
 网站在提供的代码最后添加了一个特殊标签的按钮，也就是 `id="open_preferences_center"` ，你可以先将红框中的代码移除，否则可能会破坏布局，接下来找一个地方放置这个 **编辑您的Cookie首选项** 按钮，让用户可以轻松的更改Cookie首选项，而不是需要用户伪造一个按钮来手动触发这个id
 
-![](../assets/images/cookie-consent-5.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/cookie-consent-5.png)
 
 # 最终效果
 
 当用户第一次访问时，会弹出是否允许Cookie的弹窗。用户可以选择全部允许（I agree），全部拒绝（I decline）或高级配置（Change my preferences）
 
-![](../assets/images/cookie-consent-6.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/cookie-consent-6.png)
 
 当用户选择高级配置（Change my preferences），会弹出一个窗口，用户首先可以看到一段文本，该文本告知了用户Cookie是什么，为什么需要，以及Cookie如何改善访问体验
 
-![](../assets/images/cookie-consent-7.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/cookie-consent-7.png)
 
 接下来，用户可以单独对这四个区块设置是否允许，每一个区块也会直接但笼统的告诉用户这部分区块的Cookie能做什么。如前文所述，第一个区块是始终开启的
 
-![](../assets/images/cookie-consent-8.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/cookie-consent-8.png)
 
 最终的更多信息（More Information）区块放置了我们最开始填写的隐私政策链接，用户可以方便的跳转到隐私政策页面（前提是你写了），来直观了解您的网站的隐私政策
 
-![](../assets/images/cookie-consent-9.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/cookie-consent-9.png)
 
-![](../assets/images/cookie-consent-10.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/cookie-consent-10.png)

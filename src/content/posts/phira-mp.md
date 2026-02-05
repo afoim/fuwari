@@ -2,7 +2,7 @@
 category: 教程
 description: 懒人可以直接下载预构建的可执行文件，但如果想获得日志需要自备Rust环境
 draft: false
-image: ../assets/images/2024-11-06-08-20-39-image.webp
+image: https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2024-11-06-08-20-39-image.webp
 lang: ''
 published: 2024-11-06
 tags:
@@ -13,7 +13,7 @@ title: Phira多人联机服务器搭建/使用教程
 
 [https://github.com/afoim/phira-mp-autobuild](https://github.com/afoim/phira-mp-autobuild)
 
-这里有一些由Github Action自动构建的服务端文件，涵盖以下系统和架构![](../assets/images/2024-11-06-08-28-34-image.webp)
+这里有一些由Github Action自动构建的服务端文件，涵盖以下系统和架构![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2024-11-06-08-28-34-image.webp)
 
 也可以前往[Multiplayer Server | Dmocken的Phira下载站](https://phira.dmocken.top/Multiplayer%20Server%E5%A4%9A%E4%BA%BA%E6%B8%B8%E6%88%8F%E6%9C%8D%E5%8A%A1%E5%99%A8)自行寻找
 
@@ -29,11 +29,11 @@ title: Phira多人联机服务器搭建/使用教程
 
 ## 对于Windows
 
-前往[Rust 下载页](https://www.rust-lang.org/zh-CN/learn/get-started)，下载 Rust  ![](../assets/images/2024-11-06-09-57-44-6b333b87e835dfa299b0c3c95e5ea4e0.webp)
+前往[Rust 下载页](https://www.rust-lang.org/zh-CN/learn/get-started)，下载 Rust  ![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2024-11-06-09-57-44-6b333b87e835dfa299b0c3c95e5ea4e0.webp)
 打开后会弹出一个 CMD 窗口，输入 1（Quick Install）回车，等待 Visual Studio 安装（如果此步 Visual Studio 下载很慢也可以[手动下载](https://visualstudio.microsoft.com/zh-hans/downloads/)）  
 
-![](../assets/images/2024-11-06-09-57-49-61b4d36dc8cd1ce47da66be5e2a920cd.webp)在 Visual Studio 中，勾选**使用 C++ 的桌面开发**，然后安装  
-![](../assets/images/2024-11-06-09-58-05-390c775c83dc245b0690fda699bfee5f.webp)然后请跳过 Linux 教程直接阅读[构建 phira-mp]()
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2024-11-06-09-57-49-61b4d36dc8cd1ce47da66be5e2a920cd.webp)在 Visual Studio 中，勾选**使用 C++ 的桌面开发**，然后安装  
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2024-11-06-09-58-05-390c775c83dc245b0690fda699bfee5f.webp)然后请跳过 Linux 教程直接阅读[构建 phira-mp]()
 
 ## 对于Linux
 
@@ -56,4 +56,4 @@ title: Phira多人联机服务器搭建/使用教程
 运行程序并将 log 打印到终端，会显示你监听的端口：`RUST_LOG=info target/release/phira-mp-server`  
 （如果你需要指定端口号：`RUST_LOG=info target/release/phira-mp-server --port 8080`）
 
-![](../assets/images/2024-11-06-10-14-36-0dce4358b21773ae1261e7fc39339c32.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2024-11-06-10-14-36-0dce4358b21773ae1261e7fc39339c32.webp)

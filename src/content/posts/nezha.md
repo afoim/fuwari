@@ -2,7 +2,7 @@
 title: 哪吒监控搭建教程
 published: 2025-09-03T04:58:25
 description: '想不想在上帝视角监测你的服务器？顺便再把Uptime Kuma的活也干了！'
-image: '../assets/images/2025-09-03-05-00-43-image.png'
+image: 'https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-09-03-05-00-43-image.png'
 tags: [哪吒监控]
 
 draft: false 
@@ -39,15 +39,15 @@ curl -L https://raw.githubusercontent.com/nezhahq/scripts/refs/heads/main/instal
 
 点击登录，默认账密均为 `admin` 
 
-![](../assets/images/2025-09-03-05-07-55-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-09-03-05-07-55-image.png)
 
 首先我们先更改管理员账密，鼠标移到右上角头像，点击 `个人信息` 
 
-![](../assets/images/2025-09-03-05-08-40-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-09-03-05-08-40-image.png)
 
 然后点击 `更新个人资料` 更改管理员账密
 
-![](../assets/images/2025-09-03-05-09-06-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-09-03-05-09-06-image.png)
 
 # 安装后端（Agent）
 
@@ -55,7 +55,7 @@ curl -L https://raw.githubusercontent.com/nezhahq/scripts/refs/heads/main/instal
 
 *如果你的服务器在中国大陆，可能无法连接上 `raw.githubusercontent.com`  。推荐使用镜像 `raw.gitmirror.com` 即可*
 
-![](../assets/images/2025-09-03-05-10-14-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-09-03-05-10-14-image.png)
 
 # 配置服务
 
@@ -63,7 +63,7 @@ curl -L https://raw.githubusercontent.com/nezhahq/scripts/refs/heads/main/instal
 
 *这里添加的所有服务，都可以借用已添加到哪吒探针的服务器进行监测*
 
-![](../assets/images/2025-09-03-05-15-22-image.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-09-03-05-15-22-image.png)
 
 # 配置通知
 
@@ -71,6 +71,6 @@ curl -L https://raw.githubusercontent.com/nezhahq/scripts/refs/heads/main/instal
 
 # 疑难解答
 
-- 我套了CDN，服务器可以成功上线，但是获取到的IP为内网IP：请在系统设置中配置真实IP请求头![](../assets/images/2025-09-03-05-19-32-image.png)
+- 我套了CDN，服务器可以成功上线，但是获取到的IP为内网IP：请在系统设置中配置真实IP请求头![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2025-09-03-05-19-32-image.png)
 
 - 我使用Cloudflare CDN，服务器始终无法上线。原因不明，但是可以通过部署该项目解决 [yumusb/nezha-new](https://github.com/yumusb/nezha-new)

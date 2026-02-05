@@ -2,7 +2,7 @@
 title: 教你搭建Chevereto这个超级强大的图床！
 published: 2025-07-16
 description: '被宝塔开心版的站长推荐了Chevereto这个图床，刚好刚刚嫖了个免费的虚拟主机，让我们开始折腾！'
-image: ../assets/images/f31ca517-8f5b-4e53-af08-c32aabc224ab.webp
+image: https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/f31ca517-8f5b-4e53-af08-c32aabc224ab.webp
 tags: [Chevereto, 图床]
 category: '教程'
 draft: false 
@@ -21,7 +21,7 @@ https://b23.tv/E8Z34KM
 
 你就会得到这一坨
 
-![](../assets/images/dcb4d5ec-412f-4008-980b-b4f4ac1bc2d2.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/dcb4d5ec-412f-4008-980b-b4f4ac1bc2d2.webp)
 
 这里开始分支！如果你是Apache请什么都不要动，它会自动检测 `.htaccess` 。如果你是Nginx请配置 `nginx.txt` 里面的伪静态规则
 
@@ -47,7 +47,7 @@ MYSQL 需要 8.0 以上
 
 如果你用的虚拟主机跟博主一样，也是ispmanager，请这样设置PHP
 
-![](../assets/images/e4bc4d2e-fc42-49bb-b161-92e86f0c6d12.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/e4bc4d2e-fc42-49bb-b161-92e86f0c6d12.webp)
 
 一切就绪，访问你的站点进行Chevereto的安装向导
 
@@ -55,7 +55,7 @@ MYSQL 需要 8.0 以上
 
 如果出现问题，请尝试以管理员身份登录Chevereto，在管理员设置 -> 系统中开启调试模式。这样设置后，Chevereto在出现错误就会告诉你具体发生了什么问题
 
-![](../assets/images/00c8ab83-d41c-4ca3-a14a-4a36f0f77b67.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/00c8ab83-d41c-4ca3-a14a-4a36f0f77b67.webp)
 
 如果我连系统设置都进不去？请自行找你的PHP Error Log来分析问题
 

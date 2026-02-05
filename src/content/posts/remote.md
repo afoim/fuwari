@@ -2,7 +2,7 @@
 title: 出门在外，如何优雅、高效、流畅地远程自家电脑？
 published: 2025-11-24T18:04:57
 description: 当今，我们出门在外，几乎哪哪都能摸到电脑，但是我们大部分的工作文件一般都在自家电脑，为了保持工作流的一致，我们自然就有了远控自家电脑的需求了
-image: ../assets/images/9207_112_29_106_130_rx7fsq.png
+image: https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/9207_112_29_106_130_rx7fsq.png
 tags:
   - 远程
   - STUN
@@ -27,7 +27,7 @@ lang: ""
 我用的办法比较极客，就是将家里设备的 **RDP** 端口打到公网上来，也就是利用 **STUN** ，但是这种方法要求家庭网络的NAT类型为1（Full Cone）
 
 那么首先，我将家中的路由器的 **DMZ** 主机设置为家里电脑的IP
-![](../assets/images/remote.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/remote.png)
 
 DMZ启用后，所有打到路由器上所有端口（除路由器自身占用端口）的流量全部转发给DMZ主机
 
@@ -40,12 +40,12 @@ DMZ启用后，所有打到路由器上所有端口（除路由器自身占用�
 那么如何简单的开一个 **STUN隧道** 呢？
 
 我这里使用的是 [MikeWang000000/Natter: Expose your TCP/UDP port behind full-cone NAT to the Internet.](https://github.com/MikeWang000000/Natter) ，它是一个Python编写的程序，确保你的网络为NAT1后，你可以使用一个简单的命令，如： `python natter.py -p 3389` 来创建STUN隧道
-![](../assets/images/remote-1.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/remote-1.png)
 
 观察 `WAN > 112.32.39.77:55265    [ OPEN ]` 证明你已经可以通过该 `公网IP:端口` 来在世界各地，只要连上了 **互联网** ，就能连上家里的电脑
 
 最后，`Win+R` 调出运行，输入 `mstsc` 打开远程控制的窗口，开始你的远程之旅吧
 
-![](../assets/images/9207_1_112_29_106_130_gdqwd8.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/9207_1_112_29_106_130_gdqwd8.png)
 
-![](../assets/images/9207_112_29_106_130_rx7fsq.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/9207_112_29_106_130_rx7fsq.png)

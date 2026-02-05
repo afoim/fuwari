@@ -3,7 +3,7 @@
 category: 随笔
 description: IPFS是一个多节点的文件托管系统，你可以在上面共享文件、发布网站、而Fleek自动化了这个过程，并且可以链接你的Git存储库
 draft: false
-image: ../assets/images/2024-10-17-09-55-55-image.webp
+image: https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2024-10-17-09-55-55-image.webp
 lang: ''
 published: 2024-10-17
 tags:
@@ -19,7 +19,7 @@ title: 使用基于IPFS的Fleek部署静态网站、托管图床、部署服务
 
 > IPFS，是点到点的超媒体协议，它让网络更快、更安全、更开放。说简单一点，它就是一个去中心化互联网。说技术一点，它是一个基于分布式哈希表DHT进行内容寻址的，基于git模型版本管理的，基于默克尔对象关联的，基于点对点技术的，基于全球化命名空间IPNS的，基于各种技术的，一种分布式文件系统。
 
-用人话说，你可以把它看成一个共享网盘，你可以尝试下载[IPFS - Desktop（适用于有图形界面的系统）](https://github.com/ipfs/ipfs-desktop)或[kubo - ipfs（适用于CLI）](https://github.com/ipfs/kubo)。然后启动IPFS，你的设备将成为IPFS网络中的一个节点，如图![](../assets/images/2024-10-17-10-47-08-image.webp)
+用人话说，你可以把它看成一个共享网盘，你可以尝试下载[IPFS - Desktop（适用于有图形界面的系统）](https://github.com/ipfs/ipfs-desktop)或[kubo - ipfs（适用于CLI）](https://github.com/ipfs/kubo)。然后启动IPFS，你的设备将成为IPFS网络中的一个节点，如图![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2024-10-17-10-47-08-image.webp)
 
 ### 使用IPFS能做什么？
 
@@ -49,17 +49,17 @@ title: 使用基于IPFS的Fleek部署静态网站、托管图床、部署服务
 
 1. `xxx-xxx.fleek.app`：这个域名使用了Cloudflare CDN，实测解析IP的数量为2，不建议使用
 
-2. ![](../assets/images/2024-10-17-11-01-49-image.webp)：这种方法是原生的IPFS访问方式。通过IPFS网关+CID来访问。但由于CID为哈希值，当你的网站改动后你的CID会发生变化
+2. ![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2024-10-17-11-01-49-image.webp)：这种方法是原生的IPFS访问方式。通过IPFS网关+CID来访问。但由于CID为哈希值，当你的网站改动后你的CID会发生变化
 
 3. 绑定自定义域名来访问，这将会使用亚马逊的CDN并且自动映射CID，实测解析IP数量超过30，并且速度很快
    
    > [!WARNING]
    > 注意，任何使用HTTP协议的类ipfs技术都需要一个中心化服务器代理访问IPFS网络。只有当访问者连接上IPFS网络后才会使用去中心化的连接方式）
-- ![](../assets/images/2024-10-17-11-07-40-image.webp)
+- ![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2024-10-17-11-07-40-image.webp)
 
 - 尽管显示了IPFS的文件浏览界面，但实际上这个页面是由HTTP请求到亚马逊 CDN反代IPFS网络实现的，实际上仍为中心化网络
 
-- ![](../assets/images/2024-10-17-11-08-44-image.webp)
+- ![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2024-10-17-11-08-44-image.webp)
 
 - 当你的设备已经连上IPFS网络后，所有流量将使用P2P（去中心化），所以你看到的访问地址实际上是本机地址
 
@@ -81,11 +81,11 @@ title: 使用基于IPFS的Fleek部署静态网站、托管图床、部署服务
 
 效果图：
 
-![](../assets/images/2024-10-17-11-31-33-image.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2024-10-17-11-31-33-image.webp)
 
 #### 拓展一下，我们还可以通过IPFS技术做什么？（域名已弃用）
 
-1. 创建一个巨大的图床，已经投入使用，参见： https://pic.onani.cn （原理：请求 https://ipfs-pic.onani.cn ，获取图片列表，随机选择使用JS展示）![](../assets/images/2024-10-17-11-34-44-image.webp)
+1. 创建一个巨大的图床，已经投入使用，参见： https://pic.onani.cn （原理：请求 https://ipfs-pic.onani.cn ，获取图片列表，随机选择使用JS展示）![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2024-10-17-11-34-44-image.webp)
 
 2. 无需再自托管任何图片，已经投入使用，本博客所有图片都使用IPFS存储
 

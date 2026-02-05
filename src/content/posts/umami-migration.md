@@ -2,7 +2,7 @@
 title: Umami Cloud迁移到本地踩坑记录
 published: 2025-12-05T10:13:34
 description: 早期的我很有先见之明，在使用Umami的时候是自建的，但是不久后因为想要全上云，又用回了Umami Cloud，但是现在访问记录激增，我又不得不迁移到本地...
-image: ../assets/images/umami-migration.png
+image: https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/umami-migration.png
 tags:
   - Umami
   - PostgreSQL
@@ -13,13 +13,13 @@ lang: ""
 首先，我们想要迁移，首先肯定是要拿到原来的Umami Cloud存放的数据
 
 在 [Umami Cloud Data | Settings](https://cloud.umami.is/settings/data) 中，我们可以选择，导出数据（Export）
-![](../assets/images/umami-migration-1.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/umami-migration-1.png)
 
 当数据准备好后（几分钟左右），你的邮箱会收到一封Umami Cloud发来的邮件
-![](../assets/images/umami-migration-2.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/umami-migration-2.png)
 
 下载下来的文件是一个以UUID命名的ZIP压缩包，将其解压可以得到3个CSV文件
-![](../assets/images/umami-migration-3.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/umami-migration-3.png)
 
 其中，只有 `website_event.csv` 有用，其他两个文件仅有表头，无数据
 
@@ -34,11 +34,11 @@ lang: ""
 接下来我们需要在你的终端安装一个图形化管理PostgreSQL的软件： [pgAdmin - PostgreSQL Tools](https://www.pgadmin.org/)
 
 然后连上数据库，你将可以看到这些表
-![](../assets/images/umami-migration-4.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/umami-migration-4.png)
 
 接下来我们查看 `website` 这张表，将 `website_event.csv` 打开，查看旧的 `website_id` 将新的ID改为旧的，这样才能数据匹配
-![](../assets/images/umami-migration-5.png)
-![](../assets/images/umami-migration-6.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/umami-migration-5.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/umami-migration-6.png)
 
 接下来，我们正式开始数据导入，由于导入后的数据有两个 `session_id` 字段，而在Umami自我管理的过程中这个 `session_id` 字段是 **唯一约束的** ，我们需要先解除这个限制，在正式上线前还要再加回这个限制（后面会说）
 
@@ -53,25 +53,25 @@ DROP INDEX session_session_id_key;
 
 **注意顺序** 如： `event_id` `website_id` `session_id` ...
 
-![](../assets/images/umami-migration-7.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/umami-migration-7.png)
 
 编辑CSV文件，你需要将顺序配对，并且删除表中没有的列，如： `browser` `os` ...
-![](../assets/images/umami-migration-8.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/umami-migration-8.png)
 
 确保数据库中的表头顺序和CSV文件中的表头顺序一一对应，顺序一致，不多不少后，**Ctrl + S 保存** CSV文件，我们开始导入并在选项中勾选 **标题**
 
-![](../assets/images/umami-migration-9.png)
-![](../assets/images/umami-migration-10.png)
-![](../assets/images/umami-migration-11.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/umami-migration-9.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/umami-migration-10.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/umami-migration-11.png)
 导入成功后如图
-![](../assets/images/umami-migration-12.png)
-![](../assets/images/umami-migration-13.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/umami-migration-12.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/umami-migration-13.png)
 
 再编辑 `session` 这张表，手法同上，导入成功后如图
-![](../assets/images/umami-migration-14.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/umami-migration-14.png)
 
 接下来打开本地Umami的WebUI，查看数据是否有异常
-![](../assets/images/umami-migration-15.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/umami-migration-15.png)
 
 确保导入后数据无异常后，我们开始删除另一条 `session_id` 记录并回锁主键。否则上线后Umami将无法再向表中插入数据
 ```sql

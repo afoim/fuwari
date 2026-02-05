@@ -2,7 +2,7 @@
 category: 教程
 description: Hugo是一个基于Golang的静态博客，相比于Nodejs的Hexo构建效率提升600%，同时也支持低JavaScript特性，SEO更加优化，爬虫更易获取
 draft: false
-image: ../assets/images/3d1b097d-7e31-4312-b3e5-d213e2903f4d.webp
+image: https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/3d1b097d-7e31-4312-b3e5-d213e2903f4d.webp
 lang: ''
 published: 2025-03-03
 tags:

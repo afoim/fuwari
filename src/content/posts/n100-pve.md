@@ -2,7 +2,7 @@
 category: 记录
 description: 在N100小主机上安装PVE，然后在其中安装飞牛NAS和Debian，实现追番建站分离，并且易扩展，易迁移
 draft: false
-image: ../assets/images/N100-PVE_cover.webp
+image: https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/N100-PVE_cover.webp
 lang: ''
 published: 2024-10-28
 tags:
@@ -67,7 +67,7 @@ title: N100 - PVE（fnOS+Debian）基建记录
   
   - 同意许可协议
   
-  - 依次执行白框操作![](../assets/images/ea205e1a00e7029dfa4bd7850c5a6a68d6d4c0d9.webp)
+  - 依次执行白框操作![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/ea205e1a00e7029dfa4bd7850c5a6a68d6d4c0d9.webp)
   
   - 扩容local：`lvextend -rl +100%FREE /dev/pve/root`
 
@@ -77,7 +77,7 @@ title: N100 - PVE（fnOS+Debian）基建记录
 
 - 下载驱动：
   
-  [https://www.realtek.com/Download/List?cate\_id=584](https://www.realtek.com/Download/List?cate_id=584)![](../assets/images/0d8457c7fb0d497e12e2c8b544f07c3c37cf96cd.webp)
+  [https://www.realtek.com/Download/List?cate\_id=584](https://www.realtek.com/Download/List?cate_id=584)![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/0d8457c7fb0d497e12e2c8b544f07c3c37cf96cd.webp)
 
 - 解压，安装：`sh autorun.sh`
 
@@ -154,7 +154,7 @@ title: N100 - PVE（fnOS+Debian）基建记录
 
 #### 路由器设置DMZ主机为PVEIP
 
-- ![](../assets/images/dbeb7980e5fc699c696ffa6f2fda4a17c05ee821.webp) 
+- ![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/dbeb7980e5fc699c696ffa6f2fda4a17c05ee821.webp) 
 
 #### 安装Lucky
 
@@ -162,7 +162,7 @@ title: N100 - PVE（fnOS+Debian）基建记录
 
 - 通过`host:16601` 进入Lucky后台，设置STUN穿透
 
-- ![](../assets/images/2175839424184aee880b91382bd1fbf3c578d258.webp)
+- ![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/2175839424184aee880b91382bd1fbf3c578d258.webp)
 
 # 2\. fnOS
 
@@ -172,11 +172,11 @@ title: N100 - PVE（fnOS+Debian）基建记录
   
   [https://www.fnnas.com/](https://www.fnnas.com/)
 
-- 上传至PVE：![](../assets/images/073808516d357e099a866c30b4a77954c5b9b458.webp)
+- 上传至PVE：![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/073808516d357e099a866c30b4a77954c5b9b458.webp)
 
 - 创建fnOS虚拟机，CPU类型选择host，步骤略
 
-- 直通核显和硬盘：![](../assets/images/08e4f7a3b87ae86334011e1d4c3a384a36ad9866.webp)
+- 直通核显和硬盘：![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/08e4f7a3b87ae86334011e1d4c3a384a36ad9866.webp)
 
 - 如果你不知道你的核显和SATA控制器的PCI ID：`lspci`
   
@@ -210,9 +210,9 @@ title: N100 - PVE（fnOS+Debian）基建记录
 
 ## 配置
 
-- 前往飞牛设置，创建储存空间，Linear模式，选择刚才直通的硬盘![](../assets/images/581cf01462df545a8662acbb5e20e1676bd17744.webp)
+- 前往飞牛设置，创建储存空间，Linear模式，选择刚才直通的硬盘![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/581cf01462df545a8662acbb5e20e1676bd17744.webp)
 
-- 前往飞牛应用中心安装qBittorrent、影视，并且在设置给予目录读取权限![](../assets/images/92a2e0bf25d630db4858775fdbb6c907f419c25d.webp)
+- 前往飞牛应用中心安装qBittorrent、影视，并且在设置给予目录读取权限![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/92a2e0bf25d630db4858775fdbb6c907f419c25d.webp)
 
 - 配置qBittorrent的用户名和密码
 
@@ -236,15 +236,15 @@ title: N100 - PVE（fnOS+Debian）基建记录
   ghcr.onani.cn/estrellaxd/auto_bangumi:latest
   ```
 
-- 进入`host:7892` 让AutoBangumi连接qBittorrent并配置下载地址![](../assets/images/82c4a003d2399f82a7ccf5849cd1d5858d5f1f61.webp)
+- 进入`host:7892` 让AutoBangumi连接qBittorrent并配置下载地址![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/82c4a003d2399f82a7ccf5849cd1d5858d5f1f61.webp)
 
 - 添加RSS。可前往[蜜柑计划 - Mikan Project](https://mikanime.tv/)获得各个字幕组的RSS
   
-  ![](../assets/images/f36daae968d8043bbcd1e4a2bbb9b9cd2d707cee.webp)
+  ![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/f36daae968d8043bbcd1e4a2bbb9b9cd2d707cee.webp)
   
   注意：使用[蜜柑计划 - Mikan Project](https://mikanime.tv/)时，请订阅单个字幕组的RSS，不要使用个人的RSS，会导致**只能获取到你所有追番的最新一集而不是单个番的全部剧集**
 
-- 打开飞牛影视，初始化并设置媒体库![](../assets/images/269b78c3b7dffe7f8cdb861098f44147552b5eb4.webp)
+- 打开飞牛影视，初始化并设置媒体库![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/269b78c3b7dffe7f8cdb861098f44147552b5eb4.webp)
   
   - 注意：如果要刮削旧集旧番，请规范重命名，可以使用自动化工具：[Episode-ReName.zip | AcoFork-AList](https://alist.onani.cn/Episode-ReName.zip)
     
@@ -379,10 +379,10 @@ title: N100 - PVE（fnOS+Debian）基建记录
 
 # 成果展示（域名已弃用）
 
-![](../assets/images/4b4680cc548e0c59ec18cef537c9b1f5412fbbcd.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/4b4680cc548e0c59ec18cef537c9b1f5412fbbcd.webp)
 
 [https://blog.onani.cn](https://blog.onani.cn)
 
 [https://alist.onani.cn](https://alist.onani.cn)
 
-![](../assets/images/7c24ff7d54b2e0ccaecce4b2ef79155c54124fa4.webp)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/7c24ff7d54b2e0ccaecce4b2ef79155c54124fa4.webp)

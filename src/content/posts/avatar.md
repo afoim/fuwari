@@ -2,7 +2,7 @@
 title: 让我们来看看图片防盗链各大厂做的怎么样！
 published: 2026-02-01T16:57:26
 description: 今天突发奇想就像试试抓抓各大厂的头像接口，没想到有挺多根本没有防盗链
-image: ../assets/images/avatar.png
+image: https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/avatar.png
 draft: false
 lang: ""
 ---
@@ -80,7 +80,7 @@ image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8
 
 - Chromium（Edge/Chrome）
 > 另外提一嘴，Chromium 最近推了一个更新，导致CORS/CORP错误默认不显示在控制台，需要勾选 **显示控制台中的CORS错误** [控制台功能参考  |  Chrome DevTools  |  Chrome for Developers](https://developer.chrome.com/docs/devtools/console/reference?utm_source=chatgpt.com&hl=zh-cn#cors-errors)
-![](../assets/images/avatar-1.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/avatar-1.png)
 
 - Firefox
-![](../assets/images/avatar-2.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/avatar-2.png)

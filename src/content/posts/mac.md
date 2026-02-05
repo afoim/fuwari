@@ -2,7 +2,7 @@
 title: 我为什么要买个Mac
 published: 2025-09-30T09:07:15
 description: Mac的好处是：便携、续航长、性能高。缺点是贵、要重新学一个新系统的操作。仅对我个人，我认为我从Win换到Mac是一个正确的决定
-image: ../assets/images/mac.png
+image: https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/mac.png
 tags:
   - Mac
 draft: false
@@ -21,12 +21,12 @@ lang: ""
 续航长。这个真的没得黑，得益于Apple现在将Mac的CPU全部替换为了Arm架构的自研芯片M系列，续航真的很长，一般一台Win本拔电几小时电量可能就掉完了，但是Mac早上充满电，带去出勤上班上学不插电真的是妥妥用一天（当然，你不能用一些高功耗软件），我这台Mac标称的续航是18h，我觉得已经完全够用了
 # Mac的特色？
 系统。我觉得Mac的系统，也就是macOS在Linux和Windows之间。它既不是Linux（如：Debian）那样的毛坯房，也不是Windows的那种啥都能干。在Mac上，如果你打开终端，你会发现很多操作特别像Linux和Windows，比如Mac有AppStore，对标Windows的Microsoft Store，但是Mac还有brew，就像Debian Linux的apt包管理器（同时也像Windows的第三方包管理器Scoop。当然，Scoop还是效仿apt等Linux包管理器，而不是对标Mac）比如你想安装 **NodeJS** ，只需要先把 `brew` 装上，然后终端运行 `brew install nodejs` 即可
-![](../assets/images/mac-2.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/mac-2.png)
 权限管理。在Mac上，软件安装后很类似安卓的“沙盒”机制，所有越权访问都需要用户的授权，你可能会说，这在现代操作系统上不是基本功吗。但是，如果你用过Windows的QQ你就会知道，一旦QQ安装完毕，当你把QQ最小化到托盘后，如果有新通知，那么QQ立马会调用Windows的通知API向你发送一条通知。但是在Mac上不是这样，在QQ安装完毕后，系统会提示该软件需要使用通知权限，点进这个系统通知后，你会被导航到设置-通知，此时，你能看到QQ的通知权限是关的，你必须手动将其打开，该软件才能在后续给你推送通知，否则，这将是有关于QQ的最后一次通知
-![](../assets/images/mac-1.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/mac-1.png)
 生态。有人说，Mac有什么生态，封闭的要死，是死是活都要看Apple脸色。确实，App Store的审核及其严格，我目前安装的大部分软件都并未上架到AppStore，但是，这并不代表Mac上软件生态烂。在Mac上，安装软件有三种方式，1.AppStore 2.浏览器下载 `.dmg` 文件，双机后拖放到应用程序文件夹 3.浏览器下载 `.pkg` 文件，双击后会弹出安装向导，一路下一步即可完成安装。绝大多数软件都是使用后两种方式安装的，其实主要还是AppStore上的软件要交苹果开发者税，而第三方侧载就不用考虑这么多了。当然，毕竟换了一个系统，对于小开发者做的开源软件，可能并没有给Mac打包一个预构建的文件，这就需要你拉源码来自己编译运行了，比如 `https://github.com/WEIFENG2333/VideoCaptioner` ，这有时候也是好事，能帮助你了解软件开发、构建与发布
-![](../assets/images/mac-3.png)
-![](../assets/images/mac-4.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/mac-3.png)
+![](https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/mac-4.png)
 # Mac的快速上手
 安装Brew（类似Debian Linux的apt高级软件包管理器）。安装完毕后即可用 `brew install python` 来安装各个软件包了
 ```bash
