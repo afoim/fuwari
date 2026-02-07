@@ -3,6 +3,7 @@
 
 ## 📱 联系方式
 - **QQ群**: [点击加入](https://qm.qq.com/q/IgRdeRFEiW) (OPPO R9s/sk/A57)
+-  **哔哩哔哩**：[访问主页](https://b23.tv/Yl7Z7J4)
 - **酷安主页**: [访问主页](http://www.coolapk.com/u/24000210)
 
 ---
