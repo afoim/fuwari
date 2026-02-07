@@ -11,6 +11,12 @@ import type {
 } from "./types/config";
 import { LinkPreset } from "./types/config";
 
+export const noticeConfig: NoticeConfig = {
+	enable: true,
+	level: "happy",
+	content: "欢迎来到我的新博客",
+};
+
 export const siteConfig: SiteConfig = {
 	title: "XueGao Blog",
 	subtitle: "技术分享与实践",
