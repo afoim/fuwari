@@ -11,17 +11,11 @@ import type {
 } from "./types/config";
 import { LinkPreset } from "./types/config";
 
-export const noticeConfig: NoticeConfig = {
-	enable: true,
-	level: "happy",
-	content: "由于博客被长期 DDOS 攻击，我们决定将博客所有域名，包括但不限于： acofork.com, 2b2x.cn, 0d.hk, 2x.nz 等，全部改为使用Cloudflare CDN提供服务。若有Bug请及时反馈，感谢各位一路以来的理解与支持。",
-};
-
 export const siteConfig: SiteConfig = {
-	title: "AcoFork Blog",
+	title: "XueGao Blog",
 	subtitle: "技术分享与实践",
 	description:
-		"分享网络技术、服务器部署、内网穿透、静态网站搭建、CDN优化、容器化部署等技术教程与实践经验的个人技术博客，专注于云原生、无服务器架构和前后端开发，作者为afoim/二叉树树",
+		"分享网络技术、服务器部署、刷机技术、静态网站搭建、CDN优化等技术教程与实践经验的个人技术博客。",
 
 	keywords: [],
 	lang: "zh_CN", // 'en', 'zh_CN', 'zh_TW', 'ja', 'ko', 'es', 'th'
@@ -58,19 +52,14 @@ export const siteConfig: SiteConfig = {
 	favicon: [
 		// Leave this array empty to use the default favicon
 		{
-			src: "https://q2.qlogo.cn/headimg_dl?dst_uin=2726730791&spec=0", // Path of the favicon, relative to the /public directory
+			src: "https://q2.qlogo.cn/headimg_dl?dst_uin=3764350108&spec=0", // Path of the favicon, relative to the /public directory
 			//   theme: 'light',              // (Optional) Either 'light' or 'dark', set only if you have different favicons for light and dark mode
 			//   sizes: '32x32',              // (Optional) Size of the favicon, set only if you have favicons of different sizes
 		},
 	],
 	officialSites: [
-		{ url: "https://acofork.com", alias: "CN" },
-		{ url: "https://2x.nz", alias: "Global" },
-	],
-	server: [
-		{ url: "", text: "Blog" },
-		{ url: "https://u.2x.nz", text: "Umami" },
-		{ url: "https://p.2x.nz", text: "RandomPic" },
+		{ url: "https://0721234.xyz", alias: "CN" },
+		{ url: "https://0721234.xyz/", alias: "Global" },
 	],
 };
 
@@ -89,42 +78,37 @@ export const navBarConfig: NavBarConfig = {
 			external: false, // Show an external link icon and will open in a new tab
 		},
 		{
-			name: "统计",
-			url: "https://u.2x.nz/share/CdkXbGgZr6ECKOyK", // Internal links should not include the base path, as it is automatically added
-			external: true, // Show an external link icon and will open in a new tab
-		},
-		{
-			name: "论坛",
-			url: "https://i.2x.nz", // Internal links should not include the base path, as it is automatically added
+			name: "网盘",
+			url: "https://pan.0721234.xyz/", // Internal links should not include the base path, as it is automatically added
 			external: true, // Show an external link icon and will open in a new tab
 		},
 	],
 };
 
 export const profileConfig: ProfileConfig = {
-	avatar: "https://q2.qlogo.cn/headimg_dl?dst_uin=2726730791&spec=0", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
-	name: "二叉树树",
+	avatar: "https://q2.qlogo.cn/headimg_dl?dst_uin=3764350108&spec=0", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
+	name: "雪xie高",
 	bio: "Protect What You Love.",
 	links: [
 		{
 			name: "QQ",
 			icon: "qq", // Local icon
-			url: "https://qm.qq.com/q/FWqOHlwL2m",
+			url: "https://qm.qq.com/q/AmhmJqhDG2",
 		},
 		{
 			name: "Telegram",
 			icon: "telegram", // Local icon
-			url: "https://t.me/+_07DERp7k1ljYTc1",
+			url: "https://t.me/zihang518",
 		},
 		{
 			name: "Bilibli",
 			icon: "bilibili", // Local icon
-			url: "https://space.bilibili.com/325903362",
+			url: "https://space.bilibili.com/2083649546",
 		},
 		{
 			name: "GitHub",
 			icon: "github", // Local icon
-			url: "https://github.com/afoim",
+			url: "https://github.com/Zihang518",
 		},
 	],
 };
