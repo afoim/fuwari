@@ -132,7 +132,7 @@ export const imageFallbackConfig: ImageFallbackConfig = {
 };
 
 export const umamiConfig: UmamiConfig = {
-	enable: ture,
+	enable: true,
 	baseUrl: "https://cloud.umami.is",
 	shareId: "fc59d705-e252-4296-88c0-e37ef66e97c5",
 	timezone: "Asia/Shanghai",
