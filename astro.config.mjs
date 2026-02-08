@@ -31,84 +31,10 @@ import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
 
 // https://astro.build/config
 export default defineConfig({
-	site: "https://2x.nz",
+	site: "https://0721234.xyz",
 	base: "/",
 	trailingSlash: "always",
 	output: "static",
-	redirects: {
-		"/privacy-policy": {
-			status: 302,
-			destination: "https://2x.nz/posts/privacy-policy/",
-		},
-		"/long": {
-			status: 302,
-			destination: "https://iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.in/",
-		},
-		"/tit": {
-			status: 302,
-			destination: "/posts/pin/",
-		},
-  "/q": {
-			status: 302,
-			destination: "/posts/pin/",
-		},
-  "/t": {
-			status: 302,
-			destination: "https://i.2x.nz",
-		},
-		"/ak": {
-			status: 302,
-			destination: "https://akile.io/register?aff_code=503fe5ea-e7c5-4d68-ae05-6de99513680e",
-		},
-		"/yyb": {
-			status: 302,
-			destination: "https://www.rainyun.com/acofork_?s=bilibili",
-		},
-		"/wly": {
-			status: 302,
-			destination: "https://wl.awcmam.com/#/register?code=FNQwOQBM",
-		},
-		"/mly": {
-			status: 302,
-			destination: "https://muleyun.com/aff/GOTRJLPN",
-		},
-		"/tly": {
-			status: 302,
-			destination: "https://tianlicloud.cn/aff/HNNCFKGP",
-		},
-		"/kook": {
-			status: 302,
-			destination: "https://kook.vip/K29zpT",
-		},
-		"/gal": {
-			status: 302,
-			destination: "/post/gal/",
-		},
-		"/ok": {
-			status: 302,
-			destination: "https://acofork-uptime.zeabur.app/status/acofork",
-		},
-		"/donate": {
-			status: 302,
-			destination: "/sponsors",
-		},
-		"/tg": {
-			status: 302,
-			destination: "https://t.me/+_07DERp7k1ljYTc1",
-		},
-		"/esa": {
-			status: 302,
-			destination: "https://tianchi.aliyun.com/specials/promotion/freetier/esa?taskCode=25254&recordId=c856e61228828a0423417a767828d166",
-		},
-		"/s": {
-			status: 302,
-			destination: "https://2x.nz/_url",
-		},
-		"/plan": {
-			status: 302,
-			destination: "https://acofork.notion.site/2e11e011d4e5800fa050e8f7cf448347",
-		},
-	},
 	integrations: [
 		tailwind({
 			nesting: true,
