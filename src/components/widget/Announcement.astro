@@ -151,23 +151,37 @@ const currentColor = colorMap[level] || colorMap.info;
 </script>
 
 <style>
+@keyframes rainbow-flow {
+	0% { background-position: 0% 50%; }
+	100% { background-position: 200% 50%; }
+}
+
 .notice-happy {
 	--notice-gradient: linear-gradient(
 		90deg,
 		oklch(0.78 0.18 calc(var(--hue) + 0)),
-		oklch(0.78 0.18 calc(var(--hue) + 60)),
-		oklch(0.78 0.18 calc(var(--hue) + 120)),
-		oklch(0.78 0.18 calc(var(--hue) + 180))
+		oklch(0.78 0.18 calc(var(--hue) + 45)),
+		oklch(0.78 0.18 calc(var(--hue) + 90)),
+		oklch(0.78 0.18 calc(var(--hue) + 135)),
+		oklch(0.78 0.18 calc(var(--hue) + 180)),
+		oklch(0.78 0.18 calc(var(--hue) + 225)),
+		oklch(0.78 0.18 calc(var(--hue) + 270)),
+		oklch(0.78 0.18 calc(var(--hue) + 315)),
+		oklch(0.78 0.18 calc(var(--hue) + 360))
 	);
 	border: 2px solid transparent;
 	background: linear-gradient(var(--card-bg), var(--card-bg)) padding-box, var(--notice-gradient) border-box;
+	background-size: 100% 100%, 200% 100%;
+	animation: rainbow-flow 3s linear infinite;
 }
 
 .notice-happy .notice-text {
 	background: var(--notice-gradient);
+	background-size: 200% 100%;
 	-webkit-background-clip: text;
 	background-clip: text;
 	color: transparent;
+	animation: rainbow-flow 3s linear infinite;
 }
 
 .notice-happy .notice-emoji {
