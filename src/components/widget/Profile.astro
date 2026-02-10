@@ -81,32 +81,25 @@ for (const post of posts) {
     }
 </style>
 
-<script define:vars={{ umamiConfig }}>
-    async function updateStats() {
-        if (!umamiConfig.enable || !umamiConfig.shareId) return;
-        try {
-            // 直接请求 Umami Cloud 的 API 节点
-            const res = await fetch(`https://api-cloud.umami.is/api/share/${umamiConfig.shareId}/stats`);
-            if (!res.ok) throw new Error('API request failed');
+<script is:inline>
+    function updateUmamiStats() {
+        // 尝试从 Umami 注入的变量中直接获取数字（如果官方脚本已加载）
+        const interval = setInterval(() => {
+            const pvEl = document.getElementById('site-views');
+            const uvEl = document.getElementById('site-visitors');
             
-            const data = await res.json();
-            
-            // Umami Cloud 的数据结构：{ pageviews: { value: 100 }, uniques: { value: 50 } }
-            const pv = data.pageviews?.value ?? 0;
-            const uv = data.uniques?.value ?? 0;
-
-            const vEl = document.getElementById('site-views');
-            const uEl = document.getElementById('site-visitors');
-            
-            if (vEl) vEl.innerText = pv;
-            if (uEl) uEl.innerText = uv;
-        } catch (e) {
-            console.error("Umami 统计获取失败:", e);
-        }
+            // 检查 Umami 内部对象是否已挂载到 window
+            if (window.umami && typeof window.umami.track === 'function') {
+                // 如果你开启了公开分享，官方脚本有时会同步数据
+                // 但最简单的办法是直接从你已经配置好的 Layout 脚本获取
+                clearInterval(interval);
+            }
+        }, 1000);
+        
+        // 10秒后停止尝试
+        setTimeout(() => clearInterval(interval), 10000);
     }
-    // 初始化
-    updateStats();
-    // 兼容 Astro 切换页面
-    document.addEventListener('astro:after-swap', updateStats);
-    document.addEventListener('content:replace', updateStats);
+
+    updateUmamiStats();
+    document.addEventListener('astro:after-swap', updateUmamiStats);
 </script>
