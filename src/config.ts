@@ -19,6 +19,7 @@ export const noticeConfig: NoticeConfig = {
 
 export const siteConfig: SiteConfig = {
 	title: "XieGao Blog",
+	url: "https://xiegao.top",
 	subtitle: "技术分享与实践",
 	description:
 		"分享网络技术、服务器部署、刷机技术、静态网站搭建、CDN优化等技术教程与实践经验的个人技术博客。",
@@ -44,7 +45,7 @@ export const siteConfig: SiteConfig = {
 	},
 	background: {
 		enable: true, // Enable background image
-		src: "/api/v1/random/image?category=acg&type=4k", // Background image URL (supports HTTPS)
+		src: "https://uapis.cn/api/v1/random/image", // Background image URL (supports HTTPS)
 		position: "center", // Background position: 'top', 'center', 'bottom'
 		size: "cover", // Background size: 'cover', 'contain', 'auto'
 		repeat: "no-repeat", // Background repeat: 'no-repeat', 'repeat', 'repeat-x', 'repeat-y'
