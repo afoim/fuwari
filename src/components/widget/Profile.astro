@@ -81,8 +81,8 @@ for (const post of posts) {
     }
 </style>
 
-<script define:vars={{ umamiConfig}}>
-    // 数字动画函数
+<script define:vars={{ umamiConfig }}>
+    // 1. 定义数字动画函数
     function animateValue(obj, start, end, duration) {
         let startTimestamp = null;
         const step = (timestamp) => {
@@ -98,42 +98,40 @@ for (const post of posts) {
         window.requestAnimationFrame(step);
     }
 
-    // 获取全站访问量统计
-    async function loadSiteStats() {
-        if (!umamiConfig.enable) return;
+    // 2. 核心修复：定义获取数据的逻辑
+    async function getStats() {
+        if (!umamiConfig.enable || !umamiConfig.shareId) return;
+        
         try {
-            const statsData = await fetchUmamiStats(umamiConfig.baseUrl, umamiConfig.shareId, {
-                timezone: umamiConfig.timezone
-            });
+            // 这里我们直接请求 Umami 的公开 API 接口
+            const url = `${umamiConfig.baseUrl}/api/share/${umamiConfig.shareId}`;
+            const response = await fetch(url);
             
-            const pageviews = statsData.pageviews || 0;
-            const visitors = statsData.visitors || 0;
+            if (!response.ok) throw new Error('Network response was not ok');
+            
+            const data = await response.json();
+            
+            // 注意：Umami Cloud 的返回结构通常在 data 里的 stats 或者直接是 data
+            // 我们取最新的访问数据
+            const pageviews = data.pageviews?.value || 0;
+            const visitors = data.uniques?.value || 0;
             
             const viewsElement = document.getElementById('site-views');
             const visitorsElement = document.getElementById('site-visitors');
             
-            if (viewsElement) {
-                const startVal = parseInt(viewsElement.textContent) || 0;
-                // 如果当前值已经是目标值，就不执行动画
-                if (startVal !== pageviews) {
-                    animateValue(viewsElement, startVal, pageviews, 1000);
-                }
-            }
+            if (viewsElement) animateValue(viewsElement, 0, pageviews, 1000);
+            if (visitorsElement) animateValue(visitorsElement, 0, visitors, 1000);
             
-            if (visitorsElement) {
-                const startVal = parseInt(visitorsElement.textContent) || 0;
-                // 如果当前值已经是目标值，就不执行动画
-                if (startVal !== visitors) {
-                    animateValue(visitorsElement, startVal, visitors, 1000);
-                }
-            }
         } catch (error) {
-            console.error('获取全站统计失败:', error);
+            console.error('Umami 统计加载失败:', error);
+            // 失败时至少显示为 0
+            if (document.getElementById('site-views')) document.getElementById('site-views').innerText = '-';
         }
     }
 
-    // 页面加载完成后获取统计数据
-    document.addEventListener('DOMContentLoaded', loadSiteStats);
-    // 监听 Swup 内容替换事件，确保页面切换后重新获取数据
-    document.addEventListener('content:replace', loadSiteStats);
+    // 3. 执行初始化
+    getStats();
+    
+    // 适配 Astro 的页面切换（如果使用了 Swup 或 View Transitions）
+    document.addEventListener('astro:after-swap', getStats);
 </script>
