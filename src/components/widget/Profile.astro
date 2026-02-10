@@ -82,44 +82,31 @@ for (const post of posts) {
 </style>
 
 <script define:vars={{ umamiConfig }}>
-    async function getStats() {
+    async function updateStats() {
         if (!umamiConfig.enable || !umamiConfig.shareId) return;
-        
         try {
-            // 1. 获取统计数据 (注意这里带了 /stats)
-            const statsUrl = `${umamiConfig.baseUrl}/api/share/${umamiConfig.shareId}/stats`;
-            const response = await fetch(statsUrl);
+            // 直接请求 Umami Cloud 的 API 节点
+            const res = await fetch(`https://api-cloud.umami.is/api/share/${umamiConfig.shareId}/stats`);
+            if (!res.ok) throw new Error('API request failed');
             
-            if (!response.ok) throw new Error('Stats API request failed');
+            const data = await res.json();
             
-            const data = await response.json();
-            
-            // 调试用：你可以在浏览器按 F12 查看 Console
-            console.log('Umami API Response:', data);
+            // Umami Cloud 的数据结构：{ pageviews: { value: 100 }, uniques: { value: 50 } }
+            const pv = data.pageviews?.value ?? 0;
+            const uv = data.uniques?.value ?? 0;
 
-            // 2. 兼容性解析 Umami Cloud 的数据结构
-            // Umami Cloud 的返回通常是 { pageviews: { value: 123 }, uniques: { value: 45 } }
-            const pageviews = data.pageviews?.value ?? data.pageviews ?? 0;
-            const visitors = data.uniques?.value ?? data.uniques ?? 0;
+            const vEl = document.getElementById('site-views');
+            const uEl = document.getElementById('site-visitors');
             
-            // 3. 找到页面元素
-            const viewsElement = document.getElementById('site-views');
-            const visitorsElement = document.getElementById('site-visitors');
-            
-            // 4. 更新数值 (如果之前有动画函数，也可以直接赋值确保成功)
-            if (viewsElement) {
-                viewsElement.innerText = pageviews;
-            }
-            if (visitorsElement) {
-                visitorsElement.innerText = visitors;
-            }
-            
-        } catch (error) {
-            console.error('Umami Fetch Error:', error);
+            if (vEl) vEl.innerText = pv;
+            if (uEl) uEl.innerText = uv;
+        } catch (e) {
+            console.error("Umami 统计获取失败:", e);
         }
     }
-
-    // 初始化并适配 Astro 路由
-    getStats();
-    document.addEventListener('astro:after-swap', getStats);
+    // 初始化
+    updateStats();
+    // 兼容 Astro 切换页面
+    document.addEventListener('astro:after-swap', updateStats);
+    document.addEventListener('content:replace', updateStats);
 </script>
