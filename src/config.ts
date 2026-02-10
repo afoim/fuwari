@@ -67,6 +67,11 @@ export const siteConfig: SiteConfig = {
 		{ url: "https://xiegao.top/", alias: "CN" },
 		{ url: "https://xiegao.top/", alias: "Global" },
 	],
+	server: [
+		{ url: "https://xiegao.top", text: "Blog" },
+		{ url: "https://cloud.umami.is", text: "Umami" },
+		{ url: "https://p.2x.nz", text: "RandomPic" }, 
+	],
 };
 
 export const navBarConfig: NavBarConfig = {
