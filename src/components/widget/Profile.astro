@@ -82,53 +82,44 @@ for (const post of posts) {
 </style>
 
 <script define:vars={{ umamiConfig }}>
-    function animateValue(obj, start, end, duration) {
-        let startTimestamp = null;
-        const step = (timestamp) => {
-            if (!startTimestamp) startTimestamp = timestamp;
-            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-            obj.innerHTML = Math.floor(progress * (end - start) + start);
-            if (progress < 1) {
-                window.requestAnimationFrame(step);
-            } else {
-                obj.innerHTML = end;
-            }
-        };
-        window.requestAnimationFrame(step);
-    }
-
     async function getStats() {
         if (!umamiConfig.enable || !umamiConfig.shareId) return;
         
         try {
-            // 注意：Umami Cloud 获取统计数据的正确 API 路径是后面加 /stats
-            const url = `${umamiConfig.baseUrl}/api/share/${umamiConfig.shareId}/stats`;
-            const response = await fetch(url);
+            // 1. 获取统计数据 (注意这里带了 /stats)
+            const statsUrl = `${umamiConfig.baseUrl}/api/share/${umamiConfig.shareId}/stats`;
+            const response = await fetch(statsUrl);
             
-            if (!response.ok) throw new Error('API request failed');
+            if (!response.ok) throw new Error('Stats API request failed');
             
             const data = await response.json();
             
-            // Umami Cloud /stats 接口返回的数据结构直接就是 { pageviews, uniques, ... }
-            const pageviews = data.pageviews?.value || 0;
-            const visitors = data.uniques?.value || 0;
+            // 调试用：你可以在浏览器按 F12 查看 Console
+            console.log('Umami API Response:', data);
+
+            // 2. 兼容性解析 Umami Cloud 的数据结构
+            // Umami Cloud 的返回通常是 { pageviews: { value: 123 }, uniques: { value: 45 } }
+            const pageviews = data.pageviews?.value ?? data.pageviews ?? 0;
+            const visitors = data.uniques?.value ?? data.uniques ?? 0;
             
+            // 3. 找到页面元素
             const viewsElement = document.getElementById('site-views');
             const visitorsElement = document.getElementById('site-visitors');
             
-            // 只有拿到大于 0 的数据才执行动画，否则保持 0
-            if (viewsElement && pageviews > 0) animateValue(viewsElement, 0, pageviews, 1000);
-            if (visitorsElement && visitors > 0) animateValue(visitorsElement, 0, visitors, 1000);
+            // 4. 更新数值 (如果之前有动画函数，也可以直接赋值确保成功)
+            if (viewsElement) {
+                viewsElement.innerText = pageviews;
+            }
+            if (visitorsElement) {
+                visitorsElement.innerText = visitors;
+            }
             
         } catch (error) {
-            console.error('Umami Stats Error:', error);
+            console.error('Umami Fetch Error:', error);
         }
     }
 
-    // 初始化执行
+    // 初始化并适配 Astro 路由
     getStats();
-    
-    // 适配单页路由跳转
     document.addEventListener('astro:after-swap', getStats);
-    document.addEventListener('content:replace', getStats);
 </script>
