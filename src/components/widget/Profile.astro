@@ -82,7 +82,6 @@ for (const post of posts) {
 </style>
 
 <script define:vars={{ umamiConfig }}>
-    // 1. 定义数字动画函数
     function animateValue(obj, start, end, duration) {
         let startTimestamp = null;
         const step = (timestamp) => {
@@ -98,40 +97,38 @@ for (const post of posts) {
         window.requestAnimationFrame(step);
     }
 
-    // 2. 核心修复：定义获取数据的逻辑
     async function getStats() {
         if (!umamiConfig.enable || !umamiConfig.shareId) return;
         
         try {
-            // 这里我们直接请求 Umami 的公开 API 接口
-            const url = `${umamiConfig.baseUrl}/api/share/${umamiConfig.shareId}`;
+            // 注意：Umami Cloud 获取统计数据的正确 API 路径是后面加 /stats
+            const url = `${umamiConfig.baseUrl}/api/share/${umamiConfig.shareId}/stats`;
             const response = await fetch(url);
             
-            if (!response.ok) throw new Error('Network response was not ok');
+            if (!response.ok) throw new Error('API request failed');
             
             const data = await response.json();
             
-            // 注意：Umami Cloud 的返回结构通常在 data 里的 stats 或者直接是 data
-            // 我们取最新的访问数据
+            // Umami Cloud /stats 接口返回的数据结构直接就是 { pageviews, uniques, ... }
             const pageviews = data.pageviews?.value || 0;
             const visitors = data.uniques?.value || 0;
             
             const viewsElement = document.getElementById('site-views');
             const visitorsElement = document.getElementById('site-visitors');
             
-            if (viewsElement) animateValue(viewsElement, 0, pageviews, 1000);
-            if (visitorsElement) animateValue(visitorsElement, 0, visitors, 1000);
+            // 只有拿到大于 0 的数据才执行动画，否则保持 0
+            if (viewsElement && pageviews > 0) animateValue(viewsElement, 0, pageviews, 1000);
+            if (visitorsElement && visitors > 0) animateValue(visitorsElement, 0, visitors, 1000);
             
         } catch (error) {
-            console.error('Umami 统计加载失败:', error);
-            // 失败时至少显示为 0
-            if (document.getElementById('site-views')) document.getElementById('site-views').innerText = '-';
+            console.error('Umami Stats Error:', error);
         }
     }
 
-    // 3. 执行初始化
+    // 初始化执行
     getStats();
     
-    // 适配 Astro 的页面切换（如果使用了 Swup 或 View Transitions）
+    // 适配单页路由跳转
     document.addEventListener('astro:after-swap', getStats);
+    document.addEventListener('content:replace', getStats);
 </script>
