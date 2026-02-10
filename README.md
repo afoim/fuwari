@@ -1,7 +1,7 @@
-# Fuwari For AcoFork
+# Fuwari For XueGao
 
 > [!CAUTION]
-> 该仓库由 AcoFork 深度定制，并包含了最新的文章，如果你想以此为模板进行二改，需要一定的动手能力。
+> 该仓库由 XueGao 深度定制，并包含了最新的文章，如果你想以此为模板进行二改，需要一定的动手能力。
 
 <img width="1858" height="948" alt="image" src="https://github.com/user-attachments/assets/55c2c63b-0dac-436e-aaa0-451ad2dfb65a" />
 
