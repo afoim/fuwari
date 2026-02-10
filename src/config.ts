@@ -18,7 +18,7 @@ export const noticeConfig: NoticeConfig = {
 };
 
 export const siteConfig: SiteConfig = {
-	title: "XueGao Blog",
+	title: "XieGao Blog",
 	subtitle: "技术分享与实践",
 	description:
 		"分享网络技术、服务器部署、刷机技术、静态网站搭建、CDN优化等技术教程与实践经验的个人技术博客。",
@@ -64,8 +64,8 @@ export const siteConfig: SiteConfig = {
 		},
 	],
 	officialSites: [
-		{ url: "https://0721234.xyz", alias: "CN" },
-		{ url: "https://0721234.xyz/", alias: "Global" },
+		{ url: "https://xiegao.top/", alias: "CN" },
+		{ url: "https://xiegao.top/", alias: "Global" },
 	],
 };
 
@@ -85,7 +85,7 @@ export const navBarConfig: NavBarConfig = {
 		},
 		{
 			name: "网盘",
-			url: "https://pan.0721234.xyz/", // Internal links should not include the base path, as it is automatically added
+			url: "https://pan.xiegao.top/", // Internal links should not include the base path, as it is automatically added
 			external: true, // Show an external link icon and will open in a new tab
 		},
 	],
