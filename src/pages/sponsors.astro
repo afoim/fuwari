@@ -12,22 +12,22 @@ const sponsors = Object.values(
 );
 
 const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "首页",
-      "item": Astro.site
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "赞助支持",
-      "item": new URL("/sponsors", Astro.site).toString()
-    }
-  ]
+	"@context": "https://schema.org",
+	"@type": "BreadcrumbList",
+	itemListElement: [
+		{
+			"@type": "ListItem",
+			position: 1,
+			name: "首页",
+			item: Astro.site,
+		},
+		{
+			"@type": "ListItem",
+			position: 2,
+			name: "赞助支持",
+			item: new URL("/sponsors", Astro.site).toString(),
+		},
+	],
 };
 ---
 

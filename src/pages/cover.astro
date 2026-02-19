@@ -1,0 +1,12 @@
+---
+import MainGridLayout from "../layouts/MainGridLayout.astro";
+import CoverGenerator from "../components/CoverGenerator.svelte";
+
+const title = "封面生成";
+---
+
+<MainGridLayout title={title}>
+  <div class="flex flex-col items-center justify-center min-h-[60vh] w-full px-4">
+    <CoverGenerator client:load />
+  </div>
+</MainGridLayout>

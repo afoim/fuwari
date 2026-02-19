@@ -7,13 +7,20 @@ interface Props {
 	alt?: string;
 	position?: string;
 	basePath?: string;
-    loading?: "eager" | "lazy";
+	loading?: "eager" | "lazy";
 }
 import { Image } from "astro:assets";
 import { imageFallbackConfig, siteConfig } from "../../config";
 import { url } from "../../utils/url-utils";
 
-const { id, src, alt, position = "center", basePath = "/", loading = "lazy" } = Astro.props;
+const {
+	id,
+	src,
+	alt,
+	position = "center",
+	basePath = "/",
+	loading = "lazy",
+} = Astro.props;
 const className = Astro.props.class;
 
 const isLocal = !(

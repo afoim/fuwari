@@ -13,12 +13,22 @@ try {
 	commitHash = execSync("git rev-parse --short=7 HEAD").toString().trim();
 
 	const date = new Date();
-	const year = date.getFullYear();
-	const month = (date.getMonth() + 1).toString().padStart(2, "0");
-	const day = date.getDate().toString().padStart(2, "0");
-	const hours = date.getHours().toString().padStart(2, "0");
-	const minutes = date.getMinutes().toString().padStart(2, "0");
-	const seconds = date.getSeconds().toString().padStart(2, "0");
+	const parts = new Intl.DateTimeFormat("zh-CN", {
+		timeZone: "Asia/Shanghai",
+		year: "numeric",
+		month: "2-digit",
+		day: "2-digit",
+		hour: "2-digit",
+		minute: "2-digit",
+		second: "2-digit",
+		hour12: false,
+	}).formatToParts(date);
+	const year = parts.find((p) => p.type === "year")?.value ?? "0000";
+	const month = parts.find((p) => p.type === "month")?.value ?? "00";
+	const day = parts.find((p) => p.type === "day")?.value ?? "00";
+	const hours = parts.find((p) => p.type === "hour")?.value ?? "00";
+	const minutes = parts.find((p) => p.type === "minute")?.value ?? "00";
+	const seconds = parts.find((p) => p.type === "second")?.value ?? "00";
 	buildDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 } catch (e) {
 	console.warn("Failed to get git info", e);
@@ -51,14 +61,15 @@ try {
 		<!-- <a class="transition link text-[var(--primary)] font-medium inline-flex items-center" href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank"><img alt="" src="/favicon/foot-icp.png" width="16" height="16" class="h-4 mr-1">皖ICP备2025099787号-2</a>
         <br> -->
         <div class="server-info-container flex flex-col items-center justify-center gap-1 mt-1">
+            什么？你问我TM的节点显示去哪了？拜托！我都不分流了看那玩意也没集贸用了，所以看集贸看！别看了！
             <!-- Server info will be injected here -->
         </div>
          <!-- <a class="transition link text-[var(--primary)] font-medium inline-flex items-center" href="https://beian.mps.gov.cn/#/query/webSearch?code=34010302002608" target="_blank"><img alt="" src="/favicon/foot-ga.png" class="h-4 mr-1">皖公网安备34010302002608号</a>
-        <br> -->
+        <br> 
     </div>
 </div>
 
-<script is:inline define:vars={{ serverConfig: siteConfig.server || [] }}>
+<!-- <script is:inline define:vars={{ serverConfig: siteConfig.server || [] }}>
     (() => {
         if (window.__footerServerInit) return;
         window.__footerServerInit = true;
@@ -183,4 +194,4 @@ try {
         document.addEventListener('astro:after-swap', initServerInfo);
         document.addEventListener('content:replace', initServerInfo);
     })();
-</script>
+</script> -->

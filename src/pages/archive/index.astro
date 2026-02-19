@@ -4,22 +4,22 @@ import ArchivePanel from "@components/ArchivePanel.astro";
 import MainGridLayout from "@layouts/MainGridLayout.astro";
 
 const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "首页",
-      "item": Astro.site
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "归档",
-      "item": new URL("/archive", Astro.site).toString()
-    }
-  ]
+	"@context": "https://schema.org",
+	"@type": "BreadcrumbList",
+	itemListElement: [
+		{
+			"@type": "ListItem",
+			position: 1,
+			name: "首页",
+			item: Astro.site,
+		},
+		{
+			"@type": "ListItem",
+			position: 2,
+			name: "归档",
+			item: new URL("/archive", Astro.site).toString(),
+		},
+	],
 };
 ---
 

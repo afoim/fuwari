@@ -5,14 +5,17 @@ import Markdown from "@components/misc/Markdown.astro";
 
 import MainGridLayout from "@layouts/MainGridLayout.astro";
 import { getSortedPosts } from "@utils/content-utils";
+import { getCommitUrl, getPostHistory } from "@utils/git-history";
 import { getDir, getPostUrlBySlug } from "@utils/url-utils";
-import { getPostHistory, getCommitUrl } from "@utils/git-history";
 import { Icon } from "astro-icon/components";
 import { gitHubEditConfig, licenseConfig } from "src/config";
 import PostMetadata from "../../components/PostMeta.astro";
 import ImageWrapper from "../../components/misc/ImageWrapper.astro";
 import { profileConfig, siteConfig, umamiConfig } from "../../config";
-import { formatDateToYYYYMMDD } from "../../utils/date-utils";
+import {
+	formatDateToYYYYMMDD,
+	formatPostDateForDisplay,
+} from "../../utils/date-utils";
 
 export async function getStaticPaths() {
 	const blogEntries = await getSortedPosts();
@@ -30,51 +33,53 @@ const { remarkPluginFrontmatter } = await entry.render();
 const history = getPostHistory(entry.id);
 
 const jsonLd = [
-  {
-	"@context": "https://schema.org",
-	"@type": "BlogPosting",
-	headline: entry.data.title,
-	description: entry.data.description || entry.data.title,
-	author: {
-		"@type": "Person",
-		name: profileConfig.name,
-		url: Astro.site,
+	{
+		"@context": "https://schema.org",
+		"@type": "BlogPosting",
+		headline: entry.data.title,
+		description: entry.data.description || entry.data.title,
+		author: {
+			"@type": "Person",
+			name: profileConfig.name,
+			url: Astro.site,
+		},
+		datePublished: formatDateToYYYYMMDD(entry.data.published),
+		dateModified: entry.data.updated
+			? formatDateToYYYYMMDD(entry.data.updated)
+			: formatDateToYYYYMMDD(entry.data.published),
+		mainEntityOfPage: {
+			"@type": "WebPage",
+			"@id": Astro.url,
+		},
+		inLanguage: entry.data.lang
+			? entry.data.lang.replace("_", "-")
+			: siteConfig.lang.replace("_", "-"),
+		image: entry.data.image,
 	},
-	datePublished: formatDateToYYYYMMDD(entry.data.published),
-    dateModified: entry.data.updated ? formatDateToYYYYMMDD(entry.data.updated) : formatDateToYYYYMMDD(entry.data.published),
-    mainEntityOfPage: {
-        "@type": "WebPage",
-        "@id": Astro.url
-    },
-	inLanguage: entry.data.lang
-		? entry.data.lang.replace("_", "-")
-		: siteConfig.lang.replace("_", "-"),
-    image: entry.data.image,
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-        {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "首页",
-            "item": Astro.site
-        },
-        {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "归档",
-            "item": new URL("/archive", Astro.site).toString()
-        },
-        {
-            "@type": "ListItem",
-            "position": 3,
-            "name": entry.data.title,
-            "item": Astro.url
-        }
-    ]
-  }
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		itemListElement: [
+			{
+				"@type": "ListItem",
+				position: 1,
+				name: "首页",
+				item: Astro.site,
+			},
+			{
+				"@type": "ListItem",
+				position: 2,
+				name: "归档",
+				item: new URL("/archive", Astro.site).toString(),
+			},
+			{
+				"@type": "ListItem",
+				position: 3,
+				name: entry.data.title,
+				item: Astro.url,
+			},
+		],
+	},
 ];
 ---
 <MainGridLayout banner={entry.data.image} title={entry.data.title} description={entry.data.description} lang={entry.data.lang} setOGTypeArticle={true} headings={headings}>
@@ -208,7 +213,7 @@ const jsonLd = [
                                             {history.map(commit => (
                                                 <div class="flex flex-col text-xs bg-black/5 dark:bg-white/5 p-2 rounded">
                                                     <div class="flex justify-between items-center mb-1">
-                                                        <span class="font-bold text-black/70 dark:text-white/70">{formatDateToYYYYMMDD(new Date(commit.date))}</span>
+														<span class="font-bold text-black/70 dark:text-white/70">{formatPostDateForDisplay(new Date(commit.date))}</span>
                                                         <a href={getCommitUrl(commit.hash)} target="_blank" class="text-[var(--primary)] hover:underline font-mono">
                                                             {commit.hash.substring(0, 7)}
                                                         </a>

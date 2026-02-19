@@ -1,5 +1,5 @@
 ---
 enable: true
-level: "happy"
+level: happy
 ---
-我们最近发现该项目已经被 *DeepWiki* 收录了，现在您可以在页面上找到 *有问题？询问DeepWiki！* 来和AI对话以得到关于该项目的一切帮助！
+由于之前的DDOS攻击导致画廊和封面生成器失效，目前已经恢复！并作为博客的附属工具提供！立即前往： [画廊](/gallery/) 或 [封面生成](/cover/) ！

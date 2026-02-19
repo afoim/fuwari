@@ -27,6 +27,9 @@ blog.acofork.com
 
 This message is used to verify that this feed (feedId:236818461447222272) belongs to me (userId:165740980096046080). Join me in enjoying the next generation information browser https://folo.is.
 
+2x.nz
+This message is used to verify that this feed (feedId:245004133358075904) belongs to me (userId:165740980096046080). Join me in enjoying the next generation information browser https://folo.is.
+
 # 我要怎么认证？
 
 首先 你得有一个博客，或者说一个有RSS的网站

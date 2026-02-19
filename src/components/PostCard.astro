@@ -4,7 +4,7 @@ import type { CollectionEntry } from "astro:content";
 import { Icon } from "astro-icon/components";
 
 import { umamiConfig } from "../config";
-import { formatDateToYYYYMMDD } from "../utils/date-utils";
+import { formatPostDateForDisplay } from "../utils/date-utils";
 import { getDir } from "../utils/url-utils";
 import PostMetadata from "./PostMeta.astro";
 import ImageWrapper from "./misc/ImageWrapper.astro";
@@ -20,10 +20,19 @@ interface Props {
 	description: string;
 	draft: boolean;
 	style: string;
-    loading?: "eager" | "lazy";
+	loading?: "eager" | "lazy";
 }
-const { entry, title, url, published, updated, image, description, style, loading = "lazy" } =
-	Astro.props;
+const {
+	entry,
+	title,
+	url,
+	published,
+	updated,
+	image,
+	description,
+	style,
+	loading = "lazy",
+} = Astro.props;
 
 const isPinned = entry.data.pinned === true;
 const className = Astro.props.class;
@@ -52,12 +61,17 @@ const { remarkPluginFrontmatter } = await entry.render();
         </div>
 
         <!-- metadata -->
-        <PostMetadata published={published} updated={updated} hideUpdateDate={true} hidePublishedDate={true} slug={entry.slug} class="mb-2 md:mb-4"></PostMetadata>
+        <PostMetadata
+            published={published}
+            updated={updated}
+            hideUpdateDate={true}
+            hidePublishedDate={false}
+            slug={entry.slug}
+            class="mb-2 md:mb-4"
+        ></PostMetadata>
 
         <!-- word count, read time and page views -->
         <div class="text-sm text-black/30 dark:text-white/30 flex gap-4 transition">
-            <div>{formatDateToYYYYMMDD(published)}</div>
-            <div>|</div>
             <div>{remarkPluginFrontmatter.words} 字</div>
             <div>|</div>
             <div>{remarkPluginFrontmatter.minutes} 分钟</div>

@@ -28,6 +28,68 @@ import rehypeImageFallback from "./src/plugins/rehype-image-fallback.mjs";
 import { parseDirectiveNode } from "./src/plugins/remark-directive-rehype.js";
 import { remarkExcerpt } from "./src/plugins/remark-excerpt.js";
 import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
+import { visit, SKIP } from 'unist-util-visit';
+
+function remarkSpoiler() {
+    return (tree) => {
+        visit(tree, 'paragraph', (node) => {
+            const newChildren = [];
+            let inSpoiler = false;
+            
+            // Check if any child contains '||'
+            const hasSpoiler = node.children.some(child => 
+                child.type === 'text' && child.value && child.value.includes('||')
+            );
+            
+            if (!hasSpoiler) return;
+
+            for (const child of node.children) {
+                if (child.type === 'text') {
+                    const parts = child.value.split('||');
+                    
+                    if (parts.length === 1) {
+                        newChildren.push(child);
+                        continue;
+                    }
+                    
+                    parts.forEach((part, index) => {
+                        if (part) {
+                            newChildren.push({ type: 'text', value: part });
+                        }
+                        
+                        if (index < parts.length - 1) {
+                            if (!inSpoiler) {
+                                newChildren.push({
+                                    type: 'html',
+                                    value: '<span class="spoiler" title="点击显示">'
+                                });
+                                inSpoiler = true;
+                            } else {
+                                newChildren.push({
+                                    type: 'html',
+                                    value: '</span>'
+                                });
+                                inSpoiler = false;
+                            }
+                        }
+                    });
+                } else {
+                    newChildren.push(child);
+                }
+            }
+            
+            if (inSpoiler) {
+                newChildren.push({
+                    type: 'html',
+                    value: '</span>'
+                });
+            }
+            
+            node.children = newChildren;
+            return SKIP;
+        });
+    };
+}
 
 // https://astro.build/config
 export default defineConfig({
@@ -192,6 +254,7 @@ export default defineConfig({
 	],
 	markdown: {
 		remarkPlugins: [
+			remarkSpoiler,
 			remarkMath,
 			remarkReadingTime,
 			remarkExcerpt,

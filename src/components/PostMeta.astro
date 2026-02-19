@@ -2,7 +2,7 @@
 import { Icon } from "astro-icon/components";
 
 import { umamiConfig } from "../config";
-import { formatDateToYYYYMMDD } from "../utils/date-utils";
+import { formatPostDateForDisplay } from "../utils/date-utils";
 import { url, getDir } from "../utils/url-utils";
 
 interface Props {
@@ -28,9 +28,9 @@ const className = Astro.props.class;
     {!hidePublishedDate && (
         <div class="flex items-center">
             <div class="meta-icon">
-                <Icon name="material-symbols:calendar-today-outline-rounded" class="text-xl"></Icon>
+                <Icon name="material-symbols:schedule-outline-rounded" class="text-xl"></Icon>
             </div>
-            <span class="text-50 text-sm font-medium">{formatDateToYYYYMMDD(published)}</span>
+            <span class="text-50 text-sm font-medium">{formatPostDateForDisplay(published)}</span>
         </div>
     )}
 
@@ -41,7 +41,7 @@ const className = Astro.props.class;
             >
                 <Icon name="material-symbols:edit-calendar-outline-rounded" class="text-xl"></Icon>
             </div>
-            <span class="text-50 text-sm font-medium">{formatDateToYYYYMMDD(updated)}</span>
+            <span class="text-50 text-sm font-medium">{formatPostDateForDisplay(updated)}</span>
         </div>
     )}
 

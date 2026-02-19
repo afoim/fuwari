@@ -1,10 +1,11 @@
 import { defineCollection, z } from "astro:content";
+import { parsePostDateToDate } from "../utils/date-utils";
 
 const postsCollection = defineCollection({
 	schema: z.object({
 		title: z.string(),
-		published: z.date(),
-		updated: z.date().optional(),
+		published: z.preprocess(parsePostDateToDate, z.date()),
+		updated: z.preprocess(parsePostDateToDate, z.date()).optional(),
 		draft: z.boolean().optional().default(false),
 		description: z.string().optional().default(""),
 		image: z.string().optional().default(""),

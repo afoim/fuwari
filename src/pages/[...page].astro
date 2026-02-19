@@ -2,10 +2,10 @@
 import type { GetStaticPaths } from "astro";
 import PostPage from "../components/PostPage.astro";
 import Pagination from "../components/control/Pagination.astro";
+import { siteConfig } from "../config";
 import { PAGE_SIZE } from "../constants/constants";
 import MainGridLayout from "../layouts/MainGridLayout.astro";
 import { getSortedPosts } from "../utils/content-utils";
-import { siteConfig } from "../config";
 
 export const getStaticPaths = (async ({ paginate }) => {
 	const allBlogPosts = await getSortedPosts();
@@ -18,11 +18,11 @@ const { page } = Astro.props;
 const len = page.data.length;
 
 const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": siteConfig.title,
-    "url": Astro.site,
-    "description": siteConfig.description,
+	"@context": "https://schema.org",
+	"@type": "WebSite",
+	name: siteConfig.title,
+	url: Astro.site,
+	description: siteConfig.description,
 };
 ---
 
