@@ -11,155 +11,24 @@ import type {
 import { LinkPreset } from "./types/config";
 
 export const siteConfig: SiteConfig = {
-	title: "AcoFork Blog",
-	subtitle: "技术分享与实践",
+	title: "《二叉树树》官方网站",
+	subtitle: "AcoFork",
 	description:
-		"分享网络技术、服务器部署、内网穿透、静态网站搭建、CDN优化、容器化部署等技术教程与实践经验的个人技术博客，专注于云原生、无服务器架构和前后端开发，作者为afoim/二叉树树",
+		"《二叉树树》是一个专注于IT/互联网技术分享与实践的个人技术博客，在这里你可以找到众多前沿技术的分享与实践经验。",
 
 	keywords: [
-		// 核心技术领域
-		"IT技术",
-		"网络技术",
-		"服务器部署",
-		"内网穿透",
-		"静态网站",
-		"技术博客",
-		"CDN技术",
-		"无服务器",
-		"前后端逆向",
-		"Serverless",
-		"云原生",
-		"容器化",
-		"Docker",
-		"性能优化",
-		"网站优化",
-
-		// 博客品牌
-		"Blog",
-		"博客",
-		"afoim",
-		"afoim Blog",
 		"二叉树树",
+		"二叉树树官网",
+		"树",
+		"二叉树",
+		"二叉",
+		"博客",
 		"AcoFork Blog",
-
-		// 云服务平台
-		"Cloudflare",
-		"Cloudflare Tunnel",
-		"Cloudflare Workers",
-		"Cloudflare Pages",
-		"Cloudflare R2",
-		"EdgeOne CDN",
-		"SecBit MCDN",
-		"Netlify",
-		"Vercel",
-		"IPFS",
-		"Fleek",
-
-		// 开发框架工具
-		"Next.js",
-		"Hugo",
-		"Fuwari",
-		"React",
-		"Vue",
-		"Docker Compose",
-		"Umami",
-		"GitHub",
-		"GitHub Pages",
-
-		// 网络技术
-		"STUN",
-		"NAT",
-		"NAT1",
-		"Tailscale",
-		"Zerotier",
-		"反向代理",
-		"负载均衡",
-		"SSL证书",
-		"域名解析",
-
-		// 服务器相关
-		"NAS",
-		"对象存储",
-		"云存储",
-		"图床",
-		"文件存储",
-		"数据备份",
-
-		// 自动化工具
-		"QQBot",
-		"Koishi",
-		"ChatBot",
-		"自动化部署",
-		"CI/CD",
-		"GitHub Actions",
-
-		// 实用工具
-		"域名邮箱",
-		"短链接",
-		"在线工具",
-		"meme-generator",
-		"表情包生成",
-		"AI工具",
-
-		// 安全相关
-		"网站安全",
-		"防火墙",
-		"访问控制",
-		"DDoS防护",
-		"Web安全",
-
-		// 监控分析
-		"网站统计",
-		"访问分析",
-		"监控告警",
-		"性能监控",
-		"日志分析",
-
-		// 开发相关
-		"前端开发",
-		"后端开发",
-		"全栈开发",
-		"API开发",
-		"微服务",
-		"REST API",
-
-		// 教程类型
-		"技术教程",
-		"部署指南",
-		"配置教程",
-		"实践经验",
-		"开发笔记",
-		"踩坑记录",
-
-		// 热门技术
-		"Kubernetes",
-		"k8s",
-		"微服务架构",
-		"分布式系统",
-		"负载均衡",
-		"高可用",
-		"弹性伸缩",
-
-		// 存储相关
-		"MinIO",
-		"S3",
-		"对象存储",
-		"文件系统",
-		"数据库",
-		"Redis",
-
-		// 网络优化
-		"CDN加速",
-		"缓存优化",
-		"带宽优化",
-		"延迟优化",
-		"边缘计算",
-
-		// 移动开发
-		"PWA",
-		"响应式设计",
-		"移动端优化",
-		"跨平台开发",
+		"AcoFork",
+		"Blog",
+		"acofork blog",
+		"acofork",
+		"blog",
 	],
 	lang: "zh_CN", // 'en', 'zh_CN', 'zh_TW', 'ja', 'ko', 'es', 'th'
 	themeColor: {
@@ -226,6 +95,16 @@ export const navBarConfig: NavBarConfig = {
 			external: false, // Show an external link icon and will open in a new tab
 		},
 		{
+			name: "画廊",
+			url: "/gallery/", // Internal links should not include the base path, as it is automatically added
+			external: false, // Show an external link icon and will open in a new tab
+		},
+		{
+			name: "封面",
+			url: "/cover/", // Internal links should not include the base path, as it is automatically added
+			external: false, // Show an external link icon and will open in a new tab
+		},
+		{
 			name: "统计",
 			url: "https://u.2x.nz/share/CdkXbGgZr6ECKOyK", // Internal links should not include the base path, as it is automatically added
 			external: true, // Show an external link icon and will open in a new tab
@@ -234,7 +113,7 @@ export const navBarConfig: NavBarConfig = {
 			name: "论坛",
 			url: "https://i.2x.nz", // Internal links should not include the base path, as it is automatically added
 			external: true, // Show an external link icon and will open in a new tab
-		},
+		}
 	],
 };
 
@@ -262,6 +141,11 @@ export const profileConfig: ProfileConfig = {
 			name: "GitHub",
 			icon: "github", // Local icon
 			url: "https://github.com/afoim",
+		},
+		{
+			name: "Folo",
+			icon: "folo", // Local icon
+			url: "https://app.folo.is/share/feeds/245004133358075904",
 		},
 	],
 };

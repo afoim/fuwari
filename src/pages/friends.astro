@@ -12,22 +12,22 @@ const friends = Object.values(
 );
 
 const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "首页",
-      "item": Astro.site
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "友链",
-      "item": new URL("/friends", Astro.site).toString()
-    }
-  ]
+	"@context": "https://schema.org",
+	"@type": "BreadcrumbList",
+	itemListElement: [
+		{
+			"@type": "ListItem",
+			position: 1,
+			name: "首页",
+			item: Astro.site,
+		},
+		{
+			"@type": "ListItem",
+			position: 2,
+			name: "友链",
+			item: new URL("/friends", Astro.site).toString(),
+		},
+	],
 };
 ---
 

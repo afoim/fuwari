@@ -60,5 +60,39 @@ document.addEventListener("click", function (e: MouseEvent) {
         }, 1000);
         target.setAttribute("data-timeout-id", newTimeoutId.toString());
     }
-});
+
+    const spoiler = target?.closest(".spoiler");
+    if (spoiler) {
+        const isVisible = spoiler.classList.contains("visible");
+        const isLink = target?.closest("a");
+        const isCopyBtn = target?.closest(".copy-btn");
+        
+        if (!isVisible) {
+            // Reveal
+            spoiler.classList.add("visible");
+            spoiler.setAttribute("title", "");
+            e.preventDefault();
+            e.stopPropagation();
+        } 
+        // If visible, do nothing. Let the event propagate to Fancybox or other handlers.
+    }
+}, true); // Use capture to prevent Fancybox from opening on first click
 </script>
+
+<style is:global>
+    .spoiler {
+        filter: blur(0.4rem);
+        transition: filter 0.3s;
+        cursor: pointer;
+        user-select: none;
+    }
+    .spoiler:hover {
+        opacity: 0.8;
+    }
+    .spoiler.visible {
+        filter: none;
+        user-select: auto;
+        cursor: auto; /* Restore default cursor (or zoom-in for fancybox) */
+        opacity: 1;
+    }
+</style>

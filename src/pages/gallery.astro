@@ -1,0 +1,402 @@
+---
+import MainGridLayout from "@layouts/MainGridLayout.astro";
+import { Icon } from "astro-icon/components";
+import ViewsCounter from "@components/ViewsCounter.astro";
+---
+
+<MainGridLayout title="画廊">
+	<div class="card-base p-6 md:p-8">
+		<div class="flex items-center justify-between gap-3 flex-wrap mb-6">
+			<div class="flex items-center gap-2">
+				<div class="h-8 w-8 rounded-lg bg-[var(--primary)] flex items-center justify-center text-white dark:text-black/70">
+					<Icon name="material-symbols:photo-library-rounded" class="text-[1.5rem]"></Icon>
+				</div>
+				<h1 class="text-2xl font-bold text-90">画廊</h1>
+				<div id="status" class="text-sm font-bold text-50 transition-all"></div>
+				<ViewsCounter pathname="/gallery/" />
+			</div>
+			<div class="flex items-center gap-2">
+				<button id="btn-h" type="button" class="btn-regular h-9 px-3 rounded-lg text-sm font-medium">横屏</button>
+				<button id="btn-v" type="button" class="btn-regular h-9 px-3 rounded-lg text-sm font-medium">竖屏</button>
+				<button id="btn-sort" type="button" class="btn-regular h-9 px-3 rounded-lg text-sm font-medium">最新</button>
+			</div>
+		</div>
+
+		<div class="text-sm text-50 mb-5 leading-relaxed">
+			图片二进制自托管于： <a href="https://p.2x.nz" target="_blank" rel="noopener noreferrer" class="font-medium text-75 hover:text-[var(--primary)] transition-colors">https://p.2x.nz</a> 
+            <br>
+            特别鸣谢：<b class="font-bold text-75">锦瑟/瑞希</b> 大佬提供的图源
+		</div>
+
+		<div id="gallery" class="gallery-grid" data-ready="false"></div>
+		<div id="footer-status" class="text-center text-sm text-50 h-10 mt-4"></div>
+		<div id="sentinel" class="h-4"></div>
+	</div>
+
+	<style>
+		.gallery-grid {
+			width: 100%;
+			opacity: 0;
+			transform: translateY(4px);
+			transition:
+				opacity 0.2s ease,
+				transform 0.2s ease;
+		}
+		.gallery-grid[data-ready="true"] {
+			opacity: 1;
+			transform: translateY(0);
+		}
+		.gallery-item {
+			line-height: 24px;
+		}
+	</style>
+
+	<script>
+		import Masonry from "masonry-layout";
+		import imagesLoaded from "imagesloaded";
+		import { Fancybox } from "@fancyapps/ui";
+		import "@fancyapps/ui/dist/fancybox/fancybox.css";
+
+		const RANDOM_JS_URL = "https://p.2x.nz/random.js";
+		const DOMAIN = "https://p.2x.nz";
+
+		let counts = { h: 0, v: 0 };
+		let currentType = "h";
+		let isReverse = false;
+		let nextIndex = 1;
+		let loading = false;
+		let msnry = null;
+		let io = null;
+		let resizeHandler = null;
+
+		function getColumns() {
+			const w = window.innerWidth;
+			if (w >= 1024) return 4;
+			if (w >= 768) return 3;
+			return 2;
+		}
+
+		function getLayoutConfig(galleryEl) {
+			const gutter = 16;
+			const cols = getColumns();
+			const width = galleryEl.clientWidth || 0;
+			const columnWidth = Math.max(
+				120,
+				Math.floor((width - gutter * (cols - 1)) / cols),
+			);
+			return { gutter, cols, columnWidth };
+		}
+
+		function setStatus(text) {
+			const statusEl = document.getElementById("status");
+			if (!statusEl) return;
+			statusEl.textContent = text || "";
+		}
+
+		function updateStatus() {
+			const count = counts[currentType] || 0;
+			setStatus(`共 ${count} 张`);
+		}
+
+		function setActiveButton() {
+			const btnH = document.getElementById("btn-h");
+			const btnV = document.getElementById("btn-v");
+			if (!btnH || !btnV) return;
+			const activeClasses = ["ring-2", "ring-[var(--primary)]"];
+			for (const c of activeClasses) {
+				btnH.classList.toggle(c, currentType === "h");
+				btnV.classList.toggle(c, currentType === "v");
+			}
+		}
+
+		function updateSortButton() {
+			const btnSort = document.getElementById("btn-sort");
+			if (!btnSort) return;
+			btnSort.textContent = isReverse ? "最早" : "最新";
+			// 可选：添加高亮表示当前状态，或者仅通过文本区分
+			const activeClasses = ["ring-2", "ring-[var(--primary)]"];
+			for (const c of activeClasses) {
+				btnSort.classList.toggle(c, isReverse);
+			}
+		}
+
+		async function fetchCounts() {
+			try {
+				const res = await fetch(RANDOM_JS_URL, { cache: "no-store" });
+				if (!res.ok) throw new Error(String(res.status));
+				const text = await res.text();
+				const m = text.match(/var\s+counts\s*=\s*(\{[^;]+\})\s*;/);
+				if (!m) throw new Error("counts not found");
+				const parsed = JSON.parse(m[1]);
+				const h = Number(parsed.h || 0);
+				const v = Number(parsed.v || 0);
+				if (!Number.isFinite(h) || !Number.isFinite(v)) throw new Error("counts invalid");
+				counts = { h, v };
+				updateStatus();
+			} catch (e) {
+				counts = { h: 1074, v: 4003 };
+				updateStatus();
+			}
+		}
+
+		function resetIndex() {
+			const max = counts[currentType] || 0;
+			if (isReverse) {
+				nextIndex = max;
+			} else {
+				nextIndex = 1;
+			}
+		}
+
+		function getNextIndex(max) {
+			if (isReverse) {
+				if (nextIndex < 1) return null;
+				return nextIndex--;
+			}
+			if (nextIndex > max) return null;
+			return nextIndex++;
+		}
+
+		function buildImgUrl(n) {
+			return `${DOMAIN}/ri/${currentType}/${n}.webp`;
+		}
+
+		function buildCard(url, width) {
+			const a = document.createElement("a");
+			a.href = url;
+			// a.target = "_blank";
+			// a.rel = "noopener noreferrer";
+			a.dataset.fancybox = ""; // 独立展示，不分组
+			a.className = "gallery-item block opacity-0 transition-opacity duration-300"; // 初始隐藏
+			a.style.width = `${width}px`;
+
+			const wrapper = document.createElement("div");
+			wrapper.className =
+				"card-base overflow-hidden rounded-xl active:scale-[0.99] transition";
+
+			const img = document.createElement("img");
+			img.src = url;
+			img.loading = "lazy";
+			img.decoding = "async";
+			img.alt = "gallery";
+			img.className = "w-full h-auto block";
+
+			wrapper.appendChild(img);
+			a.appendChild(wrapper);
+			a.appendChild(document.createElement("br"));
+			return a;
+		}
+
+		function clearGallery() {
+			const galleryEl = document.getElementById("gallery");
+			if (!galleryEl) return;
+			galleryEl.innerHTML = "";
+			galleryEl.dataset.ready = "false";
+			resetIndex();
+			if (msnry) {
+				msnry.destroy();
+				msnry = null;
+			}
+		}
+
+		async function loadMore(batch = 20) {
+			const galleryEl = document.getElementById("gallery");
+			const footerStatus = document.getElementById("footer-status");
+			if (!galleryEl || loading) return;
+			const max = counts[currentType];
+			if (!max) return;
+			loading = true;
+			if (footerStatus) footerStatus.textContent = "加载中...";
+
+			try {
+				const { gutter, columnWidth } = getLayoutConfig(galleryEl);
+				if (!msnry) {
+					msnry = new Masonry(galleryEl, {
+						itemSelector: ".gallery-item",
+						gutter,
+						columnWidth,
+						transitionDuration: "0.2s",
+					});
+				}
+
+				const frag = document.createDocumentFragment();
+				const items = [];
+				for (let i = 0; i < batch; i++) {
+					const n = getNextIndex(max);
+					if (!n) break;
+					const url = buildImgUrl(n);
+					const el = buildCard(url, columnWidth);
+					items.push(el);
+					frag.appendChild(el);
+				}
+
+				if (items.length > 0) {
+					galleryEl.appendChild(frag);
+					await new Promise((resolve) => {
+						imagesLoaded(items, () => {
+							if (!msnry) return resolve();
+							msnry.appended(items);
+							msnry.layout();
+							// 显示图片
+							for (const item of items) {
+								item.classList.remove("opacity-0");
+							}
+							if (galleryEl.dataset.ready !== "true") galleryEl.dataset.ready = "true";
+							resolve();
+						});
+					});
+				}
+
+				if (footerStatus) {
+					// 检查是否还有下一页
+					let hasMore = false;
+					if (isReverse) {
+						hasMore = nextIndex >= 1;
+					} else {
+						hasMore = nextIndex <= max;
+					}
+					footerStatus.textContent = hasMore ? "" : "已加载全部";
+
+					// 如果还有更多且 sentinel 可见，继续加载
+					if (hasMore) {
+						const sentinelEl = document.getElementById("sentinel");
+						if (sentinelEl) {
+							const rect = sentinelEl.getBoundingClientRect();
+							if (rect.top < window.innerHeight + 600) {
+								// 使用 setTimeout 避免堆栈过深，并允许 UI 刷新
+								setTimeout(() => loadMore(batch), 50);
+							}
+						}
+					}
+				}
+			} finally {
+				loading = false;
+			}
+		}
+
+		function setType(type) {
+			if (type !== "h" && type !== "v") return;
+			if (currentType === type) return;
+			currentType = type;
+			setActiveButton();
+			updateStatus();
+			clearGallery();
+			loadMore(24);
+		}
+
+		function setupInfiniteLoad() {
+			const sentinelEl = document.getElementById("sentinel");
+			if (!sentinelEl) return;
+			if (io) io.disconnect();
+			io = new IntersectionObserver(
+				(entries) => {
+					if (entries.some((e) => e.isIntersecting && !loading)) {
+						loadMore(20);
+					}
+				},
+				{ rootMargin: "600px 0px" },
+			);
+			io.observe(sentinelEl);
+		}
+
+		function setupResize() {
+			if (resizeHandler) window.removeEventListener("resize", resizeHandler);
+			resizeHandler = () => {
+				const galleryEl = document.getElementById("gallery");
+				if (!galleryEl || !msnry) return;
+				const { gutter, columnWidth } = getLayoutConfig(galleryEl);
+				for (const el of galleryEl.querySelectorAll(".gallery-item")) {
+					el.style.width = `${columnWidth}px`;
+				}
+				msnry.options.gutter = gutter;
+				msnry.options.columnWidth = columnWidth;
+				msnry.layout();
+			};
+			window.addEventListener("resize", resizeHandler, { passive: true });
+		}
+
+		function toggleSort() {
+			isReverse = !isReverse;
+			updateSortButton();
+			clearGallery();
+			loadMore(24);
+		}
+
+		async function init() {
+			const galleryEl = document.getElementById("gallery");
+			if (!galleryEl) return;
+			if (galleryEl.dataset.inited === "true") return;
+			galleryEl.dataset.inited = "true";
+
+			setActiveButton();
+			await fetchCounts();
+			updateSortButton();
+			clearGallery();
+			await loadMore(24);
+			const sentinelEl = document.getElementById("sentinel");
+			if (sentinelEl && !loading) {
+				const rect = sentinelEl.getBoundingClientRect();
+				if (rect.top < window.innerHeight + 600) {
+					loadMore(20);
+				}
+			}
+
+			const btnH = document.getElementById("btn-h");
+			const btnV = document.getElementById("btn-v");
+			const btnSort = document.getElementById("btn-sort");
+			if (btnH) btnH.addEventListener("click", () => setType("h"));
+			if (btnV) btnV.addEventListener("click", () => setType("v"));
+			if (btnSort) btnSort.addEventListener("click", toggleSort);
+			updateSortButton();
+
+			setupInfiniteLoad();
+			setupResize();
+
+			// 绑定 Fancybox
+			Fancybox.bind("[data-fancybox]", {
+				groupAll: false, // 明确禁止分组
+				// 配置项参考主站逻辑
+				Toolbar: {
+					display: {
+						left: ["infobar"],
+						middle: [
+							"zoomIn",
+							"zoomOut",
+							"toggle1to1",
+							"rotateCCW",
+							"rotateCW",
+							"flipX",
+							"flipY",
+						],
+						right: ["slideshow", "fullscreen", "download", "thumbs", "close"],
+					},
+				},
+				Thumbs: {
+					type: "classic",
+				},
+				// 每一张独立展示，不显示前后切换箭头
+				Carousel: {
+					Navigation: false,
+				},
+			});
+		}
+
+		function initIfPresent() {
+			const galleryEl = document.getElementById("gallery");
+			if (!galleryEl) return;
+			init();
+		}
+
+		// 清理 Fancybox
+		document.addEventListener("astro:before-swap", () => {
+			Fancybox.destroy();
+		});
+
+		if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", initIfPresent);
+		else initIfPresent();
+
+		document.addEventListener("astro:after-swap", initIfPresent);
+		document.addEventListener("content:replace", initIfPresent);
+		document.addEventListener("swup:contentReplaced", initIfPresent);
+	</script>
+</MainGridLayout>

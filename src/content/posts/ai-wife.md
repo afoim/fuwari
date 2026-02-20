@@ -26,6 +26,13 @@ lang: ""
 # 正式开始
 
 ### 下载ComfyUI
+
+> [!tip]
+> 更推荐使用 [Stable Diffusion Forge](https://www.bilibili.com/video/BV1rc6nYNEYo/)，如果不需要复杂的节点配布，sdf可以更方便的去写提示词
+> ![](../assets/images/ai-wife-17.png)
+
+
+
 > 尽管ComfyUI支持AMD显卡以及纯CPU绘图，但还是建议使用 **NVIDIA Cuda** 进行绘图，更快，兼容性也更好！ 
 
 前往 [ComfyUI | 用AI生成视频、图像、音频](https://www.comfy.org/zh-cn/) 下载并安装，记得打开魔法或在设置中更改镜像源
@@ -42,7 +49,7 @@ lang: ""
 
 #### 如果你需要下载LoRA
 
-首先你要知道你想画的角色的英文名，如 **Cartethyia** 
+首先你要知道你想画的角色的英文名，如 **Cartethyia** （鸣潮 - 卡提希娅） 
 
 然后前往 https://civitai.com/ 进行搜索，选择你喜欢的LoRA
 

@@ -1,0 +1,830 @@
+name: auto-pr
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: auto-pr-${{ github.event.pull_request.number || github.event.issue.number }}
+  cancel-in-progress: true
+
+jobs:
+  triage:
+    if: ${{ github.event_name == 'pull_request_target' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Label PR by changed paths
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.PAT }}
+          script: |
+            const owner = context.repo.owner
+            const repo = context.repo.repo
+            const pull_number = context.payload.pull_request.number
+
+            const LABEL_FRIEND = '友链'
+            const LABEL_SPONSOR = '赞助'
+            const LABEL_AVATAR_OK = '头像可达'
+            const LABEL_AVATAR_BAD = '头像不可达'
+            const LABEL_SITE_OK = '网站可达'
+            const LABEL_SITE_BAD = '网站不可达'
+            const LABEL_ALL_OK = 'URL全部可达'
+            const LABEL_VERIFYING = '所有权验证进行中'
+            const LABEL_BIDIR = '双向链接验证'
+            const LABEL_BIDIR_OK = '双向链接验证通过'
+
+            async function ensureLabel(name) {
+              try {
+                await github.rest.issues.getLabel({ owner, repo, name })
+              } catch (e) {
+                if (e.status !== 404) throw e
+                await github.rest.issues.createLabel({
+                  owner,
+                  repo,
+                  name,
+                  color: 'ededed',
+                })
+              }
+            }
+
+            async function listAllFiles() {
+              const files = []
+              for await (const res of github.paginate.iterator(
+                github.rest.pulls.listFiles,
+                { owner, repo, pull_number, per_page: 100 }
+              )) {
+                for (const f of res.data) files.push(f)
+              }
+              return files
+            }
+
+            const files = await listAllFiles()
+            const paths = files.map((f) => f.filename)
+
+            const touchedFriends = paths.some((p) => p.startsWith('src/data/friends/'))
+            const touchedSponsors = paths.some((p) => p.startsWith('src/data/sponsors/'))
+
+            if (!touchedFriends && !touchedSponsors) {
+              core.info('No friends/sponsors changes detected. Skip.')
+              return
+            }
+
+            for (const name of [
+              LABEL_FRIEND,
+              LABEL_SPONSOR,
+              LABEL_AVATAR_OK,
+              LABEL_AVATAR_BAD,
+              LABEL_SITE_OK,
+              LABEL_SITE_BAD,
+              LABEL_ALL_OK,
+              LABEL_VERIFYING,
+              LABEL_BIDIR,
+              LABEL_BIDIR_OK,
+            ]) {
+              await ensureLabel(name)
+            }
+
+            const add = []
+            const remove = []
+            if (touchedFriends) add.push(LABEL_FRIEND)
+            if (touchedSponsors) add.push(LABEL_SPONSOR)
+            if (touchedFriends && !touchedSponsors) remove.push(LABEL_SPONSOR)
+            if (touchedSponsors && !touchedFriends) remove.push(LABEL_FRIEND)
+
+            if (add.length) {
+              await github.rest.issues.addLabels({ owner, repo, issue_number: pull_number, labels: add })
+            }
+            for (const name of remove) {
+              try {
+                await github.rest.issues.removeLabel({ owner, repo, issue_number: pull_number, name })
+              } catch (e) {
+                if (e.status !== 404) throw e
+              }
+            }
+
+            async function createComment(body) {
+              core.info(`createComment len=${String(body || '').length}`)
+              try {
+                await github.rest.issues.createComment({ owner, repo, issue_number: pull_number, body })
+                core.info('createComment ok')
+              } catch (e) {
+                core.error(`createComment failed: status=${e?.status || ''}`)
+                core.error(`createComment failed: message=${e?.message || e}`)
+                try {
+                  core.error(`createComment failed: response=${JSON.stringify(e?.response?.data || null)}`)
+                } catch {}
+                throw e
+              }
+            }
+
+            function isNonEmptyString(v) {
+              return typeof v === 'string' && v.trim().length > 0
+            }
+
+            function parseJsonSafe(text) {
+              try {
+                return { ok: true, value: JSON.parse(text) }
+              } catch (e) {
+                return { ok: false, error: e?.message || String(e) }
+              }
+            }
+
+            async function getTextFileFromRepo(path, ref) {
+              const res = await github.rest.repos.getContent({ owner, repo, path, ref })
+              if (Array.isArray(res.data) || !res.data?.content) throw new Error(`Invalid content response for ${path}`)
+              const raw = Buffer.from(res.data.content, res.data.encoding || 'base64').toString('utf8')
+              return raw
+            }
+
+            async function getSiteBase() {
+              try {
+                const raw = await getTextFileFromRepo('astro.config.mjs', context.payload.repository.default_branch)
+                const m = raw.match(/\bsite\s*:\s*["']([^"']+)["']/)
+                if (!m) return null
+                return m[1]
+              } catch (e) {
+                core.warning(`Failed to read astro.config.mjs: ${e?.message || e}`)
+                return null
+              }
+            }
+
+            const siteBase = await getSiteBase()
+
+            function normalizeUrl(rawUrl) {
+              if (!isNonEmptyString(rawUrl)) return null
+              const u = rawUrl.trim()
+              if (u.startsWith('/')) {
+                if (!siteBase) return null
+                return new URL(u, siteBase).toString()
+              }
+              try {
+                return new URL(u).toString()
+              } catch {
+                return null
+              }
+            }
+
+            async function checkUrl(url, { timeoutMs }) {
+              const controller = new AbortController()
+              const timer = setTimeout(() => controller.abort(), timeoutMs)
+              try {
+                const res = await fetch(url, {
+                  method: 'GET',
+                  redirect: 'follow',
+                  headers: {
+                    'user-agent': 'fuwari-auto-pr/1.0 (+github actions)',
+                    accept: 'text/html,application/json,image/*,*/*;q=0.8',
+                  },
+                  signal: controller.signal,
+                })
+                return { ok: res.status >= 200 && res.status < 400, status: res.status }
+              } catch (e) {
+                return { ok: false, error: e?.message || String(e) }
+              } finally {
+                clearTimeout(timer)
+              }
+            }
+
+            async function setLabels({ addLabels, removeLabels }) {
+              for (const name of removeLabels) {
+                try {
+                  await github.rest.issues.removeLabel({ owner, repo, issue_number: pull_number, name })
+                } catch (e) {
+                  if (e.status !== 404) throw e
+                }
+              }
+              if (addLabels.length) {
+                await github.rest.issues.addLabels({ owner, repo, issue_number: pull_number, labels: addLabels })
+              }
+            }
+
+            const relevant = files.filter((f) => {
+              if (f.status === 'removed') return false
+              if (f.filename.startsWith('src/data/friends/')) return true
+              if (f.filename.startsWith('src/data/sponsors/')) return true
+              return false
+            })
+
+            const invalidSuffix = relevant.filter((f) => !f.filename.endsWith('.json')).map((f) => f.filename)
+            if (invalidSuffix.length) {
+              await createComment(
+                [
+                  '检测到友链/赞助目录下存在非 .json 文件，已停止处理：',
+                  '',
+                  ...invalidSuffix.map((p) => `- ${p}`),
+                ].join('\n')
+              )
+              return
+            }
+
+            const headSha = context.payload.pull_request.head.sha
+            const parsedEntries = []
+            const errors = []
+
+            for (const f of relevant) {
+              const raw = await getTextFileFromRepo(f.filename, headSha)
+              const parsed = parseJsonSafe(raw)
+              if (!parsed.ok) {
+                errors.push(`${f.filename}: JSON 解析失败（${parsed.error}）`)
+                continue
+              }
+              if (!parsed.value || typeof parsed.value !== 'object' || Array.isArray(parsed.value)) {
+                errors.push(`${f.filename}: JSON 必须是对象`)
+                continue
+              }
+
+              const kind = f.filename.startsWith('src/data/friends/') ? 'friend' : 'sponsor'
+              parsedEntries.push({ path: f.filename, kind, data: parsed.value })
+            }
+
+            function validateEntry({ kind, data, path }) {
+              const entryErrors = []
+              if (!isNonEmptyString(data.name)) entryErrors.push('name 必填')
+              if (!isNonEmptyString(data.avatar)) entryErrors.push('avatar 必填')
+              if (kind === 'friend') {
+                if (!isNonEmptyString(data.url)) entryErrors.push('url 必填')
+              }
+              if (kind === 'sponsor') {
+                if (!isNonEmptyString(data.date)) entryErrors.push('date 必填')
+                if (!isNonEmptyString(data.amount)) entryErrors.push('amount 必填')
+              }
+              if (entryErrors.length) return `${path}: ${entryErrors.join('、')}`
+              return null
+            }
+
+            for (const e of parsedEntries) {
+              const err = validateEntry(e)
+              if (err) errors.push(err)
+            }
+
+            if (errors.length) {
+              await createComment(['检测到数据文件校验失败：', '', ...errors.map((x) => `- ${x}`)].join('\n'))
+              return
+            }
+
+            const vipPaths = parsedEntries
+              .filter((e) => Object.prototype.hasOwnProperty.call(e.data, 'vip'))
+              .map((e) => e.path)
+            if (vipPaths.length) {
+              await createComment(
+                [
+                  '检测到 JSON 存在 vip 字段，已终止自动流程。',
+                  '',
+                  '请从以下文件移除 vip 字段后再 push 更新（移除后才会继续自动校验/自动合并）：',
+                  '',
+                  ...vipPaths.map((p) => `- ${p}`),
+                ].join('\n')
+              )
+              return
+            }
+
+            const primaryKind = touchedSponsors ? 'sponsor' : 'friend'
+            const primary = parsedEntries.find((e) => e.kind === primaryKind) || parsedEntries[0]
+
+            await github.rest.pulls.update({
+              owner,
+              repo,
+              pull_number,
+              title: `${primary.kind === 'friend' ? '友链' : '赞助'}：${primary.data.name}`,
+            })
+
+            const avatarUrl = normalizeUrl(primary.data.avatar)
+            const siteUrl = normalizeUrl(primary.data.url)
+            const selfSite = siteBase ? siteBase.replace(/\/$/, '') : null
+            const normalizedSiteUrl = siteUrl ? siteUrl.replace(/\/$/, '') : null
+            const normalizedBacklinkRaw = isNonEmptyString(primary.data.backlink) ? primary.data.backlink.trim() : null
+            const normalizedBacklinkUrl = normalizedBacklinkRaw
+              ? (() => {
+                  try {
+                    return new URL(normalizedBacklinkRaw).toString().replace(/\/$/, '')
+                  } catch {
+                    return null
+                  }
+                })()
+              : null
+            if (primary.kind === 'friend' && selfSite) {
+              if (normalizedSiteUrl === selfSite) {
+                await createComment(`检测到友链 JSON 的 url 指向本站（${siteBase}），请填写你自己的网站 URL。`)
+                return
+              }
+              if (normalizedBacklinkUrl === selfSite) {
+                await createComment(`检测到友链 JSON 的 backlink 指向本站（${siteBase}），请填写你自己网站的友链页 URL。`)
+                return
+              }
+            }
+
+            const avatarCheck = avatarUrl ? await checkUrl(avatarUrl, { timeoutMs: 10000 }) : { ok: false, error: 'Invalid avatar URL' }
+            const siteCheck =
+              primary.kind === 'friend'
+                ? siteUrl
+                  ? await checkUrl(siteUrl, { timeoutMs: 10000 })
+                  : { ok: false, error: 'Invalid site URL' }
+                : siteUrl
+                  ? await checkUrl(siteUrl, { timeoutMs: 10000 })
+                  : null
+
+            const addReach = []
+            const removeReach = [LABEL_AVATAR_OK, LABEL_AVATAR_BAD, LABEL_SITE_OK, LABEL_SITE_BAD, LABEL_ALL_OK]
+
+            addReach.push(avatarCheck.ok ? LABEL_AVATAR_OK : LABEL_AVATAR_BAD)
+            if (siteCheck) addReach.push(siteCheck.ok ? LABEL_SITE_OK : LABEL_SITE_BAD)
+
+            const allOk = avatarCheck.ok && (!siteCheck || siteCheck.ok)
+            if (allOk && siteCheck) addReach.push(LABEL_ALL_OK)
+
+            await setLabels({ addLabels: addReach, removeLabels: removeReach })
+
+            const existingLabelNames = new Set((context.payload.pull_request.labels || []).map((l) => l.name))
+            core.info(`bidir: event.action=${context.payload.action || ''}`)
+            core.info(`bidir: siteBase=${siteBase || ''}`)
+            core.info(`bidir: existingLabels=${Array.from(existingLabelNames).join(',')}`)
+            if (primary.kind === 'friend') {
+              const isLegacyFlow = existingLabelNames.has(LABEL_VERIFYING)
+              const isBidirFlow = !isLegacyFlow
+              core.info(`bidir: primary.kind=friend isLegacyFlow=${isLegacyFlow} isBidirFlow=${isBidirFlow}`)
+              if (isBidirFlow) {
+                if (!siteBase) {
+                  core.info('bidir: missing siteBase -> comment and return')
+                  await createComment('无法读取本站 site 配置，无法进行双向链接验证。')
+                  return
+                }
+                if (!existingLabelNames.has(LABEL_BIDIR) && !existingLabelNames.has(LABEL_BIDIR_OK)) {
+                  core.info('bidir: add LABEL_BIDIR')
+                  await github.rest.issues.addLabels({ owner, repo, issue_number: pull_number, labels: [LABEL_BIDIR] })
+                }
+
+                const expected = siteBase.replace(/\/$/, '')
+                const backlink = primary.data.backlink
+                core.info(`bidir: url=${String(siteUrl || '')}`)
+                core.info(`bidir: backlink=${String(backlink || '')}`)
+
+                if (!isNonEmptyString(backlink)) {
+                  core.info('bidir: missing backlink -> setLabels + comment')
+                  await setLabels({ addLabels: [LABEL_BIDIR], removeLabels: [LABEL_BIDIR_OK] })
+                  await createComment(
+                    [
+                      '基础校验已通过，需要进行双向链接验证：',
+                      '',
+                      `1) 请在你的友链页面添加本站友链（必须为绝对链接）：${siteBase}`,
+                      '2) 然后更新本 PR 的友链 JSON，增加字段 backlink（填写你的友链页面 URL，必须是 http/https 绝对链接）',
+                      '',
+                      '示例：',
+                      '',
+                      '```json',
+                      '{',
+                      '  "name": "...",',
+                      '  "avatar": "...",',
+                      '  "url": "...",',
+                      '  "backlink": "https://example.com/friends/"',
+                      '}',
+                      '```',
+                      '',
+                      `3) 请确保你的 backlink 页面中包含指向本站的链接 href=${siteBase} （必须完全一致的绝对链接）`,
+                      '4) push 更新后 Action 会自动重新校验并在通过后自动合并，无需额外评论',
+                    ].join('\n')
+                  )
+                  return
+                }
+
+                let backlinkUrl
+                try {
+                  backlinkUrl = new URL(backlink).toString()
+                } catch {
+                  core.info('bidir: backlink invalid url -> setLabels + comment')
+                  await setLabels({ addLabels: [LABEL_BIDIR], removeLabels: [LABEL_BIDIR_OK] })
+                  await createComment(`双向链接验证失败：backlink 不是合法的 URL（${backlink}）`)
+                  return
+                }
+                if (!backlinkUrl.startsWith('http://') && !backlinkUrl.startsWith('https://')) {
+                  core.info('bidir: backlink not http(s) -> setLabels + comment')
+                  await setLabels({ addLabels: [LABEL_BIDIR], removeLabels: [LABEL_BIDIR_OK] })
+                  await createComment(`双向链接验证失败：backlink 必须以 http/https 开头（${backlink}）`)
+                  return
+                }
+
+                let siteUrlObj
+                try {
+                  siteUrlObj = new URL(siteUrl)
+                } catch {
+                  core.info('bidir: siteUrl invalid -> setLabels + comment')
+                  await setLabels({ addLabels: [LABEL_BIDIR], removeLabels: [LABEL_BIDIR_OK] })
+                  await createComment('双向链接验证失败：友链 JSON 中 url 无效，无法比较主域名。')
+                  return
+                }
+                const backlinkHost = new URL(backlinkUrl).host.toLowerCase()
+                const siteHost = siteUrlObj.host.toLowerCase()
+                core.info(`bidir: host url=${siteHost} backlink=${backlinkHost}`)
+                if (backlinkHost !== siteHost) {
+                  core.info('bidir: host mismatch -> setLabels + comment')
+                  await setLabels({ addLabels: [LABEL_BIDIR], removeLabels: [LABEL_BIDIR_OK] })
+                  await createComment(
+                    [
+                      '双向链接验证失败：backlink 的主域名必须与 url 的主域名一致。',
+                      '',
+                      `url：${siteUrlObj.toString()}`,
+                      `backlink：${backlinkUrl}`,
+                    ].join('\n')
+                  )
+                  return
+                }
+
+                const html = await (async () => {
+                  const controller = new AbortController()
+                  const timer = setTimeout(() => controller.abort(), 10000)
+                  try {
+                    const res = await fetch(backlinkUrl, {
+                      method: 'GET',
+                      redirect: 'follow',
+                      headers: { 'user-agent': 'fuwari-auto-pr/1.0 (+github actions)', accept: 'text/html,*/*;q=0.8' },
+                      signal: controller.signal,
+                    })
+                    if (!res.ok) {
+                      core.info(`bidir: fetch backlink not ok status=${res.status}`)
+                      await setLabels({ addLabels: [LABEL_BIDIR], removeLabels: [LABEL_BIDIR_OK] })
+                      await createComment(`双向链接验证失败：无法访问 backlink （${res.status}）：${backlinkUrl}`)
+                      return null
+                    }
+                    core.info('bidir: fetch backlink ok, read text')
+                    return await res.text()
+                  } catch (e) {
+                    core.info(`bidir: fetch backlink threw: ${e?.message || e}`)
+                    await setLabels({ addLabels: [LABEL_BIDIR], removeLabels: [LABEL_BIDIR_OK] })
+                    await createComment(`双向链接验证失败：访问 backlink 出错：${backlinkUrl} （${e?.message || e}）`)
+                    return null
+                  } finally {
+                    clearTimeout(timer)
+                  }
+                })()
+                if (!html) return
+                core.info(`bidir: html length=${html.length}`)
+
+                let found = false
+                const re = /href\s*=\s*["']([^"']+)["']/gi
+                let m
+                while ((m = re.exec(html)) !== null) {
+                  const href = (m[1] || '').trim()
+                  if (!href.startsWith('http')) continue
+                  const normalized = href.replace(/\/$/, '')
+                  if (normalized === expected) {
+                    found = true
+                    break
+                  }
+                }
+                core.info(`bidir: expected=${expected} found=${found}`)
+
+                if (!found) {
+                  core.info('bidir: not found -> setLabels + comment')
+                  await setLabels({ addLabels: [LABEL_BIDIR], removeLabels: [LABEL_BIDIR_OK] })
+                  await createComment(
+                    [
+                      '双向链接验证未通过：在 backlink 页面未检测到本站友链。',
+                      '',
+                      `需要添加的绝对链接：${siteBase}`,
+                      `backlink 页面：${backlinkUrl}`,
+                      '',
+                      '请添加后 push 更新（无需评论）。',
+                    ].join('\n')
+                  )
+                  return
+                }
+
+                await setLabels({ addLabels: [LABEL_BIDIR_OK], removeLabels: [LABEL_BIDIR] })
+                core.info('bidir: verified ok -> merge')
+
+                try {
+                  await github.rest.pulls.merge({ owner, repo, pull_number, merge_method: 'squash' })
+                } catch (e) {
+                  await createComment(`自动合并失败：${e?.message || e}`)
+                  return
+                }
+              }
+            }
+
+  verify_and_merge:
+    if: ${{ github.event_name == 'issue_comment' && github.event.issue.pull_request && github.event.comment.body == '准备完毕' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify ownership and auto-merge
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.PAT }}
+          script: |
+            const owner = context.repo.owner
+            const repo = context.repo.repo
+            const pull_number = context.payload.issue.number
+
+            const LABEL_FRIEND = '友链'
+            const LABEL_SPONSOR = '赞助'
+            const LABEL_AVATAR_OK = '头像可达'
+            const LABEL_AVATAR_BAD = '头像不可达'
+            const LABEL_SITE_OK = '网站可达'
+            const LABEL_SITE_BAD = '网站不可达'
+            const LABEL_ALL_OK = 'URL全部可达'
+            const LABEL_VERIFYING = '所有权验证进行中'
+            const LABEL_BIDIR = '双向链接验证'
+            const LABEL_BIDIR_OK = '双向链接验证通过'
+
+            function isNonEmptyString(v) {
+              return typeof v === 'string' && v.trim().length > 0
+            }
+
+            async function createComment(body) {
+              await github.rest.issues.createComment({ owner, repo, issue_number: pull_number, body })
+            }
+
+            function parseJsonSafe(text) {
+              try {
+                return { ok: true, value: JSON.parse(text) }
+              } catch (e) {
+                return { ok: false, error: e?.message || String(e) }
+              }
+            }
+
+            async function getTextFileFromRepo(path, ref) {
+              const res = await github.rest.repos.getContent({ owner, repo, path, ref })
+              if (Array.isArray(res.data) || !res.data?.content) throw new Error(`Invalid content response for ${path}`)
+              const raw = Buffer.from(res.data.content, res.data.encoding || 'base64').toString('utf8')
+              return raw
+            }
+
+            async function getSiteBase(defaultBranch) {
+              try {
+                const raw = await getTextFileFromRepo('astro.config.mjs', defaultBranch)
+                const m = raw.match(/\bsite\s*:\s*["']([^"']+)["']/)
+                if (!m) return null
+                return m[1]
+              } catch {
+                return null
+              }
+            }
+
+            function normalizeUrl(rawUrl, siteBase) {
+              if (!isNonEmptyString(rawUrl)) return null
+              const u = rawUrl.trim()
+              if (u.startsWith('/')) {
+                if (!siteBase) return null
+                return new URL(u, siteBase).toString()
+              }
+              try {
+                return new URL(u).toString()
+              } catch {
+                return null
+              }
+            }
+
+            async function checkUrl(url, { timeoutMs }) {
+              const controller = new AbortController()
+              const timer = setTimeout(() => controller.abort(), timeoutMs)
+              try {
+                const res = await fetch(url, {
+                  method: 'GET',
+                  redirect: 'follow',
+                  headers: {
+                    'user-agent': 'fuwari-auto-pr/1.0 (+github actions)',
+                    accept: 'text/html,application/json,image/*,*/*;q=0.8',
+                  },
+                  signal: controller.signal,
+                })
+                return { ok: res.status >= 200 && res.status < 400, status: res.status }
+              } catch (e) {
+                return { ok: false, error: e?.message || String(e) }
+              } finally {
+                clearTimeout(timer)
+              }
+            }
+
+            async function setLabels({ addLabels, removeLabels }) {
+              for (const name of removeLabels) {
+                try {
+                  await github.rest.issues.removeLabel({ owner, repo, issue_number: pull_number, name })
+                } catch (e) {
+                  if (e.status !== 404) throw e
+                }
+              }
+              if (addLabels.length) {
+                await github.rest.issues.addLabels({ owner, repo, issue_number: pull_number, labels: addLabels })
+              }
+            }
+
+            async function listAllFiles() {
+              const files = []
+              for await (const res of github.paginate.iterator(
+                github.rest.pulls.listFiles,
+                { owner, repo, pull_number, per_page: 100 }
+              )) {
+                for (const f of res.data) files.push(f)
+              }
+              return files
+            }
+
+            const pr = await github.rest.pulls.get({ owner, repo, pull_number })
+            core.info(`event_name=${context.eventName}`)
+            core.info(`actor=${context.actor}`)
+            core.info(`issue_comment_author=${context.payload.comment?.user?.login || ''}`)
+            core.info(`pr.number=${pr.data.number}`)
+            core.info(`pr.state=${pr.data.state}, pr.draft=${pr.data.draft}`)
+            core.info(`pr.user=${pr.data.user?.login || ''}`)
+            core.info(`pr.head.ref=${pr.data.head?.ref || ''}`)
+            core.info(`pr.head.sha=${pr.data.head?.sha || ''}`)
+            core.info(`pr.head.repo.fork=${pr.data.head?.repo?.fork}`)
+            core.info(`pr.base.ref=${pr.data.base?.ref || ''}`)
+            core.info(`pr.base.repo.private=${pr.data.base?.repo?.private}`)
+            core.info(`pr.maintainer_can_modify=${pr.data.maintainer_can_modify}`)
+            core.info(`pr.mergeable=${pr.data.mergeable}`)
+            core.info(`pr.mergeable_state=${pr.data.mergeable_state}`)
+            core.info(`pr.rebaseable=${pr.data.rebaseable}`)
+            core.info(`pr.auto_merge=${pr.data.auto_merge ? 'enabled' : 'disabled'}`)
+            core.info(`pr.labels=${(pr.data.labels || []).map((l) => l.name).join(',')}`)
+
+            try {
+              const auth = await github.rest.apps.getAuthenticated()
+              core.info(`authenticated_app=${auth.data?.name || ''}`)
+            } catch (e) {
+              core.info(`getAuthenticated failed: ${e?.status || ''} ${e?.message || e}`)
+            }
+            const prLabels = new Set((pr.data.labels || []).map((l) => l.name))
+            if (!prLabels.has(LABEL_FRIEND) && !prLabels.has(LABEL_SPONSOR)) {
+              core.info('PR is not labeled as 友链/赞助. Skip.')
+              return
+            }
+            if (prLabels.has(LABEL_BIDIR) || prLabels.has(LABEL_BIDIR_OK)) {
+              await createComment('该 PR 走双向链接验证流程：请在友链 JSON 中填写 backlink 字段并 push 更新，无需回复“准备完毕”。')
+              return
+            }
+
+            const files = await listAllFiles()
+            const relevant = files.filter((f) => {
+              if (f.status === 'removed') return false
+              if (f.filename.startsWith('src/data/friends/')) return true
+              if (f.filename.startsWith('src/data/sponsors/')) return true
+              return false
+            })
+
+            const invalidSuffix = relevant.filter((f) => !f.filename.endsWith('.json')).map((f) => f.filename)
+            if (invalidSuffix.length) {
+              await createComment(['检测到友链/赞助目录下存在非 .json 文件：', '', ...invalidSuffix.map((p) => `- ${p}`)].join('\n'))
+              return
+            }
+
+            const parsedEntries = []
+            const errors = []
+            for (const f of relevant) {
+              const raw = await getTextFileFromRepo(f.filename, pr.data.head.sha)
+              const parsed = parseJsonSafe(raw)
+              if (!parsed.ok) {
+                errors.push(`${f.filename}: JSON 解析失败（${parsed.error}）`)
+                continue
+              }
+              if (!parsed.value || typeof parsed.value !== 'object' || Array.isArray(parsed.value)) {
+                errors.push(`${f.filename}: JSON 必须是对象`)
+                continue
+              }
+              const kind = f.filename.startsWith('src/data/friends/') ? 'friend' : 'sponsor'
+              parsedEntries.push({ path: f.filename, kind, data: parsed.value })
+            }
+
+            function validateEntry({ kind, data, path }) {
+              const entryErrors = []
+              if (!isNonEmptyString(data.name)) entryErrors.push('name 必填')
+              if (!isNonEmptyString(data.avatar)) entryErrors.push('avatar 必填')
+              if (kind === 'friend') {
+                if (!isNonEmptyString(data.url)) entryErrors.push('url 必填')
+              }
+              if (kind === 'sponsor') {
+                if (!isNonEmptyString(data.date)) entryErrors.push('date 必填')
+                if (!isNonEmptyString(data.amount)) entryErrors.push('amount 必填')
+              }
+              if (entryErrors.length) return `${path}: ${entryErrors.join('、')}`
+              return null
+            }
+
+            for (const e of parsedEntries) {
+              const err = validateEntry(e)
+              if (err) errors.push(err)
+            }
+
+            if (errors.length) {
+              await createComment(['检测到数据文件校验失败：', '', ...errors.map((x) => `- ${x}`)].join('\n'))
+              return
+            }
+
+            const vipPaths = parsedEntries
+              .filter((e) => Object.prototype.hasOwnProperty.call(e.data, 'vip'))
+              .map((e) => e.path)
+            if (vipPaths.length) {
+              await createComment(
+                [
+                  '检测到 JSON 存在 vip 字段，已终止自动流程。',
+                  '',
+                  '请从以下文件移除 vip 字段后再 push 更新，然后再次回复“准备完毕”：',
+                  '',
+                  ...vipPaths.map((p) => `- ${p}`),
+                ].join('\n')
+              )
+              return
+            }
+
+            const primaryKind = prLabels.has(LABEL_SPONSOR) ? 'sponsor' : 'friend'
+            const primary = parsedEntries.find((e) => e.kind === primaryKind) || parsedEntries[0]
+
+            await github.rest.pulls.update({
+              owner,
+              repo,
+              pull_number,
+              title: `${primary.kind === 'friend' ? '友链' : '赞助'}：${primary.data.name}`,
+            })
+            const siteBase = await getSiteBase(pr.data.base.repo.default_branch)
+            const avatarUrl = normalizeUrl(primary.data.avatar, siteBase)
+            const siteUrl = normalizeUrl(primary.data.url, siteBase)
+            const selfSite = siteBase ? siteBase.replace(/\/$/, '') : null
+            const normalizedSiteUrl = siteUrl ? siteUrl.replace(/\/$/, '') : null
+            if (primary.kind === 'friend' && selfSite && normalizedSiteUrl === selfSite) {
+              await createComment(`检测到友链 JSON 的 url 指向本站（${siteBase}），请填写你自己的网站 URL。`)
+              return
+            }
+
+            const avatarCheck = avatarUrl ? await checkUrl(avatarUrl, { timeoutMs: 10000 }) : { ok: false, error: 'Invalid avatar URL' }
+            const siteCheck =
+              primary.kind === 'friend'
+                ? siteUrl
+                  ? await checkUrl(siteUrl, { timeoutMs: 10000 })
+                  : { ok: false, error: 'Invalid site URL' }
+                : siteUrl
+                  ? await checkUrl(siteUrl, { timeoutMs: 10000 })
+                  : null
+
+            const addReach = []
+            const removeReach = [LABEL_AVATAR_OK, LABEL_AVATAR_BAD, LABEL_SITE_OK, LABEL_SITE_BAD, LABEL_ALL_OK]
+
+            addReach.push(avatarCheck.ok ? LABEL_AVATAR_OK : LABEL_AVATAR_BAD)
+            if (siteCheck) addReach.push(siteCheck.ok ? LABEL_SITE_OK : LABEL_SITE_BAD)
+
+            const allOk = avatarCheck.ok && (!siteCheck || siteCheck.ok)
+            if (allOk && siteCheck) addReach.push(LABEL_ALL_OK)
+
+            await setLabels({ addLabels: addReach, removeLabels: removeReach })
+
+            if (!avatarCheck.ok || (siteCheck && !siteCheck.ok)) {
+              await createComment('检测到链接不可达，请修复后再次回复“准备完毕”。')
+              return
+            }
+
+            if (primary.kind === 'friend' && prLabels.has(LABEL_VERIFYING)) {
+              const token = `fuwari-verify:${pull_number}:${pr.data.user.login}`
+              const verifyUrl = siteUrl ? new URL('/.well-known/fuwari-verify.txt', siteUrl).toString() : null
+              if (!verifyUrl) {
+                await createComment('检测到所有权验证进行中，但友链 JSON 中 url 无效；按旧逻辑继续自动合并。')
+              } else {
+                const verifyRes = await checkUrl(verifyUrl, { timeoutMs: 10000 })
+                if (!verifyRes.ok) {
+                  await createComment('所有权验证未通过（验证文件不可访问）；按旧逻辑继续自动合并。')
+                } else {
+                  const txt = await (async () => {
+                    const controller = new AbortController()
+                    const timer = setTimeout(() => controller.abort(), 10000)
+                    try {
+                      const res = await fetch(verifyUrl, {
+                        method: 'GET',
+                        redirect: 'follow',
+                        headers: { 'user-agent': 'fuwari-auto-pr/1.0 (+github actions)', accept: 'text/plain,*/*;q=0.8' },
+                        signal: controller.signal,
+                      })
+                      return await res.text()
+                    } finally {
+                      clearTimeout(timer)
+                    }
+                  })()
+                  if (!txt.includes(token)) {
+                    await createComment('所有权验证未通过（验证文件内容不匹配）；按旧逻辑继续自动合并。')
+                  }
+                }
+              }
+            }
+
+            try {
+              await github.rest.pulls.merge({ owner, repo, pull_number, merge_method: 'squash' })
+            } catch (e) {
+              core.error(`merge failed: status=${e?.status || ''}`)
+              core.error(`merge failed: message=${e?.message || e}`)
+              try {
+                core.error(`merge failed: response=${JSON.stringify(e?.response?.data || null)}`)
+              } catch {}
+              await createComment(
+                [
+                  '自动合并失败。',
+                  '',
+                  `错误信息：${e?.message || e}`,
+                  `HTTP 状态：${e?.status || 'unknown'}`,
+                  `响应：${(() => { try { return JSON.stringify(e?.response?.data || null) } catch { return 'unavailable' } })()}`,
+                ].join('\n')
+              )
+              return
+            }
+

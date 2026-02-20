@@ -2,7 +2,7 @@
 import { Icon } from "astro-icon/components";
 import { licenseConfig, profileConfig } from "../../config";
 
-import { formatDateToYYYYMMDD } from "../../utils/date-utils";
+import { formatPostDateForDisplay } from "../../utils/date-utils";
 
 interface Props {
 	title: string;
@@ -52,7 +52,7 @@ const postUrl = decodeURIComponent(Astro.url.toString());
         </div>
         <div>
             <div class="transition text-black/30 dark:text-white/30 text-sm">发布于</div>
-            <div class="transition text-black/75 dark:text-white/75 line-clamp-2">{formatDateToYYYYMMDD(pubDate)}</div>
+            <div class="transition text-black/75 dark:text-white/75 line-clamp-2">{formatPostDateForDisplay(pubDate)}</div>
         </div>
         <div>
             <div class="transition text-black/30 dark:text-white/30 text-sm">许可协议</div>

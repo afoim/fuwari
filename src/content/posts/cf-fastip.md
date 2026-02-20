@@ -26,6 +26,24 @@ title: 试试Cloudflare IP优选！让Cloudflare在国内再也不是减速器�
 
 ---
 
+# Worker项目优选
+
+如果你需要优选 Page/Worker项目
+
+首先，如果你是Page，将项目转为Worker，具体AI一下即可
+
+接下来编写Worker路由，直接填写 `你的域名+ /*` 
+
+> 如果你的域名不在Cloudflare，请先SaaS进来，否则 **Worker 路由不生效** ，具体看 [你真的玩懂了Cloudflare SaaS吗？为什么经由SaaS的流量可以做优选？ - 《二叉树树》官方网站](/posts/cf-saas/)
+
+![](../assets/images/cf-fastip.png)
+
+最后写一条DNS解析到想要的优选域名，完事！
+
+![](../assets/images/cf-fastip-1.png)
+
+不需要折腾SaaS，不需要多域名，就是这么简单！
+
 # Worker路由反代全球并优选（新）
 
 > 本方法的原理为通过Worker反代你的源站，然后将Worker的入口节点进行优选。此方法不是传统的优选，源站接收到的Hosts头仍然是直接指向源站的解析
