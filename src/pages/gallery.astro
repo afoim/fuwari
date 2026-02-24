@@ -1,366 +1,402 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>动态随机图 API 验证工具 (New API)</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Microsoft YaHei", Arial, sans-serif;
-        }
-        body {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 0 20px;
-            background-color: #f5f5f5;
-            line-height: 1.6;
-        }
-        .container {
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-            margin-bottom: 20px;
-        }
-        h1 {
-            color: #333;
-            margin-bottom: 10px;
-            font-size: 24px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
-        }
-        .subtitle {
-            color: #666;
-            font-size: 14px;
-            margin-bottom: 25px;
-            background: #eef2ff;
-            padding: 10px;
-            border-radius: 4px;
-            border-left: 4px solid #007bff;
-        }
-        h2 {
-            color: #444;
-            font-size: 18px;
-            margin: 20px 0 10px;
-        }
-        .config-section {
-            margin-bottom: 30px;
-        }
-        .form-group {
-            margin-bottom: 18px;
-        }
-        label {
-            display: block;
-            margin-bottom: 6px;
-            font-weight: 600;
-            color: #555;
-            font-size: 14px;
-        }
-        input, select {
-            width: 100%;
-            padding: 10px 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 16px;
-            transition: border-color 0.2s;
-        }
-        input:focus, select:focus {
-            outline: none;
-            border-color: #007bff;
-            box-shadow: 0 0 0 2px rgba(0,123,255,0.1);
-        }
-        .btn-group {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-        }
-        button {
-            flex: 1;
-            padding: 10px;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-        #testBtn {
-            background-color: #007bff;
-            color: white;
-        }
-        #testBtn:hover {
-            background-color: #0056b3;
-        }
-        #clearBtn {
-            background-color: #6c757d;
-            color: white;
-        }
-        #clearBtn:hover {
-            background-color: #5a6268;
-        }
-        .result-section {
-            margin-top: 30px;
-        }
-        .image-preview {
-            width: 100%;
-            height: 400px;
-            border: 2px dashed #ddd;
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            margin-bottom: 20px;
-            background-color: #fafafa;
-            position: relative;
-        }
-        .image-preview img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-        }
-        .image-preview .placeholder {
-            color: #999;
-            font-size: 14px;
-        }
-        .log-section {
-            background-color: #f8f9fa;
-            padding: 15px;
-            border-radius: 4px;
-            max-height: 300px;
-            overflow-y: auto;
-            font-family: Consolas, monospace;
-            font-size: 13px;
-            color: #333;
-            white-space: pre-wrap;
-            line-height: 1.5;
-        }
-        .error { color: #dc3545; }
-        .success { color: #28a745; }
-        .info { color: #17a2b8; }
-        .loading { color: #ffc107; }
-        
-        /* 适配移动端 */
-        @media (max-width: 768px) {
-            .image-preview { height: 250px; }
-            .btn-group { flex-direction: column; }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>动态随机图 API 验证工具</h1>
-        <div class="subtitle">
-            ℹ️ 适用于新版后端 API (支持 ?dir, ?orientation, ?type 参数)。
-            <br>当前测试域名：tu.682000.xyz / tu.fqzlr.top
-        </div>
-        
-        <!-- 配置区域 -->
-        <div class="config-section">
-            <div class="form-group">
-                <label for="apiUrl">API 基础地址（必填）</label>
-                <input type="text" id="apiUrl" placeholder="例如：https://tu.fqzlr.top/random" 
-                       value="https://tu.fqzlr.top/random">
-            </div>
-            
-            <div class="form-group">
-                <label for="dirParam">目录参数（dir）- 可选</label>
-                <input type="text" id="dirParam" placeholder="例如：fqzlr, wallpaper, avatar" 
-                       value="fqzlr">
-                <small style="color:#666; font-size:12px;">指定图片所在的文件夹，留空则随机所有。</small>
-            </div>
-            
-            <div class="form-group">
-                <label for="orientationParam">图片方向（orientation）</label>
-                <select id="orientationParam">
-                    <option value="landscape">横图 (landscape)</option>
-                    <option value="portrait">竖图 (portrait)</option>
-                    <option value="square">方图 (square)</option>
-                    <option value="auto" selected>自适应 (auto) - 根据设备自动判断</option>
-                </select>
-                <small style="color:#666; font-size:12px;">auto 模式会检测 Client Hints 或 User-Agent。</small>
-            </div>
-            
-            <div class="form-group">
-                <label for="typeParam">返回类型（type）</label>
-                <select id="typeParam">
-                    <option value="img" selected>直接返回图片流 (img) - 用于预览</option>
-                    <option value="url">返回 JSON 包含完整URL (url)</option>
-                    <option value="path">返回 JSON 包含相对路径 (path)</option>
-                </select>
-            </div>
-            
-            <div class="form-group">
-                <label for="apiToken">API Token（可选）</label>
-                <input type="text" id="apiToken" placeholder="如果接口需要认证，在此输入 Token">
-            </div>
-            
-            <div class="btn-group">
-                <button id="testBtn">🚀 测试 API 请求</button>
-                <button id="clearBtn">🗑️ 清空日志</button>
-            </div>
-        </div>
-        
-        <!-- 结果展示区域 -->
-        <div class="result-section">
-            <h2>🖼️ 图片预览 / 响应结果</h2>
-            <div class="image-preview" id="imagePreview">
-                <span class="placeholder">点击测试按钮后，此处将显示图片或 API 响应内容</span>
-            </div>
-            
-            <h2>📋 请求/响应日志</h2>
-            <div class="log-section" id="logSection">
-                等待测试...
-            </div>
-        </div>
-    </div>
+---
+import ViewsCounter from "@components/ViewsCounter.astro";
+import MainGridLayout from "@layouts/MainGridLayout.astro";
+import { Icon } from "astro-icon/components";
+---
 
-    <script>
-        const el = {
-            apiUrl: document.getElementById('apiUrl'),
-            dirParam: document.getElementById('dirParam'),
-            orientationParam: document.getElementById('orientationParam'),
-            typeParam: document.getElementById('typeParam'),
-            apiToken: document.getElementById('apiToken'),
-            testBtn: document.getElementById('testBtn'),
-            clearBtn: document.getElementById('clearBtn'),
-            imagePreview: document.getElementById('imagePreview'),
-            logSection: document.getElementById('logSection')
-        };
+<MainGridLayout title="画廊">
+	<div class="card-base p-6 md:p-8">
+		<div class="flex items-center justify-between gap-3 flex-wrap mb-6">
+			<div class="flex items-center gap-2">
+				<div class="h-8 w-8 rounded-lg bg-[var(--primary)] flex items-center justify-center text-white dark:text-black/70">
+					<Icon name="material-symbols:photo-library-rounded" class="text-[1.5rem]"></Icon>
+				</div>
+				<h1 class="text-2xl font-bold text-90">画廊</h1>
+				<div id="status" class="text-sm font-bold text-50 transition-all"></div>
+				<ViewsCounter pathname="/gallery/" />
+			</div>
+			<div class="flex items-center gap-2">
+				<button id="btn-h" type="button" class="btn-regular h-9 px-3 rounded-lg text-sm font-medium">横屏</button>
+				<button id="btn-v" type="button" class="btn-regular h-9 px-3 rounded-lg text-sm font-medium">竖屏</button>
+				<button id="btn-sort" type="button" class="btn-regular h-9 px-3 rounded-lg text-sm font-medium">最新</button>
+			</div>
+		</div>
 
-        function log(message, type = 'info') {
-            const timestamp = new Date().toLocaleTimeString();
-            const typeClass = { error: 'error', success: 'success', info: 'info', loading: 'loading' }[type] || 'info';
-            const logHtml = `<span class="${typeClass}">[${timestamp}] ${message}</span><br>`;
-            el.logSection.innerHTML += logHtml;
-            el.logSection.scrollTop = el.logSection.scrollHeight;
-        }
+		<div class="text-sm text-50 mb-5 leading-relaxed">
+			图片二进制自托管于： <a href="https://p.2x.nz" target="_blank" rel="noopener noreferrer" class="font-medium text-75 hover:text-[var(--primary)] transition-colors">https://p.2x.nz</a> 
+            <br>
+            特别鸣谢：<b class="font-bold text-75">锦瑟/瑞希</b> 大佬提供的图源
+		</div>
 
-        el.clearBtn.addEventListener('click', () => {
-            el.logSection.innerHTML = '日志已清空<br>';
-            el.imagePreview.innerHTML = '<span class="placeholder">点击测试按钮后预览</span>';
-        });
+		<div id="gallery" class="gallery-grid" data-ready="false"></div>
+		<div id="footer-status" class="text-center text-sm text-50 h-10 mt-4"></div>
+		<div id="sentinel" class="h-4"></div>
+	</div>
 
-        el.testBtn.addEventListener('click', async () => {
-            el.imagePreview.innerHTML = '<span class="placeholder loading">⏳ 正在请求 API...</span>';
-            el.logSection.innerHTML = '';
-            
-            const baseUrl = el.apiUrl.value.trim();
-            const dir = el.dirParam.value.trim();
-            const orientation = el.orientationParam.value;
-            const type = el.typeParam.value;
-            const token = el.apiToken.value.trim();
+	<style>
+		.gallery-grid {
+			width: 100%;
+			opacity: 0;
+			transform: translateY(4px);
+			transition:
+				opacity 0.2s ease,
+				transform 0.2s ease;
+		}
+		.gallery-grid[data-ready="true"] {
+			opacity: 1;
+			transform: translateY(0);
+		}
+		.gallery-item {
+			line-height: 24px;
+		}
+	</style>
 
-            if (!baseUrl) {
-                log('❌ 错误：API 地址不能为空！', 'error');
-                return;
-            }
+	<script>
+		import Masonry from "masonry-layout";
+		import imagesLoaded from "imagesloaded";
+		import { Fancybox } from "@fancyapps/ui";
+		import "@fancyapps/ui/dist/fancybox/fancybox.css";
 
-            try {
-                const urlObj = new URL(baseUrl);
-                if (dir) urlObj.searchParams.append('dir', dir);
-                if (orientation) urlObj.searchParams.append('orientation', orientation);
-                if (type) urlObj.searchParams.append('type', type);
-                // 添加随机时间戳防止浏览器缓存图片结果
-                urlObj.searchParams.append('t', Date.now());
-                
-                const requestUrl = urlObj.toString();
-                log(`🌐 请求 URL: ${requestUrl}`, 'info');
+		const RANDOM_JS_URL = "https://p.2x.nz/random.js";
+		const DOMAIN = "https://p.2x.nz";
 
-                const fetchOptions = {
-                    method: 'GET',
-                    cache: 'no-cache',
-                    headers: {
-                        // 如果是 auto 模式，尝试发送 Client Hints 相关头（虽然浏览器通常会自动处理，但显式声明更好）
-                        'Accept': type === 'img' ? 'image/webp,image/apng,image/*,*/*;q=0.8' : 'application/json'
-                    }
-                };
+		let counts = { h: 0, v: 0 };
+		let currentType = "h";
+		let isReverse = false;
+		let nextIndex = 1;
+		let loading = false;
+		let msnry = null;
+		let io = null;
+		let resizeHandler = null;
 
-                if (token) {
-                    fetchOptions.headers['Authorization'] = `Bearer ${token}`;
-                    log(`🔑 已添加 Authorization Header`, 'info');
-                }
+		function getColumns() {
+			const w = window.innerWidth;
+			if (w >= 1024) return 4;
+			if (w >= 768) return 3;
+			return 2;
+		}
 
-                // 特殊处理：如果是 auto 模式，在某些环境下可能需要手动触发 CH 头，但通常由浏览器控制
-                if (orientation === 'auto') {
-                    log(`📱 模式：自适应 (Auto)。API 将尝试读取 Sec-CH-Viewport-Width/Height 或 UA。`, 'info');
-                }
+		function getLayoutConfig(galleryEl) {
+			const gutter = 16;
+			const cols = getColumns();
+			const width = galleryEl.clientWidth || 0;
+			const columnWidth = Math.max(
+				120,
+				Math.floor((width - gutter * (cols - 1)) / cols),
+			);
+			return { gutter, cols, columnWidth };
+		}
 
-                log('📡 发送请求...', 'loading');
-                const response = await fetch(requestUrl, fetchOptions);
-                
-                log(`✅ 响应状态: ${response.status} ${response.statusText}`, response.ok ? 'success' : 'error');
-                
-                // 记录响应头（特别是自适应模式下的 Vary 和 Accept-CH）
-                const varyHeader = response.headers.get('Vary');
-                if (varyHeader) log(`📝 响应头 Vary: ${varyHeader}`, 'info');
+		function setStatus(text) {
+			const statusEl = document.getElementById("status");
+			if (!statusEl) return;
+			statusEl.textContent = text || "";
+		}
 
-                if (!response.ok) {
-                    let errorMsg = `HTTP ${response.status}`;
-                    try {
-                        const txt = await response.text();
-                        errorMsg += `: ${txt}`;
-                    } catch (e) {}
-                    throw new Error(errorMsg);
-                }
+		function updateStatus() {
+			const count = counts[currentType] || 0;
+			setStatus(`共 ${count} 张`);
+		}
 
-                const contentType = response.headers.get('content-type') || '';
+		function setActiveButton() {
+			const btnH = document.getElementById("btn-h");
+			const btnV = document.getElementById("btn-v");
+			if (!btnH || !btnV) return;
+			const activeClasses = ["ring-2", "ring-[var(--primary)]"];
+			for (const c of activeClasses) {
+				btnH.classList.toggle(c, currentType === "h");
+				btnV.classList.toggle(c, currentType === "v");
+			}
+		}
 
-                if (type === 'img') {
-                    // 预期直接返回图片二进制
-                    if (contentType.includes('image')) {
-                        const blob = await response.blob();
-                        const imageUrl = URL.createObjectURL(blob);
-                        log(`🖼️ 成功获取图片 (Size: ${(blob.size/1024).toFixed(2)} KB)`, 'success');
-                        el.imagePreview.innerHTML = `<img src="${imageUrl}" alt="随机图" title="直接图片流响应">`;
-                    } else {
-                        // 如果请求 img 但返回了 JSON 或其他文本，可能是报错信息
-                        const text = await response.text();
-                        log(`⚠️ 期望图片但收到内容类型: ${contentType}`, 'error');
-                        el.imagePreview.innerHTML = `<div style="padding:20px;color:red;text-align:center;">返回的不是图片<br><small>${text.substring(0, 200)}</small></div>`;
-                    }
-                } else {
-                    // 预期返回 JSON (url 或 path)
-                    let data;
-                    if (contentType.includes('json')) {
-                        data = await response.json();
-                        log(`📄 JSON 响应: ${JSON.stringify(data, null, 2)}`, 'success');
-                    } else {
-                        // 兜底：尝试解析文本
-                        const text = await response.text();
-                        log(`📄 文本响应: ${text}`, 'info');
-                        try {
-                            data = JSON.parse(text);
-                        } catch (e) {
-                            el.imagePreview.innerHTML = `<div style="padding:20px;">非 JSON 响应:<br>${text}</div>`;
-                            return;
-                        }
-                    }
+		function updateSortButton() {
+			const btnSort = document.getElementById("btn-sort");
+			if (!btnSort) return;
+			btnSort.textContent = isReverse ? "最早" : "最新";
+			// 可选：添加高亮表示当前状态，或者仅通过文本区分
+			const activeClasses = ["ring-2", "ring-[var(--primary)]"];
+			for (const c of activeClasses) {
+				btnSort.classList.toggle(c, isReverse);
+			}
+		}
 
-                    const imgUrl = data.url || data.path || '';
-                    if (imgUrl) {
-                        // 拼接完整 URL
-                        const fullUrl = imgUrl.startsWith('http') ? imgUrl : `${baseUrl.split('/random')[0]}${imgUrl.startsWith('/') ? '' : '/'}${imgUrl}`;
-                        log(`🔗 完整图片链接: ${fullUrl}`, 'info');
-                        el.imagePreview.innerHTML = `
-                            <div style="text-align:center; padding:10px;">
-                                <p style="margin-bottom:10px;"><strong>API 返回 URL:</strong><br><a href="${fullUrl}" target="_blank" style="color:#007bff;">${fullUrl}</a></p>
-                                <img src="${fullUrl}" alt="预览" style="max-width:100%; max-height:300px; border:1px solid #ddd;" onload="console.log('Image loaded')">
-                                <p style="font-size:12px;color:#666;margin-top:5px;">(上图是通过 API 返回的 URL 二次加载的)</p>
-                            </div>
-                        `;
-                    } else {
-                        el.imagePreview.innerHTML = '<span class="placeholder error">响应中未找到 url 或 path 字段</span>';
-                    }
-                }
+		async function fetchCounts() {
+			try {
+				const res = await fetch(RANDOM_JS_URL, { cache: "no-store" });
+				if (!res.ok) throw new Error(String(res.status));
+				const text = await res.text();
+				const m = text.match(/var\s+counts\s*=\s*(\{[^;]+\})\s*;/);
+				if (!m) throw new Error("counts not found");
+				const parsed = JSON.parse(m[1]);
+				const h = Number(parsed.h || 0);
+				const v = Number(parsed.v || 0);
+				if (!Number.isFinite(h) || !Number.isFinite(v)) throw new Error("counts invalid");
+				counts = { h, v };
+				updateStatus();
+			} catch (e) {
+				counts = { h: 1074, v: 4003 };
+				updateStatus();
+			}
+		}
 
-            } catch (error) {
-                log(`❌ 请求失败: ${error.message}`, 'error');
-                el.imagePreview.innerHTML = `<span class="placeholder error">加载失败<br>${error.message}</span>`;
-            }
-        });
-    </script>
-</body>
-</html>
+		function resetIndex() {
+			const max = counts[currentType] || 0;
+			if (isReverse) {
+				nextIndex = max;
+			} else {
+				nextIndex = 1;
+			}
+		}
+
+		function getNextIndex(max) {
+			if (isReverse) {
+				if (nextIndex < 1) return null;
+				return nextIndex--;
+			}
+			if (nextIndex > max) return null;
+			return nextIndex++;
+		}
+
+		function buildImgUrl(n) {
+			return `${DOMAIN}/ri/${currentType}/${n}.webp`;
+		}
+
+		function buildCard(url, width) {
+			const a = document.createElement("a");
+			a.href = url;
+			// a.target = "_blank";
+			// a.rel = "noopener noreferrer";
+			a.dataset.fancybox = ""; // 独立展示，不分组
+			a.className = "gallery-item block opacity-0 transition-opacity duration-300"; // 初始隐藏
+			a.style.width = `${width}px`;
+
+			const wrapper = document.createElement("div");
+			wrapper.className =
+				"card-base overflow-hidden rounded-xl active:scale-[0.99] transition";
+
+			const img = document.createElement("img");
+			img.src = url;
+			img.loading = "lazy";
+			img.decoding = "async";
+			img.alt = "gallery";
+			img.className = "w-full h-auto block";
+
+			wrapper.appendChild(img);
+			a.appendChild(wrapper);
+			a.appendChild(document.createElement("br"));
+			return a;
+		}
+
+		function clearGallery() {
+			const galleryEl = document.getElementById("gallery");
+			if (!galleryEl) return;
+			galleryEl.innerHTML = "";
+			galleryEl.dataset.ready = "false";
+			resetIndex();
+			if (msnry) {
+				msnry.destroy();
+				msnry = null;
+			}
+		}
+
+		async function loadMore(batch = 20) {
+			const galleryEl = document.getElementById("gallery");
+			const footerStatus = document.getElementById("footer-status");
+			if (!galleryEl || loading) return;
+			const max = counts[currentType];
+			if (!max) return;
+			loading = true;
+			if (footerStatus) footerStatus.textContent = "加载中...";
+
+			try {
+				const { gutter, columnWidth } = getLayoutConfig(galleryEl);
+				if (!msnry) {
+					msnry = new Masonry(galleryEl, {
+						itemSelector: ".gallery-item",
+						gutter,
+						columnWidth,
+						transitionDuration: "0.2s",
+					});
+				}
+
+				const frag = document.createDocumentFragment();
+				const items = [];
+				for (let i = 0; i < batch; i++) {
+					const n = getNextIndex(max);
+					if (!n) break;
+					const url = buildImgUrl(n);
+					const el = buildCard(url, columnWidth);
+					items.push(el);
+					frag.appendChild(el);
+				}
+
+				if (items.length > 0) {
+					galleryEl.appendChild(frag);
+					await new Promise((resolve) => {
+						imagesLoaded(items, () => {
+							if (!msnry) return resolve();
+							msnry.appended(items);
+							msnry.layout();
+							// 显示图片
+							for (const item of items) {
+								item.classList.remove("opacity-0");
+							}
+							if (galleryEl.dataset.ready !== "true") galleryEl.dataset.ready = "true";
+							resolve();
+						});
+					});
+				}
+
+				if (footerStatus) {
+					// 检查是否还有下一页
+					let hasMore = false;
+					if (isReverse) {
+						hasMore = nextIndex >= 1;
+					} else {
+						hasMore = nextIndex <= max;
+					}
+					footerStatus.textContent = hasMore ? "" : "已加载全部";
+
+					// 如果还有更多且 sentinel 可见，继续加载
+					if (hasMore) {
+						const sentinelEl = document.getElementById("sentinel");
+						if (sentinelEl) {
+							const rect = sentinelEl.getBoundingClientRect();
+							if (rect.top < window.innerHeight + 600) {
+								// 使用 setTimeout 避免堆栈过深，并允许 UI 刷新
+								setTimeout(() => loadMore(batch), 50);
+							}
+						}
+					}
+				}
+			} finally {
+				loading = false;
+			}
+		}
+
+		function setType(type) {
+			if (type !== "h" && type !== "v") return;
+			if (currentType === type) return;
+			currentType = type;
+			setActiveButton();
+			updateStatus();
+			clearGallery();
+			loadMore(24);
+		}
+
+		function setupInfiniteLoad() {
+			const sentinelEl = document.getElementById("sentinel");
+			if (!sentinelEl) return;
+			if (io) io.disconnect();
+			io = new IntersectionObserver(
+				(entries) => {
+					if (entries.some((e) => e.isIntersecting && !loading)) {
+						loadMore(20);
+					}
+				},
+				{ rootMargin: "600px 0px" },
+			);
+			io.observe(sentinelEl);
+		}
+
+		function setupResize() {
+			if (resizeHandler) window.removeEventListener("resize", resizeHandler);
+			resizeHandler = () => {
+				const galleryEl = document.getElementById("gallery");
+				if (!galleryEl || !msnry) return;
+				const { gutter, columnWidth } = getLayoutConfig(galleryEl);
+				for (const el of galleryEl.querySelectorAll(".gallery-item")) {
+					el.style.width = `${columnWidth}px`;
+				}
+				msnry.options.gutter = gutter;
+				msnry.options.columnWidth = columnWidth;
+				msnry.layout();
+			};
+			window.addEventListener("resize", resizeHandler, { passive: true });
+		}
+
+		function toggleSort() {
+			isReverse = !isReverse;
+			updateSortButton();
+			clearGallery();
+			loadMore(24);
+		}
+
+		async function init() {
+			const galleryEl = document.getElementById("gallery");
+			if (!galleryEl) return;
+			if (galleryEl.dataset.inited === "true") return;
+			galleryEl.dataset.inited = "true";
+
+			setActiveButton();
+			await fetchCounts();
+			updateSortButton();
+			clearGallery();
+			await loadMore(24);
+			const sentinelEl = document.getElementById("sentinel");
+			if (sentinelEl && !loading) {
+				const rect = sentinelEl.getBoundingClientRect();
+				if (rect.top < window.innerHeight + 600) {
+					loadMore(20);
+				}
+			}
+
+			const btnH = document.getElementById("btn-h");
+			const btnV = document.getElementById("btn-v");
+			const btnSort = document.getElementById("btn-sort");
+			if (btnH) btnH.addEventListener("click", () => setType("h"));
+			if (btnV) btnV.addEventListener("click", () => setType("v"));
+			if (btnSort) btnSort.addEventListener("click", toggleSort);
+			updateSortButton();
+
+			setupInfiniteLoad();
+			setupResize();
+
+			// 绑定 Fancybox
+			Fancybox.bind("[data-fancybox]", {
+				groupAll: false, // 明确禁止分组
+				// 配置项参考主站逻辑
+				Toolbar: {
+					display: {
+						left: ["infobar"],
+						middle: [
+							"zoomIn",
+							"zoomOut",
+							"toggle1to1",
+							"rotateCCW",
+							"rotateCW",
+							"flipX",
+							"flipY",
+						],
+						right: ["slideshow", "fullscreen", "download", "thumbs", "close"],
+					},
+				},
+				Thumbs: {
+					type: "classic",
+				},
+				// 每一张独立展示，不显示前后切换箭头
+				Carousel: {
+					Navigation: false,
+				},
+			});
+		}
+
+		function initIfPresent() {
+			const galleryEl = document.getElementById("gallery");
+			if (!galleryEl) return;
+			init();
+		}
+
+		// 清理 Fancybox
+		document.addEventListener("astro:before-swap", () => {
+			Fancybox.destroy();
+		});
+
+		if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", initIfPresent);
+		else initIfPresent();
+
+		document.addEventListener("astro:after-swap", initIfPresent);
+		document.addEventListener("content:replace", initIfPresent);
+		document.addEventListener("swup:contentReplaced", initIfPresent);
+	</script>
+</MainGridLayout>
