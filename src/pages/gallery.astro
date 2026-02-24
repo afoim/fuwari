@@ -3,371 +3,364 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>图床随机API测试页面</title>
+    <title>动态随机图 API 验证工具 (New API)</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: "Microsoft Yahei", sans-serif;
+            font-family: "Microsoft YaHei", Arial, sans-serif;
         }
         body {
             max-width: 1200px;
             margin: 20px auto;
             padding: 0 20px;
-            background: #f5f7fa;
+            background-color: #f5f5f5;
+            line-height: 1.6;
         }
-        .test-container {
+        .container {
             background: white;
-            border-radius: 12px;
-            padding: 24px;
+            padding: 30px;
+            border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.08);
             margin-bottom: 20px;
         }
         h1 {
             color: #333;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             font-size: 24px;
-            border-left: 4px solid #007cff;
-            padding-left: 12px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
         }
-        .params-form {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            margin-bottom: 24px;
+        .subtitle {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 25px;
+            background: #eef2ff;
+            padding: 10px;
+            border-radius: 4px;
+            border-left: 4px solid #007bff;
+        }
+        h2 {
+            color: #444;
+            font-size: 18px;
+            margin: 20px 0 10px;
+        }
+        .config-section {
+            margin-bottom: 30px;
         }
         .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
+            margin-bottom: 18px;
         }
         label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #555;
             font-size: 14px;
-            color: #666;
-            font-weight: 500;
         }
-        select, input, button {
+        input, select {
+            width: 100%;
             padding: 10px 12px;
-            border: 1px solid #e5e7eb;
-            border-radius: 6px;
-            font-size: 14px;
-            outline: none;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
             transition: border-color 0.2s;
         }
-        select:focus, input:focus {
-            border-color: #007cff;
-        }
-        button {
-            background: #007cff;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-weight: 500;
-            transition: background 0.2s;
-        }
-        button:hover {
-            background: #0066cc;
+        input:focus, select:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 2px rgba(0,123,255,0.1);
         }
         .btn-group {
-            grid-column: 1 / -1;
             display: flex;
-            gap: 12px;
+            gap: 10px;
+            margin-top: 15px;
         }
-        .result-area {
-            margin-top: 24px;
-        }
-        .api-url {
-            background: #f8fafc;
-            padding: 12px;
-            border-radius: 6px;
-            font-family: monospace;
-            font-size: 14px;
-            color: #333;
-            word-break: break-all;
-            margin-bottom: 16px;
-        }
-        .response-box {
-            margin-top: 16px;
-            border-top: 1px solid #e5e7eb;
-            padding-top: 16px;
-        }
-        .response-title {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 8px;
-        }
-        .response-content {
-            padding: 12px;
-            border-radius: 6px;
-            font-size: 14px;
-            min-height: 60px;
-        }
-        .json-content {
-            background: #f8fafc;
-            font-family: monospace;
-            white-space: pre-wrap;
-            color: #333;
-        }
-        .image-content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        .image-content img {
-            max-width: 100%;
-            max-height: 600px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        .error-content {
-            background: #fef2f2;
-            color: #dc2626;
-        }
-        .tab-group {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 16px;
-        }
-        .tab {
-            padding: 8px 16px;
-            border-radius: 6px;
-            background: #f1f5f9;
-            color: #666;
+        button {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
             cursor: pointer;
-            font-size: 14px;
+            transition: background-color 0.2s;
         }
-        .tab.active {
-            background: #007cff;
+        #testBtn {
+            background-color: #007bff;
             color: white;
         }
-        .tab-content {
-            display: none;
+        #testBtn:hover {
+            background-color: #0056b3;
         }
-        .tab-content.active {
-            display: block;
+        #clearBtn {
+            background-color: #6c757d;
+            color: white;
+        }
+        #clearBtn:hover {
+            background-color: #5a6268;
+        }
+        .result-section {
+            margin-top: 30px;
+        }
+        .image-preview {
+            width: 100%;
+            height: 400px;
+            border: 2px dashed #ddd;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-bottom: 20px;
+            background-color: #fafafa;
+            position: relative;
+        }
+        .image-preview img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        .image-preview .placeholder {
+            color: #999;
+            font-size: 14px;
+        }
+        .log-section {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            max-height: 300px;
+            overflow-y: auto;
+            font-family: Consolas, monospace;
+            font-size: 13px;
+            color: #333;
+            white-space: pre-wrap;
+            line-height: 1.5;
+        }
+        .error { color: #dc3545; }
+        .success { color: #28a745; }
+        .info { color: #17a2b8; }
+        .loading { color: #ffc107; }
+        
+        /* 适配移动端 */
+        @media (max-width: 768px) {
+            .image-preview { height: 250px; }
+            .btn-group { flex-direction: column; }
         }
     </style>
 </head>
 <body>
-    <div class="test-container">
-        <h1>图床随机API测试工具</h1>
+    <div class="container">
+        <h1>动态随机图 API 验证工具</h1>
+        <div class="subtitle">
+            ℹ️ 适用于新版后端 API (支持 ?dir, ?orientation, ?type 参数)。
+            <br>当前测试域名：tu.682000.xyz / tu.fqzlr.top
+        </div>
         
-        <div class="params-form">
+        <!-- 配置区域 -->
+        <div class="config-section">
             <div class="form-group">
-                <label>API域名</label>
-                <input type="text" id="api-domain" value="https://tu.fqzlr.top" placeholder="输入你的图床域名">
+                <label for="apiUrl">API 基础地址（必填）</label>
+                <input type="text" id="apiUrl" placeholder="例如：https://tu.fqzlr.top/random" 
+                       value="https://tu.fqzlr.top/random">
             </div>
+            
             <div class="form-group">
-                <label>返回类型(type)</label>
-                <select id="type">
-                    <option value="img">img - 直接返回图片</option>
-                    <option value="url">url - 返回URL链接</option>
-                    <option value="path">path - 返回文件路径（默认）</option>
+                <label for="dirParam">目录参数（dir）- 可选</label>
+                <input type="text" id="dirParam" placeholder="例如：fqzlr, wallpaper, avatar" 
+                       value="fqzlr">
+                <small style="color:#666; font-size:12px;">指定图片所在的文件夹，留空则随机所有。</small>
+            </div>
+            
+            <div class="form-group">
+                <label for="orientationParam">图片方向（orientation）</label>
+                <select id="orientationParam">
+                    <option value="landscape">横图 (landscape)</option>
+                    <option value="portrait">竖图 (portrait)</option>
+                    <option value="square">方图 (square)</option>
+                    <option value="auto" selected>自适应 (auto) - 根据设备自动判断</option>
+                </select>
+                <small style="color:#666; font-size:12px;">auto 模式会检测 Client Hints 或 User-Agent。</small>
+            </div>
+            
+            <div class="form-group">
+                <label for="typeParam">返回类型（type）</label>
+                <select id="typeParam">
+                    <option value="img" selected>直接返回图片流 (img) - 用于预览</option>
+                    <option value="url">返回 JSON 包含完整URL (url)</option>
+                    <option value="path">返回 JSON 包含相对路径 (path)</option>
                 </select>
             </div>
+            
             <div class="form-group">
-                <label>响应格式(form)</label>
-                <select id="form">
-                    <option value="json">json - JSON格式（默认）</option>
-                    <option value="text">text - 纯文本格式</option>
-                </select>
+                <label for="apiToken">API Token（可选）</label>
+                <input type="text" id="apiToken" placeholder="如果接口需要认证，在此输入 Token">
             </div>
-            <div class="form-group">
-                <label>文件类型(content)</label>
-                <select id="content">
-                    <option value="image">image - 图片（默认）</option>
-                    <option value="video">video - 视频</option>
-                    <option value="image,video">image,video - 图片+视频</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>指定目录(dir)</label>
-                <input type="text" id="dir" value="mn_background" placeholder="例如：mn_background">
-            </div>
-            <div class="form-group">
-                <label>图片方向(orientation)</label>
-                <select id="orientation">
-                    <option value="landscape">landscape - 横图</option>
-                    <option value="portrait">portrait - 竖图</option>
-                    <option value="square">square - 方图</option>
-                    <option value="auto">auto - 自适应</option>
-                </select>
-            </div>
+            
             <div class="btn-group">
-                <button id="test-btn">发送请求测试</button>
-                <button id="reset-btn" style="background: #6b7280;">重置参数</button>
+                <button id="testBtn">🚀 测试 API 请求</button>
+                <button id="clearBtn">🗑️ 清空日志</button>
             </div>
         </div>
-
-        <div class="result-area">
-            <div class="response-title">生成的API地址：</div>
-            <div class="api-url" id="api-url">请点击测试按钮生成</div>
+        
+        <!-- 结果展示区域 -->
+        <div class="result-section">
+            <h2>🖼️ 图片预览 / 响应结果</h2>
+            <div class="image-preview" id="imagePreview">
+                <span class="placeholder">点击测试按钮后，此处将显示图片或 API 响应内容</span>
+            </div>
             
-            <div class="tab-group">
-                <div class="tab active" data-tab="response">响应结果</div>
-                <div class="tab" data-tab="info">参数说明</div>
-            </div>
-
-            <div class="tab-content active" id="response-tab">
-                <div class="response-box">
-                    <div class="response-title">响应内容：</div>
-                    <div class="response-content" id="response-content">请点击测试按钮查看响应</div>
-                </div>
-            </div>
-
-            <div class="tab-content" id="info-tab">
-                <div class="response-content" style="background: #f8fafc; line-height: 1.8;">
-                    <strong>参数说明（来自官方文档）：</strong><br>
-                    1. type：返回内容类型<br>
-                    - img：直接返回图片二进制（image/jpeg）<br>
-                    - url：返回完整URL链接<br>
-                    - path：返回文件相对路径（默认）<br>
-                    2. form：响应格式（仅type≠img时生效）<br>
-                    - json：返回JSON {url: "路径/链接"}（默认）<br>
-                    - text：直接返回纯文本路径/链接<br>
-                    3. content：文件类型过滤，默认image<br>
-                    4. dir：指定目录，必填（如mn_background）<br>
-                    5. orientation：图片方向筛选<br>
-                    - landscape：横图 | portrait：竖图 | square：方图 | auto：自适应
-                </div>
+            <h2>📋 请求/响应日志</h2>
+            <div class="log-section" id="logSection">
+                等待测试...
             </div>
         </div>
     </div>
 
     <script>
-        // 获取DOM元素
-        const apiDomainEl = document.getElementById('api-domain');
-        const typeEl = document.getElementById('type');
-        const formEl = document.getElementById('form');
-        const contentEl = document.getElementById('content');
-        const dirEl = document.getElementById('dir');
-        const orientationEl = document.getElementById('orientation');
-        const testBtn = document.getElementById('test-btn');
-        const resetBtn = document.getElementById('reset-btn');
-        const apiUrlEl = document.getElementById('api-url');
-        const responseContentEl = document.getElementById('response-content');
-        const tabs = document.querySelectorAll('.tab');
-        const tabContents = document.querySelectorAll('.tab-content');
-
-        // 初始化默认值
-        const defaultFormData = {
-            domain: 'https://tu.fqzlr.top',
-            type: 'img',
-            form: 'json',
-            content: 'image',
-            dir: 'mn_background',
-            orientation: 'landscape'
+        const el = {
+            apiUrl: document.getElementById('apiUrl'),
+            dirParam: document.getElementById('dirParam'),
+            orientationParam: document.getElementById('orientationParam'),
+            typeParam: document.getElementById('typeParam'),
+            apiToken: document.getElementById('apiToken'),
+            testBtn: document.getElementById('testBtn'),
+            clearBtn: document.getElementById('clearBtn'),
+            imagePreview: document.getElementById('imagePreview'),
+            logSection: document.getElementById('logSection')
         };
 
-        // 标签切换
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                // 移除所有active
-                tabs.forEach(t => t.classList.remove('active'));
-                tabContents.forEach(c => c.classList.remove('active'));
-                // 添加当前active
-                tab.classList.add('active');
-                const tabId = tab.dataset.tab + '-tab';
-                document.getElementById(tabId).classList.add('active');
-            });
+        function log(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const typeClass = { error: 'error', success: 'success', info: 'info', loading: 'loading' }[type] || 'info';
+            const logHtml = `<span class="${typeClass}">[${timestamp}] ${message}</span><br>`;
+            el.logSection.innerHTML += logHtml;
+            el.logSection.scrollTop = el.logSection.scrollHeight;
+        }
+
+        el.clearBtn.addEventListener('click', () => {
+            el.logSection.innerHTML = '日志已清空<br>';
+            el.imagePreview.innerHTML = '<span class="placeholder">点击测试按钮后预览</span>';
         });
 
-        // 生成API URL
-        function generateApiUrl() {
-            const domain = apiDomainEl.value.trim().replace(/\/$/, ''); // 移除末尾斜杠
-            const params = new URLSearchParams();
+        el.testBtn.addEventListener('click', async () => {
+            el.imagePreview.innerHTML = '<span class="placeholder loading">⏳ 正在请求 API...</span>';
+            el.logSection.innerHTML = '';
             
-            // 添加参数（跳过默认值可选，这里全部添加确保完整）
-            params.append('type', typeEl.value);
-            if (typeEl.value !== 'img') { // type=img时form不生效，不添加
-                params.append('form', formEl.value);
-            }
-            params.append('content', contentEl.value);
-            if (dirEl.value.trim()) {
-                params.append('dir', dirEl.value.trim());
-            }
-            if (orientationEl.value) {
-                params.append('orientation', orientationEl.value);
-            }
+            const baseUrl = el.apiUrl.value.trim();
+            const dir = el.dirParam.value.trim();
+            const orientation = el.orientationParam.value;
+            const type = el.typeParam.value;
+            const token = el.apiToken.value.trim();
 
-            // 拼接最终URL
-            const apiUrl = `${domain}/random?${params.toString()}`;
-            apiUrlEl.textContent = apiUrl;
-            return apiUrl;
-        }
-
-        // 发送测试请求
-        async function testApi() {
-            const apiUrl = generateApiUrl();
-            responseContentEl.className = 'response-content';
-            responseContentEl.innerHTML = '正在请求...';
+            if (!baseUrl) {
+                log('❌ 错误：API 地址不能为空！', 'error');
+                return;
+            }
 
             try {
-                const type = typeEl.value;
+                const urlObj = new URL(baseUrl);
+                if (dir) urlObj.searchParams.append('dir', dir);
+                if (orientation) urlObj.searchParams.append('orientation', orientation);
+                if (type) urlObj.searchParams.append('type', type);
+                // 添加随机时间戳防止浏览器缓存图片结果
+                urlObj.searchParams.append('t', Date.now());
+                
+                const requestUrl = urlObj.toString();
+                log(`🌐 请求 URL: ${requestUrl}`, 'info');
+
+                const fetchOptions = {
+                    method: 'GET',
+                    cache: 'no-cache',
+                    headers: {
+                        // 如果是 auto 模式，尝试发送 Client Hints 相关头（虽然浏览器通常会自动处理，但显式声明更好）
+                        'Accept': type === 'img' ? 'image/webp,image/apng,image/*,*/*;q=0.8' : 'application/json'
+                    }
+                };
+
+                if (token) {
+                    fetchOptions.headers['Authorization'] = `Bearer ${token}`;
+                    log(`🔑 已添加 Authorization Header`, 'info');
+                }
+
+                // 特殊处理：如果是 auto 模式，在某些环境下可能需要手动触发 CH 头，但通常由浏览器控制
+                if (orientation === 'auto') {
+                    log(`📱 模式：自适应 (Auto)。API 将尝试读取 Sec-CH-Viewport-Width/Height 或 UA。`, 'info');
+                }
+
+                log('📡 发送请求...', 'loading');
+                const response = await fetch(requestUrl, fetchOptions);
+                
+                log(`✅ 响应状态: ${response.status} ${response.statusText}`, response.ok ? 'success' : 'error');
+                
+                // 记录响应头（特别是自适应模式下的 Vary 和 Accept-CH）
+                const varyHeader = response.headers.get('Vary');
+                if (varyHeader) log(`📝 响应头 Vary: ${varyHeader}`, 'info');
+
+                if (!response.ok) {
+                    let errorMsg = `HTTP ${response.status}`;
+                    try {
+                        const txt = await response.text();
+                        errorMsg += `: ${txt}`;
+                    } catch (e) {}
+                    throw new Error(errorMsg);
+                }
+
+                const contentType = response.headers.get('content-type') || '';
+
                 if (type === 'img') {
-                    // type=img：直接显示图片
-                    responseContentEl.className = 'response-content image-content';
-                    responseContentEl.innerHTML = `<img src="${apiUrl}&t=${Date.now()}" alt="测试图片" onerror="this.src='https://picsum.photos/800/450?error=1'; this.alt='图片加载失败'">`;
-                } else {
-                    // type=url/path：发送fetch请求获取响应
-                    const response = await fetch(apiUrl, {
-                        method: 'GET',
-                        headers: {
-                            'Accept': 'application/json, text/plain, */*'
-                        },
-                        cache: 'no-cache'
-                    });
-
-                    if (!response.ok) {
-                        throw new Error(`HTTP错误：状态码 ${response.status}`);
-                    }
-
-                    let result;
-                    if (formEl.value === 'json') {
-                        result = await response.json();
-                        responseContentEl.className = 'response-content json-content';
-                        responseContentEl.textContent = JSON.stringify(result, null, 2);
+                    // 预期直接返回图片二进制
+                    if (contentType.includes('image')) {
+                        const blob = await response.blob();
+                        const imageUrl = URL.createObjectURL(blob);
+                        log(`🖼️ 成功获取图片 (Size: ${(blob.size/1024).toFixed(2)} KB)`, 'success');
+                        el.imagePreview.innerHTML = `<img src="${imageUrl}" alt="随机图" title="直接图片流响应">`;
                     } else {
-                        result = await response.text();
-                        responseContentEl.className = 'response-content json-content';
-                        responseContentEl.textContent = result;
+                        // 如果请求 img 但返回了 JSON 或其他文本，可能是报错信息
+                        const text = await response.text();
+                        log(`⚠️ 期望图片但收到内容类型: ${contentType}`, 'error');
+                        el.imagePreview.innerHTML = `<div style="padding:20px;color:red;text-align:center;">返回的不是图片<br><small>${text.substring(0, 200)}</small></div>`;
+                    }
+                } else {
+                    // 预期返回 JSON (url 或 path)
+                    let data;
+                    if (contentType.includes('json')) {
+                        data = await response.json();
+                        log(`📄 JSON 响应: ${JSON.stringify(data, null, 2)}`, 'success');
+                    } else {
+                        // 兜底：尝试解析文本
+                        const text = await response.text();
+                        log(`📄 文本响应: ${text}`, 'info');
+                        try {
+                            data = JSON.parse(text);
+                        } catch (e) {
+                            el.imagePreview.innerHTML = `<div style="padding:20px;">非 JSON 响应:<br>${text}</div>`;
+                            return;
+                        }
                     }
 
-                    // 如果返回的是相对路径，提示拼接域名
-                    if (type === 'url' && result && (typeof result === 'string' ? result.startsWith('/') : result.url?.startsWith('/'))) {
-                        const fullUrl = typeof result === 'string' 
-                            ? `${apiDomainEl.value.trim()}${result}` 
-                            : `${apiDomainEl.value.trim()}${result.url}`;
-                        responseContentEl.textContent += '\n\n✅ 完整可访问URL：' + fullUrl;
+                    const imgUrl = data.url || data.path || '';
+                    if (imgUrl) {
+                        // 拼接完整 URL
+                        const fullUrl = imgUrl.startsWith('http') ? imgUrl : `${baseUrl.split('/random')[0]}${imgUrl.startsWith('/') ? '' : '/'}${imgUrl}`;
+                        log(`🔗 完整图片链接: ${fullUrl}`, 'info');
+                        el.imagePreview.innerHTML = `
+                            <div style="text-align:center; padding:10px;">
+                                <p style="margin-bottom:10px;"><strong>API 返回 URL:</strong><br><a href="${fullUrl}" target="_blank" style="color:#007bff;">${fullUrl}</a></p>
+                                <img src="${fullUrl}" alt="预览" style="max-width:100%; max-height:300px; border:1px solid #ddd;" onload="console.log('Image loaded')">
+                                <p style="font-size:12px;color:#666;margin-top:5px;">(上图是通过 API 返回的 URL 二次加载的)</p>
+                            </div>
+                        `;
+                    } else {
+                        el.imagePreview.innerHTML = '<span class="placeholder error">响应中未找到 url 或 path 字段</span>';
                     }
                 }
+
             } catch (error) {
-                responseContentEl.className = 'response-content error-content';
-                responseContentEl.textContent = `请求失败：${error.message}\n\n请检查：\n1. API域名是否正确\n2. 目录dir是否授权\n3. CORS跨域配置\n4. ALLOWED_DOMAINS是否设置`;
+                log(`❌ 请求失败: ${error.message}`, 'error');
+                el.imagePreview.innerHTML = `<span class="placeholder error">加载失败<br>${error.message}</span>`;
             }
-        }
-
-        // 重置参数
-        function resetParams() {
-            apiDomainEl.value = defaultFormData.domain;
-            typeEl.value = defaultFormData.type;
-            formEl.value = defaultFormData.form;
-            contentEl.value = defaultFormData.content;
-            dirEl.value = defaultFormData.dir;
-            orientationEl.value = defaultFormData.orientation;
-            apiUrlEl.textContent = '请点击测试按钮生成';
-            responseContentEl.className = 'response-content';
-            responseContentEl.textContent = '请点击测试按钮查看响应';
-        }
-
-        // 绑定事件
-        testBtn.addEventListener('click', testApi);
-        resetBtn.addEventListener('click', resetParams);
-
-        // 初始化生成默认URL
-        generateApiUrl();
+        });
     </script>
 </body>
 </html>
