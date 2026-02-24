@@ -1,411 +1,373 @@
----
-import ViewsCounter from "@components/ViewsCounter.astro";
-import MainGridLayout from "@layouts/MainGridLayout.astro";
-import { Icon } from "astro-icon/components";
----
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图床随机API测试页面</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft Yahei", sans-serif;
+        }
+        body {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+            background: #f5f7fa;
+        }
+        .test-container {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 24px;
+            border-left: 4px solid #007cff;
+            padding-left: 12px;
+        }
+        .params-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        label {
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+        }
+        select, input, button {
+            padding: 10px 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        select:focus, input:focus {
+            border-color: #007cff;
+        }
+        button {
+            background: #007cff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: #0066cc;
+        }
+        .btn-group {
+            grid-column: 1 / -1;
+            display: flex;
+            gap: 12px;
+        }
+        .result-area {
+            margin-top: 24px;
+        }
+        .api-url {
+            background: #f8fafc;
+            padding: 12px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 14px;
+            color: #333;
+            word-break: break-all;
+            margin-bottom: 16px;
+        }
+        .response-box {
+            margin-top: 16px;
+            border-top: 1px solid #e5e7eb;
+            padding-top: 16px;
+        }
+        .response-title {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+        .response-content {
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            min-height: 60px;
+        }
+        .json-content {
+            background: #f8fafc;
+            font-family: monospace;
+            white-space: pre-wrap;
+            color: #333;
+        }
+        .image-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .image-content img {
+            max-width: 100%;
+            max-height: 600px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .error-content {
+            background: #fef2f2;
+            color: #dc2626;
+        }
+        .tab-group {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .tab {
+            padding: 8px 16px;
+            border-radius: 6px;
+            background: #f1f5f9;
+            color: #666;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .tab.active {
+            background: #007cff;
+            color: white;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>图床随机API测试工具</h1>
+        
+        <div class="params-form">
+            <div class="form-group">
+                <label>API域名</label>
+                <input type="text" id="api-domain" value="https://tu.fqzlr.top" placeholder="输入你的图床域名">
+            </div>
+            <div class="form-group">
+                <label>返回类型(type)</label>
+                <select id="type">
+                    <option value="img">img - 直接返回图片</option>
+                    <option value="url">url - 返回URL链接</option>
+                    <option value="path">path - 返回文件路径（默认）</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>响应格式(form)</label>
+                <select id="form">
+                    <option value="json">json - JSON格式（默认）</option>
+                    <option value="text">text - 纯文本格式</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>文件类型(content)</label>
+                <select id="content">
+                    <option value="image">image - 图片（默认）</option>
+                    <option value="video">video - 视频</option>
+                    <option value="image,video">image,video - 图片+视频</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>指定目录(dir)</label>
+                <input type="text" id="dir" value="mn_background" placeholder="例如：mn_background">
+            </div>
+            <div class="form-group">
+                <label>图片方向(orientation)</label>
+                <select id="orientation">
+                    <option value="landscape">landscape - 横图</option>
+                    <option value="portrait">portrait - 竖图</option>
+                    <option value="square">square - 方图</option>
+                    <option value="auto">auto - 自适应</option>
+                </select>
+            </div>
+            <div class="btn-group">
+                <button id="test-btn">发送请求测试</button>
+                <button id="reset-btn" style="background: #6b7280;">重置参数</button>
+            </div>
+        </div>
 
-<MainGridLayout title="画廊">
-	<div class="card-base p-6 md:p-8">
-		<div class="flex items-center justify-between gap-3 flex-wrap mb-6">
-			<div class="flex items-center gap-2">
-				<div class="h-8 w-8 rounded-lg bg-[var(--primary)] flex items-center justify-center text-white dark:text-black/70">
-					<Icon name="material-symbols:photo-library-rounded" class="text-[1.5rem]"></Icon>
-				</div>
-				<h1 class="text-2xl font-bold text-90">画廊</h1>
-				<div id="status" class="text-sm font-bold text-50 transition-all"></div>
-				<ViewsCounter pathname="/gallery/" />
-			</div>
-			<div class="flex items-center gap-2">
-				<button id="btn-h" type="button" class="btn-regular h-9 px-3 rounded-lg text-sm font-medium">横屏</button>
-				<button id="btn-v" type="button" class="btn-regular h-9 px-3 rounded-lg text-sm font-medium">竖屏</button>
-				<button id="btn-sort" type="button" class="btn-regular h-9 px-3 rounded-lg text-sm font-medium">随机</button>
-			</div>
-		</div>
+        <div class="result-area">
+            <div class="response-title">生成的API地址：</div>
+            <div class="api-url" id="api-url">请点击测试按钮生成</div>
+            
+            <div class="tab-group">
+                <div class="tab active" data-tab="response">响应结果</div>
+                <div class="tab" data-tab="info">参数说明</div>
+            </div>
 
-		<div class="text-sm text-50 mb-5 leading-relaxed">
-			<!-- 1. 修改这里的API域名展示文本 -->
-			图片随机API自托管于： <a href="https://tu.682000.xyz" target="_blank" rel="noopener noreferrer" class="font-medium text-75 hover:text-[var(--primary)] transition-colors">https://tu.682000.xyz</a> 
-            <br>
-            特别鸣谢：<b class="font-bold text-75">锦瑟/瑞希</b> 大佬提供的图源
-		</div>
+            <div class="tab-content active" id="response-tab">
+                <div class="response-box">
+                    <div class="response-title">响应内容：</div>
+                    <div class="response-content" id="response-content">请点击测试按钮查看响应</div>
+                </div>
+            </div>
 
-		<div id="gallery" class="gallery-grid" data-ready="false"></div>
-		<div id="footer-status" class="text-center text-sm text-50 h-10 mt-4"></div>
-		<div id="sentinel" class="h-4"></div>
-	</div>
+            <div class="tab-content" id="info-tab">
+                <div class="response-content" style="background: #f8fafc; line-height: 1.8;">
+                    <strong>参数说明（来自官方文档）：</strong><br>
+                    1. type：返回内容类型<br>
+                    - img：直接返回图片二进制（image/jpeg）<br>
+                    - url：返回完整URL链接<br>
+                    - path：返回文件相对路径（默认）<br>
+                    2. form：响应格式（仅type≠img时生效）<br>
+                    - json：返回JSON {url: "路径/链接"}（默认）<br>
+                    - text：直接返回纯文本路径/链接<br>
+                    3. content：文件类型过滤，默认image<br>
+                    4. dir：指定目录，必填（如mn_background）<br>
+                    5. orientation：图片方向筛选<br>
+                    - landscape：横图 | portrait：竖图 | square：方图 | auto：自适应
+                </div>
+            </div>
+        </div>
+    </div>
 
-	<style>
-		.gallery-grid {
-			width: 100%;
-			opacity: 0;
-			transform: translateY(4px);
-			transition:
-				opacity 0.2s ease,
-				transform 0.2s ease;
-		}
-		.gallery-grid[data-ready="true"] {
-			opacity: 1;
-			transform: translateY(0);
-		}
-		.gallery-item {
-			line-height: 24px;
-		}
-	</style>
+    <script>
+        // 获取DOM元素
+        const apiDomainEl = document.getElementById('api-domain');
+        const typeEl = document.getElementById('type');
+        const formEl = document.getElementById('form');
+        const contentEl = document.getElementById('content');
+        const dirEl = document.getElementById('dir');
+        const orientationEl = document.getElementById('orientation');
+        const testBtn = document.getElementById('test-btn');
+        const resetBtn = document.getElementById('reset-btn');
+        const apiUrlEl = document.getElementById('api-url');
+        const responseContentEl = document.getElementById('response-content');
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
 
-	<script>
-		import Masonry from "masonry-layout";
-		import imagesLoaded from "imagesloaded";
-		import { Fancybox } from "@fancyapps/ui";
-		import "@fancyapps/ui/dist/fancybox/fancybox.css";
+        // 初始化默认值
+        const defaultFormData = {
+            domain: 'https://tu.fqzlr.top',
+            type: 'img',
+            form: 'json',
+            content: 'image',
+            dir: 'mn_background',
+            orientation: 'landscape'
+        };
 
-		// 2. 修改这里的API基础域名（核心修改点）
-		const RANDOM_API_BASE = "https://tu.682000.xyz/random";
-		// 存储已加载的图片URL，避免重复
-		const loadedUrls = new Set();
-		// 每页加载数量
-		const BATCH_SIZE = 20;
-		// 当前选中的图片方向
-		let currentOrientation = "landscape"; // landscape=横屏，portrait=竖屏
-		let loading = false;
-		let msnry = null;
-		let io = null;
-		let resizeHandler = null;
+        // 标签切换
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // 移除所有active
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                // 添加当前active
+                tab.classList.add('active');
+                const tabId = tab.dataset.tab + '-tab';
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
 
-		// 获取瀑布流列数（响应式）
-		function getColumns() {
-			const w = window.innerWidth;
-			if (w >= 1024) return 4;
-			if (w >= 768) return 3;
-			return 2;
-		}
+        // 生成API URL
+        function generateApiUrl() {
+            const domain = apiDomainEl.value.trim().replace(/\/$/, ''); // 移除末尾斜杠
+            const params = new URLSearchParams();
+            
+            // 添加参数（跳过默认值可选，这里全部添加确保完整）
+            params.append('type', typeEl.value);
+            if (typeEl.value !== 'img') { // type=img时form不生效，不添加
+                params.append('form', formEl.value);
+            }
+            params.append('content', contentEl.value);
+            if (dirEl.value.trim()) {
+                params.append('dir', dirEl.value.trim());
+            }
+            if (orientationEl.value) {
+                params.append('orientation', orientationEl.value);
+            }
 
-		// 获取瀑布流布局配置
-		function getLayoutConfig(galleryEl) {
-			const gutter = 16;
-			const cols = getColumns();
-			const width = galleryEl.clientWidth || 0;
-			const columnWidth = Math.max(
-				120,
-				Math.floor((width - gutter * (cols - 1)) / cols),
-			);
-			return { gutter, cols, columnWidth };
-		}
+            // 拼接最终URL
+            const apiUrl = `${domain}/random?${params.toString()}`;
+            apiUrlEl.textContent = apiUrl;
+            return apiUrl;
+        }
 
-		// 更新状态显示
-		function setStatus(text) {
-			const statusEl = document.getElementById("status");
-			if (!statusEl) return;
-			statusEl.textContent = text || "";
-		}
+        // 发送测试请求
+        async function testApi() {
+            const apiUrl = generateApiUrl();
+            responseContentEl.className = 'response-content';
+            responseContentEl.innerHTML = '正在请求...';
 
-		// 更新按钮激活状态
-		function setActiveButton() {
-			const btnH = document.getElementById("btn-h");
-			const btnV = document.getElementById("btn-v");
-			if (!btnH || !btnV) return;
-			const activeClasses = ["ring-2", "ring-[var(--primary)]"];
-			for (const c of activeClasses) {
-				btnH.classList.toggle(c, currentOrientation === "landscape");
-				btnV.classList.toggle(c, currentOrientation === "portrait");
-			}
-			// 更新状态文本
-			setStatus(currentOrientation === "landscape" ? "横屏随机图" : "竖屏随机图");
-		}
+            try {
+                const type = typeEl.value;
+                if (type === 'img') {
+                    // type=img：直接显示图片
+                    responseContentEl.className = 'response-content image-content';
+                    responseContentEl.innerHTML = `<img src="${apiUrl}&t=${Date.now()}" alt="测试图片" onerror="this.src='https://picsum.photos/800/450?error=1'; this.alt='图片加载失败'">`;
+                } else {
+                    // type=url/path：发送fetch请求获取响应
+                    const response = await fetch(apiUrl, {
+                        method: 'GET',
+                        headers: {
+                            'Accept': 'application/json, text/plain, */*'
+                        },
+                        cache: 'no-cache'
+                    });
 
-		// 更新排序按钮（改为随机刷新）
-		function updateSortButton() {
-			const btnSort = document.getElementById("btn-sort");
-			if (!btnSort) return;
-			btnSort.textContent = "刷新";
-			const activeClasses = ["ring-2", "ring-[var(--primary)]"];
-			for (const c of activeClasses) {
-				btnSort.classList.remove(c);
-			}
-		}
+                    if (!response.ok) {
+                        throw new Error(`HTTP错误：状态码 ${response.status}`);
+                    }
 
-		// 调用新API获取随机图URL
-		async function fetchRandomImageUrl(orientation) {
-			try {
-				// 拼接API参数：返回完整URL，格式为JSON，指定方向
-				const params = new URLSearchParams({
-					type: "url",
-					form: "json",
-					orientation: orientation,
-					content: "image"
-				});
-				const res = await fetch(`${RANDOM_API_BASE}?${params.toString()}`, {
-					cache: "no-cache",
-					headers: {
-						// 提示客户端发送视口信息（适配auto模式）
-						"Accept-CH": "Sec-CH-Viewport-Width, Sec-CH-Viewport-Height",
-						"Vary": "Sec-CH-Viewport-Width, Sec-CH-Viewport-Height, User-Agent"
-					}
-				});
-				
-				if (!res.ok) throw new Error(`API请求失败: ${res.status}`);
-				const data = await res.json();
-				
-				// 验证URL有效性
-				if (!data.url || typeof data.url !== "string") {
-					throw new Error("API返回无效URL");
-				}
-				
-				// 处理相对路径
-				let imgUrl = data.url;
-				if (!imgUrl.startsWith("http")) {
-					// 3. 这里会自动基于新的API域名拼接完整URL
-					imgUrl = new URL(imgUrl, RANDOM_API_BASE).href;
-				}
-				
-				return imgUrl;
-			} catch (e) {
-				console.error("获取随机图失败:", e);
-				// 降级处理：返回空，后续跳过该图片
-				return null;
-			}
-		}
+                    let result;
+                    if (formEl.value === 'json') {
+                        result = await response.json();
+                        responseContentEl.className = 'response-content json-content';
+                        responseContentEl.textContent = JSON.stringify(result, null, 2);
+                    } else {
+                        result = await response.text();
+                        responseContentEl.className = 'response-content json-content';
+                        responseContentEl.textContent = result;
+                    }
 
-		// 构建图片卡片
-		function buildCard(url, width) {
-			const a = document.createElement("a");
-			a.href = url;
-			a.dataset.fancybox = ""; // 独立展示
-			a.className = "gallery-item block opacity-0 transition-opacity duration-300";
-			a.style.width = `${width}px`;
+                    // 如果返回的是相对路径，提示拼接域名
+                    if (type === 'url' && result && (typeof result === 'string' ? result.startsWith('/') : result.url?.startsWith('/'))) {
+                        const fullUrl = typeof result === 'string' 
+                            ? `${apiDomainEl.value.trim()}${result}` 
+                            : `${apiDomainEl.value.trim()}${result.url}`;
+                        responseContentEl.textContent += '\n\n✅ 完整可访问URL：' + fullUrl;
+                    }
+                }
+            } catch (error) {
+                responseContentEl.className = 'response-content error-content';
+                responseContentEl.textContent = `请求失败：${error.message}\n\n请检查：\n1. API域名是否正确\n2. 目录dir是否授权\n3. CORS跨域配置\n4. ALLOWED_DOMAINS是否设置`;
+            }
+        }
 
-			const wrapper = document.createElement("div");
-			wrapper.className = "card-base overflow-hidden rounded-xl active:scale-[0.99] transition";
+        // 重置参数
+        function resetParams() {
+            apiDomainEl.value = defaultFormData.domain;
+            typeEl.value = defaultFormData.type;
+            formEl.value = defaultFormData.form;
+            contentEl.value = defaultFormData.content;
+            dirEl.value = defaultFormData.dir;
+            orientationEl.value = defaultFormData.orientation;
+            apiUrlEl.textContent = '请点击测试按钮生成';
+            responseContentEl.className = 'response-content';
+            responseContentEl.textContent = '请点击测试按钮查看响应';
+        }
 
-			const img = document.createElement("img");
-			img.src = url;
-			img.loading = "lazy";
-			img.decoding = "async";
-			img.alt = "随机画廊图片";
-			img.className = "w-full h-auto block";
+        // 绑定事件
+        testBtn.addEventListener('click', testApi);
+        resetBtn.addEventListener('click', resetParams);
 
-			wrapper.appendChild(img);
-			a.appendChild(wrapper);
-			a.appendChild(document.createElement("br"));
-			return a;
-		}
-
-		// 清空画廊
-		function clearGallery() {
-			const galleryEl = document.getElementById("gallery");
-			if (!galleryEl) return;
-			galleryEl.innerHTML = "";
-			galleryEl.dataset.ready = "false";
-			loadedUrls.clear(); // 清空已加载URL
-			if (msnry) {
-				msnry.destroy();
-				msnry = null;
-			}
-		}
-
-		// 加载更多图片
-		async function loadMore(batch = BATCH_SIZE) {
-			const galleryEl = document.getElementById("gallery");
-			const footerStatus = document.getElementById("footer-status");
-			if (!galleryEl || loading) return;
-			
-			loading = true;
-			if (footerStatus) footerStatus.textContent = "加载中...";
-
-			try {
-				const { gutter, columnWidth } = getLayoutConfig(galleryEl);
-				// 初始化瀑布流
-				if (!msnry) {
-					msnry = new Masonry(galleryEl, {
-						itemSelector: ".gallery-item",
-						gutter,
-						columnWidth,
-						transitionDuration: "0.2s",
-					});
-				}
-
-				const frag = document.createDocumentFragment();
-				const items = [];
-				// 批量获取随机图
-				for (let i = 0; i < batch; i++) {
-					const imgUrl = await fetchRandomImageUrl(currentOrientation);
-					// 跳过无效URL或重复URL
-					if (!imgUrl || loadedUrls.has(imgUrl)) continue;
-					
-					loadedUrls.add(imgUrl);
-					const el = buildCard(imgUrl, columnWidth);
-					items.push(el);
-					frag.appendChild(el);
-				}
-
-				if (items.length > 0) {
-					galleryEl.appendChild(frag);
-					// 等待图片加载完成后更新瀑布流
-					await new Promise((resolve) => {
-						imagesLoaded(items, () => {
-							if (!msnry) return resolve();
-							msnry.appended(items);
-							msnry.layout();
-							// 显示图片
-							for (const item of items) {
-								item.classList.remove("opacity-0");
-							}
-							if (galleryEl.dataset.ready !== "true") {
-								galleryEl.dataset.ready = "true";
-							}
-							resolve();
-						});
-					});
-				}
-
-				// 更新底部状态
-				if (footerStatus) {
-					footerStatus.textContent = items.length > 0 ? "" : "暂无更多图片";
-				}
-
-				// 无限滚动：如果还有空间，继续加载
-				const sentinelEl = document.getElementById("sentinel");
-				if (sentinelEl && items.length > 0) {
-					const rect = sentinelEl.getBoundingClientRect();
-					if (rect.top < window.innerHeight + 600) {
-						setTimeout(() => loadMore(batch), 100);
-					}
-				}
-			} finally {
-				loading = false;
-			}
-		}
-
-		// 切换图片方向（横/竖屏）
-		function setOrientation(orientation) {
-			if (!["landscape", "portrait"].includes(orientation)) return;
-			if (currentOrientation === orientation) return;
-			
-			currentOrientation = orientation;
-			setActiveButton();
-			clearGallery();
-			loadMore(BATCH_SIZE);
-		}
-
-		// 刷新当前方向的图片
-		function refreshGallery() {
-			clearGallery();
-			loadMore(BATCH_SIZE);
-		}
-
-		// 设置无限滚动监听
-		function setupInfiniteLoad() {
-			const sentinelEl = document.getElementById("sentinel");
-			if (!sentinelEl) return;
-			if (io) io.disconnect();
-			
-			io = new IntersectionObserver(
-				(entries) => {
-					if (entries.some((e) => e.isIntersecting && !loading)) {
-						loadMore(BATCH_SIZE);
-					}
-				},
-				{ rootMargin: "600px 0px" }
-			);
-			io.observe(sentinelEl);
-		}
-
-		// 设置窗口大小调整监听
-		function setupResize() {
-			if (resizeHandler) window.removeEventListener("resize", resizeHandler);
-			
-			resizeHandler = () => {
-				const galleryEl = document.getElementById("gallery");
-				if (!galleryEl || !msnry) return;
-				
-				const { gutter, columnWidth } = getLayoutConfig(galleryEl);
-				// 更新所有图片卡片宽度
-				galleryEl.querySelectorAll(".gallery-item").forEach(el => {
-					el.style.width = `${columnWidth}px`;
-				});
-				// 更新瀑布流配置
-				msnry.options.gutter = gutter;
-				msnry.options.columnWidth = columnWidth;
-				msnry.layout();
-			};
-			
-			window.addEventListener("resize", resizeHandler, { passive: true });
-		}
-
-		// 初始化
-		async function init() {
-			const galleryEl = document.getElementById("gallery");
-			if (!galleryEl || galleryEl.dataset.inited === "true") return;
-			
-			galleryEl.dataset.inited = "true";
-			// 初始化按钮状态
-			setActiveButton();
-			updateSortButton();
-			// 加载首批图片
-			await loadMore(BATCH_SIZE);
-			// 设置无限滚动和窗口调整监听
-			setupInfiniteLoad();
-			setupResize();
-
-			// 绑定按钮事件
-			const btnH = document.getElementById("btn-h");
-			const btnV = document.getElementById("btn-v");
-			const btnSort = document.getElementById("btn-sort");
-			
-			if (btnH) btnH.addEventListener("click", () => setOrientation("landscape"));
-			if (btnV) btnV.addEventListener("click", () => setOrientation("portrait"));
-			if (btnSort) btnSort.addEventListener("click", refreshGallery);
-
-			// 绑定Fancybox图片预览
-			Fancybox.bind("[data-fancybox]", {
-				groupAll: false,
-				Toolbar: {
-					display: {
-						left: ["infobar"],
-						middle: [
-							"zoomIn",
-							"zoomOut",
-							"toggle1to1",
-							"rotateCCW",
-							"rotateCW",
-							"flipX",
-							"flipY",
-						],
-						right: ["slideshow", "fullscreen", "download", "thumbs", "close"],
-					},
-				},
-				Thumbs: {
-					type: "classic",
-				},
-				Carousel: {
-					Navigation: false,
-				},
-			});
-		}
-
-		// 初始化入口
-		function initIfPresent() {
-			const galleryEl = document.getElementById("gallery");
-			if (!galleryEl) return;
-			init();
-		}
-
-		// Astro页面切换清理
-		document.addEventListener("astro:before-swap", () => {
-			Fancybox.destroy();
-			if (io) io.disconnect();
-			if (resizeHandler) window.removeEventListener("resize", resizeHandler);
-		});
-
-		// 页面加载完成初始化
-		if (document.readyState === "loading") {
-			document.addEventListener("DOMContentLoaded", initIfPresent);
-		} else {
-			initIfPresent();
-		}
-
-		// 监听页面切换事件
-		document.addEventListener("astro:after-swap", initIfPresent);
-		document.addEventListener("content:replace", initIfPresent);
-		document.addEventListener("swup:contentReplaced", initIfPresent);
-	</script>
-</MainGridLayout>
+        // 初始化生成默认URL
+        generateApiUrl();
+    </script>
+</body>
+</html>
