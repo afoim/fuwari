@@ -30,9 +30,9 @@ Applicant Name: no name provided
 Applicant Email: acofork@gmail.com
 Project Name: afoim/fuwari
 Proof of Contributors:
-Code of Conduct URL: https://2x.nz
+Code of Conduct URL: https://682000.xyz
 Project License URL: MIT license
-Netlify Site URL: https://2x.nz/posts/static-web/#netlify
+Netlify Site URL: https://682000.xyz/posts/static-web/#netlify
 Notes:
 ```
 

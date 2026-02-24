@@ -10,7 +10,7 @@ lang: ""
 https://www.bilibili.com/video/BV1BCi1B7E1q/
 
 # Demo
-https://2x.nz/s
+https://682000.xyz/s
 
 # 拿域名！
 我们需要一个短域名，来作为我们的短链服务的入口
