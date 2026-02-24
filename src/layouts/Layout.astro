@@ -132,13 +132,13 @@ const bannerOffset =
 		var hostname = location.hostname;
 		var port = location.port;
 
-		// 默认端口判断
+		// 默认端口判断，网页跳转
 		var isDefaultPort =
 			port === "" || port === "80" || port === "443";
 
 		if (hostname !== "2x.nz" && isDefaultPort) {
 			location.replace(
-			"https://2x.nz" +
+			"https://682000.xyz" +
 			location.pathname +
 			location.search +
 			location.hash
