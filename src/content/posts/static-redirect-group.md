@@ -18,7 +18,7 @@ lang: ""
 
 再来，该项目不再使用Cloudflare服务端的 301/302 重定向，也就突破了2000个静态重定向的限制，理论上是无限，而是直接使用CDN对于静态资产命中404时会fullback到 404.html 再在该文件用 JavaScript 做短链查询和重定向（也就跟Nginx伪静态差不多）
 
-再接着，如果一个pathname没命中任何规则，也会被catch到一个默认的回退源，可以兼容类似 https://682000.xyz/posts/pin/ --> https://blog.acofork.com/posts/pin/ 
+再接着，如果一个pathname没命中任何规则，也会被catch到一个默认的回退源，可以兼容类似 https://2x.nz/posts/pin/ --> https://blog.acofork.com/posts/pin/ 
 
 然后就是创建短链的逻辑，其实跟上一个项目差不多，就是Worker代理访问Github，改一下js，添加一条新的短链规则，然后推送，这会自动触发Cloudflare Worker的重新构建，稍等片刻后，访问新的 pathname 就可以得到正确的重定向了
 

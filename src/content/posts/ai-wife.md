@@ -105,9 +105,9 @@ lang: ""
 
 默认打开应该是空空如也，这边提供了一个起手式+LoRA的工作流，你可以直接导入：
 
-[点我下载- 基础起手.json](https://682000.xyz/files/基础起手.json)
+[点我下载- 基础起手.json](https://2x.nz/files/基础起手.json)
 
-[点我下载- 基础起手+Lora.json](https://682000.xyz/files/基础起手+Lora.json)
+[点我下载- 基础起手+Lora.json](https://2x.nz/files/基础起手+Lora.json)
 
 下载之后，点击左上角的ComfyUI图标，打开这个工作流
 

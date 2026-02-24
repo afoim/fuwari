@@ -27,7 +27,7 @@ lang: ''
 ```json
 <!-- giscus.json -->
 {
-  "origins": ["https://682000.xyz"]
+  "origins": ["https://2x.nz"]
 }
 ```
 
