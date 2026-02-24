@@ -23,7 +23,8 @@ import { Icon } from "astro-icon/components";
 		</div>
 
 		<div class="text-sm text-50 mb-5 leading-relaxed">
-			图片随机API自托管于： <a href="https://tu.fqzlr.top" target="_blank" rel="noopener noreferrer" class="font-medium text-75 hover:text-[var(--primary)] transition-colors">https://tu.fqzlr.top</a> 
+			<!-- 1. 修改这里的API域名展示文本 -->
+			图片随机API自托管于： <a href="https://tu.682000.xyz" target="_blank" rel="noopener noreferrer" class="font-medium text-75 hover:text-[var(--primary)] transition-colors">https://tu.682000.xyz</a> 
             <br>
             特别鸣谢：<b class="font-bold text-75">锦瑟/瑞希</b> 大佬提供的图源
 		</div>
@@ -57,8 +58,8 @@ import { Icon } from "astro-icon/components";
 		import { Fancybox } from "@fancyapps/ui";
 		import "@fancyapps/ui/dist/fancybox/fancybox.css";
 
-		// 新API配置
-		const RANDOM_API_BASE = "https://tu.fqzlr.top/random";
+		// 2. 修改这里的API基础域名（核心修改点）
+		const RANDOM_API_BASE = "https://tu.682000.xyz/random";
 		// 存储已加载的图片URL，避免重复
 		const loadedUrls = new Set();
 		// 每页加载数量
@@ -152,6 +153,7 @@ import { Icon } from "astro-icon/components";
 				// 处理相对路径
 				let imgUrl = data.url;
 				if (!imgUrl.startsWith("http")) {
+					// 3. 这里会自动基于新的API域名拼接完整URL
 					imgUrl = new URL(imgUrl, RANDOM_API_BASE).href;
 				}
 				
