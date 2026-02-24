@@ -39,6 +39,63 @@ jobs:
             const LABEL_BIDIR = '双向链接验证'
             const LABEL_BIDIR_OK = '双向链接验证通过'
 
+            const MSG = {
+              PR_ONE_FILE: 'PR 必须仅包含一个文件变更。',
+              PR_PATH_ERROR: '只允许更改 src/data/friends/ 或 src/data/sponsors/ 下的文件。',
+              PR_ACTION_ERROR: '只允许新增、编辑或删除文件。',
+              JSON_EXT_ERROR: '检测到友链/赞助目录下存在非 .json 文件，已停止处理：',
+              JSON_PARSE_ERROR: ': JSON 解析失败',
+              JSON_OBJECT_ERROR: ': JSON 必须是对象',
+              VALIDATE_FAIL: '检测到数据文件校验失败：',
+              VIP_DETECTED: '检测到 JSON 存在 vip 字段，已终止自动流程。\n\n请从以下文件移除 vip 字段后再 push 更新（移除后才会继续自动校验/自动合并）：',
+              URL_SELF_ERROR: '检测到友链 JSON 的 url 指向本站，请填写你自己的网站 URL。',
+              BACKLINK_SELF_ERROR: '检测到友链 JSON 的 backlink 指向本站，请填写你自己网站的友链页 URL。',
+              SITE_CONFIG_MISSING: '无法读取本站 site 配置，无法进行双向链接验证。',
+              BIDIR_INSTRUCTIONS: (siteBase) => [
+                '基础校验已通过，需要进行双向链接验证：',
+                '',
+                `1) 请在你的友链页面添加本站友链（必须为绝对链接）：${siteBase}`,
+                '2) 然后更新本 PR 的友链 JSON，增加字段 backlink（填写你的友链页面 URL，必须是 http/https 绝对链接）',
+                '',
+                '示例：',
+                '',
+                '```json',
+                '{',
+                '  "name": "...",',
+                '  "avatar": "...",',
+                '  "url": "...",',
+                '  "backlink": "https://example.com/friends/"',
+                '}',
+                '```',
+                '',
+                `3) 请确保你的 backlink 页面中包含指向本站的链接 href=${siteBase} （必须完全一致的绝对链接）`,
+                '4) push 更新后 Action 会自动重新校验并在通过后自动合并，无需额外评论',
+              ].join('\n'),
+              BIDIR_BACKLINK_INVALID: '双向链接验证失败：backlink 不是合法的 URL',
+              BIDIR_BACKLINK_NOT_HTTP: '双向链接验证失败：backlink 必须以 http/https 开头',
+              BIDIR_SITE_INVALID: '双向链接验证失败：友链 JSON 中 url 无效，无法比较主域名。',
+              BIDIR_HOST_MISMATCH: '双向链接验证失败：backlink 的主域名必须与 url 的主域名一致。',
+              BIDIR_FETCH_ERROR: '双向链接验证失败：访问 backlink 出错。',
+              BIDIR_ACCESS_FAIL: '双向链接验证失败：无法访问 backlink',
+              BIDIR_NOT_FOUND: (siteBase, backlinkUrl) => [
+                '双向链接验证未通过：在 backlink 页面未检测到本站友链。',
+                '',
+                `需要添加的绝对链接：${siteBase}`,
+                `backlink 页面：${backlinkUrl}`,
+                '',
+              ].join('\n'),
+              BIDIR_VERIFY_OK: '双向链接验证通过。',
+              MERGE_FAIL: '自动合并失败：',
+              DNS_VERIFY_FAIL: '域名所有权验证失败。',
+              DNS_VERIFY_INSTRUCTIONS: (isDelete, hostname, expected) => [
+                `检测到你正在${isDelete ? '删除' : '修改'}现有的友链/赞助数据。为了防止误操作，请完成域名所有权验证：`,
+                '',
+                `1. 请在域名 ${hostname} 或 _fuwari-verification.${hostname} 下添加 DNS TXT 记录。`,
+                `2. 记录内容：${expected}`,
+                '3. 添加完成后，请 push 更新（或关闭并重新打开 PR）以触发重新校验。',
+              ].join('\n'),
+            }
+
             async function ensureLabel(name) {
               try {
                 await github.rest.issues.getLabel({ owner, repo, name })
@@ -75,8 +132,8 @@ jobs:
               await createComment('只允许更改 src/data/friends/ 或 src/data/sponsors/ 下的文件。')
               return
             }
-            if (file.status !== 'added' && file.status !== 'modified') {
-              await createComment('只允许新增或编辑文件。')
+            if (file.status !== 'added' && file.status !== 'modified' && file.status !== 'removed') {
+              await createComment('只允许新增、编辑或删除文件。')
               return
             }
 
@@ -185,6 +242,19 @@ jobs:
               const controller = new AbortController()
               const timer = setTimeout(() => controller.abort(), timeoutMs)
               try {
+                // SSRF Protection
+                try {
+                  const u = new URL(url)
+                  if (u.protocol !== 'http:' && u.protocol !== 'https:') throw new Error('Invalid protocol')
+                  const h = u.hostname
+                  if (h === 'localhost' || h === '127.0.0.1' || h === '::1') throw new Error('Localhost not allowed')
+                  if (/^10\./.test(h)) throw new Error('Private IP not allowed')
+                  if (/^192\.168\./.test(h)) throw new Error('Private IP not allowed')
+                  if (/^172\.(1[6-9]|2[0-9]|3[0-1])\./.test(h)) throw new Error('Private IP not allowed')
+                } catch (e) {
+                  return { ok: false, error: e.message }
+                }
+
                 const res = await fetch(url, {
                   method: 'GET',
                   redirect: 'follow',
@@ -237,23 +307,65 @@ jobs:
             }
 
             const relevant = files.filter((f) => {
-              if (f.status === 'removed') return false
               if (f.filename.startsWith('src/data/friends/')) return true
               if (f.filename.startsWith('src/data/sponsors/')) return true
               return false
             })
 
+            // Verify domain ownership for removed or modified files
+            if (relevant.length === 1 && (relevant[0].status === 'removed' || relevant[0].status === 'modified')) {
+              const f = relevant[0]
+              const isDelete = f.status === 'removed'
+              try {
+                const raw = await getTextFileFromRepo(f.filename, context.payload.pull_request.base.sha)
+                const parsed = parseJsonSafe(raw)
+                if (parsed.ok && parsed.value && parsed.value.url) {
+                  let hostname
+                  try {
+                    hostname = new URL(parsed.value.url).hostname
+                  } catch {}
+                  
+                  if (hostname) {
+                    const dns = require('dns').promises
+                    const expected = `fuwari-verification=${pull_number}`
+                    const domains = [hostname, `_fuwari-verification.${hostname}`]
+                    let verified = false
+                    
+                    for (const d of domains) {
+                      try {
+                        const records = await dns.resolveTxt(d)
+                        const flat = records.flat()
+                        if (flat.some(t => t.includes(expected))) {
+                          verified = true
+                          break
+                        }
+                      } catch {}
+                    }
+                    
+                    if (!verified) {
+                      await createComment(MSG.DNS_VERIFY_FAIL + '\n\n' + MSG.DNS_VERIFY_INSTRUCTIONS(isDelete, hostname, expected))
+                      return
+                    }
+
+                    if (isDelete) {
+                      await github.rest.pulls.merge({ owner, repo, pull_number, merge_method: 'squash' })
+                      return
+                    }
+                  }
+                }
+              } catch (e) {
+                core.warning(`Ownership check failed: ${e}`)
+              }
+            }
+
             const invalidSuffix = relevant.filter((f) => !f.filename.endsWith('.json')).map((f) => f.filename)
             if (invalidSuffix.length) {
-              await createComment(
-                [
-                  '检测到友链/赞助目录下存在非 .json 文件，已停止处理：',
-                  '',
-                  ...invalidSuffix.map((p) => `- ${p}`),
-                ].join('\n')
-              )
+              await createComment(MSG.JSON_EXT_ERROR + '\n\n' + invalidSuffix.map((p) => `- ${p}`).join('\n'))
               return
             }
+
+            // Skip further checks if only file removed (already handled or invalid)
+            if (relevant.length === 1 && relevant[0].status === 'removed') return
 
             const headSha = context.payload.pull_request.head.sha
             const parsedEntries = []
@@ -263,14 +375,13 @@ jobs:
               const raw = await getTextFileFromRepo(f.filename, headSha)
               const parsed = parseJsonSafe(raw)
               if (!parsed.ok) {
-                errors.push(`${f.filename}: JSON 解析失败（${parsed.error}）`)
+                errors.push(`${f.filename}${MSG.JSON_PARSE_ERROR}（${parsed.error}）`)
                 continue
               }
               if (!parsed.value || typeof parsed.value !== 'object' || Array.isArray(parsed.value)) {
-                errors.push(`${f.filename}: JSON 必须是对象`)
+                errors.push(`${f.filename}${MSG.JSON_OBJECT_ERROR}`)
                 continue
               }
-
               const kind = f.filename.startsWith('src/data/friends/') ? 'friend' : 'sponsor'
               parsedEntries.push({ path: f.filename, kind, data: parsed.value })
             }
@@ -296,7 +407,7 @@ jobs:
             }
 
             if (errors.length) {
-              await createComment(['检测到数据文件校验失败：', '', ...errors.map((x) => `- ${x}`)].join('\n'))
+              await createComment([MSG.VALIDATE_FAIL, '', ...errors.map((x) => `- ${x}`)].join('\n'))
               return
             }
 
@@ -306,9 +417,7 @@ jobs:
             if (vipPaths.length) {
               await createComment(
                 [
-                  '检测到 JSON 存在 vip 字段，已终止自动流程。',
-                  '',
-                  '请从以下文件移除 vip 字段后再 push 更新（移除后才会继续自动校验/自动合并）：',
+                  MSG.VIP_DETECTED,
                   '',
                   ...vipPaths.map((p) => `- ${p}`),
                 ].join('\n')
@@ -342,11 +451,11 @@ jobs:
               : null
             if (primary.kind === 'friend' && selfSite) {
               if (normalizedSiteUrl === selfSite) {
-                await createComment(`检测到友链 JSON 的 url 指向本站（${siteBase}），请填写你自己的网站 URL。`)
+                await createComment(MSG.URL_SELF_ERROR)
                 return
               }
               if (normalizedBacklinkUrl === selfSite) {
-                await createComment(`检测到友链 JSON 的 backlink 指向本站（${siteBase}），请填写你自己网站的友链页 URL。`)
+                await createComment(MSG.BACKLINK_SELF_ERROR)
                 return
               }
             }
@@ -372,6 +481,14 @@ jobs:
 
             await setLabels({ addLabels: addReach, removeLabels: removeReach, skipIfSame: true })
 
+            // Auto merge if it is an edit (modified) and all checks pass
+            if (relevant.length === 1 && relevant[0].status === 'modified' && allOk) {
+               try {
+                  await github.rest.pulls.merge({ owner, repo, pull_number, merge_method: 'squash' })
+                  return
+                } catch {}
+            }
+
             const existingLabelNames = new Set((context.payload.pull_request.labels || []).map((l) => l.name))
             core.info(`bidir: event.action=${context.payload.action || ''}`)
             core.info(`bidir: siteBase=${siteBase || ''}`)
@@ -379,7 +496,7 @@ jobs:
             if (primary.kind === 'friend') {
               if (!siteBase) {
                 core.info('bidir: missing siteBase -> comment and return')
-                await createComment('无法读取本站 site 配置，无法进行双向链接验证。')
+                await createComment(MSG.SITE_CONFIG_MISSING)
                 return
               }
               if (!existingLabelNames.has(LABEL_BIDIR) && !existingLabelNames.has(LABEL_BIDIR_OK)) {
@@ -395,28 +512,7 @@ jobs:
               if (!isNonEmptyString(backlink)) {
                 core.info('bidir: missing backlink -> setLabels + comment')
                 await setLabels({ addLabels: [LABEL_BIDIR], removeLabels: [LABEL_BIDIR_OK] })
-                await createComment(
-                  [
-                    '基础校验已通过，需要进行双向链接验证：',
-                    '',
-                    `1) 请在你的友链页面添加本站友链（必须为绝对链接）：${siteBase}`,
-                    '2) 然后更新本 PR 的友链 JSON，增加字段 backlink（填写你的友链页面 URL，必须是 http/https 绝对链接）',
-                    '',
-                    '示例：',
-                    '',
-                    '```json',
-                    '{',
-                    '  "name": "...",',
-                    '  "avatar": "...",',
-                    '  "url": "...",',
-                    '  "backlink": "https://example.com/friends/"',
-                    '}',
-                    '```',
-                    '',
-                    `3) 请确保你的 backlink 页面中包含指向本站的链接 href=${siteBase} （必须完全一致的绝对链接）`,
-                    '4) push 更新后 Action 会自动重新校验并在通过后自动合并，无需额外评论',
-                  ].join('\n')
-                )
+                await createComment(MSG.BIDIR_INSTRUCTIONS(siteBase))
                 return
               }
 
@@ -426,13 +522,13 @@ jobs:
               } catch {
                 core.info('bidir: backlink invalid url -> setLabels + comment')
                 await setLabels({ addLabels: [LABEL_BIDIR], removeLabels: [LABEL_BIDIR_OK] })
-                await createComment(`双向链接验证失败：backlink 不是合法的 URL（${backlink}）`)
+                await createComment(`${MSG.BIDIR_BACKLINK_INVALID}（${backlink}）`)
                 return
               }
               if (!backlinkUrl.startsWith('http://') && !backlinkUrl.startsWith('https://')) {
                 core.info('bidir: backlink not http(s) -> setLabels + comment')
                 await setLabels({ addLabels: [LABEL_BIDIR], removeLabels: [LABEL_BIDIR_OK] })
-                await createComment(`双向链接验证失败：backlink 必须以 http/https 开头（${backlink}）`)
+                await createComment(`${MSG.BIDIR_BACKLINK_NOT_HTTP}（${backlink}）`)
                 return
               }
 
@@ -442,7 +538,7 @@ jobs:
               } catch {
                 core.info('bidir: siteUrl invalid -> setLabels + comment')
                 await setLabels({ addLabels: [LABEL_BIDIR], removeLabels: [LABEL_BIDIR_OK] })
-                await createComment('双向链接验证失败：友链 JSON 中 url 无效，无法比较主域名。')
+                await createComment(MSG.BIDIR_SITE_INVALID)
                 return
               }
               const backlinkHost = new URL(backlinkUrl).host.toLowerCase()
@@ -453,7 +549,7 @@ jobs:
                 await setLabels({ addLabels: [LABEL_BIDIR], removeLabels: [LABEL_BIDIR_OK] })
                 await createComment(
                   [
-                    '双向链接验证失败：backlink 的主域名必须与 url 的主域名一致。',
+                    MSG.BIDIR_HOST_MISMATCH,
                     '',
                     `url：${siteUrlObj.toString()}`,
                     `backlink：${backlinkUrl}`,
@@ -494,7 +590,7 @@ jobs:
                       await setLabels({ addLabels: [LABEL_BIDIR], removeLabels: [LABEL_BIDIR_OK] })
                       await createComment(
                         [
-                          `双向链接验证失败：无法访问 backlink（${res.status}）。`,
+                          `${MSG.BIDIR_ACCESS_FAIL}（${res.status}）。`,
                           '',
                           `backlink：${backlinkUrl}`,
                           formatBacklinkDebug({
@@ -521,7 +617,7 @@ jobs:
                     await setLabels({ addLabels: [LABEL_BIDIR], removeLabels: [LABEL_BIDIR_OK] })
                     await createComment(
                       [
-                        '双向链接验证失败：访问 backlink 出错。',
+                        MSG.BIDIR_FETCH_ERROR,
                         '',
                         `backlink：${backlinkUrl}`,
                         `错误：${e?.message || e}`,
@@ -553,18 +649,7 @@ jobs:
                 if (!found) {
                   core.info('bidir: not found -> setLabels + comment')
                   await setLabels({ addLabels: [LABEL_BIDIR], removeLabels: [LABEL_BIDIR_OK] })
-                  await createComment(
-                    [
-                      '双向链接验证未通过：在 backlink 页面未检测到本站友链。',
-                      '',
-                      `需要添加的绝对链接：${siteBase}`,
-                      `backlink 页面：${backlinkUrl}`,
-                      '',
-                      formatBacklinkDebug(fetched),
-                      '',
-                      '请添加后 push 更新（无需评论）。',
-                    ].join('\n')
-                  )
+                  await createComment(MSG.BIDIR_NOT_FOUND(siteBase, backlinkUrl) + formatBacklinkDebug(fetched) + '\n\n' + '请添加后 push 更新（无需评论）。')
                   return
                 }
 
@@ -574,7 +659,7 @@ jobs:
                 try {
                   await github.rest.pulls.merge({ owner, repo, pull_number, merge_method: 'squash' })
                 } catch (e) {
-                  await createComment(`自动合并失败：${e?.message || e}`)
+                  await createComment(`${MSG.MERGE_FAIL}${e?.message || e}`)
                   return
                 }
               }
@@ -601,6 +686,31 @@ jobs:
             const LABEL_ALL_OK = 'URL全部可达'
             const LABEL_BIDIR = '双向链接验证'
             const LABEL_BIDIR_OK = '双向链接验证通过'
+
+            const MSG = {
+              PR_ONE_FILE: 'PR 必须仅包含一个文件变更。',
+              PR_PATH_ERROR: '只允许更改 src/data/friends/ 或 src/data/sponsors/ 下的文件。',
+              PR_ACTION_ERROR: '只允许新增、编辑或删除文件。',
+              JSON_EXT_ERROR: '检测到友链/赞助目录下存在非 .json 文件，已停止处理：',
+              JSON_PARSE_ERROR: ': JSON 解析失败',
+              JSON_OBJECT_ERROR: ': JSON 必须是对象',
+              VALIDATE_FAIL: '检测到数据文件校验失败：',
+              VIP_DETECTED: '检测到 JSON 存在 vip 字段，已终止自动流程。\n\n请从以下文件移除 vip 字段后再 push 更新，然后再次回复“准备完毕”：',
+              URL_SELF_ERROR: '检测到友链 JSON 的 url 指向本站，请填写你自己的网站 URL。',
+              BACKLINK_SELF_ERROR: '检测到友链 JSON 的 backlink 指向本站，请填写你自己网站的友链页 URL。',
+              SITE_CONFIG_MISSING: '无法读取本站 site 配置，无法进行双向链接验证。',
+              BIDIR_INSTRUCTIONS: '该 PR 走双向链接验证流程：请在友链 JSON 中填写 backlink 字段并 push 更新，无需回复“准备完毕”。',
+              MERGE_FAIL: '自动合并失败。',
+              DNS_VERIFY_FAIL: '域名所有权验证失败。',
+              DNS_VERIFY_INSTRUCTIONS: (isDelete, hostname, expected) => [
+                `检测到你正在${isDelete ? '删除' : '修改'}现有的友链/赞助数据。为了防止误操作，请完成域名所有权验证：`,
+                '',
+                `1. 请在域名 ${hostname} 或 _fuwari-verification.${hostname} 下添加 DNS TXT 记录。`,
+                `2. 记录内容：${expected}`,
+                '3. 添加完成后，请回复“准备完毕”以触发重新校验。',
+              ].join('\n'),
+              LINK_UNREACHABLE: '检测到链接不可达，请修复后再次回复“准备完毕”。',
+            }
 
             function isNonEmptyString(v) {
               return typeof v === 'string' && v.trim().length > 0
@@ -657,6 +767,19 @@ jobs:
               const controller = new AbortController()
               const timer = setTimeout(() => controller.abort(), timeoutMs)
               try {
+                // SSRF Protection
+                try {
+                  const u = new URL(url)
+                  if (u.protocol !== 'http:' && u.protocol !== 'https:') throw new Error('Invalid protocol')
+                  const h = u.hostname
+                  if (h === 'localhost' || h === '127.0.0.1' || h === '::1') throw new Error('Localhost not allowed')
+                  if (/^10\./.test(h)) throw new Error('Private IP not allowed')
+                  if (/^192\.168\./.test(h)) throw new Error('Private IP not allowed')
+                  if (/^172\.(1[6-9]|2[0-9]|3[0-1])\./.test(h)) throw new Error('Private IP not allowed')
+                } catch (e) {
+                  return { ok: false, error: e.message }
+                }
+
                 const res = await fetch(url, {
                   method: 'GET',
                   redirect: 'follow',
@@ -757,26 +880,75 @@ jobs:
             const files = await listAllFiles()
 
             if (files.length !== 1) {
-              await createComment('PR 必须仅包含一个文件变更。')
+              await createComment(MSG.PR_ONE_FILE)
               return
             }
             const file = files[0]
             if (!file.filename.startsWith('src/data/friends/') && !file.filename.startsWith('src/data/sponsors/')) {
-              await createComment('只允许更改 src/data/friends/ 或 src/data/sponsors/ 下的文件。')
+              await createComment(MSG.PR_PATH_ERROR)
               return
             }
-            if (file.status !== 'added' && file.status !== 'modified') {
-              await createComment('只允许新增或编辑文件。')
+            if (file.status !== 'added' && file.status !== 'modified' && file.status !== 'removed') {
+              await createComment(MSG.PR_ACTION_ERROR)
               return
             }
 
             const relevant = files
 
+            // Verify domain ownership for removed or modified files
+            if (relevant.length === 1 && (relevant[0].status === 'removed' || relevant[0].status === 'modified')) {
+              const f = relevant[0]
+              const isDelete = f.status === 'removed'
+              try {
+                const raw = await getTextFileFromRepo(f.filename, pr.data.base.sha)
+                const parsed = parseJsonSafe(raw)
+                if (parsed.ok && parsed.value && parsed.value.url) {
+                  let hostname
+                  try {
+                    hostname = new URL(parsed.value.url).hostname
+                  } catch {}
+                  
+                  if (hostname) {
+                    const dns = require('dns').promises
+                    const expected = `fuwari-verification=${pull_number}`
+                    const domains = [hostname, `_fuwari-verification.${hostname}`]
+                    let verified = false
+                    
+                    for (const d of domains) {
+                      try {
+                        const records = await dns.resolveTxt(d)
+                        const flat = records.flat()
+                        if (flat.some(t => t.includes(expected))) {
+                          verified = true
+                          break
+                        }
+                      } catch {}
+                    }
+                    
+                    if (!verified) {
+                      await createComment(MSG.DNS_VERIFY_FAIL + '\n\n' + MSG.DNS_VERIFY_INSTRUCTIONS(isDelete, hostname, expected))
+                      return
+                    }
+
+                    if (isDelete) {
+                      await github.rest.pulls.merge({ owner, repo, pull_number, merge_method: 'squash' })
+                      return
+                    }
+                  }
+                }
+              } catch (e) {
+                core.warning(`Ownership check failed: ${e}`)
+              }
+            }
+
             const invalidSuffix = relevant.filter((f) => !f.filename.endsWith('.json')).map((f) => f.filename)
             if (invalidSuffix.length) {
-              await createComment(['检测到友链/赞助目录下存在非 .json 文件：', '', ...invalidSuffix.map((p) => `- ${p}`)].join('\n'))
+              await createComment(MSG.JSON_EXT_ERROR + '\n\n' + invalidSuffix.map((p) => `- ${p}`).join('\n'))
               return
             }
+
+            // Skip further checks if only file removed (already handled or invalid)
+            if (relevant.length === 1 && relevant[0].status === 'removed') return
 
             const parsedEntries = []
             const errors = []
@@ -784,11 +956,11 @@ jobs:
               const raw = await getTextFileFromRepo(f.filename, pr.data.head.sha)
               const parsed = parseJsonSafe(raw)
               if (!parsed.ok) {
-                errors.push(`${f.filename}: JSON 解析失败（${parsed.error}）`)
+                errors.push(`${f.filename}${MSG.JSON_PARSE_ERROR}（${parsed.error}）`)
                 continue
               }
               if (!parsed.value || typeof parsed.value !== 'object' || Array.isArray(parsed.value)) {
-                errors.push(`${f.filename}: JSON 必须是对象`)
+                errors.push(`${f.filename}${MSG.JSON_OBJECT_ERROR}`)
                 continue
               }
               const kind = f.filename.startsWith('src/data/friends/') ? 'friend' : 'sponsor'
@@ -816,7 +988,7 @@ jobs:
             }
 
             if (errors.length) {
-              await createComment(['检测到数据文件校验失败：', '', ...errors.map((x) => `- ${x}`)].join('\n'))
+              await createComment([MSG.VALIDATE_FAIL, '', ...errors.map((x) => `- ${x}`)].join('\n'))
               return
             }
 
@@ -826,9 +998,7 @@ jobs:
             if (vipPaths.length) {
               await createComment(
                 [
-                  '检测到 JSON 存在 vip 字段，已终止自动流程。',
-                  '',
-                  '请从以下文件移除 vip 字段后再 push 更新，然后再次回复“准备完毕”：',
+                  MSG.VIP_DETECTED,
                   '',
                   ...vipPaths.map((p) => `- ${p}`),
                 ].join('\n')
@@ -851,7 +1021,7 @@ jobs:
             const selfSite = siteBase ? siteBase.replace(/\/$/, '') : null
             const normalizedSiteUrl = siteUrl ? siteUrl.replace(/\/$/, '') : null
             if (primary.kind === 'friend' && selfSite && normalizedSiteUrl === selfSite) {
-              await createComment(`检测到友链 JSON 的 url 指向本站（${siteBase}），请填写你自己的网站 URL。`)
+              await createComment(MSG.URL_SELF_ERROR)
               return
             }
 
@@ -875,6 +1045,14 @@ jobs:
             if (allOk && siteCheck) addReach.push(LABEL_ALL_OK)
 
             await setLabels({ addLabels: addReach, removeLabels: removeReach, skipIfSame: true })
+
+            // Auto merge if it is an edit (modified) and all checks pass
+            if (relevant.length === 1 && relevant[0].status === 'modified' && allOk) {
+               try {
+                  await github.rest.pulls.merge({ owner, repo, pull_number, merge_method: 'squash' })
+                  return
+                } catch {}
+            }
 
             if (!avatarCheck.ok || (siteCheck && !siteCheck.ok)) {
               await createComment('检测到链接不可达，请修复后再次回复“准备完毕”。')
