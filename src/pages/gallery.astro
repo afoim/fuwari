@@ -1,4 +1,3 @@
----
 import ViewsCounter from "@components/ViewsCounter.astro";
 import MainGridLayout from "@layouts/MainGridLayout.astro";
 import { Icon } from "astro-icon/components";
@@ -23,7 +22,7 @@ import { Icon } from "astro-icon/components";
 		</div>
 
 		<div class="text-sm text-50 mb-5 leading-relaxed">
-			图片二进制自托管于： <a href="https://p.2x.nz" target="_blank" rel="noopener noreferrer" class="font-medium text-75 hover:text-[var(--primary)] transition-colors">https://p.2x.nz</a> 
+			图片托管于： <a href="https://tu.682000.xyz" target="_blank" rel="noopener noreferrer" class="font-medium text-75 hover:text-[var(--primary)] transition-colors">https://tu.682000.xyz</a> 
             <br>
             特别鸣谢：<b class="font-bold text-75">锦瑟/瑞希</b> 大佬提供的图源
 		</div>
@@ -57,17 +56,24 @@ import { Icon } from "astro-icon/components";
 		import { Fancybox } from "@fancyapps/ui";
 		import "@fancyapps/ui/dist/fancybox/fancybox.css";
 
-		const RANDOM_JS_URL = "https://p.2x.nz/random.js";
-		const DOMAIN = "https://p.2x.nz";
+		// 关键修改1：替换为新的图床域名和API端点
+		const API_DOMAIN = "https://tu.682000.xyz";
+		const RANDOM_API_URL = `${API_DOMAIN}/random`;
 
-		let counts = { h: 0, v: 0 };
-		let currentType = "h";
-		let isReverse = false;
-		let nextIndex = 1;
+		// 关键修改2：移除旧的静态计数逻辑，改为动态记录已加载数量
+		let loadedCount = 0;
+		let currentType = "h"; // h=横图 landscape, v=竖图 portrait
+		let isReverse = false; // 保留排序按钮逻辑（仅视觉展示，无实际排序）
 		let loading = false;
 		let msnry = null;
 		let io = null;
 		let resizeHandler = null;
+
+		// 关键修改3：定义方向映射（适配新API的orientation参数）
+		const orientationMap = {
+			h: "landscape",
+			v: "portrait"
+		};
 
 		function getColumns() {
 			const w = window.innerWidth;
@@ -94,8 +100,8 @@ import { Icon } from "astro-icon/components";
 		}
 
 		function updateStatus() {
-			const count = counts[currentType] || 0;
-			setStatus(`共 ${count} 张`);
+			// 关键修改4：更新状态为已加载的图片数量
+			setStatus(`已加载 ${loadedCount} 张`);
 		}
 
 		function setActiveButton() {
@@ -113,61 +119,53 @@ import { Icon } from "astro-icon/components";
 			const btnSort = document.getElementById("btn-sort");
 			if (!btnSort) return;
 			btnSort.textContent = isReverse ? "最早" : "最新";
-			// 可选：添加高亮表示当前状态，或者仅通过文本区分
 			const activeClasses = ["ring-2", "ring-[var(--primary)]"];
 			for (const c of activeClasses) {
 				btnSort.classList.toggle(c, isReverse);
 			}
 		}
 
-		async function fetchCounts() {
+		// 关键修改5：移除旧的fetchCounts函数（不再需要静态计数文件）
+		// 新增：调用新API获取随机图片URL
+		async function fetchRandomImageUrl() {
 			try {
-				const res = await fetch(RANDOM_JS_URL, { cache: "no-store" });
-				if (!res.ok) throw new Error(String(res.status));
-				const text = await res.text();
-				const m = text.match(/var\s+counts\s*=\s*(\{[^;]+\})\s*;/);
-				if (!m) throw new Error("counts not found");
-				const parsed = JSON.parse(m[1]);
-				const h = Number(parsed.h || 0);
-				const v = Number(parsed.v || 0);
-				if (!Number.isFinite(h) || !Number.isFinite(v)) throw new Error("counts invalid");
-				counts = { h, v };
-				updateStatus();
+				// 构造API请求参数
+				const params = new URLSearchParams({
+					content: "image",
+					type: "url", // 返回完整URL
+					form: "json",
+					orientation: orientationMap[currentType]
+				});
+
+				const res = await fetch(`${RANDOM_API_URL}?${params.toString()}`, {
+					cache: "no-cache", // 禁用缓存，确保每次获取不同图片
+					method: "GET"
+				});
+
+				if (!res.ok) throw new Error(`API请求失败: ${res.status}`);
+				
+				const data = await res.json();
+				if (!data.url) throw new Error("API返回无图片URL");
+				
+				// 确保URL是完整的（如果API返回相对路径则拼接域名）
+				return data.url.startsWith("http") ? data.url : `${API_DOMAIN}${data.url}`;
 			} catch (e) {
-				counts = { h: 1074, v: 4003 };
-				updateStatus();
+				console.error("获取随机图片失败:", e);
+				// 降级处理：返回空（前端会跳过该图片）
+				return null;
 			}
 		}
 
 		function resetIndex() {
-			const max = counts[currentType] || 0;
-			if (isReverse) {
-				nextIndex = max;
-			} else {
-				nextIndex = 1;
-			}
-		}
-
-		function getNextIndex(max) {
-			if (isReverse) {
-				if (nextIndex < 1) return null;
-				return nextIndex--;
-			}
-			if (nextIndex > max) return null;
-			return nextIndex++;
-		}
-
-		function buildImgUrl(n) {
-			return `${DOMAIN}/ri/${currentType}/${n}.webp`;
+			// 关键修改6：重置已加载计数
+			loadedCount = 0;
 		}
 
 		function buildCard(url, width) {
 			const a = document.createElement("a");
 			a.href = url;
-			// a.target = "_blank";
-			// a.rel = "noopener noreferrer";
-			a.dataset.fancybox = ""; // 独立展示，不分组
-			a.className = "gallery-item block opacity-0 transition-opacity duration-300"; // 初始隐藏
+			a.dataset.fancybox = "";
+			a.className = "gallery-item block opacity-0 transition-opacity duration-300";
 			a.style.width = `${width}px`;
 
 			const wrapper = document.createElement("div");
@@ -178,7 +176,7 @@ import { Icon } from "astro-icon/components";
 			img.src = url;
 			img.loading = "lazy";
 			img.decoding = "async";
-			img.alt = "gallery";
+			img.alt = `随机${currentType === "h" ? "横屏" : "竖屏"}图片 ${loadedCount + 1}`;
 			img.className = "w-full h-auto block";
 
 			wrapper.appendChild(img);
@@ -203,8 +201,7 @@ import { Icon } from "astro-icon/components";
 			const galleryEl = document.getElementById("gallery");
 			const footerStatus = document.getElementById("footer-status");
 			if (!galleryEl || loading) return;
-			const max = counts[currentType];
-			if (!max) return;
+			
 			loading = true;
 			if (footerStatus) footerStatus.textContent = "加载中...";
 
@@ -221,11 +218,14 @@ import { Icon } from "astro-icon/components";
 
 				const frag = document.createDocumentFragment();
 				const items = [];
+				
+				// 关键修改7：批量获取随机图片
 				for (let i = 0; i < batch; i++) {
-					const n = getNextIndex(max);
-					if (!n) break;
-					const url = buildImgUrl(n);
-					const el = buildCard(url, columnWidth);
+					const imgUrl = await fetchRandomImageUrl();
+					if (!imgUrl) continue; // 跳过获取失败的图片
+					
+					loadedCount++;
+					const el = buildCard(imgUrl, columnWidth);
 					items.push(el);
 					frag.appendChild(el);
 				}
@@ -245,29 +245,13 @@ import { Icon } from "astro-icon/components";
 							resolve();
 						});
 					});
+					
+					updateStatus(); // 更新已加载数量
 				}
 
 				if (footerStatus) {
-					// 检查是否还有下一页
-					let hasMore = false;
-					if (isReverse) {
-						hasMore = nextIndex >= 1;
-					} else {
-						hasMore = nextIndex <= max;
-					}
-					footerStatus.textContent = hasMore ? "" : "已加载全部";
-
-					// 如果还有更多且 sentinel 可见，继续加载
-					if (hasMore) {
-						const sentinelEl = document.getElementById("sentinel");
-						if (sentinelEl) {
-							const rect = sentinelEl.getBoundingClientRect();
-							if (rect.top < window.innerHeight + 600) {
-								// 使用 setTimeout 避免堆栈过深，并允许 UI 刷新
-								setTimeout(() => loadMore(batch), 50);
-							}
-						}
-					}
+					// 新API没有总数概念，始终显示可加载（因为是随机获取）
+					footerStatus.textContent = items.length === 0 ? "暂无更多图片" : "";
 				}
 			} finally {
 				loading = false;
@@ -320,6 +304,7 @@ import { Icon } from "astro-icon/components";
 			updateSortButton();
 			clearGallery();
 			loadMore(24);
+			// 注：排序按钮仅保留视觉效果，因为新API是随机返回，无"最新/最早"概念
 		}
 
 		async function init() {
@@ -329,7 +314,7 @@ import { Icon } from "astro-icon/components";
 			galleryEl.dataset.inited = "true";
 
 			setActiveButton();
-			await fetchCounts();
+			updateStatus(); // 初始化状态
 			updateSortButton();
 			clearGallery();
 			await loadMore(24);
@@ -354,8 +339,7 @@ import { Icon } from "astro-icon/components";
 
 			// 绑定 Fancybox
 			Fancybox.bind("[data-fancybox]", {
-				groupAll: false, // 明确禁止分组
-				// 配置项参考主站逻辑
+				groupAll: false,
 				Toolbar: {
 					display: {
 						left: ["infobar"],
@@ -374,7 +358,6 @@ import { Icon } from "astro-icon/components";
 				Thumbs: {
 					type: "classic",
 				},
-				// 每一张独立展示，不显示前后切换箭头
 				Carousel: {
 					Navigation: false,
 				},
