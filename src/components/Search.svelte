@@ -74,10 +74,16 @@ const closePanel = () => {
 	panel?.classList.add("float-panel-closed");
 };
 
-const setPanelVisibility = (show: boolean, isDesktop: boolean): void => {
+const openPanel = () => {
 	if (typeof document === "undefined") return;
 	const panel = document.getElementById("search-panel");
-	if (!panel || !isDesktop) return;
+	panel?.classList.remove("float-panel-closed");
+};
+
+const setPanelVisibility = (show: boolean): void => {
+	if (typeof document === "undefined") return;
+	const panel = document.getElementById("search-panel");
+	if (!panel) return;
 
 	if (show) {
 		panel.classList.remove("float-panel-closed");
@@ -163,7 +169,7 @@ const search = async (
 	types: string[] = selectedTypes,
 ): Promise<void> => {
 	if (!keyword) {
-		setPanelVisibility(false, isDesktop);
+		setPanelVisibility(false);
 		result = [];
 		return;
 	}
@@ -252,11 +258,11 @@ const search = async (
 			.sort((a, b) => b.matchCount - a.matchCount);
 
 		result = searchResults;
-		setPanelVisibility(true, isDesktop);
+		setPanelVisibility(true);
 	} catch (error) {
 		console.error("Search error:", error);
 		result = [];
-		setPanelVisibility(true, isDesktop);
+		setPanelVisibility(true);
 	} finally {
 		isSearching = false;
 	}
@@ -304,18 +310,20 @@ $: {
     >
 </div>
 
-<!-- toggle btn for phone/tablet view -->
-<button on:click={togglePanel} aria-label="Search Panel" id="search-switch"
-        class="btn-plain scale-animation lg:!hidden rounded-lg w-11 h-11 active:scale-90">
-    <Icon icon="material-symbols:search" class="text-[1.25rem]"></Icon>
-</button>
+<!-- search bar for phone/tablet view -->
+<div class="relative flex h-11 flex-1 items-center rounded-lg bg-white/5 transition hover:bg-white/10 focus-within:bg-white/10 lg:hidden">
+    <Icon icon="material-symbols:search" class="pointer-events-none absolute ml-3 text-[1.25rem] text-white/30 transition"></Icon>
+    <input placeholder="搜索" bind:value={keywordMobile} on:focus={() => { void ensurePostsLoaded(); openPanel(); }}
+           class="h-full w-full rounded-lg bg-transparent pl-10 pr-3 text-sm text-white/50 outline-0"
+    >
+</div>
 
 <!-- search panel -->
 <div id="search-panel" class="float-panel float-panel-closed search-panel absolute md:w-[30rem]
 top-20 left-4 md:left-[unset] right-4 shadow-none rounded-2xl p-2">
 
     <!-- search bar inside panel for phone/tablet -->
-    <div id="search-bar-inside" class="flex relative lg:hidden transition-all items-center h-11 rounded-xl
+    <div id="search-bar-inside" class="hidden relative lg:hidden transition-all items-center h-11 rounded-xl
       bg-white/5 hover:bg-white/10 focus-within:bg-white/10
   ">
         <Icon icon="material-symbols:search" class="absolute text-[1.25rem] pointer-events-none ml-3 transition my-auto text-white/30"></Icon>

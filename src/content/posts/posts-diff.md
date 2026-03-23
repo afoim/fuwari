@@ -79,7 +79,7 @@ Date:   Sat Jan 24 16:19:25 2026 +0800
 
     fix: 更新默认图片链接为本地路径
 
-    将外部图片链接 https://t.alcy.cc/ycy 统一替换为本地路径 /random/h，
+    将外部图片链接 https://t.alcy.cc/ycy 统一替换为随机图地址 https://c-p.2x.nz/h，
     包括置顶文章、记录文章和站点背景配置，确保图片资源的稳定性和一致性。
 
 commit 29afb7adb5c91dfb0904cdccbc08b48ce73e7245

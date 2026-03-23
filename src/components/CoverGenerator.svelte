@@ -105,6 +105,7 @@ let bgImageY = 0;
 let bgImageScale = 1;
 let bgBlur = 0; // New blur state
 let bgOpacity = 1; // New opacity state
+let isBgDragOver = false; // Drag over state for bg image upload
 let isDragging = false;
 let dragStartX = 0;
 let dragStartY = 0;
@@ -205,18 +206,41 @@ function handleIconSizeChange(e: Event) {
 function handleBgImageUpload(e: Event) {
 	const file = (e.target as HTMLInputElement).files?.[0];
 	if (file) {
-		const reader = new FileReader();
-		reader.onload = (e) => {
-			bgImage = e.target?.result as string;
+		loadBgImageFile(file);
+	}
+}
 
-			// Reset state
-			bgImageX = 0;
-			bgImageY = 0;
-			bgImageScale = 1;
-			bgBlur = 0;
-			bgOpacity = 1;
-		};
-		reader.readAsDataURL(file);
+function loadBgImageFile(file: File) {
+	if (!file.type.startsWith("image/")) return;
+	const reader = new FileReader();
+	reader.onload = (e) => {
+		bgImage = e.target?.result as string;
+		// Reset state
+		bgImageX = 0;
+		bgImageY = 0;
+		bgImageScale = 1;
+		bgBlur = 0;
+		bgOpacity = 1;
+	};
+	reader.readAsDataURL(file);
+}
+
+function handleBgDragOver(e: DragEvent) {
+	e.preventDefault();
+	isBgDragOver = true;
+}
+
+function handleBgDragLeave(e: DragEvent) {
+	e.preventDefault();
+	isBgDragOver = false;
+}
+
+function handleBgDrop(e: DragEvent) {
+	e.preventDefault();
+	isBgDragOver = false;
+	const file = e.dataTransfer?.files?.[0];
+	if (file) {
+		loadBgImageFile(file);
 	}
 }
 
@@ -824,10 +848,17 @@ function downloadLink(url: string, filename: string) {
               <label class="text-sm font-bold text-gray-300">背景图片</label>
               <div class="relative">
                   <input type="file" accept="image/*" on:change={handleBgImageUpload} class="hidden" id="bg-upload" />
-                  <label for="bg-upload" class="flex items-center justify-center w-full px-4 py-3 border-2 border-dashed border-gray-600 rounded-lg cursor-pointer hover:border-[var(--primary)] hover:bg-[var(--primary)]/5 transition-all group">
+                  <!-- svelte-ignore a11y-no-static-element-interactions -->
+                  <label
+                      for="bg-upload"
+                      class="flex items-center justify-center w-full px-4 py-3 border-2 border-dashed rounded-lg cursor-pointer hover:border-[var(--primary)] hover:bg-[var(--primary)]/5 transition-all group {isBgDragOver ? 'border-[var(--primary)] bg-[var(--primary)]/10' : 'border-gray-600'}"
+                      on:dragover={handleBgDragOver}
+                      on:dragleave={handleBgDragLeave}
+                      on:drop={handleBgDrop}
+                  >
                       <div class="flex flex-col items-center gap-1 text-gray-400 group-hover:text-[var(--primary)]">
                           <Icon icon="material-symbols:upload-file" class="w-6 h-6" />
-                          <span class="text-xs">{bgImage ? '点击更换图片' : '点击上传背景图'}</span>
+                          <span class="text-xs">{isBgDragOver ? '松开鼠标上传' : (bgImage ? '点击或拖拽更换图片' : '点击或拖拽上传背景图')}</span>
                       </div>
                   </label>
                   {#if bgImage}

@@ -225,6 +225,28 @@ function getProxyPrefix(hostname) {
 
 ---
 
+## Cloudflare R2 优选
+
+首先，你先得有个R2实例
+
+![](../assets/images/cf-fastip-4.png)
+
+接着，你需要绑定一个自定义域
+
+![](../assets/images/cf-fastip-5.png)
+
+接着，前往你的域名 - 规则 - Cloud Connector
+
+![](../assets/images/cf-fastip-6.png)
+
+![](../assets/images/cf-fastip-7.png)
+
+![](../assets/images/cf-fastip-8.png)
+
+最后写一条解析指向优选域名 `fast-r2.2x.nz CNAME cf.090227.xyz`
+
+---
+
 ## 传统SaaS优选
 
 ### SaaS做了什么？

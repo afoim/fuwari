@@ -62,11 +62,14 @@ importers:
         specifier: ^1.2.20
         version: 1.2.20
       '@iconify/svelte':
-        specifier: ^4.2.0
-        version: 4.2.0(svelte@5.28.2)
+        specifier: ^5.2.1
+        version: 5.2.1(svelte@5.28.2)
       '@swup/astro':
         specifier: ^1.6.0
         version: 1.7.0
+      '@swup/fragment-plugin':
+        specifier: ^1.3.0
+        version: 1.3.0(swup@4.8.2)
       '@tailwindcss/typography':
         specifier: ^0.5.16
         version: 0.5.16(tailwindcss@3.4.17)
@@ -1192,10 +1195,10 @@ packages:
   '@iconify-json/simple-icons@1.2.42':
     resolution: {integrity: sha512-G/EED0hUV1wMNUsWaFdQYLibm6SO7rP2GZP1+CvhszB5WAFYYibD3zoWp3X96xSIWpYQFvccvE17ewpd0Q1hWQ==}
 
-  '@iconify/svelte@4.2.0':
-    resolution: {integrity: sha512-fEl0T7SAPonK7xk6xUlRPDmFDZVDe2Z7ZstlqeDS/sS8ve2uyU+Qa8rTWbIqzZJlRvONkK5kVXiUf9nIc+6OOQ==}
+  '@iconify/svelte@5.2.1':
+    resolution: {integrity: sha512-zHmsIPmnIhGd5gc95bNN5FL+GifwMZv7M2rlZEpa7IXYGFJm/XGHdWf6PWQa6OBoC+R69WyiPO9NAj5wjfjbow==}
     peerDependencies:
-      svelte: '>4.0.0'
+      svelte: '>5.0.0'
 
   '@iconify/tools@4.1.2':
     resolution: {integrity: sha512-q6NzLQYEN9zkDfcyBqD3vItHcZw97w/s++3H3TBxUORr57EfHxj6tOW6fyufDjMq+Vl56WXWaPx1csBPYlI5CA==}
@@ -1759,8 +1762,8 @@ packages:
     peerDependencies:
       swup: ^4.6.0
 
-  '@swup/fragment-plugin@1.2.0':
-    resolution: {integrity: sha512-pn8NsIlvM3xYn4XCWOp3T9m5jEjt2dszSqiZUQmf1/77b/K8o/zes2RFjpZOwJiB8TtcuMvnXCml3cZuSA2J4w==}
+  '@swup/fragment-plugin@1.3.0':
+    resolution: {integrity: sha512-wz1aaLrvdWfucjO5fs7DgtptYKj3DpfIUNsEyzlt46iOxy9bV74VGDcBOEmnR8blmKBytNBRqDNPT0fhcVCr9w==}
     peerDependencies:
       swup: ^4.6.0
 
@@ -7010,7 +7013,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify/svelte@4.2.0(svelte@5.28.2)':
+  '@iconify/svelte@5.2.1(svelte@5.28.2)':
     dependencies:
       '@iconify/types': 2.0.0
       svelte: 5.28.2
@@ -7496,7 +7499,7 @@ snapshots:
       '@swup/debug-plugin': 4.1.0(swup@4.8.2)
       '@swup/fade-theme': 2.0.2(swup@4.8.2)
       '@swup/forms-plugin': 3.6.0(swup@4.8.2)
-      '@swup/fragment-plugin': 1.2.0(swup@4.8.2)
+      '@swup/fragment-plugin': 1.3.0(swup@4.8.2)
       '@swup/head-plugin': 2.3.1(swup@4.8.2)
       '@swup/overlay-theme': 2.0.2(swup@4.8.2)
       '@swup/parallel-plugin': 0.4.0(swup@4.8.2)
@@ -7536,7 +7539,7 @@ snapshots:
       '@swup/plugin': 4.0.0
       swup: 4.8.2
 
-  '@swup/fragment-plugin@1.2.0(swup@4.8.2)':
+  '@swup/fragment-plugin@1.3.0(swup@4.8.2)':
     dependencies:
       '@swup/plugin': 4.0.0
       swup: 4.8.2

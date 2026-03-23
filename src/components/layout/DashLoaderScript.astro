@@ -1,0 +1,19 @@
+<script>
+(function () {
+	const needsDash = () => {
+		return document.querySelector('video[data-dashjs-player], [data-dashjs], video source[type="application/dash+xml"]');
+	};
+	const run = () => {
+		if (!needsDash()) return;
+		const script = document.createElement("script");
+		script.src = "https://cdn.dashjs.org/latest/dash.all.min.js";
+		script.async = true;
+		document.body.appendChild(script);
+	};
+	if (document.readyState === "complete") {
+		run();
+		return;
+	}
+	window.addEventListener("load", run, { once: true });
+})();
+</script>

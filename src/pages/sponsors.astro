@@ -142,13 +142,12 @@ const breadcrumbSchema = {
                     <div class="sponsor-card">
                         <div class="flex items-center gap-3 p-4 rounded-lg bg-[var(--card-bg)] border border-white/10 backdrop-blur-md">
                             <div class="w-10 h-10 rounded-lg flex items-center justify-center overflow-hidden">
-                            {sponsor.avatar ? (
-                                <div class="relative w-full h-full rounded-lg overflow-hidden" style={`--theme-hue: ${siteConfig.themeColor.hue}`}>
-                                    <img src={sponsor.avatar} alt={`${sponsor.name}的头像`} loading="lazy" class="w-full h-full object-cover transition duration-500" />
-                                </div>
-                            ) : (
-                                <Icon name="material-symbols:person" class="text-gray-400 text-[1.2rem]" />
-                            )}
+                            <div class="relative w-full h-full rounded-lg overflow-hidden" style={`--theme-hue: ${siteConfig.themeColor.hue}`}>
+                                <Icon name="material-symbols:person" class="absolute inset-0 m-auto text-gray-400 text-[1.2rem]" />
+                                {sponsor.avatar && (
+                                    <img src={sponsor.avatar} alt={`${sponsor.name}的头像`} loading="lazy" class="w-full h-full object-cover" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'" />
+                                )}
+                            </div>
                         </div>
                             <div class="flex-1">
                                 <h4 class="font-semibold text-white text-sm">{sponsor.name}</h4>
@@ -183,7 +182,20 @@ const breadcrumbSchema = {
 }
 
 .sponsors-grid {
-    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4;
+    columns: 3;
+    column-gap: 1rem;
+}
+
+@media (max-width: 1024px) {
+    .sponsors-grid {
+        columns: 2;
+    }
+}
+
+@media (max-width: 768px) {
+    .sponsors-grid {
+        columns: 1;
+    }
 }
 
 .sponsor-placeholder {
@@ -192,5 +204,7 @@ const breadcrumbSchema = {
 
 .sponsor-card {
     @apply transition-all duration-200 hover:shadow-md hover:scale-105;
+    break-inside: avoid;
+    margin-bottom: 1rem;
 }
 </style>

@@ -16,7 +16,8 @@ const links = Astro.props.links;
         "
            target={link.external ? "_blank" : null}
         >
-            <div class="transition text-white/75 font-bold group-hover:text-[var(--primary)] group-active:text-[var(--primary)]">
+            <div class="flex items-center gap-2 transition text-white/75 font-bold group-hover:text-[var(--primary)] group-active:text-[var(--primary)]">
+                {link.icon && <Icon name={link.icon} class="text-[1.1rem]" />}
                 {link.name}
             </div>
             {!link.external && <Icon name="material-symbols:chevron-right-rounded"

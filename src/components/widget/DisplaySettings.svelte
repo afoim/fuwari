@@ -1,5 +1,6 @@
 <script lang="ts">
 import Icon from "@iconify/svelte";
+import { onMount } from "svelte";
 import {
 	getBgBlur,
 	getDefaultHue,
@@ -88,13 +89,17 @@ function onSpeedChange() {
 	}
 }
 
-if (isBrowser && isRainbowMode) {
+onMount(() => {
+	if (!isRainbowMode) {
+		return;
+	}
+
 	document.documentElement.classList.add("is-rainbow-mode");
 	document.documentElement.style.setProperty(
 		"--rainbow-duration",
 		`${120 / rainbowSpeed}s`,
 	);
-}
+});
 </script>
 
 <div id="display-setting" class="float-panel float-panel-closed absolute transition-all w-80 right-4 px-4 py-4">
@@ -107,7 +112,7 @@ if (isBrowser && isRainbowMode) {
         >
             主题色彩
             <button aria-label="Reset to Default" class="btn-regular w-7 h-7 rounded-md  active:scale-90"
-                    class:opacity-0={hue === defaultHue} class:pointer-events-none={hue === defaultHue} on:click={resetHue}>
+                    class:opacity-0={hue === defaultHue} class:pointer-events-none={hue === defaultHue} onclick={resetHue}>
                 <div class="text-[var(--btn-content)]">
                     <Icon icon="fa6-solid:arrow-rotate-left" class="text-[0.875rem]"></Icon>
                 </div>
@@ -115,14 +120,14 @@ if (isBrowser && isRainbowMode) {
         </div>
         <div class="flex gap-1">
             <input aria-label="Hue Value" id="hueValue" type="number" min="0" max="360" bind:value={hue} disabled={isRainbowMode}
-                   on:input={onHueChange}
+                   oninput={onHueChange}
                    class="transition bg-[var(--btn-regular-bg)] w-12 h-7 rounded-md text-center font-bold text-sm text-[var(--btn-content)] outline-none"
             />
         </div>
     </div>
     <div class="w-full h-6 px-1 bg-[oklch(0.70_0.10_0)] rounded select-none mb-3">
         <input aria-label="主题色彩" type="range" min="0" max="360" bind:value={hue} disabled={isRainbowMode}
-               on:input={onHueChange}
+               oninput={onHueChange}
                class="slider" id="colorSlider" step="1" style="width: 100%">
     </div>
 
@@ -133,7 +138,7 @@ if (isBrowser && isRainbowMode) {
         >
             禁用背景
         </div>
-        <input aria-label="Hide Background" type="checkbox" class="toggle-switch" checked={hideBg} on:change={toggleHideBg} />
+        <input aria-label="Hide Background" type="checkbox" class="toggle-switch" checked={hideBg} onchange={toggleHideBg} />
     </div>
 
     <div class="flex flex-row gap-2 mb-3 items-center justify-between">
@@ -143,7 +148,7 @@ if (isBrowser && isRainbowMode) {
         >
             彩虹模式
         </div>
-        <input aria-label="Rainbow Mode" type="checkbox" class="toggle-switch" checked={isRainbowMode} on:change={toggleRainbow} />
+        <input aria-label="Rainbow Mode" type="checkbox" class="toggle-switch" checked={isRainbowMode} onchange={toggleRainbow} />
     </div>
 
     {#if isRainbowMode}
@@ -162,7 +167,7 @@ if (isBrowser && isRainbowMode) {
         </div>
     </div>
     <div class="w-full h-6 bg-[var(--btn-regular-bg)] rounded select-none overflow-hidden">
-        <input aria-label="变换速率" type="range" min="1" max="100" bind:value={rainbowSpeed} on:change={onSpeedChange}
+        <input aria-label="变换速率" type="range" min="1" max="100" bind:value={rainbowSpeed} onchange={onSpeedChange}
                class="slider" step="1" style="width: 100%; --value-percent: {(rainbowSpeed - 1) / 99 * 100}%">
     </div>
     {/if}
@@ -183,7 +188,7 @@ if (isBrowser && isRainbowMode) {
     </div>
     <div class="w-full h-6 bg-[var(--btn-regular-bg)] rounded select-none overflow-hidden">
         <input aria-label="背景模糊" type="range" min="0" max="20" bind:value={bgBlur}
-               on:input={onBgBlurChange}
+               oninput={onBgBlurChange}
                class="slider" step="1" style="width: 100%; --value-percent: {bgBlur / 20 * 100}%">
     </div>
 
@@ -194,7 +199,7 @@ if (isBrowser && isRainbowMode) {
         >
             开发模式
         </div>
-        <input aria-label="Developer Mode" type="checkbox" class="toggle-switch" checked={isDevMode} on:change={toggleDevMode} />
+        <input aria-label="Developer Mode" type="checkbox" class="toggle-switch" checked={isDevMode} onchange={toggleDevMode} />
     </div>
 
     {#if isDevMode}
@@ -206,7 +211,7 @@ if (isBrowser && isRainbowMode) {
             Server
         </div>
         <div class="flex gap-1">
-             <input aria-label="Server Value" type="text" bind:value={devServer} on:input={onDevServerChange}
+             <input aria-label="Server Value" type="text" bind:value={devServer} oninput={onDevServerChange}
                    class="transition bg-[var(--btn-regular-bg)] w-32 h-7 rounded-md text-center font-bold text-sm text-[var(--btn-content)] outline-none"
             />
         </div>

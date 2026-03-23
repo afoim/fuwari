@@ -46,12 +46,13 @@ const breadcrumbSchema = {
             <div class="mb-4">
                 <LinkSubmitInfo dataType="friends"></LinkSubmitInfo>
             </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="friends-masonry">
             {friends.map((friend) => (
                 <a href={friend.url} target="_blank" class="friend-card">
                     <div class="flex items-center gap-2">
                         <div class="relative w-5 h-5 rounded overflow-hidden" style={`--theme-hue: ${siteConfig.themeColor.hue}`}>
-                            <img src={friend.avatar} loading="lazy" class="w-full h-full object-cover transition-opacity duration-500" alt={`${friend.name}的头像`} />
+                            <Icon name="material-symbols:person" class="absolute inset-0 m-auto text-gray-400 text-[0.7rem]" />
+                            <img src={friend.avatar} loading="lazy" class="w-full h-full object-cover" alt={`${friend.name}的头像`} onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'" />
                         </div>
                         <div class="font-bold text-white">{friend.name}</div>
                     </div>
@@ -65,22 +66,35 @@ const breadcrumbSchema = {
 </MainGridLayout>
 
 <style>
+    .friends-masonry {
+        columns: 2;
+        column-gap: 1rem;
+    }
+
+    @media (max-width: 768px) {
+        .friends-masonry {
+            columns: 1;
+        }
+    }
+
     .friend-card {
         @apply border border-white/10 hover:border-white/20 hover:bg-white/5 transition flex flex-col gap-1 p-4 rounded-lg;
+        break-inside: avoid;
+        margin-bottom: 1rem;
         transition-property: background-color, border-color, scale;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         transition-duration: 0.15s;
         transform: translateZ(0);
     }
-    
+
     .friend-card:active {
         scale: .98;
     }
-    
+
     .friend-card:hover .font-bold {
         color: var(--btn-content);
     }
-    
+
     .friend-card:hover .text-sm {
     @apply text-white;
     }

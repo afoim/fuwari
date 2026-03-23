@@ -49,7 +49,7 @@ export const siteConfig: SiteConfig = {
 	},
 	background: {
 		enable: true, // Enable background image
-		src: "/random/h", // Background image URL (supports HTTPS)
+		src: "https://c-p.2x.nz/h", // Background image URL (supports HTTPS)
 		position: "center", // Background position: 'top', 'center', 'bottom'
 		size: "cover", // Background size: 'cover', 'contain', 'auto'
 		repeat: "no-repeat", // Background repeat: 'no-repeat', 'repeat', 'repeat-x', 'repeat-y'
@@ -84,38 +84,33 @@ export const navBarConfig: NavBarConfig = {
 		LinkPreset.Archive,
 		{
 			name: "友链",
-			url: "/friends/", // Internal links should not include the base path, as it is automatically added
-			external: false, // Show an external link icon and will open in a new tab
+			url: "/friends/",
+			external: false,
+			icon: "material-symbols:group-outline-rounded",
 		},
 		{
 			name: "赞助",
-			url: "/sponsors/", // Internal links should not include the base path, as it is automatically added
-			external: false, // Show an external link icon and will open in a new tab
+			url: "/sponsors/",
+			external: false,
+			icon: "material-symbols:volunteer-activism-outline-rounded",
 		},
 		{
-			name: "画廊",
-			url: "/gallery/", // Internal links should not include the base path, as it is automatically added
-			external: false, // Show an external link icon and will open in a new tab
-		},
-		{
-			name: "文件",
-			url: "/files/", // Internal links should not include the base path, as it is automatically added
-			external: false, // Show an external link icon and will open in a new tab
-		},
-		{
-			name: "封面",
-			url: "/cover/", // Internal links should not include the base path, as it is automatically added
-			external: false, // Show an external link icon and will open in a new tab
+			name: "工具",
+			url: "/tools/",
+			external: false,
+			icon: "material-symbols:build-outline-rounded",
 		},
 		{
 			name: "统计",
-			url: "https://u.2x.nz/share/CdkXbGgZr6ECKOyK", // Internal links should not include the base path, as it is automatically added
-			external: true, // Show an external link icon and will open in a new tab
+			url: "https://u.2x.nz/share/CdkXbGgZr6ECKOyK",
+			external: true,
+			icon: "material-symbols:table-chart",
 		},
 		{
 			name: "论坛",
-			url: "https://i.2x.nz", // Internal links should not include the base path, as it is automatically added
-			external: true, // Show an external link icon and will open in a new tab
+			url: "https://i.2x.nz",
+			external: true,
+			icon: "material-symbols:forum-outline-rounded",
 		},
 	],
 };

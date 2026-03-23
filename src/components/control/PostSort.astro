@@ -60,7 +60,7 @@ const getSortUrl = (type: string, descending: boolean) => {
         // Parse current state from URL
         let type = 'date';
         let desc = true;
-        
+
         // Simple matching based on route patterns
         if (path.includes('/date-asc/')) { type = 'date'; desc = false; }
         else if (path.includes('/alpha-asc/')) { type = 'alpha'; desc = false; }
@@ -70,7 +70,7 @@ const getSortUrl = (type: string, descending: boolean) => {
         const dateBtn = container.querySelector('a[title="按发布日期排序"]');
         const alphaBtn = container.querySelector('a[title="按标题字母排序"]');
         const orderBtn = container.querySelector('a[title="切换正序/倒序"]');
-        
+
         if (!dateBtn || !alphaBtn || !orderBtn) return;
 
         // Helper to construct URL (assuming root base for simplicity or grabbing base from existing href)
@@ -80,7 +80,7 @@ const getSortUrl = (type: string, descending: boolean) => {
             let baseUrl = '/';
             // Check if site has a base path (e.g. /blog/)
             // We can try to detect it from window.location or existing hrefs
-            // For now assume root or relative if possible. 
+            // For now assume root or relative if possible.
             // Swup handles relative links well.
             if (t === 'date' && d) return baseUrl;
             return `${baseUrl}${t}-${d ? 'desc' : 'asc'}/`;
@@ -97,8 +97,8 @@ const getSortUrl = (type: string, descending: boolean) => {
 
         // Update Order Button Visuals
         const orderText = orderBtn.querySelector('span');
-        const orderIcon = orderBtn.querySelector('svg'); 
-        
+        const orderIcon = orderBtn.querySelector('svg');
+
         if (orderText) orderText.textContent = desc ? '倒序' : '正序';
         if (orderIcon) {
             if (!desc) {
@@ -107,15 +107,15 @@ const getSortUrl = (type: string, descending: boolean) => {
                 orderIcon.classList.remove('rotate-180');
             }
         }
-        
+
         // Update Hrefs for next interaction
-        // Date Button: switch to date sort, keep current direction? 
+        // Date Button: switch to date sort, keep current direction?
         // Original logic: getSortUrl("date", isDescending) -> keeps current direction
         dateBtn.setAttribute('href', getUrl('date', desc));
-        
+
         // Alpha Button: switch to alpha sort, keep current direction
         alphaBtn.setAttribute('href', getUrl('alpha', desc));
-        
+
         // Order Button: toggle direction, keep current type
         orderBtn.setAttribute('href', getUrl(type, !desc));
     }

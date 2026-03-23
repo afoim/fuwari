@@ -9,7 +9,24 @@ ai_level: 1
 ---
 # 原理
 
-![](../assets/images/mermaid-diagram.png)
+```mermaid
+flowchart TD
+    A["通过“魔法”获得大量 OAuth Token"]
+
+    subgraph CPA
+        B["批量导入 OAuth Token 到 CPA"]
+        C["CPA 创建虚拟 API 端点"]
+        D["生成 API Key"]
+        E["获得 OpenAI 兼容 API"]
+
+        B --> C --> D --> E
+    end
+
+    F["接入 Claude Code / Codex"]
+
+    A --> B
+    E --> F
+```
 
 # 实操
 

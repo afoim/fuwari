@@ -1,3 +1,4 @@
+import { fileURLToPath } from "node:url";
 import svelte from "@astrojs/svelte";
 import tailwind from "@astrojs/tailwind";
 import { pluginCollapsibleSections } from "@expressive-code/plugin-collapsible-sections";
@@ -6,7 +7,6 @@ import swup from "@swup/astro";
 import expressiveCode from "astro-expressive-code";
 import icon from "astro-icon";
 import { defineConfig, passthroughImageService } from "astro/config";
-import { fileURLToPath } from "node:url";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeComponents from "rehype-components"; /* Render the custom directive content */
 import rehypeExternalLinks from "rehype-external-links";
@@ -20,11 +20,11 @@ import { imageFallbackConfig, siteConfig } from "./src/config.ts";
 import { expressiveCodeConfig } from "./src/config.ts";
 // import { pluginLanguageBadge } from "./src/plugins/expressive-code/language-badge.ts";
 import { pluginCustomCopyButton } from "./src/plugins/expressive-code/custom-copy-button.js";
+import { rehypeAIAdmonition } from "./src/plugins/rehype-ai-admonition.mjs";
 import { AdmonitionComponent } from "./src/plugins/rehype-component-admonition.mjs";
 import { GithubCardComponent } from "./src/plugins/rehype-component-github-card.mjs";
 import { UrlCardComponent } from "./src/plugins/rehype-component-url-card.mjs";
 import rehypeImageFallback from "./src/plugins/rehype-image-fallback.mjs";
-import { rehypeAIAdmonition } from "./src/plugins/rehype-ai-admonition.mjs";
 import { parseDirectiveNode } from "./src/plugins/remark-directive-rehype.js";
 import { remarkExcerpt } from "./src/plugins/remark-excerpt.js";
 import { remarkGithubAdmonitions } from "./src/plugins/remark-github-admonitions.js";
@@ -192,7 +192,7 @@ export default defineConfig({
 			animationClass: "transition-swup-", // see https://swup.js.org/options/#animationselector
 			// the default value `transition-` cause transition delay
 			// when the Tailwind class `transition-all` is used
-			containers: ["#swup-container", "#toc"],
+			containers: ["#sort-container", "#swup-container", "#toc"],
 			smoothScrolling: true,
 			cache: true,
 			preload: true,
@@ -205,7 +205,13 @@ export default defineConfig({
 		icon({
 			iconDir: "public/icons",
 		}),
-		svelte(),
+		svelte({
+			compilerOptions: {
+				compatibility: {
+					componentApi: 4,
+				},
+			},
+		}),
 		expressiveCode({
 			themes: [expressiveCodeConfig.theme, expressiveCodeConfig.theme],
 			plugins: [
@@ -320,20 +326,26 @@ export default defineConfig({
 				{
 					find: /^@iconify\/svelte$/,
 					replacement: fileURLToPath(
-						new URL("./node_modules/@iconify/svelte/dist/Icon.svelte", import.meta.url),
+						new URL(
+							"./node_modules/@iconify/svelte/dist/Icon.svelte",
+							import.meta.url,
+						),
 					),
 				},
 				{
 					find: /^@iconify\/svelte\/dist\/Icon\.svelte$/,
 					replacement: fileURLToPath(
-						new URL("./node_modules/@iconify/svelte/dist/Icon.svelte", import.meta.url),
+						new URL(
+							"./node_modules/@iconify/svelte/dist/Icon.svelte",
+							import.meta.url,
+						),
 					),
 				},
 			],
 		},
 		server: {
-		allowedHosts: ['2x.nz']
-	},
+			allowedHosts: ["2x.nz"],
+		},
 		build: {
 			rollupOptions: {
 				onwarn(warning, warn) {

@@ -6,6 +6,13 @@ html.is-animating .transition-swup-fade {
     @apply opacity-0 translate-y-4
 }
 
+/* Keep sort container visible during sort-to-sort navigation */
+.sort-keep {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+}
+
 /* Fade-in animations for components */
 @keyframes fade-in-up {
     0% {

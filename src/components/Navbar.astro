@@ -24,24 +24,24 @@ let links: NavBarLink[] = navBarConfig.links.map(
     <div class:list={[
         className,
         "card-base border border-white/10 !overflow-visible max-w-[var(--page-width)] h-[4.5rem] !rounded-t-none mx-auto flex items-center justify-between px-4"]}>
-        <a href={url('/')} class="btn-plain scale-animation rounded-lg h-[3.25rem] px-5 font-bold active:scale-95">
-            <div class="flex flex-row text-[var(--primary)] items-center text-md">
-                <Icon name="material-symbols:home-outline-rounded" class="text-[1.75rem] mb-1" />
-            </div>
-        </a>
-        <div class="hidden md:flex">
+        <div class="hidden lg:flex items-center">
             {links.map((l) => {
                 return <a aria-label={l.name} href={l.external ? l.url : url(l.url)} target={l.external ? "_blank" : null}
                           class="btn-plain scale-animation rounded-lg h-11 font-bold px-5 active:scale-95"
                 >
                     <div class="flex items-center">
+                        {l.icon && <Icon name={l.icon} class="text-[1.1rem] mr-1.5" />}
                         {l.name}
                         {l.external && <Icon name="fa6-solid:arrow-up-right-from-square" class="text-[0.875rem] transition -translate-y-[1px] ml-1 text-white/[0.2]"></Icon>}
                     </div>
                 </a>;
             })}
         </div>
-        <div class="flex">
+        <div class="flex flex-1 items-center gap-2 lg:flex-none lg:gap-0">
+            <a aria-label="Home" href={url("/")}
+               class="btn-plain scale-animation flex h-11 w-11 items-center justify-center rounded-lg active:scale-90 lg:!hidden">
+                <Icon name="material-symbols:home-rounded" class="text-[1.25rem]"></Icon>
+            </a>
             <!--<SearchPanel client:load>-->
             <Search client:idle></Search>
             {!siteConfig.themeColor.fixed && (
@@ -50,7 +50,7 @@ let links: NavBarLink[] = navBarConfig.links.map(
                     </button>
             )}
 
-            <button aria-label="Menu" name="Nav Menu" class="btn-plain scale-animation rounded-lg w-11 h-11 active:scale-90 md:!hidden" id="nav-menu-switch">
+            <button aria-label="Menu" name="Nav Menu" class="btn-plain scale-animation rounded-lg w-11 h-11 active:scale-90 lg:!hidden" id="nav-menu-switch">
                 <Icon name="material-symbols:menu-rounded" class="text-[1.25rem]"></Icon>
             </button>
         </div>
