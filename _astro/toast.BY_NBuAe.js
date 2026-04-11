@@ -1,0 +1,1 @@
+const e="forum:toast";function o(t){window.dispatchEvent(new CustomEvent(e,{detail:t}))}function n(t,s){o({type:"success",title:t,description:s})}function a(t,s){o({type:"error",title:t,description:s})}export{e as F,n as a,a as e};

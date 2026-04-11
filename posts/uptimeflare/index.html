@@ -1,0 +1,1020 @@
+<!DOCTYPE html><html lang="zh-CN" class="bg-[var(--page-bg)] transition text-[12px] md:text-[16px] dark" data-astro-cid-sckkx6r4 style="--bannerOffset: 15vh;--banner-height-home: 65vh;--banner-height: 35vh;--configHue: 255;--page-width: 75rem;--bg-src: url(https://p.2x.nz/api/random);--bg-enable: 1;--bg-position: center;--bg-size: cover;--bg-repeat: no-repeat;--bg-attachment: fixed;--bg-opacity: 0.15;--configHue: 255;"> <head><meta name="referrer" content="unsafe-url"><title>超高校级的监控服务：UptimeFlare！基于CF Worker！自托管！声明式！新手友好！ - 《二叉树树》官方网站</title><!-- <meta name="referrer" content="no-referrer"> --><link rel="canonical" href="https://2x.nz/posts/uptimeflare/"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><meta name="google-adsense-account" content="ca-pub-1683686345039700"><meta name="description" content="谁不想拥有一个监控自己服务的服务呢？"><meta name="author" content="二叉树树"><meta name="keywords" content="二叉树树, 二叉树树官网, 树, 二叉树, 二叉, 博客, AcoFork Blog, AcoFork, Blog, acofork blog, acofork, blog"><meta property="og:site_name" content="《二叉树树》官方网站"><meta property="og:url" content="https://2x.nz/posts/uptimeflare/"><meta property="og:title" content="超高校级的监控服务：UptimeFlare！基于CF Worker！自托管！声明式！新手友好！ - 《二叉树树》官方网站"><meta property="og:description" content="谁不想拥有一个监控自己服务的服务呢？"><meta property="og:type" content="article"><meta name="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://2x.nz/posts/uptimeflare/"><meta name="twitter:title" content="超高校级的监控服务：UptimeFlare！基于CF Worker！自托管！声明式！新手友好！ - 《二叉树树》官方网站"><meta name="twitter:description" content="谁不想拥有一个监控自己服务的服务呢？"><meta name="generator" content="Astro v5.7.9"><link rel="preconnect" href="https://t.2x.nz"><link rel="preconnect" href="https://p.2x.nz"><link rel="preconnect" href="https://support.nodeget.com"><!-- <script src="/js/umami-share.js" defer></script> --><script data-swup-ignore-script src="https://p.2x.nz/random.js" defer></script><script type="module" src="/_astro/Layout.astro_astro_type_script_index_0_lang.D1RxuPxZ.js"></script><script>(function(){const customDomain = "2x.nz";
+
+		(function () {
+		var hostname = location.hostname;
+		var port = location.port;
+
+		// 默认端口判断
+		var isDefaultPort =
+			port === "" || port === "80" || port === "443";
+
+		if (hostname !== customDomain && isDefaultPort) {
+			location.replace(
+			`https://${customDomain}` +
+			location.pathname +
+			location.search +
+			location.hash
+			);
+		}
+		})();
+		})();</script><link rel="icon" href="https://q2.qlogo.cn/headimg_dl?dst_uin=2726730791&spec=0"><!-- Set the theme before the page is rendered to avoid a flash --><script>(function(){const DARK_MODE = "dark";
+const BANNER_HEIGHT_EXTEND = 30;
+const PAGE_WIDTH = 75;
+const configHue = 255;
+
+			// Force dark mode
+			document.documentElement.classList.add('dark');
+			localStorage.setItem('theme', DARK_MODE);
+
+			// Always use config hue (ignore localStorage)
+			document.documentElement.style.setProperty('--hue', configHue);
+
+			// calculate the --banner-height-extend, which needs to be a multiple of 4 to avoid blurry text
+			let offset = Math.floor(window.innerHeight * (BANNER_HEIGHT_EXTEND / 100));
+			offset = offset - offset % 4;
+			document.documentElement.style.setProperty('--banner-height-extend', `${offset}px`);
+		})();</script><!-- KaTeX CSS: async load to avoid blocking render --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css"></noscript><script type="application/ld+json">[{"@context":"https://schema.org","@type":"BlogPosting","headline":"超高校级的监控服务：UptimeFlare！基于CF Worker！自托管！声明式！新手友好！","description":"谁不想拥有一个监控自己服务的服务呢？","author":{"@type":"Person","name":"二叉树树","url":"https://2x.nz/"},"datePublished":"2026-01-02","dateModified":"2026-01-02","mainEntityOfPage":{"@type":"WebPage","@id":"https://2x.nz/posts/uptimeflare/"},"inLanguage":"zh-CN","image":"https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/uptimeflare.webp"},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://2x.nz/"},{"@type":"ListItem","position":2,"name":"归档","item":"https://2x.nz/archive"},{"@type":"ListItem","position":3,"name":"超高校级的监控服务：UptimeFlare！基于CF Worker！自托管！声明式！新手友好！","item":"https://2x.nz/posts/uptimeflare/"}]}]</script><link rel="alternate" type="application/rss+xml" title="二叉树树" href="https://2x.nz/rss.xml"><link rel="stylesheet" href="/_astro/fancybox.DJVvVWuI.css">
+<link rel="stylesheet" href="/_astro/_page_.D3EdcHfP.css">
+<link rel="stylesheet" href="/_astro/_slug_.OOi2eoYQ.css">
+<style>[data-astro-cid-xo7rbxof][data-live-next-detail]{transition:color .2s ease}.live-status-card[data-astro-cid-xo7rbxof]{background:linear-gradient(135deg,#ffffff0a,#ffffff04),var(--card-bg);border-color:#ffffff1f;box-shadow:0 2px 10px #0000001f;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease,background .2s ease}.live-status-card[data-astro-cid-xo7rbxof]:hover{transform:translateY(-2px);border-color:#ffffff29;background:linear-gradient(135deg,#ffffff0d,#ffffff06),var(--card-bg);box-shadow:0 12px 26px #00000038}
+.image-content[data-astro-cid-i2xmscho]{transition:none}
+</style>
+<link rel="stylesheet" href="/_astro/GlobalToaster.DKFR7gsf.css">
+<style>@keyframes svelte-chim0r-fade-in{0%{opacity:0}to{opacity:1}}
+</style><script type="module" src="/_astro/page.DlhA1WfQ.js"></script></head> <body class=" min-h-screen transition " data-astro-cid-sckkx6r4 style="--bannerOffset: 15vh;--banner-height-home: 65vh;--banner-height: 35vh;--configHue: 255;--page-width: 75rem;--bg-src: url(https://p.2x.nz/api/random);--bg-enable: 1;--bg-position: center;--bg-size: cover;--bg-repeat: no-repeat;--bg-attachment: fixed;--bg-opacity: 0.15;--configHue: 255;"> <script data-swup-ignore-script type="text/javascript">
+(function () {
+	const load = () => {
+		if (window.__cookieConsentScriptLoaded) return;
+		window.__cookieConsentScriptLoaded = true;
+		const script = document.createElement("script");
+		script.src = "https://www.termsfeed.com/public/cookie-consent/4.2.0/cookie-consent.js";
+		script.charset = "UTF-8";
+		script.async = true;
+		document.head.appendChild(script);
+	};
+	if (document.readyState === "complete") {
+		load();
+		return;
+	}
+	window.addEventListener("load", load, { once: true });
+})();
+</script> <script data-swup-ignore-script type="text/javascript" charset="UTF-8">
+(function () {
+	const getPalette = () => {
+		return "dark";
+	};
+
+	const baseConfig = {
+		notice_banner_type: "simple",
+		consent_type: "express",
+		language: "zh-TW",
+		page_load_consent_levels: ["strictly-necessary"],
+		notice_banner_reject_button_hide: false,
+		preferences_center_close_button_hide: false,
+		page_refresh_confirmation_buttons: false,
+		website_name: "AcoFork Blog",
+		website_privacy_policy_url: "https://acofork.com/posts/privacy-policy/",
+	};
+
+	const markCookieConsentHeadAssetsPersistent = () => {
+		const attr = "data-swup-theme";
+		const candidates = document.head?.querySelectorAll?.("link[rel='stylesheet'][href], style, script[src]") ?? [];
+		candidates.forEach(el => {
+			if (!(el instanceof HTMLElement)) return;
+			if (el.hasAttribute(attr)) return;
+
+			const tag = el.tagName.toLowerCase();
+			if (tag === "link") {
+				const href = el.getAttribute("href") || "";
+				if (/termsfeed|cookie-consent|cookieconsent/i.test(href)) el.setAttribute(attr, "");
+				return;
+			}
+			if (tag === "script") {
+				const src = el.getAttribute("src") || "";
+				if (/termsfeed|cookie-consent|cookieconsent/i.test(src)) el.setAttribute(attr, "");
+				return;
+			}
+			if (tag === "style") {
+				const css = el.textContent || "";
+				if (
+					/termsfeed-com---/.test(css) ||
+					/\bcc-(nb|pc|cp)\b/.test(css) ||
+					/\bcc_(dialog|preferences|cp|nb|overlay|banner|modal)\b/.test(css) ||
+					/cookie\s*consent|cookieconsent/i.test(css)
+				) {
+					el.setAttribute(attr, "");
+				}
+			}
+		});
+	};
+
+	let scheduled = false;
+	const scheduleApplyPalette = () => {
+		if (scheduled) return;
+		scheduled = true;
+		requestAnimationFrame(() => {
+			scheduled = false;
+			const palette = getPalette();
+			document
+				.querySelectorAll("[class*='termsfeed-com---palette-']")
+				.forEach(el => {
+					Array.from(el.classList)
+						.filter(className => className.startsWith("termsfeed-com---palette-"))
+						.forEach(className => el.classList.remove(className));
+					el.classList.add(`termsfeed-com---palette-${palette}`);
+				});
+			document
+				.querySelectorAll(
+					".cc_dialog, .cc_preferences, .cc_cp, .cc_nb, .cc_overlay, .cc_banner, .cc_modal",
+				)
+				.forEach(el => {
+					Array.from(el.classList)
+						.filter(className => className === "dark")
+						.forEach(className => el.classList.remove(className));
+					el.classList.add("dark");
+				});
+		});
+	};
+
+	const runCookieConsent = () => {
+		const cc = window.cookieconsent;
+		if (!cc || typeof cc.run !== "function") return;
+		cc.run({ ...baseConfig, palette: getPalette() });
+		scheduleApplyPalette();
+	};
+
+	const ensureCookieConsentRun = () => {
+		const cc = window.cookieconsent;
+		if (cc && typeof cc.run === "function") {
+			runCookieConsent();
+			return;
+		}
+		setTimeout(ensureCookieConsentRun, 150);
+	};
+
+	document.addEventListener("DOMContentLoaded", () => {
+		markCookieConsentHeadAssetsPersistent();
+		new MutationObserver(markCookieConsentHeadAssetsPersistent).observe(document.head, {
+			childList: true,
+			subtree: true,
+		});
+
+		ensureCookieConsentRun();
+
+		new MutationObserver(scheduleApplyPalette).observe(document.documentElement, {
+			attributes: true,
+			attributeFilter: ["class"],
+		});
+
+		new MutationObserver(scheduleApplyPalette).observe(document.body, {
+			childList: true,
+			subtree: true,
+		});
+	});
+})();
+</script> <script data-cookie-consent="strictly-necessary" data-swup-ignore-script defer src="https://t.2x.nz/tracker.js"></script> <script type="text/plain" data-cookie-consent="strictly-necessary" defer src="https://u.2x.nz/script.js" data-website-id="5d710dbd-3a2e-43e3-a553-97b415090c63" data-swup-ignore-script></script> <script data-cookie-consent="strictly-necessary" defer data-swup-ignore-script src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;15fe148e91b34f10a15652e1a74ab26c&quot;}"></script> <script data-swup-ignore-script>
+(function() {
+	var _hmt = window._hmt = window._hmt || [];
+	var load = function() {
+		if (window.__baiduAnalyticsLoaded) return;
+		window.__baiduAnalyticsLoaded = true;
+		var hm = document.createElement("script");
+		hm.src = "https://hm.baidu.com/hm.js?a87028bb5a1ed77d98f192bc12b56142";
+		hm.async = true;
+		document.head.appendChild(hm);
+	};
+	if ("requestIdleCallback" in window) {
+		window.requestIdleCallback(load, { timeout: 4000 });
+	} else {
+		setTimeout(load, 1500);
+	}
+})();
+</script> <script data-swup-ignore-script>
+(function() {
+	if (window.__googleThirdPartyDeferredLoaded) return;
+	const loadScript = (src, attrs = {}) => {
+		const script = document.createElement("script");
+		script.src = src;
+		script.async = true;
+		Object.entries(attrs).forEach(([key, value]) => {
+			if (value === true) {
+				script.setAttribute(key, "");
+				return;
+			}
+			if (value !== false && value != null) {
+				script.setAttribute(key, String(value));
+			}
+		});
+		const firstScript = document.getElementsByTagName("script")[0];
+		if (firstScript?.parentNode) {
+			firstScript.parentNode.insertBefore(script, firstScript);
+		} else {
+			document.head.appendChild(script);
+		}
+		return script;
+	};
+	const run = () => {
+		if (window.__googleThirdPartyDeferredLoaded) return;
+		window.__googleThirdPartyDeferredLoaded = true;
+		window.dataLayer = window.dataLayer || [];
+		window.dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+		loadScript("https://www.googletagmanager.com/gtm.js?id=GTM-P8V8663M", { "data-swup-ignore-script": true });
+		loadScript("https://www.googletagmanager.com/gtag/js?id=G-RBZVQJCV26", { "data-swup-ignore-script": true });
+		window.gtag = window.gtag || function() { window.dataLayer.push(arguments); };
+		window.gtag("js", new Date());
+		window.gtag("config", "G-RBZVQJCV26");
+		loadScript("https://fundingchoicesmessages.google.com/i/pub-1683686345039700?ers=1");
+		loadScript("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1683686345039700", { crossorigin: "anonymous" });
+		(function signalGooglefcPresent() {
+			if (window.frames["googlefcPresent"]) return;
+			if (!document.body) {
+				setTimeout(signalGooglefcPresent, 0);
+				return;
+			}
+			const iframe = document.createElement("iframe");
+			iframe.style = "width: 0; height: 0; border: none; z-index: -1000; left: -1000px; top: -1000px;";
+			iframe.style.display = "none";
+			iframe.name = "googlefcPresent";
+			document.body.appendChild(iframe);
+		})();
+	};
+	const schedule = () => {
+		if ("requestIdleCallback" in window) {
+			window.requestIdleCallback(run, { timeout: 4000 });
+			return;
+		}
+		setTimeout(run, 1200);
+	};
+	if (document.readyState === "complete") {
+		schedule();
+		return;
+	}
+	window.addEventListener("load", schedule, { once: true });
+})();
+</script> <script type="text/plain" data-cookie-consent="tracking" data-swup-ignore-script>
+	(function(c,l,a,r,i,t,y){
+	c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+	t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+	y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+	})(window, document, "clarity", "script", "v94yrasi99");
+</script> <script type="text/plain" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1683686345039700" crossorigin="anonymous"></script> <!-- Google Tag Manager --><script type="text/plain">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P8V8663M');</script> <!-- End Google Tag Manager --><script type="text/plain" async src="https://fundingchoicesmessages.google.com/i/pub-1683686345039700?ers=1"></script><script type="text/plain">(function() {function signalGooglefcPresent() {if (!window.frames['googlefcPresent']) {if (document.body) {const iframe = document.createElement('iframe'); iframe.style = 'width: 0; height: 0; border: none; z-index: -1000; left: -1000px; top: -1000px;'; iframe.style.display = 'none'; iframe.name = 'googlefcPresent'; document.body.appendChild(iframe);} else {setTimeout(signalGooglefcPresent, 0);}}}signalGooglefcPresent();})();</script> <script type="text/plain" data-cookie-consent="targeting">(function(){'use strict';function aa(a){var b=0;return function(){return b<a.length?{done:!1,value:a[b++]}:{done:!0}}}var ba=typeof Object.defineProperties=="function"?Object.defineProperty:function(a,b,c){if(a==Array.prototype||a==Object.prototype)return a;a[b]=c.value;return a};
+function ca(a){a=["object"==typeof globalThis&&globalThis,a,"object"==typeof window&&window,"object"==typeof self&&self,"object"==typeof global&&global];for(var b=0;b<a.length;++b){var c=a[b];if(c&&c.Math==Math)return c}throw Error("Cannot find global object");}var da=ca(this);function l(a,b){if(b)a:{var c=da;a=a.split(".");for(var d=0;d<a.length-1;d++){var e=a[d];if(!(e in c))break a;c=c[e]}a=a[a.length-1];d=c[a];b=b(d);b!=d&&b!=null&&ba(c,a,{configurable:!0,writable:!0,value:b})}}
+function ea(a){return a.raw=a}function n(a){var b=typeof Symbol!="undefined"&&Symbol.iterator&&a[Symbol.iterator];if(b)return b.call(a);if(typeof a.length=="number")return{next:aa(a)};throw Error(String(a)+" is not an iterable or ArrayLike");}function fa(a){for(var b,c=[];!(b=a.next()).done;)c.push(b.value);return c}var ha=typeof Object.create=="function"?Object.create:function(a){function b(){}b.prototype=a;return new b},p;
+if(typeof Object.setPrototypeOf=="function")p=Object.setPrototypeOf;else{var q;a:{var ja={a:!0},ka={};try{ka.__proto__=ja;q=ka.a;break a}catch(a){}q=!1}p=q?function(a,b){a.__proto__=b;if(a.__proto__!==b)throw new TypeError(a+" is not extensible");return a}:null}var la=p;
+function t(a,b){a.prototype=ha(b.prototype);a.prototype.constructor=a;if(la)la(a,b);else for(var c in b)if(c!="prototype")if(Object.defineProperties){var d=Object.getOwnPropertyDescriptor(b,c);d&&Object.defineProperty(a,c,d)}else a[c]=b[c];a.A=b.prototype}function ma(){for(var a=Number(this),b=[],c=a;c<arguments.length;c++)b[c-a]=arguments[c];return b}l("Object.is",function(a){return a?a:function(b,c){return b===c?b!==0||1/b===1/c:b!==b&&c!==c}});
+l("Array.prototype.includes",function(a){return a?a:function(b,c){var d=this;d instanceof String&&(d=String(d));var e=d.length;c=c||0;for(c<0&&(c=Math.max(c+e,0));c<e;c++){var f=d[c];if(f===b||Object.is(f,b))return!0}return!1}});
+l("String.prototype.includes",function(a){return a?a:function(b,c){if(this==null)throw new TypeError("The 'this' value for String.prototype.includes must not be null or undefined");if(b instanceof RegExp)throw new TypeError("First argument to String.prototype.includes must not be a regular expression");return this.indexOf(b,c||0)!==-1}});l("Number.MAX_SAFE_INTEGER",function(){return 9007199254740991});
+l("Number.isFinite",function(a){return a?a:function(b){return typeof b!=="number"?!1:!isNaN(b)&&b!==Infinity&&b!==-Infinity}});l("Number.isInteger",function(a){return a?a:function(b){return Number.isFinite(b)?b===Math.floor(b):!1}});l("Number.isSafeInteger",function(a){return a?a:function(b){return Number.isInteger(b)&&Math.abs(b)<=Number.MAX_SAFE_INTEGER}});
+l("Math.trunc",function(a){return a?a:function(b){b=Number(b);if(isNaN(b)||b===Infinity||b===-Infinity||b===0)return b;var c=Math.floor(Math.abs(b));return b<0?-c:c}});/*
+
+ Copyright The Closure Library Authors.
+ SPDX-License-Identifier: Apache-2.0
+*/
+var u=this||self;function v(a,b){a:{var c=["CLOSURE_FLAGS"];for(var d=u,e=0;e<c.length;e++)if(d=d[c[e]],d==null){c=null;break a}c=d}a=c&&c[a];return a!=null?a:b}function w(a){return a};function na(a){u.setTimeout(function(){throw a;},0)};var oa=v(610401301,!1),pa=v(188588736,!0),qa=v(645172343,v(1,!0));var x,ra=u.navigator;x=ra?ra.userAgentData||null:null;function z(a){return oa?x?x.brands.some(function(b){return(b=b.brand)&&b.indexOf(a)!=-1}):!1:!1}function A(a){var b;a:{if(b=u.navigator)if(b=b.userAgent)break a;b=""}return b.indexOf(a)!=-1};function B(){return oa?!!x&&x.brands.length>0:!1}function C(){return B()?z("Chromium"):(A("Chrome")||A("CriOS"))&&!(B()?0:A("Edge"))||A("Silk")};var sa=B()?!1:A("Trident")||A("MSIE");!A("Android")||C();C();A("Safari")&&(C()||(B()?0:A("Coast"))||(B()?0:A("Opera"))||(B()?0:A("Edge"))||(B()?z("Microsoft Edge"):A("Edg/"))||B()&&z("Opera"));var ta={},D=null;var ua=typeof Uint8Array!=="undefined",va=!sa&&typeof btoa==="function";var wa;function E(){return typeof BigInt==="function"};var F=typeof Symbol==="function"&&typeof Symbol()==="symbol";function xa(a){return typeof Symbol==="function"&&typeof Symbol()==="symbol"?Symbol():a}var G=xa(),ya=xa("2ex");var za=F?function(a,b){a[G]|=b}:function(a,b){a.g!==void 0?a.g|=b:Object.defineProperties(a,{g:{value:b,configurable:!0,writable:!0,enumerable:!1}})},H=F?function(a){return a[G]|0}:function(a){return a.g|0},I=F?function(a){return a[G]}:function(a){return a.g},J=F?function(a,b){a[G]=b}:function(a,b){a.g!==void 0?a.g=b:Object.defineProperties(a,{g:{value:b,configurable:!0,writable:!0,enumerable:!1}})};function Aa(a,b){J(b,(a|0)&-14591)}function Ba(a,b){J(b,(a|34)&-14557)};var K={},Ca={};function Da(a){return!(!a||typeof a!=="object"||a.g!==Ca)}function Ea(a){return a!==null&&typeof a==="object"&&!Array.isArray(a)&&a.constructor===Object}function L(a,b,c){if(!Array.isArray(a)||a.length)return!1;var d=H(a);if(d&1)return!0;if(!(b&&(Array.isArray(b)?b.includes(c):b.has(c))))return!1;J(a,d|1);return!0};var M=0,N=0;function Fa(a){var b=a>>>0;M=b;N=(a-b)/4294967296>>>0}function Ga(a){if(a<0){Fa(-a);var b=n(Ha(M,N));a=b.next().value;b=b.next().value;M=a>>>0;N=b>>>0}else Fa(a)}function Ia(a,b){b>>>=0;a>>>=0;if(b<=2097151)var c=""+(4294967296*b+a);else E()?c=""+(BigInt(b)<<BigInt(32)|BigInt(a)):(c=(a>>>24|b<<8)&16777215,b=b>>16&65535,a=(a&16777215)+c*6777216+b*6710656,c+=b*8147497,b*=2,a>=1E7&&(c+=a/1E7>>>0,a%=1E7),c>=1E7&&(b+=c/1E7>>>0,c%=1E7),c=b+Ja(c)+Ja(a));return c}
+function Ja(a){a=String(a);return"0000000".slice(a.length)+a}function Ha(a,b){b=~b;a?a=~a+1:b+=1;return[a,b]};var Ka=/^-?([1-9][0-9]*|0)(\.[0-9]+)?$/;var O;function La(a,b){O=b;a=new a(b);O=void 0;return a}
+function P(a,b,c){a==null&&(a=O);O=void 0;if(a==null){var d=96;c?(a=[c],d|=512):a=[];b&&(d=d&-16760833|(b&1023)<<14)}else{if(!Array.isArray(a))throw Error("narr");d=H(a);if(d&2048)throw Error("farr");if(d&64)return a;d|=64;if(c&&(d|=512,c!==a[0]))throw Error("mid");a:{c=a;var e=c.length;if(e){var f=e-1;if(Ea(c[f])){d|=256;b=f-(+!!(d&512)-1);if(b>=1024)throw Error("pvtlmt");d=d&-16760833|(b&1023)<<14;break a}}if(b){b=Math.max(b,e-(+!!(d&512)-1));if(b>1024)throw Error("spvt");d=d&-16760833|(b&1023)<<
+14}}}J(a,d);return a};function Ma(a){switch(typeof a){case "number":return isFinite(a)?a:String(a);case "boolean":return a?1:0;case "object":if(a)if(Array.isArray(a)){if(L(a,void 0,0))return}else if(ua&&a!=null&&a instanceof Uint8Array){if(va){for(var b="",c=0,d=a.length-10240;c<d;)b+=String.fromCharCode.apply(null,a.subarray(c,c+=10240));b+=String.fromCharCode.apply(null,c?a.subarray(c):a);a=btoa(b)}else{b===void 0&&(b=0);if(!D){D={};c="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789".split("");d=["+/=",
+"+/","-_=","-_.","-_"];for(var e=0;e<5;e++){var f=c.concat(d[e].split(""));ta[e]=f;for(var g=0;g<f.length;g++){var h=f[g];D[h]===void 0&&(D[h]=g)}}}b=ta[b];c=Array(Math.floor(a.length/3));d=b[64]||"";for(e=f=0;f<a.length-2;f+=3){var k=a[f],m=a[f+1];h=a[f+2];g=b[k>>2];k=b[(k&3)<<4|m>>4];m=b[(m&15)<<2|h>>6];h=b[h&63];c[e++]=g+k+m+h}g=0;h=d;switch(a.length-f){case 2:g=a[f+1],h=b[(g&15)<<2]||d;case 1:a=a[f],c[e]=b[a>>2]+b[(a&3)<<4|g>>4]+h+d}a=c.join("")}return a}}return a};function Na(a,b,c){a=Array.prototype.slice.call(a);var d=a.length,e=b&256?a[d-1]:void 0;d+=e?-1:0;for(b=b&512?1:0;b<d;b++)a[b]=c(a[b]);if(e){b=a[b]={};for(var f in e)Object.prototype.hasOwnProperty.call(e,f)&&(b[f]=c(e[f]))}return a}function Oa(a,b,c,d,e){if(a!=null){if(Array.isArray(a))a=L(a,void 0,0)?void 0:e&&H(a)&2?a:Pa(a,b,c,d!==void 0,e);else if(Ea(a)){var f={},g;for(g in a)Object.prototype.hasOwnProperty.call(a,g)&&(f[g]=Oa(a[g],b,c,d,e));a=f}else a=b(a,d);return a}}
+function Pa(a,b,c,d,e){var f=d||c?H(a):0;d=d?!!(f&32):void 0;a=Array.prototype.slice.call(a);for(var g=0;g<a.length;g++)a[g]=Oa(a[g],b,c,d,e);c&&c(f,a);return a}function Qa(a){return a.s===K?a.toJSON():Ma(a)};function Ra(a,b,c){c=c===void 0?Ba:c;if(a!=null){if(ua&&a instanceof Uint8Array)return b?a:new Uint8Array(a);if(Array.isArray(a)){var d=H(a);if(d&2)return a;b&&(b=d===0||!!(d&32)&&!(d&64||!(d&16)));return b?(J(a,(d|34)&-12293),a):Pa(a,Ra,d&4?Ba:c,!0,!0)}a.s===K&&(c=a.h,d=I(c),a=d&2?a:La(a.constructor,Sa(c,d,!0)));return a}}function Sa(a,b,c){var d=c||b&2?Ba:Aa,e=!!(b&32);a=Na(a,b,function(f){return Ra(f,e,d)});za(a,32|(c?2:0));return a};function Ta(a,b){a=a.h;return Ua(a,I(a),b)}function Va(a,b,c,d){b=d+(+!!(b&512)-1);if(!(b<0||b>=a.length||b>=c))return a[b]}
+function Ua(a,b,c,d){if(c===-1)return null;var e=b>>14&1023||536870912;if(c>=e){if(b&256)return a[a.length-1][c]}else{var f=a.length;if(d&&b&256&&(d=a[f-1][c],d!=null)){if(Va(a,b,e,c)&&ya!=null){var g;a=(g=wa)!=null?g:wa={};g=a[ya]||0;g>=4||(a[ya]=g+1,g=Error(),g.__closure__error__context__984382||(g.__closure__error__context__984382={}),g.__closure__error__context__984382.severity="incident",na(g))}return d}return Va(a,b,e,c)}}
+function Wa(a,b,c,d,e){var f=b>>14&1023||536870912;if(c>=f||e&&!qa){var g=b;if(b&256)e=a[a.length-1];else{if(d==null)return;e=a[f+(+!!(b&512)-1)]={};g|=256}e[c]=d;c<f&&(a[c+(+!!(b&512)-1)]=void 0);g!==b&&J(a,g)}else a[c+(+!!(b&512)-1)]=d,b&256&&(a=a[a.length-1],c in a&&delete a[c])}
+function Xa(a,b){var c=Ya;var d=d===void 0?!1:d;var e=a.h;var f=I(e),g=Ua(e,f,b,d);if(g!=null&&typeof g==="object"&&g.s===K)c=g;else if(Array.isArray(g)){var h=H(g),k=h;k===0&&(k|=f&32);k|=f&2;k!==h&&J(g,k);c=new c(g)}else c=void 0;c!==g&&c!=null&&Wa(e,f,b,c,d);e=c;if(e==null)return e;a=a.h;f=I(a);f&2||(g=e,c=g.h,h=I(c),g=h&2?La(g.constructor,Sa(c,h,!1)):g,g!==e&&(e=g,Wa(a,f,b,e,d)));return e}function Za(a,b){a=Ta(a,b);return a==null||typeof a==="string"?a:void 0}
+function $a(a,b){var c=c===void 0?0:c;a=Ta(a,b);if(a!=null)if(b=typeof a,b==="number"?Number.isFinite(a):b!=="string"?0:Ka.test(a))if(typeof a==="number"){if(a=Math.trunc(a),!Number.isSafeInteger(a)){Ga(a);b=M;var d=N;if(a=d&2147483648)b=~b+1>>>0,d=~d>>>0,b==0&&(d=d+1>>>0);b=d*4294967296+(b>>>0);a=a?-b:b}}else if(b=Math.trunc(Number(a)),Number.isSafeInteger(b))a=String(b);else{if(b=a.indexOf("."),b!==-1&&(a=a.substring(0,b)),!(a[0]==="-"?a.length<20||a.length===20&&Number(a.substring(0,7))>-922337:
+a.length<19||a.length===19&&Number(a.substring(0,6))<922337)){if(a.length<16)Ga(Number(a));else if(E())a=BigInt(a),M=Number(a&BigInt(4294967295))>>>0,N=Number(a>>BigInt(32)&BigInt(4294967295));else{b=+(a[0]==="-");N=M=0;d=a.length;for(var e=b,f=(d-b)%6+b;f<=d;e=f,f+=6)e=Number(a.slice(e,f)),N*=1E6,M=M*1E6+e,M>=4294967296&&(N+=Math.trunc(M/4294967296),N>>>=0,M>>>=0);b&&(b=n(Ha(M,N)),a=b.next().value,b=b.next().value,M=a,N=b)}a=M;b=N;b&2147483648?E()?a=""+(BigInt(b|0)<<BigInt(32)|BigInt(a>>>0)):(b=
+n(Ha(a,b)),a=b.next().value,b=b.next().value,a="-"+Ia(a,b)):a=Ia(a,b)}}else a=void 0;return a!=null?a:c}function R(a,b){var c=c===void 0?"":c;a=Za(a,b);return a!=null?a:c};var S;function T(a,b,c){this.h=P(a,b,c)}T.prototype.toJSON=function(){return ab(this)};T.prototype.s=K;T.prototype.toString=function(){try{return S=!0,ab(this).toString()}finally{S=!1}};
+function ab(a){var b=S?a.h:Pa(a.h,Qa,void 0,void 0,!1);var c=!S;var d=pa?void 0:a.constructor.v;var e=I(c?a.h:b);if(a=b.length){var f=b[a-1],g=Ea(f);g?a--:f=void 0;e=+!!(e&512)-1;var h=b;if(g){b:{var k=f;var m={};g=!1;if(k)for(var r in k)if(Object.prototype.hasOwnProperty.call(k,r))if(isNaN(+r))m[r]=k[r];else{var y=k[r];Array.isArray(y)&&(L(y,d,+r)||Da(y)&&y.size===0)&&(y=null);y==null&&(g=!0);y!=null&&(m[r]=y)}if(g){for(var Q in m)break b;m=null}else m=k}k=m==null?f!=null:m!==f}for(var ia;a>0;a--){Q=
+a-1;r=h[Q];Q-=e;if(!(r==null||L(r,d,Q)||Da(r)&&r.size===0))break;ia=!0}if(h!==b||k||ia){if(!c)h=Array.prototype.slice.call(h,0,a);else if(ia||k||m)h.length=a;m&&h.push(m)}b=h}return b};function bb(a){return function(b){if(b==null||b=="")b=new a;else{b=JSON.parse(b);if(!Array.isArray(b))throw Error("dnarr");za(b,32);b=La(a,b)}return b}};function cb(a){this.h=P(a)}t(cb,T);var db=bb(cb);var U;function V(a){this.g=a}V.prototype.toString=function(){return this.g+""};var eb={};function fb(a){if(U===void 0){var b=null;var c=u.trustedTypes;if(c&&c.createPolicy){try{b=c.createPolicy("goog#html",{createHTML:w,createScript:w,createScriptURL:w})}catch(d){u.console&&u.console.error(d.message)}U=b}else U=b}a=(b=U)?b.createScriptURL(a):a;return new V(a,eb)};/*
+
+ SPDX-License-Identifier: Apache-2.0
+*/
+function gb(a){var b=ma.apply(1,arguments);if(b.length===0)return fb(a[0]);for(var c=a[0],d=0;d<b.length;d++)c+=encodeURIComponent(b[d])+a[d+1];return fb(c)};function hb(a,b){a.src=b instanceof V&&b.constructor===V?b.g:"type_error:TrustedResourceUrl";var c,d;(c=(b=(d=(c=(a.ownerDocument&&a.ownerDocument.defaultView||window).document).querySelector)==null?void 0:d.call(c,"script[nonce]"))?b.nonce||b.getAttribute("nonce")||"":"")&&a.setAttribute("nonce",c)};function ib(){return Math.floor(Math.random()*2147483648).toString(36)+Math.abs(Math.floor(Math.random()*2147483648)^Date.now()).toString(36)};function jb(a,b){b=String(b);a.contentType==="application/xhtml+xml"&&(b=b.toLowerCase());return a.createElement(b)}function kb(a){this.g=a||u.document||document};function lb(a){a=a===void 0?document:a;return a.createElement("script")};function mb(a,b,c,d,e,f){try{var g=a.g,h=lb(g);h.async=!0;hb(h,b);g.head.appendChild(h);h.addEventListener("load",function(){e();d&&g.head.removeChild(h)});h.addEventListener("error",function(){c>0?mb(a,b,c-1,d,e,f):(d&&g.head.removeChild(h),f())})}catch(k){f()}};var nb=u.atob("aHR0cHM6Ly93d3cuZ3N0YXRpYy5jb20vaW1hZ2VzL2ljb25zL21hdGVyaWFsL3N5c3RlbS8xeC93YXJuaW5nX2FtYmVyXzI0ZHAucG5n"),ob=u.atob("WW91IGFyZSBzZWVpbmcgdGhpcyBtZXNzYWdlIGJlY2F1c2UgYWQgb3Igc2NyaXB0IGJsb2NraW5nIHNvZnR3YXJlIGlzIGludGVyZmVyaW5nIHdpdGggdGhpcyBwYWdlLg=="),pb=u.atob("RGlzYWJsZSBhbnkgYWQgb3Igc2NyaXB0IGJsb2NraW5nIHNvZnR3YXJlLCB0aGVuIHJlbG9hZCB0aGlzIHBhZ2Uu");function qb(a,b,c){this.i=a;this.u=b;this.o=c;this.g=null;this.j=[];this.m=!1;this.l=new kb(this.i)}
+function rb(a){if(a.i.body&&!a.m){var b=function(){sb(a);u.setTimeout(function(){tb(a,3)},50)};mb(a.l,a.u,2,!0,function(){u[a.o]||b()},b);a.m=!0}}
+function sb(a){for(var b=W(1,5),c=0;c<b;c++){var d=X(a);a.i.body.appendChild(d);a.j.push(d)}b=X(a);b.style.bottom="0";b.style.left="0";b.style.position="fixed";b.style.width=W(100,110).toString()+"%";b.style.zIndex=W(2147483544,2147483644).toString();b.style.backgroundColor=ub(249,259,242,252,219,229);b.style.boxShadow="0 0 12px #888";b.style.color=ub(0,10,0,10,0,10);b.style.display="flex";b.style.justifyContent="center";b.style.fontFamily="Roboto, Arial";c=X(a);c.style.width=W(80,85).toString()+
+"%";c.style.maxWidth=W(750,775).toString()+"px";c.style.margin="24px";c.style.display="flex";c.style.alignItems="flex-start";c.style.justifyContent="center";d=jb(a.l.g,"IMG");d.className=ib();d.src=nb;d.alt="Warning icon";d.style.height="24px";d.style.width="24px";d.style.paddingRight="16px";var e=X(a),f=X(a);f.style.fontWeight="bold";f.textContent=ob;var g=X(a);g.textContent=pb;Y(a,e,f);Y(a,e,g);Y(a,c,d);Y(a,c,e);Y(a,b,c);a.g=b;a.i.body.appendChild(a.g);b=W(1,5);for(c=0;c<b;c++)d=X(a),a.i.body.appendChild(d),
+a.j.push(d)}function Y(a,b,c){for(var d=W(1,5),e=0;e<d;e++){var f=X(a);b.appendChild(f)}b.appendChild(c);c=W(1,5);for(d=0;d<c;d++)e=X(a),b.appendChild(e)}function W(a,b){return Math.floor(a+Math.random()*(b-a))}function ub(a,b,c,d,e,f){return"rgb("+W(Math.max(a,0),Math.min(b,255)).toString()+","+W(Math.max(c,0),Math.min(d,255)).toString()+","+W(Math.max(e,0),Math.min(f,255)).toString()+")"}function X(a){a=jb(a.l.g,"DIV");a.className=ib();return a}
+function tb(a,b){b<=0||a.g!=null&&a.g.offsetHeight!==0&&a.g.offsetWidth!==0||(vb(a),sb(a),u.setTimeout(function(){tb(a,b-1)},50))}function vb(a){for(var b=n(a.j),c=b.next();!c.done;c=b.next())(c=c.value)&&c.parentNode&&c.parentNode.removeChild(c);a.j=[];(b=a.g)&&b.parentNode&&b.parentNode.removeChild(b);a.g=null};function wb(a,b,c,d,e){function f(k){document.body?g(document.body):k>0?u.setTimeout(function(){f(k-1)},e):b()}function g(k){k.appendChild(h);u.setTimeout(function(){h?(h.offsetHeight!==0&&h.offsetWidth!==0?b():a(),h.parentNode&&h.parentNode.removeChild(h)):a()},d)}var h=xb(c);f(3)}function xb(a){var b=document.createElement("div");b.className=a;b.style.width="1px";b.style.height="1px";b.style.position="absolute";b.style.left="-10000px";b.style.top="-10000px";b.style.zIndex="-10000";return b};function Ya(a){this.h=P(a)}t(Ya,T);function yb(a){this.h=P(a)}t(yb,T);var zb=bb(yb);function Ab(a){if(!a)return null;a=Za(a,4);var b;a===null||a===void 0?b=null:b=fb(a);return b};var Bb=ea([""]),Cb=ea([""]);function Db(a,b){this.m=a;this.o=new kb(a.document);this.g=b;this.j=R(this.g,1);this.u=Ab(Xa(this.g,2))||gb(Bb);this.i=!1;b=Ab(Xa(this.g,13))||gb(Cb);this.l=new qb(a.document,b,R(this.g,12))}Db.prototype.start=function(){Eb(this)};
+function Eb(a){Fb(a);mb(a.o,a.u,3,!1,function(){a:{var b=a.j;var c=u.btoa(b);if(c=u[c]){try{var d=db(u.atob(c))}catch(e){b=!1;break a}b=b===Za(d,1)}else b=!1}b?Z(a,R(a.g,14)):(Z(a,R(a.g,8)),rb(a.l))},function(){wb(function(){Z(a,R(a.g,7));rb(a.l)},function(){return Z(a,R(a.g,6))},R(a.g,9),$a(a.g,10),$a(a.g,11))})}function Z(a,b){a.i||(a.i=!0,a=new a.m.XMLHttpRequest,a.open("GET",b,!0),a.send())}function Fb(a){var b=u.btoa(a.j);a.m[b]&&Z(a,R(a.g,5))};(function(a,b){u[a]=function(){var c=ma.apply(0,arguments);u[a]=function(){};b.call.apply(b,[null].concat(c instanceof Array?c:fa(n(c))))}})("__h82AlnkH6D91__",function(a){typeof window.atob==="function"&&(new Db(window,zb(window.atob(a)))).start()});}).call(this);
+
+window.__h82AlnkH6D91__("WyJwdWItMTY4MzY4NjM0NTAzOTcwMCIsW251bGwsbnVsbCxudWxsLCJodHRwczovL2Z1bmRpbmdjaG9pY2VzbWVzc2FnZXMuZ29vZ2xlLmNvbS9iL3B1Yi0xNjgzNjg2MzQ1MDM5NzAwIl0sbnVsbCxudWxsLCJodHRwczovL2Z1bmRpbmdjaG9pY2VzbWVzc2FnZXMuZ29vZ2xlLmNvbS9lbC9BR1NLV3hYak5BUWgyTjRKZlFqWkJ1dThWQmZrbllqVTBzVldRS0tSYTFrLVhTT3ViU3M3XzdkV2VQamRZSmVjajNNdDA2RUI4cHhwbjJvZGN3UmZfWVVib293dG9BXHUwMDNkXHUwMDNkP3RlXHUwMDNkVE9LRU5fRVhQT1NFRCIsImh0dHBzOi8vZnVuZGluZ2Nob2ljZXNtZXNzYWdlcy5nb29nbGUuY29tL2VsL0FHU0tXeFY4R25FTkNPZnRzSkg2Y3hlTU90RXJZd0hPTGFnX2tuMzlwWUVDMTZnU05VQjNXRlg4X1B3QW5OYllEOW5rSXduMS1OMlRHQ1VrQk9OZWpLUy00dmVNb2dcdTAwM2RcdTAwM2Q/YWJcdTAwM2QxXHUwMDI2c2JmXHUwMDNkMSIsImh0dHBzOi8vZnVuZGluZ2Nob2ljZXNtZXNzYWdlcy5nb29nbGUuY29tL2VsL0FHU0tXeFhuakttV01yT1NlbzhjYjJQUk9QcGhyaXpoMHlrNm1kYWlkRG1va3RPNmJudnlOY0RZSGJGeTNHLVNNX2NLVXVGOW8yRHFqTXgtcE9zMkcyYjlKR0hKQ2dcdTAwM2RcdTAwM2Q/YWJcdTAwM2QyXHUwMDI2c2JmXHUwMDNkMSIsImh0dHBzOi8vZnVuZGluZ2Nob2ljZXNtZXNzYWdlcy5nb29nbGUuY29tL2VsL0FHU0tXeFc3MHRpc3hFM0VTd08tMFViZGxWNkdjWEx5dTZqcnpkd1E4RmJOYkY3UDYwdUYxS0lfM3hCbl8xV2UwaXZwdExkSTh4a3d0ek5SOE5tdU5zNHFLLXI0dWdcdTAwM2RcdTAwM2Q/c2JmXHUwMDNkMiIsImRpdi1ncHQtYWQiLDIwLDEwMCwiY0hWaUxURTJPRE0yT0RZek5EVXdNemszTURBXHUwMDNkIixbbnVsbCxudWxsLG51bGwsImh0dHBzOi8vd3d3LmdzdGF0aWMuY29tLzBlbW4vZi9wL3B1Yi0xNjgzNjg2MzQ1MDM5NzAwLmpzP3VzcXBcdTAwM2RDQTQiXSwiaHR0cHM6Ly9mdW5kaW5nY2hvaWNlc21lc3NhZ2VzLmdvb2dsZS5jb20vZWwvQUdTS1d4VnVKOHBwTUwwVDlxNnZsaTg1Nnp3TEcxRC1lNEJxTFFFMGo2YUhpeHIwWURoOVUzWnlNQUVnck44aTJ4TC1UaDN5TUhUMjZzRkVWRFVzdWtlbUhwNEJIQVx1MDAzZFx1MDAzZCJd");</script> <!-- Google Tag Manager (noscript) --><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P8V8663M" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><!-- End Google Tag Manager (noscript) --> <noscript> <style>
+				#bg-box {
+					opacity: 1 !important;
+				}
+			</style> </noscript> <div id="bg-box" data-astro-cid-sckkx6r4 style="--bannerOffset: 15vh;--banner-height-home: 65vh;--banner-height: 35vh;--configHue: 255;--page-width: 75rem;--bg-src: url(https://p.2x.nz/api/random);--bg-enable: 1;--bg-position: center;--bg-size: cover;--bg-repeat: no-repeat;--bg-attachment: fixed;--bg-opacity: 0.15;--configHue: 255;"></div> <script>
+			// Load background image
+			(function() {
+				const bgBox = document.getElementById('bg-box');
+				if (bgBox) {
+					// Add loaded class to trigger opacity transition
+					setTimeout(() => {
+						bgBox.classList.add('loaded');
+					}, 100);
+				}
+			})();
+		</script> <div id="config-carrier" data-hue="255"></div> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();;(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var d=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>1/0*t},o=t=>{let[l,e]=t;return l in i?i[l](e):void 0},a=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([l,e])=>[l,o(e)]));class y extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},h=this.querySelectorAll("template[data-astro-template]");for(let r of h){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let p;try{p=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let u;await this.hydrator(this)(this.Component,p,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[h,{default:p}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),u=this.getAttribute("component-export")||"default";if(!u.includes("."))this.Component=h[u];else{this.Component=h;for(let f of u.split("."))this.Component=this.Component[f]}return this.hydrator=p,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}d(y,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",y)}})();</script><astro-island uid="Z1cKQ8i" component-url="/_astro/GlobalToaster.BzYCTOfc.js" component-export="default" renderer-url="/_astro/client.svelte.BAxyfCXo.js" props="{&quot;data-astro-cid-sckkx6r4&quot;:[0,true]}" ssr client="only" opts="{&quot;name&quot;:&quot;GlobalToaster&quot;,&quot;value&quot;:&quot;svelte&quot;}"></astro-island> <div id="new-post-notification" class="fixed bottom-4 right-4 z-50 pointer-events-none" data-astro-cid-6yyxny4o> <div id="notification-panel" class="pointer-events-auto bg-[var(--card-bg)] border-2 border-[var(--primary)] text-[var(--primary)] shadow-lg transform translate-y-20 opacity-0" data-astro-cid-6yyxny4o> <button id="notification-minimized" aria-label="New post notification" class="flex items-center justify-center" data-astro-cid-6yyxny4o> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-6yyxny4o><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" data-astro-cid-6yyxny4o></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" data-astro-cid-6yyxny4o></path></svg> </button> <div id="notification-content" class="flex flex-col p-5" data-astro-cid-6yyxny4o> <div class="flex items-center justify-between mb-3" data-astro-cid-6yyxny4o> <div class="flex items-center gap-2 text-[var(--primary)]" data-astro-cid-6yyxny4o> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-6yyxny4o><path d="M4 11a9 9 0 0 1 9 9" data-astro-cid-6yyxny4o></path><path d="M4 4a16 16 0 0 1 16 16" data-astro-cid-6yyxny4o></path><circle cx="5" cy="19" r="1" data-astro-cid-6yyxny4o></circle></svg> <h3 class="font-bold text-white" data-astro-cid-6yyxny4o>发现新文章</h3> <a href="/posts/post-diff-guide/#食用方法" class="ml-1 text-xs text-[var(--primary)] hover:underline opacity-80" title="查看食用方法" data-astro-cid-6yyxny4o> <svg width="16" height="16" data-astro-cid-6yyxny4o="true" data-icon="material-symbols:help-outline-rounded">   <symbol id="ai:material-symbols:help-outline-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M12.838 17.638q.362-.363.362-.888t-.362-.888t-.888-.362t-.887.363t-.363.887t.363.888t.887.362t.888-.363M12 22q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12t-2.325-5.675T12 4T6.325 6.325T4 12t2.325 5.675T12 20m.1-12.3q.625 0 1.088.4t.462 1q0 .55-.337.975t-.763.8q-.575.5-1.012 1.1t-.438 1.35q0 .35.263.588t.612.237q.375 0 .638-.25t.337-.625q.1-.525.45-.937t.75-.788q.575-.55.988-1.2t.412-1.45q0-1.275-1.037-2.087T12.1 6q-.95 0-1.812.4T8.975 7.625q-.175.3-.112.638t.337.512q.35.2.725.125t.625-.425q.275-.375.688-.575t.862-.2"/></symbol><use href="#ai:material-symbols:help-outline-rounded"></use>  </svg> </a> </div> <div class="flex items-center gap-1" data-astro-cid-6yyxny4o> <button id="clear-notification" class="text-white/50 hover:text-red-500 transition-colors p-1 rounded-md hover:bg-red-500/10" title="清空通知" data-astro-cid-6yyxny4o> <svg width="18" height="18" class="mx-auto" data-astro-cid-6yyxny4o="true" data-icon="material-symbols:delete-rounded">   <symbol id="ai:material-symbols:delete-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M7 21q-.825 0-1.412-.587T5 19V6q-.425 0-.712-.288T4 5t.288-.712T5 4h4q0-.425.288-.712T10 3h4q.425 0 .713.288T15 4h4q.425 0 .713.288T20 5t-.288.713T19 6v13q0 .825-.587 1.413T17 21zm3.713-4.288Q11 16.426 11 16V9q0-.425-.288-.712T10 8t-.712.288T9 9v7q0 .425.288.713T10 17t.713-.288m4 0Q15 16.426 15 16V9q0-.425-.288-.712T14 8t-.712.288T13 9v7q0 .425.288.713T14 17t.713-.288"/></symbol><use href="#ai:material-symbols:delete-rounded"></use>  </svg> </button> <button id="minimize-notification" class="text-white/50 hover:text-[var(--primary)] transition-colors p-1 rounded-md hover:bg-[var(--primary)]/10" title="隐藏" data-astro-cid-6yyxny4o> <svg width="18" height="18" class="mx-auto" data-astro-cid-6yyxny4o="true" data-icon="material-symbols:close-rounded">   <symbol id="ai:material-symbols:close-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="m12 13.4l-4.9 4.9q-.275.275-.7.275t-.7-.275t-.275-.7t.275-.7l4.9-4.9l-4.9-4.9q-.275-.275-.275-.7t.275-.7t.7-.275t.7.275l4.9 4.9l4.9-4.9q.275-.275.7-.275t.7.275t.275.7t-.275.7L13.4 12l4.9 4.9q.275.275.275.7t-.275.7t-.7.275t-.7-.275z"/></symbol><use href="#ai:material-symbols:close-rounded"></use>  </svg> </button> </div> </div> <div id="new-post-list" class="text-sm text-white/80 transition-colors space-y-1 flex-1 overflow-y-auto overflow-x-hidden" data-astro-cid-6yyxny4o></div> </div> </div> <span id="notification-dot" class="absolute top-0 right-0 w-3 h-3 bg-red-500 rounded-full border-2 border-[var(--card-bg)] animate-pulse pointer-events-none transform translate-y-20 opacity-0 scale-0 transition-all duration-260 ease-out" data-astro-cid-6yyxny4o></span> </div> <script type="module" src="/_astro/NewPostNotification.astro_astro_type_script_index_0_lang.CxmByJ54.js"></script>    <div id="top-row" class="z-50 pointer-events-none relative transition-all duration-700 max-w-[var(--page-width)] px-0 md:px-4 mx-auto"> <div id="navbar-wrapper" class="pointer-events-auto sticky top-0 transition-all" style="top: var(--navbar-offset, 0px);"> <div id="navbar" class="z-50 onload-animation"> <div class="absolute h-8 left-0 right-0 -top-8 bg-[var(--card-bg)] transition"></div> <!-- used for onload animation --> <div class="card-base border-b border-white/10 !overflow-visible max-w-[var(--page-width)] h-[4.5rem] mx-auto flex items-center justify-between px-4"> <div class="hidden min-[1066px]:flex items-center"> <a aria-label="首页" href="/" class="btn-plain scale-animation h-11 font-bold px-5 active:scale-95 border-r border-white/10 last:border-r-0"> <div class="flex items-center"> <svg width="1em" height="1em" class="text-[1.1rem] mr-1.5" data-icon="material-symbols:home-outline-rounded">   <symbol id="ai:material-symbols:home-outline-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M6 19h3v-5q0-.425.288-.712T10 13h4q.425 0 .713.288T15 14v5h3v-9l-6-4.5L6 10zm-2 0v-9q0-.475.213-.9t.587-.7l6-4.5q.525-.4 1.2-.4t1.2.4l6 4.5q.375.275.588.7T20 10v9q0 .825-.588 1.413T18 21h-4q-.425 0-.712-.288T13 20v-5h-2v5q0 .425-.288.713T10 21H6q-.825 0-1.412-.587T4 19m8-6.75"/></symbol><use href="#ai:material-symbols:home-outline-rounded"></use>  </svg> 首页  </div> </a><a aria-label="归档" href="/archive/" class="btn-plain scale-animation h-11 font-bold px-5 active:scale-95 border-r border-white/10 last:border-r-0"> <div class="flex items-center"> <svg width="1em" height="1em" class="text-[1.1rem] mr-1.5" data-icon="material-symbols:archive-outline-rounded">   <symbol id="ai:material-symbols:archive-outline-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M11.288 10.288Q11 10.575 11 11v3.2l-.9-.9q-.275-.275-.7-.275t-.7.275t-.275.7t.275.7l2.6 2.6q.3.3.7.3t.7-.3l2.6-2.6q.275-.275.275-.7t-.275-.7t-.7-.275t-.7.275l-.9.9V11q0-.425-.288-.712T12 10t-.712.288M5 8v11h14V8zm0 13q-.825 0-1.412-.587T3 19V6.525q0-.35.113-.675t.337-.6L4.7 3.725q.275-.35.687-.538T6.25 3h11.5q.45 0 .863.188t.687.537l1.25 1.525q.225.275.338.6t.112.675V19q0 .825-.587 1.413T19 21zm.4-15h13.2l-.85-1H6.25zm6.6 7.5"/></symbol><use href="#ai:material-symbols:archive-outline-rounded"></use>  </svg> 归档  </div> </a><a aria-label="友链" href="/friends/" class="btn-plain scale-animation h-11 font-bold px-5 active:scale-95 border-r border-white/10 last:border-r-0"> <div class="flex items-center"> <svg width="1em" height="1em" class="text-[1.1rem] mr-1.5" data-icon="material-symbols:group-outline-rounded">   <symbol id="ai:material-symbols:group-outline-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M1 17.2q0-.85.438-1.562T2.6 14.55q1.55-.775 3.15-1.162T9 13t3.25.388t3.15 1.162q.725.375 1.163 1.088T17 17.2v.8q0 .825-.587 1.413T15 20H3q-.825 0-1.412-.587T1 18zM21 20h-2.55q.275-.45.413-.962T19 18v-1q0-1.1-.612-2.113T16.65 13.15q1.275.15 2.4.513t2.1.887q.9.5 1.375 1.112T23 17v1q0 .825-.587 1.413T21 20M6.175 10.825Q5 9.65 5 8t1.175-2.825T9 4t2.825 1.175T13 8t-1.175 2.825T9 12t-2.825-1.175m11.65 0Q16.65 12 15 12q-.275 0-.7-.062t-.7-.138q.675-.8 1.038-1.775T15 8t-.362-2.025T13.6 4.2q.35-.125.7-.163T15 4q1.65 0 2.825 1.175T19 8t-1.175 2.825M3 18h12v-.8q0-.275-.137-.5t-.363-.35q-1.35-.675-2.725-1.012T9 15t-2.775.338T3.5 16.35q-.225.125-.363.35T3 17.2zm7.413-8.587Q11 8.825 11 8t-.587-1.412T9 6t-1.412.588T7 8t.588 1.413T9 10t1.413-.587M9 8"/></symbol><use href="#ai:material-symbols:group-outline-rounded"></use>  </svg> 友链  </div> </a><a aria-label="赞助" href="/sponsors/" class="btn-plain scale-animation h-11 font-bold px-5 active:scale-95 border-r border-white/10 last:border-r-0"> <div class="flex items-center"> <svg width="1em" height="1em" class="text-[1.1rem] mr-1.5" data-icon="material-symbols:volunteer-activism-outline-rounded">   <symbol id="ai:material-symbols:volunteer-activism-outline-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="m13.95 20.4l5.95-1.85q-.125-.225-.362-.387T19 18h-5.05q-.675 0-1.075-.05t-.825-.2l-1.425-.475q-.4-.125-.575-.5T10 16t.488-.588t.762-.062l1.05.35q.425.125.963.2t1.462.1H15q0-.275-.162-.525t-.388-.325L8.6 13H7v5.5zm-.525 1.95L7 20.55q-.2.65-.788 1.05T5 22H3q-.825 0-1.412-.587T1 20v-7q0-.825.588-1.412T3 11h5.6q.175 0 .35.038t.325.087L15.15 13.3q.825.3 1.338 1.05T17 16h2q1.25 0 2.125.825T22 19q0 .55-.288.863t-.887.512l-6.25 1.95q-.275.1-.575.1t-.575-.075M3 20h2v-7H3zm12.263-7.937q-.363-.138-.663-.413l-2.75-2.7q-.775-.75-1.312-1.662T10 5.3q0-1.375.963-2.337T13.3 2q.8 0 1.5.338t1.2.912q.5-.575 1.2-.913T18.7 2q1.375 0 2.338.963T22 5.3q0 1.075-.525 1.988t-1.3 1.662l-2.775 2.7q-.3.275-.662.413T16 12.2t-.737-.137M16 10.2l2.725-2.675q.475-.475.875-1.012T20 5.3q0-.55-.375-.925T18.7 4q-.35 0-.663.138t-.537.412l-.725.875q-.3.35-.775.35t-.775-.35L14.5 4.55q-.225-.275-.538-.413T13.3 4q-.55 0-.925.375T12 5.3q0 .675.4 1.213t.875 1.012zm0-3.85"/></symbol><use href="#ai:material-symbols:volunteer-activism-outline-rounded"></use>  </svg> 赞助  </div> </a><a aria-label="工具" href="/tools/" class="btn-plain scale-animation h-11 font-bold px-5 active:scale-95 border-r border-white/10 last:border-r-0"> <div class="flex items-center"> <svg width="1em" height="1em" class="text-[1.1rem] mr-1.5" data-icon="material-symbols:build-outline-rounded">   <symbol id="ai:material-symbols:build-outline-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M9 15q-2.5 0-4.25-1.75T3 9q0-.5.075-1t.275-.95q.125-.25.313-.375t.412-.175t.463.013t.437.262L7.6 9.4l1.8-1.8l-2.625-2.625q-.2-.2-.262-.437T6.5 4.075t.175-.413t.375-.312q.45-.2.95-.275T9 3q2.5 0 4.25 1.75T15 9q0 .575-.1 1.088t-.3 1.012l5.05 5q.725.725.725 1.775t-.725 1.775t-1.775.725t-1.775-.75l-5-5.025q-.5.2-1.012.3T9 15m0-2q.65 0 1.3-.2t1.175-.625l6.075 6.075q.125.125.338.113t.337-.138t.125-.337t-.125-.338L12.15 11.5q.45-.5.65-1.162T13 9q0-1.5-.962-2.613T9.65 5.05L11.5 6.9q.3.3.3.7t-.3.7l-3.2 3.2q-.3.3-.7.3t-.7-.3L5.05 9.65q.225 1.425 1.338 2.388T9 13m2.725-1.275"/></symbol><use href="#ai:material-symbols:build-outline-rounded"></use>  </svg> 工具  </div> </a><a aria-label="统计" href="https://u.2x.nz/share/CdkXbGgZr6ECKOyK" target="_blank" class="btn-plain scale-animation h-11 font-bold px-5 active:scale-95 border-r border-white/10 last:border-r-0"> <div class="flex items-center"> <svg width="1em" height="1em" class="text-[1.1rem] mr-1.5" data-icon="material-symbols:table-chart">   <symbol id="ai:material-symbols:table-chart" viewBox="0 0 24 24"><path fill="currentColor" d="M3 8V5q0-.825.588-1.412T5 3h14q.825 0 1.413.588T21 5v3zm2 13q-.825 0-1.412-.587T3 19v-9h4.5v11zm11.5 0V10H21v9q0 .825-.587 1.413T19 21zm-7 0V10h5v11z"/></symbol><use href="#ai:material-symbols:table-chart"></use>  </svg> 统计 <svg width="1em" height="1em" class="text-[0.875rem] transition -translate-y-[1px] ml-1 text-white/[0.2]" data-icon="fa6-solid:arrow-up-right-from-square">   <symbol id="ai:fa6-solid:arrow-up-right-from-square" viewBox="0 0 512 512"><path fill="currentColor" d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h82.7L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3V192c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32zM80 32C35.8 32 0 67.8 0 112v320c0 44.2 35.8 80 80 80h320c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v112c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16h112c17.7 0 32-14.3 32-32s-14.3-32-32-32z"/></symbol><use href="#ai:fa6-solid:arrow-up-right-from-square"></use>  </svg> </div> </a><a aria-label="论坛" href="/forum/" class="btn-plain scale-animation h-11 font-bold px-5 active:scale-95 border-r border-white/10 last:border-r-0"> <div class="flex items-center"> <svg width="1em" height="1em" class="text-[1.1rem] mr-1.5" data-icon="material-symbols:forum-outline-rounded">   <symbol id="ai:material-symbols:forum-outline-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M21 20.6q-.2 0-.375-.075T20.3 20.3L18 18H8q-.825 0-1.412-.587T6 16v-1h11q.825 0 1.413-.587T19 13V6h1q.825 0 1.413.588T22 8v11.575q0 .45-.3.738t-.7.287M4 12.175L5.175 11H15V4H4zM3 15.6q-.4 0-.7-.287t-.3-.738V4q0-.825.588-1.412T4 2h11q.825 0 1.413.588T17 4v7q0 .825-.587 1.413T15 13H6l-2.3 2.3q-.15.15-.325.225T3 15.6M4 11V4z"/></symbol><use href="#ai:material-symbols:forum-outline-rounded"></use>  </svg> 论坛  </div> </a> </div> <div class="flex flex-1 items-center gap-2 min-[1066px]:flex-none min-[1066px]:gap-0"> <a aria-label="Home" href="/" class="btn-plain scale-animation flex h-11 w-11 items-center justify-center active:scale-90 min-[1066px]:!hidden border border-white/10"> <svg width="1em" height="1em" class="text-[1.25rem]" data-icon="material-symbols:home-rounded">   <symbol id="ai:material-symbols:home-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M4 19v-9q0-.475.213-.9t.587-.7l6-4.5q.525-.4 1.2-.4t1.2.4l6 4.5q.375.275.588.7T20 10v9q0 .825-.588 1.413T18 21h-3q-.425 0-.712-.288T14 20v-5q0-.425-.288-.712T13 14h-2q-.425 0-.712.288T10 15v5q0 .425-.288.713T9 21H6q-.825 0-1.412-.587T4 19"/></symbol><use href="#ai:material-symbols:home-rounded"></use>  </svg> </a> <!--<SearchPanel client:load>--> <script>(()=>{var l=(n,t)=>{let i=async()=>{await(await n())()},e=typeof t.value=="object"?t.value:void 0,s={timeout:e==null?void 0:e.timeout};"requestIdleCallback"in window?window.requestIdleCallback(i,s):setTimeout(i,s.timeout||200)};(self.Astro||(self.Astro={})).idle=l;window.dispatchEvent(new Event("astro:idle"));})();</script><astro-island uid="XFSbm" component-url="/_astro/Search.BxE7X8jC.js" component-export="default" renderer-url="/_astro/client.svelte.BAxyfCXo.js" props="{}" ssr client="idle" opts="{&quot;name&quot;:&quot;Search&quot;,&quot;value&quot;:true}" await-children><!--[--><div id="search-bar" class="hidden min-[1066px]:flex transition-all items-center h-11 mr-2 rounded-lg bg-white/5 hover:bg-white/10 focus-within:bg-white/10 svelte-1wah7ro"><!--[-1--><!--]--><!----> <input placeholder="搜索" value="" class="transition-all pl-10 text-sm bg-transparent outline-0 h-full w-40 active:w-60 focus:w-60 text-white/50 svelte-1wah7ro"/></div> <div id="search-bar-mobile" class="relative flex h-11 flex-1 items-center rounded-lg bg-white/5 transition hover:bg-white/10 focus-within:bg-white/10 min-[1066px]:hidden svelte-1wah7ro"><!--[-1--><!--]--><!----> <input placeholder="搜索" value="" class="h-full w-full rounded-lg bg-transparent pl-10 pr-3 text-sm text-white/50 outline-0 svelte-1wah7ro"/></div> <div id="search-panel" class="float-panel float-panel-closed search-panel absolute z-50 md:w-[30rem] top-20 left-4 md:left-[unset] right-4 shadow-none rounded-2xl p-2 svelte-1wah7ro"><div id="search-bar-inside" class="hidden relative min-[1066px]:hidden transition-all items-center h-11 rounded-xl bg-white/5 hover:bg-white/10 focus-within:bg-white/10 svelte-1wah7ro"><!--[-1--><!--]--><!----> <input placeholder="搜索" value="" class="pl-10 absolute inset-0 text-sm bg-transparent outline-0 focus:w-60 text-white/50 svelte-1wah7ro"/></div> <div class="flex flex-wrap gap-2 px-3 py-2 border-b border-white/5 items-center svelte-1wah7ro"><button class="px-2 py-1 text-xs rounded-md transition-all flex items-center gap-1 bg-white/5 text-white/50 hover:bg-white/10 svelte-1wah7ro"><!--[-1--><!--]--><!----> 多选</button> <div class="w-[1px] h-3 bg-white/10 mx-1 svelte-1wah7ro"></div> <!--[--><button class="px-2 py-1 text-xs rounded-md transition-all bg-white/5 text-white/50 hover:bg-white/10 svelte-1wah7ro">标题</button><button class="px-2 py-1 text-xs rounded-md transition-all bg-white/5 text-white/50 hover:bg-white/10 svelte-1wah7ro">简介</button><button class="px-2 py-1 text-xs rounded-md transition-all bg-white/5 text-white/50 hover:bg-white/10 svelte-1wah7ro">正文</button><button class="px-2 py-1 text-xs rounded-md transition-all bg-white/5 text-white/50 hover:bg-white/10 svelte-1wah7ro">路径</button><!--]--></div> <!--[-1--><!--]--></div><!--]--><!--astro:end--></astro-island>  <button aria-label="Menu" name="Nav Menu" class="btn-plain scale-animation w-11 h-11 active:scale-90 min-[1066px]:!hidden border border-white/10" id="nav-menu-switch"> <svg width="1em" height="1em" class="text-[1.25rem]" data-icon="material-symbols:menu-rounded">   <symbol id="ai:material-symbols:menu-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M4 18q-.425 0-.712-.288T3 17t.288-.712T4 16h16q.425 0 .713.288T21 17t-.288.713T20 18zm0-5q-.425 0-.712-.288T3 12t.288-.712T4 11h16q.425 0 .713.288T21 12t-.288.713T20 13zm0-5q-.425 0-.712-.288T3 7t.288-.712T4 6h16q.425 0 .713.288T21 7t-.288.713T20 8z"/></symbol><use href="#ai:material-symbols:menu-rounded"></use>  </svg> </button> </div> <div id="nav-menu-panel" class="float-panel float-panel-closed absolute transition-all fixed right-4 px-2 py-2"> <a href="/" class="group flex justify-between items-center py-2 pl-3 pr-1 rounded-lg gap-8
+            hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] transition
+        "> <div class="flex items-center gap-2 transition text-white/75 font-bold group-hover:text-[var(--primary)] group-active:text-[var(--primary)]"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-[1.1rem]" data-icon="material-symbols:home-outline-rounded">   <use href="#ai:material-symbols:home-outline-rounded"></use>  </svg> 首页 </div> <svg width="1em" height="1em" class="transition text-[1.25rem] text-[var(--primary)]" data-icon="material-symbols:chevron-right-rounded">   <symbol id="ai:material-symbols:chevron-right-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M12.6 12L8.7 8.1q-.275-.275-.275-.7t.275-.7t.7-.275t.7.275l4.6 4.6q.15.15.213.325t.062.375t-.062.375t-.213.325l-4.6 4.6q-.275.275-.7.275t-.7-.275t-.275-.7t.275-.7z"/></symbol><use href="#ai:material-symbols:chevron-right-rounded"></use>  </svg>  </a><a href="/archive/" class="group flex justify-between items-center py-2 pl-3 pr-1 rounded-lg gap-8
+            hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] transition
+        "> <div class="flex items-center gap-2 transition text-white/75 font-bold group-hover:text-[var(--primary)] group-active:text-[var(--primary)]"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-[1.1rem]" data-icon="material-symbols:archive-outline-rounded">   <use href="#ai:material-symbols:archive-outline-rounded"></use>  </svg> 归档 </div> <svg width="1em" height="1em" viewBox="0 0 24 24" class="transition text-[1.25rem] text-[var(--primary)]" data-icon="material-symbols:chevron-right-rounded">   <use href="#ai:material-symbols:chevron-right-rounded"></use>  </svg>  </a><a href="/friends/" class="group flex justify-between items-center py-2 pl-3 pr-1 rounded-lg gap-8
+            hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] transition
+        "> <div class="flex items-center gap-2 transition text-white/75 font-bold group-hover:text-[var(--primary)] group-active:text-[var(--primary)]"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-[1.1rem]" data-icon="material-symbols:group-outline-rounded">   <use href="#ai:material-symbols:group-outline-rounded"></use>  </svg> 友链 </div> <svg width="1em" height="1em" viewBox="0 0 24 24" class="transition text-[1.25rem] text-[var(--primary)]" data-icon="material-symbols:chevron-right-rounded">   <use href="#ai:material-symbols:chevron-right-rounded"></use>  </svg>  </a><a href="/sponsors/" class="group flex justify-between items-center py-2 pl-3 pr-1 rounded-lg gap-8
+            hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] transition
+        "> <div class="flex items-center gap-2 transition text-white/75 font-bold group-hover:text-[var(--primary)] group-active:text-[var(--primary)]"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-[1.1rem]" data-icon="material-symbols:volunteer-activism-outline-rounded">   <use href="#ai:material-symbols:volunteer-activism-outline-rounded"></use>  </svg> 赞助 </div> <svg width="1em" height="1em" viewBox="0 0 24 24" class="transition text-[1.25rem] text-[var(--primary)]" data-icon="material-symbols:chevron-right-rounded">   <use href="#ai:material-symbols:chevron-right-rounded"></use>  </svg>  </a><a href="/tools/" class="group flex justify-between items-center py-2 pl-3 pr-1 rounded-lg gap-8
+            hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] transition
+        "> <div class="flex items-center gap-2 transition text-white/75 font-bold group-hover:text-[var(--primary)] group-active:text-[var(--primary)]"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-[1.1rem]" data-icon="material-symbols:build-outline-rounded">   <use href="#ai:material-symbols:build-outline-rounded"></use>  </svg> 工具 </div> <svg width="1em" height="1em" viewBox="0 0 24 24" class="transition text-[1.25rem] text-[var(--primary)]" data-icon="material-symbols:chevron-right-rounded">   <use href="#ai:material-symbols:chevron-right-rounded"></use>  </svg>  </a><a href="https://u.2x.nz/share/CdkXbGgZr6ECKOyK" class="group flex justify-between items-center py-2 pl-3 pr-1 rounded-lg gap-8
+            hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] transition
+        " target="_blank"> <div class="flex items-center gap-2 transition text-white/75 font-bold group-hover:text-[var(--primary)] group-active:text-[var(--primary)]"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-[1.1rem]" data-icon="material-symbols:table-chart">   <use href="#ai:material-symbols:table-chart"></use>  </svg> 统计 </div>  <svg width="1em" height="1em" viewBox="0 0 512 512" class="transition text-[0.75rem] text-white/25 -translate-x-1" data-icon="fa6-solid:arrow-up-right-from-square">   <use href="#ai:fa6-solid:arrow-up-right-from-square"></use>  </svg> </a><a href="/forum/" class="group flex justify-between items-center py-2 pl-3 pr-1 rounded-lg gap-8
+            hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] transition
+        "> <div class="flex items-center gap-2 transition text-white/75 font-bold group-hover:text-[var(--primary)] group-active:text-[var(--primary)]"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-[1.1rem]" data-icon="material-symbols:forum-outline-rounded">   <use href="#ai:material-symbols:forum-outline-rounded"></use>  </svg> 论坛 </div> <svg width="1em" height="1em" viewBox="0 0 24 24" class="transition text-[1.25rem] text-[var(--primary)]" data-icon="material-symbols:chevron-right-rounded">   <use href="#ai:material-symbols:chevron-right-rounded"></use>  </svg>  </a> </div> <astro-island uid="O8dFd" component-url="/_astro/DisplaySettings.ZOWl6AVj.js" component-export="default" renderer-url="/_astro/client.svelte.BAxyfCXo.js" props="{}" ssr client="only" opts="{&quot;name&quot;:&quot;DisplaySettings&quot;,&quot;value&quot;:&quot;svelte&quot;}"></astro-island> </div> </div> <script type="module">function l(){let e=document.getElementById("display-settings-switch");e&&(e.onclick=function(){let t=document.getElementById("display-setting");t&&t.classList.toggle("float-panel-closed")});let n=document.getElementById("nav-menu-switch");n&&(n.onclick=function(){let t=document.getElementById("nav-menu-panel");t&&t.classList.toggle("float-panel-closed")})}l();</script> </div> </div>   <div class="relative w-full z-30 pointer-events-none" style="margin-top: 1rem"> <!-- The pointer-events-none here prevent blocking the click event of the TOC --> <div class="relative max-w-[var(--page-width)] mx-auto pointer-events-auto"> <div id="main-grid" class="transition duration-700 w-full left-0 right-0 grid grid-cols-1 md:grid-cols-[17.5rem_auto] grid-rows-[auto_auto_auto] lg:grid-rows-[auto_1fr] md:grid-rows-[auto_1fr] mx-auto gap-4 px-0 md:px-4"> <!-- Banner image credit -->  <div id="swup-sidebar" class="mb-4 row-start-2 col-span-1 lg:row-span-2 lg:row-start-1 lg:col-span-1 md:row-span-2 md:row-start-1 md:col-span-1 lg:max-w-[17.5rem] md:max-w-[17.5rem] relative"> <!-- 内部内容容器，由 Swup 替换 --> <div id="sidebar-content"> <div id="sidebar" class="w-full" data-forum-base-path="/forum/"> <div class="flex flex-col w-full gap-4 mb-4"> <div id="sidebar-profile-blog"> <div class="p-3 border-b border-white/10" data-astro-cid-ufwobukd> <div class="relative mx-auto lg:mx-0 mb-3 max-w-[12rem] md:max-w-[16rem] lg:max-w-none overflow-hidden border border-white/10" style="--theme-hue: 255" data-astro-cid-ufwobukd> <img src="https://q2.qlogo.cn/headimg_dl?dst_uin=2726730791&spec=0" alt="Profile Image of the Author" class="w-full h-full object-cover transition duration-500" width="640" height="640" loading="eager" decoding="async" data-astro-cid-ufwobukd> </div> <div class="px-2" data-astro-cid-ufwobukd> <div class="font-bold text-xl text-center mb-1 text-neutral-50 transition" data-astro-cid-ufwobukd><h3 data-astro-cid-ufwobukd>二叉树树</h3></div> <div class="h-1 w-5 bg-[var(--primary)] mx-auto mb-2 transition" data-astro-cid-ufwobukd></div> <div class="text-center text-neutral-400 mb-2.5 transition" data-astro-cid-ufwobukd>Protect What You Love.</div> <div class="flex flex-wrap gap-2 justify-center mb-1" data-astro-cid-ufwobukd> <a rel="me" aria-label="QQ" href="https://qm.qq.com/q/FWqOHlwL2m" target="_blank" class="btn-regular h-10 w-10 active:scale-90 border border-white/10" data-astro-cid-ufwobukd> <svg width="0.88em" height="1em" class="text-[1.5rem]" data-astro-cid-ufwobukd="true" data-icon="qq">   <symbol id="ai:local:qq" viewBox="0 0 448 512"><path fill="currentColor" d="M433.754 420.445c-11.526 1.393-44.86-52.741-44.86-52.741 0 31.345-16.136 72.247-51.051 101.786 16.842 5.192 54.843 19.167 45.803 34.421-7.316 12.343-125.51 7.881-159.632 4.037-34.122 3.844-152.316 8.306-159.632-4.037-9.045-15.25 28.918-29.214 45.783-34.415-34.92-29.539-51.059-70.445-51.059-101.792 0 0-33.334 54.134-44.859 52.741-5.37-.65-12.424-29.644 9.347-99.704 10.261-33.024 21.995-60.478 40.144-105.779C60.683 98.063 108.982.006 224 0c113.737.006 163.156 96.133 160.264 214.963 18.118 45.223 29.912 72.85 40.144 105.778 21.768 70.06 14.716 99.053 9.346 99.704"/></symbol><use href="#ai:local:qq"></use>  </svg> </a><a rel="me" aria-label="Telegram" href="https://t.me/+_07DERp7k1ljYTc1" target="_blank" class="btn-regular h-10 w-10 active:scale-90 border border-white/10" data-astro-cid-ufwobukd> <svg width="0.97em" height="1em" class="text-[1.5rem]" data-astro-cid-ufwobukd="true" data-icon="telegram">   <symbol id="ai:local:telegram" viewBox="0 0 496 512"><path fill="currentColor" d="M248 8C111.033 8 0 119.033 0 256s111.033 248 248 248 248-111.033 248-248S384.967 8 248 8m114.952 168.66c-3.732 39.215-19.881 134.378-28.1 178.3-3.476 18.584-10.322 24.816-16.948 25.425-14.4 1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25 5.342-39.5 3.652-3.793 67.107-61.51 68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608 69.142-14.845 10.194-26.894 9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7 18.45-13.7 108.446-47.248 144.628-62.3c68.872-28.647 83.183-33.623 92.511-33.789 2.052-.034 6.639.474 9.61 2.885a10.45 10.45 0 0 1 3.53 6.716 43.8 43.8 0 0 1 .417 9.769"/></symbol><use href="#ai:local:telegram"></use>  </svg> </a><a rel="me" aria-label="Bilibli" href="https://space.bilibili.com/325903362" target="_blank" class="btn-regular h-10 w-10 active:scale-90 border border-white/10" data-astro-cid-ufwobukd> <svg width="1em" height="1em" class="text-[1.5rem]" data-astro-cid-ufwobukd="true" data-icon="bilibili">   <symbol id="ai:local:bilibili" viewBox="0 0 512 512"><path fill="currentColor" d="M488.6 104.1c16.7 18.1 24.4 39.7 23.3 65.7v202.4c-.4 26.4-9.2 48.1-26.5 65.1-17.2 17-39.1 25.9-65.5 26.7H92.02c-26.45-.8-48.21-9.8-65.28-27.2C9.682 419.4.767 396.5 0 368.2V169.8c.767-26 9.682-47.6 26.74-65.7C43.81 87.75 65.57 78.77 92.02 78h29.38L96.05 52.19c-5.75-5.73-8.63-13-8.63-21.79 0-8.8 2.88-16.06 8.63-21.797C101.8 2.868 109.1 0 117.9 0q13.2 0 21.9 8.603L213.1 78h88l74.5-69.397C381.7 2.868 389.2 0 398 0q13.2 0 21.9 8.603c5.7 5.737 8.6 12.997 8.6 21.797 0 8.79-2.9 16.06-8.6 21.79L394.6 78h29.3c26.4.77 48 9.75 64.7 26.1m-38.8 69.7c-.4-9.6-3.7-17.4-10.7-23.5-5.2-6.1-14-9.4-22.7-9.8H96.05c-9.59.4-17.45 3.7-23.58 9.8-6.14 6.1-9.4 13.9-9.78 23.5v194.4c0 9.2 3.26 17 9.78 23.5s14.38 9.8 23.58 9.8H416.4c9.2 0 17-3.3 23.3-9.8s9.7-14.3 10.1-23.5zm-264.3 42.7c6.3 6.3 9.7 14.1 10.1 23.2V273c-.4 9.2-3.7 16.9-9.8 23.2-6.2 6.3-14 9.5-23.6 9.5s-17.5-3.2-23.6-9.5-9.4-14-9.8-23.2v-33.3c.4-9.1 3.8-16.9 10.1-23.2s13.2-9.6 23.3-10c9.2.4 17 3.7 23.3 10m191.5 0c6.3 6.3 9.7 14.1 10.1 23.2V273c-.4 9.2-3.7 16.9-9.8 23.2s-14 9.5-23.6 9.5-17.4-3.2-23.6-9.5c-7-6.3-9.4-14-9.7-23.2v-33.3c.3-9.1 3.7-16.9 10-23.2s14.1-9.6 23.3-10c9.2.4 17 3.7 23.3 10"/></symbol><use href="#ai:local:bilibili"></use>  </svg> </a><a rel="me" aria-label="GitHub" href="https://github.com/afoim" target="_blank" class="btn-regular h-10 w-10 active:scale-90 border border-white/10" data-astro-cid-ufwobukd> <svg width="0.97em" height="1em" class="text-[1.5rem]" data-astro-cid-ufwobukd="true" data-icon="github">   <symbol id="ai:local:github" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></symbol><use href="#ai:local:github"></use>  </svg> </a><a rel="me" aria-label="Folo" href="https://app.folo.is/share/feeds/245004133358075904" target="_blank" class="btn-regular h-10 w-10 active:scale-90 border border-white/10" data-astro-cid-ufwobukd> <svg width="1em" height="1em" class="text-[1.5rem]" data-astro-cid-ufwobukd="true" data-icon="folo">   <symbol id="ai:local:folo" viewBox="0 0 24 24"><path fill="currentColor" d="M5.382 0h13.236A5.37 5.37 0 0 1 24 5.383v13.235A5.37 5.37 0 0 1 18.618 24H5.382A5.37 5.37 0 0 1 0 18.618V5.383A5.37 5.37 0 0 1 5.382.001Zm7.887 17.31a1.813 1.813 0 1 0-3.626.002 1.813 1.813 0 0 0 3.626-.002m-.535-6.527H7.213a1.813 1.813 0 1 0 0 3.624h5.521a1.813 1.813 0 1 0 0-3.624m4.417-4.712H8.87a1.813 1.813 0 1 0 0 3.625h8.283a1.813 1.813 0 1 0 0-3.624z"/></symbol><use href="#ai:local:folo"></use>  </svg> </a>  </div> <!-- 全站文章与字数统计 --> <div class="grid grid-cols-2 mt-3 pt-3 border-t border-neutral-700" data-astro-cid-ufwobukd> <div class="text-center" data-astro-cid-ufwobukd> <div class="text-xs text-neutral-500 mb-1 flex items-center justify-center gap-1" data-astro-cid-ufwobukd> <svg width="1em" height="1em" class="text-base" data-astro-cid-ufwobukd="true" data-icon="material-symbols:article-outline">   <symbol id="ai:material-symbols:article-outline" viewBox="0 0 24 24"><path fill="currentColor" d="M7 17h7v-2H7zm0-4h10v-2H7zm0-4h10V7H7zM5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h14q.825 0 1.413.588T21 5v14q0 .825-.587 1.413T19 21zm0-2h14V5H5zM5 5v14z"/></symbol><use href="#ai:material-symbols:article-outline"></use>  </svg> <span class="text-xs" data-astro-cid-ufwobukd>文章数</span> </div> <div class="font-bold text-lg text-neutral-300" data-astro-cid-ufwobukd>149</div> </div> <div class="text-center border-l border-neutral-700" data-astro-cid-ufwobukd> <div class="text-xs text-neutral-500 mb-1 flex items-center justify-center gap-1" data-astro-cid-ufwobukd> <svg width="1em" height="1em" class="text-base" data-astro-cid-ufwobukd="true" data-icon="material-symbols:format-list-numbered">   <symbol id="ai:material-symbols:format-list-numbered" viewBox="0 0 24 24"><path fill="currentColor" d="M3 22v-1.5h2.5v-.75H4v-1.5h1.5v-.75H3V16h3q.425 0 .713.288T7 17v1q0 .425-.288.713T6 19q.425 0 .713.288T7 20v1q0 .425-.288.713T6 22zm0-7v-2.75q0-.425.288-.712T4 11.25h1.5v-.75H3V9h3q.425 0 .713.288T7 10v1.75q0 .425-.288.713T6 12.75H4.5v.75H7V15zm1.5-7V3.5H3V2h3v6zM9 19v-2h12v2zm0-6v-2h12v2zm0-6V5h12v2z"/></symbol><use href="#ai:material-symbols:format-list-numbered"></use>  </svg> <span class="text-xs" data-astro-cid-ufwobukd>总字数</span> </div> <div class="font-bold text-lg text-neutral-300" data-astro-cid-ufwobukd> 11.3w
+</div> </div> </div> <!-- 全站访问量统计 --> <div class="grid grid-cols-1 mt-3 pt-3 border-t border-neutral-700" data-astro-cid-ufwobukd> <div class="text-center" data-astro-cid-ufwobukd> <div class="text-xs text-neutral-500 mb-1 flex items-center justify-center gap-1" data-astro-cid-ufwobukd> <svg width="1em" height="1em" class="text-base" data-astro-cid-ufwobukd="true" data-icon="material-symbols:visibility-outline">   <symbol id="ai:material-symbols:visibility-outline" viewBox="0 0 24 24"><path fill="currentColor" d="M15.188 14.688Q16.5 13.375 16.5 11.5t-1.312-3.187T12 7T8.813 8.313T7.5 11.5t1.313 3.188T12 16t3.188-1.312m-5.1-1.276Q9.3 12.625 9.3 11.5t.788-1.912T12 8.8t1.913.788t.787 1.912t-.787 1.913T12 14.2t-1.912-.787m-4.738 3.55Q2.35 14.925 1 11.5q1.35-3.425 4.35-5.462T12 4t6.65 2.038T23 11.5q-1.35 3.425-4.35 5.463T12 19t-6.65-2.037m11.838-1.45Q19.55 14.025 20.8 11.5q-1.25-2.525-3.613-4.012T12 6T6.813 7.488T3.2 11.5q1.25 2.525 3.613 4.013T12 17t5.188-1.487"/></symbol><use href="#ai:material-symbols:visibility-outline"></use>  </svg> <span class="text-xs" data-astro-cid-ufwobukd>访问量</span> </div> <div id="site-views" class="font-bold text-lg text-neutral-300" data-astro-cid-ufwobukd>0</div> </div> <!--
+            <div class="text-center border-l border-neutral-700">
+                <div class="text-xs text-neutral-500 mb-1 flex items-center justify-center gap-1">
+                    <Icon name="material-symbols:person" class="text-base"></Icon>
+                    <span class="text-xs">访客数</span>
+                </div>
+                <div id="site-visitors" class="font-bold text-lg text-neutral-300">0</div>
+            </div>
+            --> </div> </div> </div>  <script>(function(){const umamiConfig = {"enable":true,"baseUrl":"https://u.2x.nz","shareId":"CdkXbGgZr6ECKOyK","timezone":"Asia/Shanghai"};
+
+    // 获取全站访问量统计 (New Logic)
+    async function loadSiteStats() {
+        // if (!umamiConfig.enable) return; // Optional check
+        try {
+            const response = await fetch('https://t.2x.nz/share?pathname=/');
+            if (!response.ok) return;
+            const data = await response.json();
+            const pageviews = data.views || 0;
+            
+            const viewsElement = document.getElementById('site-views');
+            
+            if (viewsElement) {
+                const startVal = parseInt(viewsElement.textContent) || 0;
+                if (startVal !== pageviews) {
+                    animateValue(viewsElement, startVal, pageviews, 1000);
+                }
+            }
+        } catch (error) {
+            console.error('获取全站统计失败:', error);
+        }
+    }
+
+    // 页面加载完成后获取统计数据
+    document.addEventListener('DOMContentLoaded', loadSiteStats);
+    // 监听 Swup 内容替换事件，确保页面切换后重新获取数据
+    document.addEventListener('swup:contentReplaced', loadSiteStats);
+})();</script> </div> <div id="sidebar-profile-forum" class="hidden"> <script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><astro-island uid="Z1olBlv" component-url="/_astro/ForumSidebarProfileCard.Uwk7fSug.js" component-export="default" renderer-url="/_astro/client.svelte.BAxyfCXo.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;ForumSidebarProfileCard&quot;,&quot;value&quot;:true}" await-children><!--[--><!--[0--><a href="/forum/auth/login/" class="card-base block border border-white/10 p-3" aria-label="点击登录论坛"><div class="mb-3 overflow-hidden rounded-xl"><div class="flex aspect-square w-full items-center justify-center bg-white/5 text-white/35"><!--[-1--><!--]--><!----></div></div> <div class="px-2"><div class="mb-1 text-center text-xl font-bold text-neutral-50 transition"><h3>游客</h3></div> <div class="mx-auto mb-2 h-1 w-5 rounded-full bg-[var(--primary)] transition"></div> <div class="text-center text-sm text-[var(--primary)]">点击登录论坛</div></div></a><!--]--><!--]--><!--astro:end--></astro-island> </div> </div> <div id="sidebar-sticky" class="transition-all duration-700 flex flex-col w-full gap-4 top-4 sticky top-4" style="top: calc(var(--navbar-offset, 0px) + 1rem);"> <div id="sidebar-timetable"> <a href="/timetable/" class="block" aria-label="前往课程表"> <div class="border border-white/10 bg-[var(--card-bg)] px-4 py-3 live-status-card" data-live-status-root data-live-payload="%7B%22coursesByDay%22%3A%7B%221%22%3A%5B%7B%22courseId%22%3A0%2C%22courseName%22%3A%22%E8%81%8C%E4%B8%9A%E7%94%9F%E6%B6%AF%E8%A7%84%E5%88%92%22%2C%22color%22%3A%22hsl(167%2078%25%2068%25)%22%2C%22teacher%22%3A%22%E9%BB%84%E5%BD%A9%E4%BA%91%22%2C%22room%22%3A%224202%22%2C%22day%22%3A1%2C%22startNode%22%3A1%2C%22endNode%22%3A2%2C%22durationNodes%22%3A2%2C%22startWeek%22%3A1%2C%22endWeek%22%3A9%2C%22nodeText%22%3A%22%E7%AC%AC%201-2%20%E8%8A%82%22%2C%22timeText%22%3A%2208%3A20%20-%2009%3A45%22%7D%2C%7B%22courseId%22%3A5%2C%22courseName%22%3A%22Linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%BA%94%E7%94%A8%22%2C%22color%22%3A%22hsl(51%2078%25%2068%25)%22%2C%22teacher%22%3A%22%E8%91%9B%E4%BC%9F%E4%BC%A6%22%2C%22room%22%3A%228307%E8%BD%AF%E4%BB%B6%E6%8A%80%E6%9C%AF%E5%AE%9E%E8%AE%AD%E5%AE%A4%22%2C%22day%22%3A1%2C%22startNode%22%3A5%2C%22endNode%22%3A6%2C%22durationNodes%22%3A2%2C%22startWeek%22%3A1%2C%22endWeek%22%3A18%2C%22nodeText%22%3A%22%E7%AC%AC%205-6%20%E8%8A%82%22%2C%22timeText%22%3A%2213%3A40%20-%2015%3A05%22%7D%2C%7B%22courseId%22%3A4%2C%22courseName%22%3A%22python%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%22%2C%22color%22%3A%22hsl(98%2078%25%2068%25)%22%2C%22teacher%22%3A%22%E5%AD%99%E9%9D%92%E6%9D%BE%22%2C%22room%22%3A%229203%E5%9F%B9%E8%AE%AD%E6%9C%BA%E6%88%BF%22%2C%22day%22%3A1%2C%22startNode%22%3A7%2C%22endNode%22%3A8%2C%22durationNodes%22%3A2%2C%22startWeek%22%3A1%2C%22endWeek%22%3A18%2C%22nodeText%22%3A%22%E7%AC%AC%207-8%20%E8%8A%82%22%2C%22timeText%22%3A%2215%3A20%20-%2016%3A45%22%7D%2C%7B%22courseId%22%3A5%2C%22courseName%22%3A%22Linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%BA%94%E7%94%A8%22%2C%22color%22%3A%22hsl(51%2078%25%2068%25)%22%2C%22teacher%22%3A%22%E8%91%9B%E4%BC%9F%E4%BC%A6%22%2C%22room%22%3A%229403%E8%AF%AD%E9%9F%B3%E5%AE%A4%22%2C%22day%22%3A1%2C%22startNode%22%3A9%2C%22endNode%22%3A10%2C%22durationNodes%22%3A2%2C%22startWeek%22%3A1%2C%22endWeek%22%3A18%2C%22nodeText%22%3A%22%E7%AC%AC%209-10%20%E8%8A%82%22%2C%22timeText%22%3A%2218%3A00%20-%2019%3A25%22%7D%5D%2C%222%22%3A%5B%7B%22courseId%22%3A3%2C%22courseName%22%3A%22%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%22%2C%22color%22%3A%22hsl(317%2078%25%2068%25)%22%2C%22teacher%22%3A%22%E9%92%9F%E7%BF%94%22%2C%22room%22%3A%222207%22%2C%22day%22%3A2%2C%22startNode%22%3A3%2C%22endNode%22%3A4%2C%22durationNodes%22%3A2%2C%22startWeek%22%3A1%2C%22endWeek%22%3A18%2C%22nodeText%22%3A%22%E7%AC%AC%203-4%20%E8%8A%82%22%2C%22timeText%22%3A%2210%3A00%20-%2011%3A25%22%7D%2C%7B%22courseId%22%3A6%2C%22courseName%22%3A%22%E6%AF%9B%E6%B3%BD%E4%B8%9C%E6%80%9D%E6%83%B3%E5%92%8C%E4%B8%AD%E5%9B%BD%E7%89%B9%E8%89%B2%E7%A4%BE%E4%BC%9A%E4%B8%BB%E4%B9%89%E7%90%86%E8%AE%BA%E4%BD%93%E7%B3%BB%E6%A6%82%E8%AE%BA%22%2C%22color%22%3A%22hsl(356%2078%25%2068%25)%22%2C%22teacher%22%3A%22%E9%83%91%E5%B2%A9%22%2C%22room%22%3A%222409%22%2C%22day%22%3A2%2C%22startNode%22%3A5%2C%22endNode%22%3A6%2C%22durationNodes%22%3A2%2C%22startWeek%22%3A1%2C%22endWeek%22%3A18%2C%22nodeText%22%3A%22%E7%AC%AC%205-6%20%E8%8A%82%22%2C%22timeText%22%3A%2213%3A40%20-%2015%3A05%22%7D%2C%7B%22courseId%22%3A8%2C%22courseName%22%3A%22%E6%80%9D%E6%83%B3%E9%81%93%E5%BE%B7%E4%B8%8E%E6%B3%95%E6%B2%BB%22%2C%22color%22%3A%22hsl(235%2078%25%2068%25)%22%2C%22teacher%22%3A%22%E6%B4%AA%E5%A6%AE%22%2C%22room%22%3A%222207%22%2C%22day%22%3A2%2C%22startNode%22%3A7%2C%22endNode%22%3A8%2C%22durationNodes%22%3A2%2C%22startWeek%22%3A1%2C%22endWeek%22%3A16%2C%22nodeText%22%3A%22%E7%AC%AC%207-8%20%E8%8A%82%22%2C%22timeText%22%3A%2215%3A20%20-%2016%3A45%22%7D%2C%7B%22courseId%22%3A13%2C%22courseName%22%3A%22%E5%88%9B%E6%96%B0%E5%88%9B%E4%B8%9A%E6%95%99%E8%82%B2%22%2C%22color%22%3A%22hsl(202%2078%25%2068%25)%22%2C%22teacher%22%3A%22%E5%88%98%E5%A4%8F%22%2C%22room%22%3A%221403%22%2C%22day%22%3A2%2C%22startNode%22%3A9%2C%22endNode%22%3A10%2C%22durationNodes%22%3A2%2C%22startWeek%22%3A1%2C%22endWeek%22%3A9%2C%22nodeText%22%3A%22%E7%AC%AC%209-10%20%E8%8A%82%22%2C%22timeText%22%3A%2218%3A00%20-%2019%3A25%22%7D%5D%2C%223%22%3A%5B%7B%22courseId%22%3A12%2C%22courseName%22%3A%22%E4%BD%93%E8%82%B2%22%2C%22color%22%3A%22hsl(233%2078%25%2068%25)%22%2C%22teacher%22%3A%22%E6%9C%AA%E5%A1%AB%E5%86%99%22%2C%22room%22%3A%22%E8%88%9E%E8%B9%88%E6%95%99%E5%AE%A4%22%2C%22day%22%3A3%2C%22startNode%22%3A1%2C%22endNode%22%3A2%2C%22durationNodes%22%3A2%2C%22startWeek%22%3A1%2C%22endWeek%22%3A18%2C%22nodeText%22%3A%22%E7%AC%AC%201-2%20%E8%8A%82%22%2C%22timeText%22%3A%2208%3A20%20-%2009%3A45%22%7D%2C%7B%22courseId%22%3A10%2C%22courseName%22%3A%22Web%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%22%2C%22color%22%3A%22hsl(149%2078%25%2068%25)%22%2C%22teacher%22%3A%22%E5%88%98%E6%98%A5%E7%8E%B2%22%2C%22room%22%3A%22A201%22%2C%22day%22%3A3%2C%22startNode%22%3A9%2C%22endNode%22%3A10%2C%22durationNodes%22%3A2%2C%22startWeek%22%3A1%2C%22endWeek%22%3A18%2C%22nodeText%22%3A%22%E7%AC%AC%209-10%20%E8%8A%82%22%2C%22timeText%22%3A%2218%3A00%20-%2019%3A25%22%7D%5D%2C%224%22%3A%5B%7B%22courseId%22%3A2%2C%22courseName%22%3A%22%E5%A4%A7%E5%AD%A6%E8%8B%B1%E8%AF%AD%E2%85%A1%22%2C%22color%22%3A%22hsl(77%2078%25%2068%25)%22%2C%22teacher%22%3A%22%E8%92%8B%E5%BB%89%22%2C%22room%22%3A%222207%22%2C%22day%22%3A4%2C%22startNode%22%3A1%2C%22endNode%22%3A2%2C%22durationNodes%22%3A2%2C%22startWeek%22%3A1%2C%22endWeek%22%3A18%2C%22nodeText%22%3A%22%E7%AC%AC%201-2%20%E8%8A%82%22%2C%22timeText%22%3A%2208%3A20%20-%2009%3A45%22%7D%2C%7B%22courseId%22%3A3%2C%22courseName%22%3A%22%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%22%2C%22color%22%3A%22hsl(317%2078%25%2068%25)%22%2C%22teacher%22%3A%22%E9%92%9F%E7%BF%94%22%2C%22room%22%3A%222207%22%2C%22day%22%3A4%2C%22startNode%22%3A3%2C%22endNode%22%3A4%2C%22durationNodes%22%3A2%2C%22startWeek%22%3A1%2C%22endWeek%22%3A18%2C%22nodeText%22%3A%22%E7%AC%AC%203-4%20%E8%8A%82%22%2C%22timeText%22%3A%2210%3A00%20-%2011%3A25%22%7D%2C%7B%22courseId%22%3A7%2C%22courseName%22%3A%22%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%22%2C%22color%22%3A%22hsl(65%2078%25%2068%25)%22%2C%22teacher%22%3A%22%E5%BE%90%E5%B3%B0%22%2C%22room%22%3A%228303%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E8%AE%AD%E5%AE%A4%22%2C%22day%22%3A4%2C%22startNode%22%3A5%2C%22endNode%22%3A6%2C%22durationNodes%22%3A2%2C%22startWeek%22%3A1%2C%22endWeek%22%3A18%2C%22nodeText%22%3A%22%E7%AC%AC%205-6%20%E8%8A%82%22%2C%22timeText%22%3A%2213%3A40%20-%2015%3A05%22%7D%2C%7B%22courseId%22%3A10%2C%22courseName%22%3A%22Web%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%22%2C%22color%22%3A%22hsl(149%2078%25%2068%25)%22%2C%22teacher%22%3A%22%E5%88%98%E6%98%A5%E7%8E%B2%22%2C%22room%22%3A%22A203%22%2C%22day%22%3A4%2C%22startNode%22%3A7%2C%22endNode%22%3A8%2C%22durationNodes%22%3A2%2C%22startWeek%22%3A1%2C%22endWeek%22%3A18%2C%22nodeText%22%3A%22%E7%AC%AC%207-8%20%E8%8A%82%22%2C%22timeText%22%3A%2215%3A20%20-%2016%3A45%22%7D%5D%2C%225%22%3A%5B%7B%22courseId%22%3A2%2C%22courseName%22%3A%22%E5%A4%A7%E5%AD%A6%E8%8B%B1%E8%AF%AD%E2%85%A1%22%2C%22color%22%3A%22hsl(77%2078%25%2068%25)%22%2C%22teacher%22%3A%22%E8%92%8B%E5%BB%89%22%2C%22room%22%3A%222301%22%2C%22day%22%3A5%2C%22startNode%22%3A1%2C%22endNode%22%3A2%2C%22durationNodes%22%3A2%2C%22startWeek%22%3A1%2C%22endWeek%22%3A18%2C%22nodeText%22%3A%22%E7%AC%AC%201-2%20%E8%8A%82%22%2C%22timeText%22%3A%2208%3A20%20-%2009%3A45%22%7D%2C%7B%22courseId%22%3A4%2C%22courseName%22%3A%22python%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%22%2C%22color%22%3A%22hsl(98%2078%25%2068%25)%22%2C%22teacher%22%3A%22%E5%AD%99%E9%9D%92%E6%9D%BE%22%2C%22room%22%3A%229403%E8%AF%AD%E9%9F%B3%E5%AE%A4%22%2C%22day%22%3A5%2C%22startNode%22%3A3%2C%22endNode%22%3A4%2C%22durationNodes%22%3A2%2C%22startWeek%22%3A1%2C%22endWeek%22%3A18%2C%22nodeText%22%3A%22%E7%AC%AC%203-4%20%E8%8A%82%22%2C%22timeText%22%3A%2210%3A00%20-%2011%3A25%22%7D%2C%7B%22courseId%22%3A7%2C%22courseName%22%3A%22%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%22%2C%22color%22%3A%22hsl(65%2078%25%2068%25)%22%2C%22teacher%22%3A%22%E5%BE%90%E5%B3%B0%22%2C%22room%22%3A%228303%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E8%AE%AD%E5%AE%A4%22%2C%22day%22%3A5%2C%22startNode%22%3A5%2C%22endNode%22%3A6%2C%22durationNodes%22%3A2%2C%22startWeek%22%3A1%2C%22endWeek%22%3A18%2C%22nodeText%22%3A%22%E7%AC%AC%205-6%20%E8%8A%82%22%2C%22timeText%22%3A%2213%3A40%20-%2015%3A05%22%7D%2C%7B%22courseId%22%3A8%2C%22courseName%22%3A%22%E6%80%9D%E6%83%B3%E9%81%93%E5%BE%B7%E4%B8%8E%E6%B3%95%E6%B2%BB%22%2C%22color%22%3A%22hsl(235%2078%25%2068%25)%22%2C%22teacher%22%3A%22%E6%B4%AA%E5%A6%AE%22%2C%22room%22%3A%222207%22%2C%22day%22%3A5%2C%22startNode%22%3A7%2C%22endNode%22%3A8%2C%22durationNodes%22%3A2%2C%22startWeek%22%3A1%2C%22endWeek%22%3A16%2C%22nodeText%22%3A%22%E7%AC%AC%207-8%20%E8%8A%82%22%2C%22timeText%22%3A%2215%3A20%20-%2016%3A45%22%7D%5D%7D%7D" data-astro-cid-xo7rbxof> <p data-live-status class="text-sm font-semibold text-white" data-astro-cid-xo7rbxof>状态计算中...</p> <p class="mt-1 text-sm text-white/80" data-astro-cid-xo7rbxof> <span data-astro-cid-xo7rbxof>下一堂课：</span> <span data-live-next-detail class="font-medium" data-astro-cid-xo7rbxof>--</span> <span data-live-next-tail data-astro-cid-xo7rbxof></span> </p> </div> <script>
+	function parseTimeToMinute(text) {
+		const parts = String(text || "").split(":");
+		if (parts.length !== 2) return null;
+		const hour = Number(parts[0]);
+		const minute = Number(parts[1]);
+		if (!Number.isFinite(hour) || !Number.isFinite(minute)) return null;
+		return hour * 60 + minute;
+	}
+
+	function extractRangeMinutes(timeText) {
+		const match = String(timeText || "").match(/(\d{1,2}:\d{2})\s*-\s*(\d{1,2}:\d{2})/);
+		if (!match) return null;
+		const startMinute = parseTimeToMinute(match[1]);
+		const endMinute = parseTimeToMinute(match[2]);
+		if (startMinute === null || endMinute === null) return null;
+		return { startMinute, endMinute };
+	}
+
+	function formatDuration(totalMinutes) {
+		const safeMinutes = Math.max(0, Math.floor(totalMinutes));
+		const hours = Math.floor(safeMinutes / 60);
+		const minutes = safeMinutes % 60;
+		if (hours > 0 && minutes > 0) return `${hours}小时${minutes}分钟`;
+		if (hours > 0) return `${hours}小时`;
+		return `${minutes}分钟`;
+	}
+
+	function getTodayCourses(payload, now) {
+		const day = now.getDay() === 0 ? 7 : now.getDay();
+		const rawCourses = payload?.coursesByDay?.[day] || [];
+		return rawCourses
+			.map((course) => {
+				const range = extractRangeMinutes(course.timeText);
+				if (!range) return null;
+				return {
+					...course,
+					startMinute: range.startMinute,
+					endMinute: range.endMinute,
+				};
+			})
+			.filter(Boolean)
+			.sort((a, b) => a.startMinute - b.startMinute);
+	}
+
+	function resolveLiveState(payload) {
+		const now = new Date();
+		const currentMinute = now.getHours() * 60 + now.getMinutes();
+		const day = now.getDay() === 0 ? 7 : now.getDay();
+
+		if (day >= 6) {
+			return {
+				status: "周末",
+				nextDetail: "--",
+				nextTail: "",
+				nextColor: "",
+			};
+		}
+
+		const courses = getTodayCourses(payload, now);
+		if (courses.length === 0) {
+			return {
+				status: "无课",
+				nextDetail: "--",
+				nextTail: "",
+				nextColor: "",
+			};
+		}
+
+		let status = "无课";
+		for (let index = 0; index < courses.length; index += 1) {
+			const current = courses[index];
+			if (currentMinute >= current.startMinute && currentMinute < current.endMinute) {
+				status = `上课（${current.courseName}）`;
+				break;
+			}
+			const next = courses[index + 1];
+			if (next && currentMinute >= current.endMinute && currentMinute < next.startMinute) {
+				status = `课间（下一节：${next.courseName}）`;
+				break;
+			}
+		}
+
+		const nextCourse = courses.find((course) => course.startMinute > currentMinute) || null;
+		if (!nextCourse) {
+			return {
+				status,
+				nextDetail: "--",
+				nextTail: "",
+				nextColor: "",
+			};
+		}
+
+		const remainMinutes = nextCourse.startMinute - currentMinute;
+		return {
+			status,
+			nextDetail: `${nextCourse.courseName} - ${nextCourse.room || "未填写"}`,
+			nextTail: `（${formatDuration(remainMinutes)}后）`,
+			nextColor: nextCourse.color || "",
+		};
+	}
+
+	function bindLiveStatusWidget(root) {
+		if (!(root instanceof HTMLElement)) return;
+		if (root.dataset.bound === "true") return;
+		root.dataset.bound = "true";
+		try {
+			const payloadRaw = decodeURIComponent(root.dataset.livePayload || "%7B%7D");
+			root.__liveStatusPayload = JSON.parse(payloadRaw);
+		} catch {
+			root.__liveStatusPayload = { coursesByDay: {} };
+		}
+	}
+
+	function updateLiveStatusWidget(root) {
+		if (!(root instanceof HTMLElement)) return;
+		const statusElement = root.querySelector("[data-live-status]");
+		const nextDetailElement = root.querySelector("[data-live-next-detail]");
+		const nextTailElement = root.querySelector("[data-live-next-tail]");
+		if (!(statusElement instanceof HTMLElement)) return;
+		if (!(nextDetailElement instanceof HTMLElement)) return;
+		if (!(nextTailElement instanceof HTMLElement)) return;
+
+		const state = resolveLiveState(root.__liveStatusPayload || { coursesByDay: {} });
+		statusElement.textContent = state.status;
+		nextDetailElement.textContent = state.nextDetail;
+		nextTailElement.textContent = state.nextTail;
+		nextDetailElement.style.color = state.nextColor || "";
+	}
+
+	function refreshLiveStatusWidgets() {
+		const roots = document.querySelectorAll("[data-live-status-root]");
+		for (const root of roots) {
+			bindLiveStatusWidget(root);
+			updateLiveStatusWidget(root);
+		}
+	}
+
+	function setupLiveStatusWidgets() {
+		refreshLiveStatusWidgets();
+
+		if (!window.__liveStatusWidgetsBound) {
+			window.__liveStatusWidgetsBound = true;
+			document.addEventListener("astro:after-swap", refreshLiveStatusWidgets);
+			document.addEventListener("swup:contentReplaced", refreshLiveStatusWidgets);
+			window.addEventListener("focus", refreshLiveStatusWidgets);
+		}
+
+		const timerKey = "__liveStatusWidgetsTimer";
+		if (window[timerKey]) {
+			clearInterval(window[timerKey]);
+		}
+		window[timerKey] = window.setInterval(refreshLiveStatusWidgets, 30 * 1000);
+	}
+
+	if (document.readyState === "loading") {
+		document.addEventListener("DOMContentLoaded", setupLiveStatusWidgets, { once: true });
+	} else {
+		setupLiveStatusWidgets();
+	}
+</script>  </a> </div> <div id="sidebar-deepwiki"> <a href="https://deepwiki.com/afoim/fuwari" target="_blank" rel="noopener noreferrer" class="w-full flex items-center justify-center gap-2 px-4 py-3 bg-[var(--card-bg)] border-2 border-[var(--primary)] text-[var(--primary)] font-bold text-lg hover:bg-[var(--primary)] hover:text-white transition-all shadow-md active:scale-95 group"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:scale-110 transition-transform"> <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path> </svg>
+有疑问？询问 DeepWiki！
+</a> </div> <!-- 赞助标 --> <div class="overflow-hidden w-full"> <a href="https://secbit.ai/" target="_blank" rel="noopener noreferrer" class="block w-full"> <img src="/aff/secbit-banner-1.gif" alt="Secbit" width="280" height="35" class="w-full hover:opacity-90 transition-opacity"> </a> </div> <div class="overflow-hidden w-full"> <div class="p-6 bg-[#1E293B] border border-[#27344a] space-y-4" style="width:100%; max-width:none; background-color: rgb(7 16 45); background: linear-gradient(to top right, rgb(7 16 45), rgb(58 60 84)); background: -webkit-linear-gradient(to top right, rgb(7 16 45), rgb(58 60 84));"> <div class="flex items-center justify-between"> <div class="flex items-center gap-2"> <div class="w-[100px] ml-0.5"> <a href="https://yxvm.com/" target="_blank" rel="noopener noreferrer"> <img src="/aff/nodeget/yxvm.png" alt="yxvm"> </a> </div> <span class="text-white font-bold text-xl">+</span> <div class="w-10"> <a href="https://www.nodeseek.com" target="_blank" rel="noopener noreferrer"> <img src="/aff/nodeget/nodeseek.png" alt="nodeseek"> </a> </div> </div> <div class="flex items-center gap-5"> <div class="w-5 fill-slate-400 hover:fill-sky-400 duration-200"> <a href="https://github.com/NodeSeekDev/NodeSupport" target="_blank" rel="noopener noreferrer"> <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 20 20"> <g stroke-width="0" id="SVGRepo_bgCarrier"></g> <g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g> <g id="SVGRepo_iconCarrier"> <title>github [#142]</title> <desc>Created with Sketch.</desc> <defs></defs> <g stroke-width="1" stroke="none" id="Page-1"> <g transform="translate(-140.000000, -7559.000000)" id="Dribbble-Light-Preview"> <g transform="translate(56.000000, 160.000000)" id="icons"> <path id="github-[#142]" fill="white" d="M94,7399 C99.523,7399 104,7403.59 104,7409.253 C104,7413.782 101.138,7417.624 97.167,7418.981 C96.66,7419.082 96.48,7418.762 96.48,7418.489 C96.48,7418.151 96.492,7417.047 96.492,7415.675 C96.492,7414.719 96.172,7414.095 95.813,7413.777 C98.04,7413.523 100.38,7412.656 100.38,7408.718 C100.38,7407.598 99.992,7406.684 99.35,7405.966 C99.454,7405.707 99.797,7404.664 99.252,7403.252 C99.252,7403.252 98.414,7402.977 96.505,7404.303 C95.706,7404.076 94.85,7403.962 94,7403.958 C93.15,7403.962 92.295,7404.076 91.497,7404.303 C89.586,7402.977 88.746,7403.252 88.746,7403.252 C88.203,7404.664 88.546,7405.707 88.649,7405.966 C88.01,7406.684 87.619,7407.598 87.619,7408.718 C87.619,7412.646 89.954,7413.526 92.175,7413.785 C91.889,7414.041 91.63,7414.493 91.54,7415.156 C90.97,7415.418 89.522,7415.871 88.63,7414.304 C88.63,7414.304 88.101,7413.319 87.097,7413.247 C87.097,7413.247 86.122,7413.234 87.029,7413.87 C87.029,7413.87 87.684,7414.185 88.139,7415.37 C88.139,7415.37 88.726,7417.2 91.508,7416.58 C91.513,7417.437 91.522,7418.245 91.522,7418.489 C91.522,7418.76 91.338,7419.077 90.839,7418.982 C86.865,7417.627 84,7413.783 84,7409.253 C84,7403.59 88.478,7399 94,7399"></path> </g> </g> </g> </g> </svg> </a> </div> </div> </div> <h1 class="capitalize text-white font-medium text-lg">NodeSupport Project</h1> <p class="text-slate-400 text-sm">Provide free server sponsorship to high-quality blogs, channels, open-source projects, and popular app.</p> <div class="flex justify-end gap-1 text-[13px] text-zinc-200 font-medium"> <span>Support ID:</span><span>316</span> </div> </div> <iframe title="Advertisement" src="https://support.nodeget.com/page/promotion?id=316" style="border:none; width:1px; height:1px; opacity:0; pointer-events:none; position:absolute; left:-9999px; top:0;" tabindex="-1" aria-hidden="true"></iframe> </div> </div> </div> </div> </div> <main id="swup-main" class="row-start-1 col-span-1 lg:row-start-1 lg:col-start-2 lg:col-span-1 md:row-start-1 md:col-start-2 md:col-span-1 overflow-visible min-w-0"> <div id="content-wrapper"> <!-- the overflow-hidden here prevent long text break the layout--> <!-- make id different from windows.swup global property --> <script>
+    function initAnnouncement() {
+        const container = document.getElementById('notice-content-container');
+        if (!container) return;
+
+        // Remove existing wrappers and buttons to prevent duplication
+        const existingWrappers = container.querySelectorAll('.image-wrapper');
+        existingWrappers.forEach(wrapper => {
+            const img = wrapper.querySelector('img');
+            if (img) {
+                // Move image back to original position (before the wrapper)
+                wrapper.parentNode.insertBefore(img, wrapper);
+            }
+            wrapper.remove();
+        });
+
+        const existingBtns = container.querySelectorAll('.btn-regular');
+        existingBtns.forEach(btn => btn.remove());
+
+        // Check if there are images
+        const images = container.querySelectorAll('img');
+        
+        if (images.length > 0) {
+            images.forEach(img => {
+                // Check if already wrapped (double check)
+                if (img.parentElement.classList.contains('image-wrapper')) return;
+
+                // Create wrapper for image
+                const wrapper = document.createElement('div');
+                wrapper.className = 'image-wrapper hidden mt-4 mb-4';
+                
+                // Create toggle button
+                const btn = document.createElement('button');
+                btn.className = 'btn-regular w-full flex items-center justify-center gap-2 py-2 mt-2 text-[var(--primary)] font-bold bg-[var(--card-bg)] border border-[var(--primary)] rounded-lg hover:bg-[var(--primary)] hover:text-white transition-colors duration-300';
+                btn.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    查看图片
+                `;
+
+                // Wrap image
+                img.parentNode.insertBefore(btn, img);
+                img.parentNode.insertBefore(wrapper, img);
+                wrapper.appendChild(img);
+
+                // Toggle logic
+                btn.onclick = () => {
+                    wrapper.classList.toggle('hidden');
+                    if (wrapper.classList.contains('hidden')) {
+                        btn.innerHTML = `
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            查看图片
+                        `;
+                    } else {
+                         btn.innerHTML = `
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+                            </svg>
+                            收起图片
+                        `;
+                    }
+                };
+            });
+        }
+    }
+
+    initAnnouncement();
+    
+    // Use data-swup-theme to mark this script as persistent if needed, 
+    // or better yet, ensure initAnnouncement handles re-execution gracefully.
+    // Since this is an inline script in an Astro component, it re-runs on page load.
+    // But Swup might replace the body content, including this component.
+    // However, if the component persists (e.g. in a persistent layout), the script might re-run or not depending on Swup config.
+    // The issue described suggests DOM elements are being duplicated.
+    // The fix above (removing existing wrappers) handles the re-execution safely.
+    
+    document.addEventListener('astro:after-swap', initAnnouncement);
+</script> <div id="sort-container" class="transition-swup-fade">  </div> <div id="swup-container" class="transition-swup-fade">   <div class="flex w-full overflow-hidden relative mb-4" data-astro-cid-egg7nqdx> <div id="post-container" class="card-base z-10 px-6 md:px-9 pt-6 pb-4 relative w-full" data-astro-cid-egg7nqdx> <!-- word count and reading time --> <div class="flex flex-row text-white/30 gap-5 mb-3 transition onload-animation" data-astro-cid-egg7nqdx> <div class="flex flex-row items-center" data-astro-cid-egg7nqdx> <div class="transition h-6 w-6 rounded-md bg-white/10 text-white/50 flex items-center justify-center mr-2" data-astro-cid-egg7nqdx> <svg width="1em" height="1em" data-astro-cid-egg7nqdx="true" data-icon="material-symbols:notes-rounded">   <symbol id="ai:material-symbols:notes-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M4 18q-.425 0-.712-.288T3 17t.288-.712T4 16h10q.425 0 .713.288T15 17t-.288.713T14 18zm0-5q-.425 0-.712-.288T3 12t.288-.712T4 11h16q.425 0 .713.288T21 12t-.288.713T20 13zm0-5q-.425 0-.712-.288T3 7t.288-.712T4 6h16q.425 0 .713.288T21 7t-.288.713T20 8z"/></symbol><use href="#ai:material-symbols:notes-rounded"></use>  </svg> </div> <div class="text-sm" data-astro-cid-egg7nqdx>741 字</div> </div> <div class="flex flex-row items-center" data-astro-cid-egg7nqdx> <div class="transition h-6 w-6 rounded-md bg-white/10 text-white/50 flex items-center justify-center mr-2" data-astro-cid-egg7nqdx> <svg width="1em" height="1em" data-astro-cid-egg7nqdx="true" data-icon="material-symbols:schedule-outline-rounded">   <symbol id="ai:material-symbols:schedule-outline-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M13 11.6V8q0-.425-.288-.712T12 7t-.712.288T11 8v3.975q0 .2.075.388t.225.337l3.3 3.3q.275.275.7.275T16 16t.275-.7t-.275-.7zM12 22q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22m0-2q3.325 0 5.663-2.337T20 12t-2.337-5.663T12 4T6.337 6.338T4 12t2.338 5.663T12 20"/></symbol><use href="#ai:material-symbols:schedule-outline-rounded"></use>  </svg> </div> <div class="text-sm" data-astro-cid-egg7nqdx>4 分钟</div> </div> </div> <!-- title --> <div class="relative onload-animation" data-astro-cid-egg7nqdx> <div id="post-title" data-pagefind-body data-pagefind-weight="10" data-pagefind-meta="title" class="transition w-full flex items-center font-bold mb-3
+                    text-3xl md:text-[2.25rem]/[2.75rem]
+                    text-white/90
+                    md:before:w-1 before:h-5 before:rounded-md before:bg-[var(--primary)]
+                    before:absolute before:top-[0.75rem] before:left-[-1.125rem]
+                " data-astro-cid-egg7nqdx> <span data-astro-cid-egg7nqdx>超高校级的监控服务：UptimeFlare！基于CF Worker！自托管！声明式！新手友好！</span> </div> </div> <!-- description/excerpt --> <div class="onload-animation mb-4" data-astro-cid-egg7nqdx> <div id="post-description" class="text-white/75 text-sm leading-relaxed" data-astro-cid-egg7nqdx> 谁不想拥有一个监控自己服务的服务呢？ </div> </div> <!-- AI involvement -->  <!-- metadata --> <div class="onload-animation" data-astro-cid-egg7nqdx> <div class="flex flex-wrap text-neutral-400 items-center gap-4 gap-x-4 gap-y-2 mb-5"> <!-- publish date --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:schedule-outline-rounded">   <use href="#ai:material-symbols:schedule-outline-rounded"></use>  </svg> </div> <span class="text-50 text-sm font-medium">1月3日 03:10:53</span> </div> <!-- update date -->  <!-- page views & visitors -->  <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" class="text-xl" data-icon="material-symbols:visibility-outline-rounded">   <symbol id="ai:material-symbols:visibility-outline-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M15.188 14.688Q16.5 13.375 16.5 11.5t-1.312-3.187T12 7T8.813 8.313T7.5 11.5t1.313 3.188T12 16t3.188-1.312m-5.1-1.276Q9.3 12.625 9.3 11.5t.788-1.912T12 8.8t1.913.788t.787 1.912t-.787 1.913T12 14.2t-1.912-.787m-4.2 3.787q-2.763-1.8-4.363-4.75q-.125-.225-.187-.462t-.063-.488t.063-.488t.187-.462q1.6-2.95 4.363-4.75T12 4t6.113 1.8t4.362 4.75q.125.225.188.463t.062.487t-.062.488t-.188.462q-1.6 2.95-4.362 4.75T12 19t-6.113-1.8m11.3-1.687Q19.55 14.025 20.8 11.5q-1.25-2.525-3.613-4.012T12 6T6.813 7.488T3.2 11.5q1.25 2.525 3.613 4.013T12 17t5.188-1.487"/></symbol><use href="#ai:material-symbols:visibility-outline-rounded"></use>  </svg> </div> <span class="text-50 text-sm font-medium" id="page-views-uptimeflare">0 次</span> </div>   </div> <script>(function(){const slug = "uptimeflare";
+
+    async function fetchPageViews() {
+        // if (!umamiConfig.enable) return; // Optional check
+        try {
+            const response = await fetch(`https://t.2x.nz/share?pathname=/posts/${slug}/`);
+            if (!response.ok) return;
+            const data = await response.json();
+            const pageViews = data.views || 0;
+            
+            const viewsElement = document.getElementById(`page-views-${slug}`);
+            
+            if (viewsElement) {
+                const currentViews = parseInt(viewsElement.textContent) || 0;
+                if (currentViews !== pageViews) {
+                    if (currentViews === 0) {
+                         animateValueWithSuffix(viewsElement, currentViews, pageViews, 1000, '次');
+                    } else {
+                         viewsElement.innerHTML = `${pageViews} 次`;
+                    }
+                }
+            }
+        } catch (error) {
+            console.error('Error fetching page views:', error);
+        }
+    }
+
+    // 页面加载完成后获取统计数据
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', fetchPageViews);
+    } else {
+        fetchPageViews();
+    }
+})();</script>  </div> <!-- always show cover as long as it has one --> <div id="post-cover" class="mb-8 banner-container onload-animation overflow-hidden relative image-wrapper" style="--theme-hue: 255" data-astro-cid-i2xmscho>  <img src="https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/uptimeflare.webp" alt class="w-full h-full object-contain image-content" style="object-position: center" loading="lazy" fetchpriority="low" decoding="async" data-astro-cid-i2xmscho> </div>  <script type="module" src="/_astro/PostDiffInArticle.astro_astro_type_script_index_0_lang.CI_2Xu50.js"></script>  <div id="diff-debug-editor-root" class="hidden" data-swup-ignore-script></div> <script type="module" src="/_astro/DiffDebugEditor.astro_astro_type_script_index_0_lang.Ds2FAorn.js"></script> <div id="outdated-notice" class="hidden mb-6 p-4 rounded-xl bg-[var(--license-block-bg)] border border-[var(--line-divider)] items-center gap-3 text-white/80 onload-animation"> <div class="h-8 w-8 rounded-lg bg-[var(--primary)] flex items-center justify-center shrink-0"> <svg width="1em" height="1em" class="text-xl text-black/70" data-icon="material-symbols:info-outline-rounded">   <symbol id="ai:material-symbols:info-outline-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M12.713 16.713Q13 16.425 13 16v-4q0-.425-.288-.712T12 11t-.712.288T11 12v4q0 .425.288.713T12 17t.713-.288m0-8Q13 8.425 13 8t-.288-.712T12 7t-.712.288T11 8t.288.713T12 9t.713-.288M12 22q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12t-2.325-5.675T12 4T6.325 6.325T4 12t2.325 5.675T12 20m0-8"/></symbol><use href="#ai:material-symbols:info-outline-rounded"></use>  </svg> </div> <div class="text-sm leading-relaxed flex flex-col sm:flex-row sm:items-center gap-2"> <span id="outdated-message">正在计算文章时效性...</span> <a id="history-link" href="#revision-history" class="hidden items-center gap-1 px-2 py-1 rounded bg-[var(--primary)] text-black/70 text-xs font-bold hover:opacity-80 transition-all w-fit whitespace-nowrap shrink-0"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-sm" data-icon="material-symbols:history-rounded">   <use href="#ai:material-symbols:history-rounded"></use>  </svg>
+查看修订历史
+</a> </div> </div> <script>(function(){const publishedAt = "2026-01-02T19:10:53.000Z";
+const lastUpdated = "2026-02-25 22:23:08 +0800";
+
+    function updateNotice() {
+        const notice = document.getElementById('outdated-notice');
+        const message = document.getElementById('outdated-message');
+        const historyLink = document.getElementById('history-link');
+        if (!notice || !message) return;
+
+        const publishedDate = new Date(publishedAt);
+        const updatedDate = new Date(lastUpdated);
+        const now = new Date();
+        
+        const diffTimeUpdated = Math.abs(now - updatedDate);
+        const diffDaysUpdated = Math.floor(Math.abs(new Date(now.getFullYear(), now.getMonth(), now.getDate()) - new Date(updatedDate.getFullYear(), updatedDate.getMonth(), updatedDate.getDate())) / (1000 * 60 * 60 * 24));
+
+        const diffTimePublished = Math.abs(now - publishedDate);
+        const diffDaysPublished = Math.floor(Math.abs(new Date(now.getFullYear(), now.getMonth(), now.getDate()) - new Date(publishedDate.getFullYear(), publishedDate.getMonth(), publishedDate.getDate())) / (1000 * 60 * 60 * 24));
+
+        let statusText = "";
+        if (diffDaysUpdated === 0) {
+            statusText = "这篇文章今天刚刚更新，内容非常新鲜。";
+            if (historyLink) historyLink.classList.add('hidden');
+        } else {
+            statusText = `文章初次发布于 ${diffDaysPublished} 天前，最后修改于 ${diffDaysUpdated} 天前，部分技术细节可能已随时间演变，请结合实际情况参考。`;
+            if (historyLink) {
+                historyLink.classList.remove('hidden');
+                historyLink.classList.add('flex');
+            }
+        }
+
+        message.innerText = statusText;
+        
+        notice.classList.remove('hidden');
+        notice.classList.add('flex');
+    }
+
+    updateNotice();
+
+    document.addEventListener('swup:contentReplaced', updateNotice);
+})();</script> <div data-pagefind-body class="prose prose-invert prose-base !max-w-none custom-md break-words mb-6 markdown-content onload-animation"> <!--<div class="prose prose-invert max-w-none custom-md">--> <!--<div class="max-w-none custom-md">-->  <section><h1 id="从kv迁移">从KV迁移<a class="anchor" href="#从kv迁移"><span class="anchor-icon" data-pagefind-ignore="">#</span></a></h1><p>由于原项目于26/1/3将数据存储从KV迁移到了D1，并且配备了完备的i18n，如果你仍在运营旧版的UptimeFlare，建议升级，下面是迁移教程</p><p>首先，将你之前配置的Cloudflare API令牌添加一个新的权限 <strong>编辑D1</strong></p><p>然后备份根目录的 <code>uptime.config.ts</code> ，直接 把原仓库删了（但是不要删KV，Worker，Page），Fork我的仓库</p><a id="GCbz1kg4-card" class="card-github fetch-waiting no-styling" href="https://github.com/afoim/UptimeFlare" target="_blank" repo="afoim/UptimeFlare" rel="nofollow"><div class="gc-titlebar"><div class="gc-titlebar-left"><div class="gc-owner"><div id="GCbz1kg4-avatar" class="gc-avatar"></div><div class="gc-user">afoim</div></div><div class="gc-divider">/</div><div class="gc-repo">UptimeFlare</div></div><div class="github-logo"></div></div><div id="GCbz1kg4-description" class="gc-description">Waiting for api.github.com...</div><div class="gc-infobar"><div id="GCbz1kg4-stars" class="gc-stars">00K</div><div id="GCbz1kg4-forks" class="gc-forks">0K</div><div id="GCbz1kg4-license" class="gc-license">0K</div><span id="GCbz1kg4-language" class="gc-language">Waiting...</span></div><script id="GCbz1kg4-script" type="text/javascript" defer>
+      fetch('https://api.github.com/repos/afoim/UptimeFlare', { referrerPolicy: "no-referrer" }).then(response => response.json()).then(data => {
+        document.getElementById('GCbz1kg4-description').innerText = data.description?.replace(/:[a-zA-Z0-9_]+:/g, '') || "Description not set";
+        document.getElementById('GCbz1kg4-language').innerText = data.language;
+        document.getElementById('GCbz1kg4-forks').innerText = Intl.NumberFormat('en-us', { notation: "compact", maximumFractionDigits: 1 }).format(data.forks).replaceAll(" ", '');
+        document.getElementById('GCbz1kg4-stars').innerText = Intl.NumberFormat('en-us', { notation: "compact", maximumFractionDigits: 1 }).format(data.stargazers_count).replaceAll(" ", '');
+        const avatarEl = document.getElementById('GCbz1kg4-avatar');
+        avatarEl.style.backgroundImage = 'url(' + data.owner.avatar_url + ')';
+        avatarEl.style.backgroundColor = 'transparent';
+        document.getElementById('GCbz1kg4-license').innerText = data.license?.spdx_id || "no-license";
+        document.getElementById('GCbz1kg4-card').classList.remove("fetch-waiting");
+        console.log("[GITHUB-CARD] Loaded card for afoim/UptimeFlare | GCbz1kg4.")
+      }).catch(err => {
+        const c = document.getElementById('GCbz1kg4-card');
+        c?.classList.add("fetch-error");
+        console.warn("[GITHUB-CARD] (Error) Loading card for afoim/UptimeFlare | GCbz1kg4.")
+      })
+    </script></a><p>接下来编辑新的 <code>uptime.config.ts</code></p><p>参阅 <a href="https://github.com/afoim/UptimeFlare/blob/main/uptime.config.ts" rel="nofollow" target="_blank">UptimeFlare/uptime.config.ts at main · afoim/UptimeFlare</a> 主要就是将自定义callback迁移到官方的WebHook方法</p><p>编辑后推送，会自动触发Github Action的自动部署，它会自动将KV内的数据迁移到D1</p><p>这迁移到D1何意味
+<img src="https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/uptimeflare-16.webp" alt=""></p></section>
+<section><h1 id="前言">前言<a class="anchor" href="#前言"><span class="anchor-icon" data-pagefind-ignore="">#</span></a></h1><p>本来这个教程应该是永远都不会出的，因为在此之前，我曾经给大家介绍了一个无需自托管的监控服务：<a href="/posts/uptimerobot/">UptimeRobot</a></p><p>但是，就在最近我再次查看控制台，发现之前创建的监控全部都没了，咱也不知道是被官方删了还是号被黑客大手子肘击了，总之，我现在不得不要重建监控服务了</p></section>
+<section><h1 id="原理">原理<a class="anchor" href="#原理"><span class="anchor-icon" data-pagefind-ignore="">#</span></a></h1><p>首先，UptimeFlare是一个基于Cloudflare Worker+D1的监控服务</p><p>它的原理非常简单，一共由三个部分组成</p><ul>
+<li><strong>前端</strong>：放在Cloudflare Page，用于给用户展示zhandianzhuangt</li>
+<li><strong>后端</strong>：放在Cloudflare Worker，通过 Worker 自带的 <strong>Cron</strong> 每分钟 检查站点状态，并将状态持久化进 <strong>D1</strong>
+<img src="https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/uptimeflare-1.webp" alt=""></li>
+</ul><p><img src="https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/uptimeflare-14.webp" alt=""></p></section>
+<section><h1 id="正式开始">正式开始<a class="anchor" href="#正式开始"><span class="anchor-icon" data-pagefind-ignore="">#</span></a></h1><p>首先我们需要 <strong>Fork</strong> 项目，建议Fork我的项目（由于原项目不知道为什么不给在某些地方注入环境变量，所以建议Fork我的）</p><a id="GC433wmr-card" class="card-github fetch-waiting no-styling" href="https://github.com/afoim/UptimeFlare" target="_blank" repo="afoim/UptimeFlare" rel="nofollow"><div class="gc-titlebar"><div class="gc-titlebar-left"><div class="gc-owner"><div id="GC433wmr-avatar" class="gc-avatar"></div><div class="gc-user">afoim</div></div><div class="gc-divider">/</div><div class="gc-repo">UptimeFlare</div></div><div class="github-logo"></div></div><div id="GC433wmr-description" class="gc-description">Waiting for api.github.com...</div><div class="gc-infobar"><div id="GC433wmr-stars" class="gc-stars">00K</div><div id="GC433wmr-forks" class="gc-forks">0K</div><div id="GC433wmr-license" class="gc-license">0K</div><span id="GC433wmr-language" class="gc-language">Waiting...</span></div><script id="GC433wmr-script" type="text/javascript" defer>
+      fetch('https://api.github.com/repos/afoim/UptimeFlare', { referrerPolicy: "no-referrer" }).then(response => response.json()).then(data => {
+        document.getElementById('GC433wmr-description').innerText = data.description?.replace(/:[a-zA-Z0-9_]+:/g, '') || "Description not set";
+        document.getElementById('GC433wmr-language').innerText = data.language;
+        document.getElementById('GC433wmr-forks').innerText = Intl.NumberFormat('en-us', { notation: "compact", maximumFractionDigits: 1 }).format(data.forks).replaceAll(" ", '');
+        document.getElementById('GC433wmr-stars').innerText = Intl.NumberFormat('en-us', { notation: "compact", maximumFractionDigits: 1 }).format(data.stargazers_count).replaceAll(" ", '');
+        const avatarEl = document.getElementById('GC433wmr-avatar');
+        avatarEl.style.backgroundImage = 'url(' + data.owner.avatar_url + ')';
+        avatarEl.style.backgroundColor = 'transparent';
+        document.getElementById('GC433wmr-license').innerText = data.license?.spdx_id || "no-license";
+        document.getElementById('GC433wmr-card').classList.remove("fetch-waiting");
+        console.log("[GITHUB-CARD] Loaded card for afoim/UptimeFlare | GC433wmr.")
+      }).catch(err => {
+        const c = document.getElementById('GC433wmr-card');
+        c?.classList.add("fetch-error");
+        console.warn("[GITHUB-CARD] (Error) Loading card for afoim/UptimeFlare | GC433wmr.")
+      })
+    </script></a><p>首先，我们先尝试将其部署到Cloudflare</p><p>创建一个Cloudflare API Token <strong>编辑Workers</strong> 和 <strong>D1</strong></p><p>接下来将该Token绑定到你的Github仓库
+<img src="https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/uptimeflare-4.webp" alt=""></p><p>最后，来到 <code>Action</code> 页面，手动创建一个 <code>Deploy to Cloudflare</code> 的工作流
+<img src="https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/uptimeflare-5.webp" alt=""></p><p>等待工作流运行结束，你应该可以在Cloudflare仪表板看见一个新的Page，新的Worker和新的D1
+<img src="https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/uptimeflare-6.webp" alt=""></p><p>点开 Page，注意不要点错了
+<img src="https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/uptimeflare-8.webp" alt=""></p><p>绑定你的域名，尝试访问
+<img src="https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/uptimeflare-9.webp" alt=""></p><p>如果你能看到一个初始的监控页面，则正常
+<img src="https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/uptimeflare-10.webp" alt=""></p><p>接下来，我们开始自定义该监控</p><p>编辑根目录的 <code>uptime.config.ts</code></p><p>如果服务故障如何做通知？</p><p>UptimeFlare非常自由，你可以在 <code>callbacks</code> 中编写故障时要做的任何事情，这里以发送 <code>POST</code> 请求让 <code>Resend</code> 发送邮件给你举例</p><p>首先前往 <a href="https://resend.com/" rel="nofollow" target="_blank">https://resend.com/</a></p><p>添加一个域名（作为你的发信域名）
+<img src="https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/uptimeflare-11.webp" alt=""></p><p>创建一个发信API Key
+<img src="https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/uptimeflare-12.webp" alt=""></p><p>添加环境变量： <code>RESEND_API_KEY</code> 将其绑定到 <strong>Action</strong></p><p><img src="https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/uptimeflare-13.webp" alt=""></p><p>编辑 <code>uptime.config.ts</code> 的 <code>webhook.payload</code> 部分</p><p>示例代码：</p><div class="expressive-code"><link rel="stylesheet" href="/_astro/ec.4l8yc.css"><script type="module" src="/_astro/ec.g1fg5.js"></script><figure class="frame"><figcaption class="header"></figcaption><pre data-language="ts" class="wrap" style="--ecMaxLine:52ch"><code><div class="ec-line" style="--ecIndent:8ch"><div class="gutter"><div class="ln" aria-hidden="true">1</div></div><div class="code"><span class="indent">        </span><span style="--0:#B392F0;--1:#B392F0">payload</span><span style="--0:#E1E4E8;--1:#E1E4E8">: {</span></div></div><div class="ec-line" style="--ecIndent:8ch"><div class="gutter"><div class="ln" aria-hidden="true">2</div></div><div class="code"><span class="indent">        </span><span style="--0:#9ECBFF;--1:#9ECBFF">"from"</span><span style="--0:#E1E4E8;--1:#E1E4E8">: </span><span style="--0:#9ECBFF;--1:#9ECBFF">"系统状态更新 &#x3C;uptimeflare@update.2x.nz>"</span><span style="--0:#E1E4E8;--1:#E1E4E8">,</span></div></div><div class="ec-line" style="--ecIndent:8ch"><div class="gutter"><div class="ln" aria-hidden="true">3</div></div><div class="code"><span class="indent">        </span><span style="--0:#9ECBFF;--1:#9ECBFF">"to"</span><span style="--0:#E1E4E8;--1:#E1E4E8">: [</span><span style="--0:#9ECBFF;--1:#9ECBFF">"acofork@foxmail.com"</span><span style="--0:#E1E4E8;--1:#E1E4E8">],</span></div></div><div class="ec-line" style="--ecIndent:8ch"><div class="gutter"><div class="ln" aria-hidden="true">4</div></div><div class="code"><span class="indent">        </span><span style="--0:#9ECBFF;--1:#9ECBFF">"subject"</span><span style="--0:#E1E4E8;--1:#E1E4E8">: </span><span style="--0:#9ECBFF;--1:#9ECBFF">"UptimeFlare 状态更新"</span><span style="--0:#E1E4E8;--1:#E1E4E8">,</span></div></div><div class="ec-line" style="--ecIndent:8ch"><div class="gutter"><div class="ln" aria-hidden="true">5</div></div><div class="code"><span class="indent">        </span><span style="--0:#9ECBFF;--1:#9ECBFF">"text"</span><span style="--0:#E1E4E8;--1:#E1E4E8">: </span><span style="--0:#9ECBFF;--1:#9ECBFF">"$MSG"</span></div></div><div class="ec-line" style="--ecIndent:6ch"><div class="gutter"><div class="ln" aria-hidden="true">6</div></div><div class="code"><span class="indent"><span style="--0:#E1E4E8;--1:#E1E4E8">      </span></span><span style="--0:#E1E4E8;--1:#E1E4E8">},</span></div></div></code><button class="copy-btn" aria-label="Copy code"><div class="copy-btn-icon"><svg viewBox="0 -960 960 960" xmlns="http://www.w3.org/2000/svg" class="copy-btn-icon copy-icon"><path d="M368.37-237.37q-34.48 0-58.74-24.26-24.26-24.26-24.26-58.74v-474.26q0-34.48 24.26-58.74 24.26-24.26 58.74-24.26h378.26q34.48 0 58.74 24.26 24.26 24.26 24.26 58.74v474.26q0 34.48-24.26 58.74-24.26 24.26-58.74 24.26H368.37Zm0-83h378.26v-474.26H368.37v474.26Zm-155 238q-34.48 0-58.74-24.26-24.26-24.26-24.26-58.74v-515.76q0-17.45 11.96-29.48 11.97-12.02 29.33-12.02t29.54 12.02q12.17 12.03 12.17 29.48v515.76h419.76q17.45 0 29.48 11.96 12.02 11.97 12.02 29.33t-12.02 29.54q-12.03 12.17-29.48 12.17H213.37Zm155-238v-474.26 474.26Z"></path></svg><svg viewBox="0 -960 960 960" xmlns="http://www.w3.org/2000/svg" class="copy-btn-icon success-icon"><path d="m389-377.13 294.7-294.7q12.58-12.67 29.52-12.67 16.93 0 29.61 12.67 12.67 12.68 12.67 29.53 0 16.86-12.28 29.14L419.07-288.41q-12.59 12.67-29.52 12.67-16.94 0-29.62-12.67L217.41-430.93q-12.67-12.68-12.79-29.45-.12-16.77 12.55-29.45 12.68-12.67 29.62-12.67 16.93 0 29.28 12.67L389-377.13Z"></path></svg></div></button></pre></figure></div><p>接下来，当服务故障/重新上线就会通知你啦~
+<img src="https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/1dc1a98a404db83e909c1f87e8a115cf.webp" alt=""></p><p>最终效果：</p><a id="UCqm7sqo-card" class="card-url fetch-waiting no-styling" href="https://ok.2x.nz" target="_blank" url="https://ok.2x.nz" rel="nofollow"><div id="UCqm7sqo-container" class="uc-container"><div class="uc-content"><div class="uc-titlebar"><div class="uc-titlebar-left"><div id="UCqm7sqo-favicon" class="uc-favicon"></div><div class="uc-domain">ok.2x.nz</div></div></div><div id="UCqm7sqo-title" class="uc-title-text">Loading...</div><div id="UCqm7sqo-description" class="uc-description">Waiting for metadata...</div></div><div id="UCqm7sqo-image" class="uc-image"></div></div><script id="UCqm7sqo-script" type="text/javascript" defer>
+      fetch('https://icon.2x.nz/?url=https://ok.2x.nz').then(response => response.json()).then(meta => {
+        if (meta && meta.url) {
+            document.getElementById('UCqm7sqo-title').innerText = meta.title || "https://ok.2x.nz";
+            document.getElementById('UCqm7sqo-description').innerText = meta.description || "No description available";
+            
+            const faviconEl = document.getElementById('UCqm7sqo-favicon');
+            if (meta.favicon) {
+                faviconEl.style.backgroundImage = 'url(' + meta.favicon + ')';
+                faviconEl.style.backgroundColor = 'transparent';
+            } else {
+                 faviconEl.style.display = 'none';
+            }
+
+            const imageEl = document.getElementById('UCqm7sqo-image');
+            // The new API currently does not seem to return a large image preview (meta.image)
+            // So we default to hiding it to match the new structure
+            imageEl.style.display = 'none';
+            document.getElementById('UCqm7sqo-container').classList.add('no-image');
+
+            document.getElementById('UCqm7sqo-card').classList.remove("fetch-waiting");
+            console.log("[URL-CARD] Loaded card for https://ok.2x.nz | UCqm7sqo.")
+        } else {
+            throw new Error('API returned invalid data');
+        }
+      }).catch(err => {
+        const c = document.getElementById('UCqm7sqo-card');
+        c?.classList.add("fetch-error");
+        document.getElementById('UCqm7sqo-title').innerText = "Error loading preview";
+        document.getElementById('UCqm7sqo-description').innerText = "Failed to fetch metadata for https://ok.2x.nz";
+        console.warn("[URL-CARD] (Error) Loading card for https://ok.2x.nz | UCqm7sqo.", err)
+      })
+    </script></a></section>  </div> <script type="module" src="/_astro/Markdown.astro_astro_type_script_index_0_lang.BLA7U4X1.js"></script>  <!-- 文章反馈与编辑区域 --> <div class="mb-4 p-4 bg-[var(--license-block-bg)] border-t border-b border-[var(--line-divider)] onload-animation" data-astro-cid-egg7nqdx> <!-- 反馈区域 --> <div class="flex items-center justify-between mb-4" data-astro-cid-egg7nqdx> <div class="flex items-center gap-3" data-astro-cid-egg7nqdx> <div class="h-5 w-5 bg-[var(--primary)] flex items-center justify-center" data-astro-cid-egg7nqdx> <svg width="1em" height="1em" class="text-[0.75rem] text-black/70" data-astro-cid-egg7nqdx="true" data-icon="material-symbols:help-outline">   <symbol id="ai:material-symbols:help-outline" viewBox="0 0 24 24"><path fill="currentColor" d="M12.838 17.638q.362-.363.362-.888t-.362-.888t-.888-.362t-.887.363t-.363.887t.363.888t.887.362t.888-.363M11.05 14.15h1.85q0-.825.188-1.3t1.062-1.3q.65-.65 1.025-1.238T15.55 8.9q0-1.4-1.025-2.15T12.1 6q-1.425 0-2.312.75T8.55 8.55l1.65.65q.125-.45.563-.975T12.1 7.7q.8 0 1.2.438t.4.962q0 .5-.3.938t-.75.812q-1.1.975-1.35 1.475t-.25 1.825M12 22q-2.075 0-3.9-.787t-3.175-2.138T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12t-2.325-5.675T12 4T6.325 6.325T4 12t2.325 5.675T12 20m0-8"/></symbol><use href="#ai:material-symbols:help-outline"></use>  </svg> </div> <p class="text-white/80 text-sm" data-astro-cid-egg7nqdx>这篇文章是否对你有帮助？</p> </div> <div class="flex gap-2" data-astro-cid-egg7nqdx> <a href="/posts/pin/" class="group flex items-center gap-1 px-3 py-1.5 bg-[var(--btn-regular-bg)] hover:bg-[var(--btn-regular-bg-hover)] active:bg-[var(--btn-regular-bg-active)] text-[var(--btn-content)] text-xs font-medium transition-all active:scale-95" data-astro-cid-egg7nqdx> <svg width="1em" height="1em" class="text-[0.875rem] group-hover:scale-110 transition-transform" data-astro-cid-egg7nqdx="true" data-icon="material-symbols:contact-mail-outline">   <symbol id="ai:material-symbols:contact-mail-outline" viewBox="0 0 24 24"><path fill="currentColor" d="M14 11h7V6h-7zm3.5-1.25L15 8V7l2.5 1.75L20 7v1zM2 21q-.825 0-1.412-.587T0 19V5q0-.825.588-1.412T2 3h20q.825 0 1.413.588T24 5v14q0 .825-.587 1.413T22 21zm13.9-2H22V5H2v14h.1q1.05-1.875 2.9-2.937T9 15t4 1.063T15.9 19m-4.775-5.875Q12 12.25 12 11t-.875-2.125T9 8t-2.125.875T6 11t.875 2.125T9 14t2.125-.875M4.55 19h8.9q-.85-.95-2.013-1.475T9 17t-2.425.525T4.55 19m3.737-7.288Q8 11.425 8 11t.288-.712T9 10t.713.288T10 11t-.288.713T9 12t-.712-.288M12 12"/></symbol><use href="#ai:material-symbols:contact-mail-outline"></use>  </svg>
+联系
+</a> <a href="/donate/" class="group flex items-center gap-1 px-3 py-1.5 bg-[var(--primary)] hover:bg-[oklch(0.65_0.16_var(--hue))] active:bg-[oklch(0.60_0.18_var(--hue))] text-black/80 text-xs font-medium transition-all active:scale-95" data-astro-cid-egg7nqdx> <svg width="1em" height="1em" class="text-[0.875rem] group-hover:scale-110 transition-transform" data-astro-cid-egg7nqdx="true" data-icon="material-symbols:favorite-outline">   <symbol id="ai:material-symbols:favorite-outline" viewBox="0 0 24 24"><path fill="currentColor" d="m12 21l-1.45-1.3q-2.525-2.275-4.175-3.925T3.75 12.812T2.388 10.4T2 8.15Q2 5.8 3.575 4.225T7.5 2.65q1.3 0 2.475.55T12 4.75q.85-1 2.025-1.55t2.475-.55q2.35 0 3.925 1.575T22 8.15q0 1.15-.387 2.25t-1.363 2.412t-2.625 2.963T13.45 19.7zm0-2.7q2.4-2.15 3.95-3.687t2.45-2.675t1.25-2.026T20 8.15q0-1.5-1-2.5t-2.5-1q-1.175 0-2.175.662T12.95 7h-1.9q-.375-1.025-1.375-1.687T7.5 4.65q-1.5 0-2.5 1t-1 2.5q0 .875.35 1.763t1.25 2.025t2.45 2.675T12 18.3m0-6.825"/></symbol><use href="#ai:material-symbols:favorite-outline"></use>  </svg>
+赞助
+</a> </div> </div>   <div class="border-t border-[var(--line-divider)] my-3" data-astro-cid-egg7nqdx></div>  <div class="flex items-start gap-3" data-astro-cid-egg7nqdx> <div class="h-5 w-5 bg-[var(--primary)] flex items-center justify-center" data-astro-cid-egg7nqdx> <svg width="1em" height="1em" class="text-[0.875rem] text-black/70" data-astro-cid-egg7nqdx="true" data-icon="material-symbols:edit-outline">   <symbol id="ai:material-symbols:edit-outline" viewBox="0 0 24 24"><path fill="currentColor" d="M5 19h1.425L16.2 9.225L14.775 7.8L5 17.575zm-2 2v-4.25L16.2 3.575q.3-.275.663-.425t.762-.15t.775.15t.65.45L20.425 5q.3.275.438.65T21 6.4q0 .4-.137.763t-.438.662L7.25 21zM19 6.4L17.6 5zm-3.525 2.125l-.7-.725L16.2 9.225z"/></symbol><use href="#ai:material-symbols:edit-outline"></use>  </svg> </div> <div class="flex-1" data-astro-cid-egg7nqdx> <p class="text-white/80 text-sm mb-1" data-astro-cid-egg7nqdx>发现错误或想要改进这篇文章？</p> <a href="https://github.com/afoim/fuwari/blob/main/src/content/posts/uptimeflare.md" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[var(--primary)] hover:text-[oklch(0.65_0.16_var(--hue))] text-sm font-medium transition-colors" data-astro-cid-egg7nqdx> <svg width="0.97em" height="1em" class="text-[0.875rem]" data-astro-cid-egg7nqdx="true" data-icon="fa6-brands:github">   <symbol id="ai:fa6-brands:github" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6c-3.3.3-5.6-1.3-5.6-3.6c0-2 2.3-3.6 5.2-3.6c3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9c2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9c.3 2 2.9 3.3 5.9 2.6c2.9-.7 4.9-2.6 4.6-4.6c-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2c12.8 2.3 17.3-5.6 17.3-12.1c0-6.2-.3-40.4-.3-61.4c0 0-70 15-84.7-29.8c0 0-11.4-29.1-27.8-36.6c0 0-22.9-15.7 1.6-15.4c0 0 24.9 2 38.6 25.8c21.9 38.6 58.6 27.5 72.9 20.9c2.3-16 8.8-27.1 16-33.7c-55.9-6.2-112.3-14.3-112.3-110.5c0-27.5 7.6-41.3 23.6-58.9c-2.6-6.5-11.1-33.3 2.6-67.9c20.9-6.5 69 27 69 27c20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27c13.7 34.7 5.2 61.4 2.6 67.9c16 17.7 25.8 31.5 25.8 58.9c0 96.5-58.9 104.2-114.8 110.5c9.2 7.9 17 22.9 17 46.4c0 33.7-.3 75.4-.3 83.6c0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252C496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2c1.6 1.6 3.9 2.3 5.2 1c1.3-1 1-3.3-.7-5.2c-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9c1.6 1 3.6.7 4.3-.7c.7-1.3-.3-2.9-2.3-3.9c-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2c2.3 2.3 5.2 2.6 6.5 1c1.3-1.3.7-4.3-1.3-6.2c-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2c-1.4-2.3-4-3.3-5.6-2"/></symbol><use href="#ai:fa6-brands:github"></use>  </svg>
+在 GitHub 上编辑此页
+<svg width="1em" height="1em" class="text-[0.75rem]" data-astro-cid-egg7nqdx="true" data-icon="material-symbols:open-in-new">   <symbol id="ai:material-symbols:open-in-new" viewBox="0 0 24 24"><path fill="currentColor" d="M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h7v2H5v14h14v-7h2v7q0 .825-.587 1.413T19 21zm4.7-5.3l-1.4-1.4L17.6 5H14V3h7v7h-2V6.4z"/></symbol><use href="#ai:material-symbols:open-in-new"></use>  </svg> </a> </div> </div>  <div id="revision-history" class="flex items-start gap-3 mt-4 scroll-mt-20" data-astro-cid-egg7nqdx> <div class="h-5 w-5 bg-[var(--primary)] flex items-center justify-center" data-astro-cid-egg7nqdx> <svg width="1em" height="1em" class="text-[0.875rem] text-black/70" data-astro-cid-egg7nqdx="true" data-icon="material-symbols:history-rounded">   <symbol id="ai:material-symbols:history-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M12 21q-3.15 0-5.575-1.912T3.275 14.2q-.1-.375.15-.687t.675-.363q.4-.05.725.15t.45.6q.6 2.25 2.475 3.675T12 19q2.925 0 4.963-2.037T19 12t-2.037-4.962T12 5q-1.725 0-3.225.8T6.25 8H8q.425 0 .713.288T9 9t-.288.713T8 10H4q-.425 0-.712-.288T3 9V5q0-.425.288-.712T4 4t.713.288T5 5v1.35q1.275-1.6 3.113-2.475T12 3q1.875 0 3.513.713t2.85 1.924t1.925 2.85T21 12t-.712 3.513t-1.925 2.85t-2.85 1.925T12 21m1-9.4l2.5 2.5q.275.275.275.7t-.275.7t-.7.275t-.7-.275l-2.8-2.8q-.15-.15-.225-.337T11 11.975V8q0-.425.288-.712T12 7t.713.288T13 8z"/></symbol><use href="#ai:material-symbols:history-rounded"></use>  </svg> </div> <div class="flex-1" data-astro-cid-egg7nqdx> <p class="text-white/80 text-sm mb-1" data-astro-cid-egg7nqdx>文章修订历史 (9 次)</p> <details class="group" data-astro-cid-egg7nqdx> <summary class="cursor-pointer text-sm text-[var(--primary)] font-medium hover:underline select-none" data-astro-cid-egg7nqdx>
+查看变更记录
+</summary> <div class="mt-2 space-y-2 max-h-48 overflow-y-auto" data-astro-cid-egg7nqdx> <div class="flex flex-col text-xs bg-white/5 p-2" data-astro-cid-egg7nqdx> <div class="flex justify-between items-center mb-1" data-astro-cid-egg7nqdx> <span class="font-bold text-white/70" data-astro-cid-egg7nqdx>2月25日 22:23:08</span> <a href="https://github.com/afoim/fuwari/commit/818735aa4d75f643f1d256035fc4e56bd0a30aca" target="_blank" class="text-[var(--primary)] hover:underline font-mono" data-astro-cid-egg7nqdx> 818735a </a> </div> <p class="text-white/60 break-all" data-astro-cid-egg7nqdx>feat(posts): 为所有文章添加AI摘要并支持AI类型提示块</p> </div><div class="flex flex-col text-xs bg-white/5 p-2" data-astro-cid-egg7nqdx> <div class="flex justify-between items-center mb-1" data-astro-cid-egg7nqdx> <span class="font-bold text-white/70" data-astro-cid-egg7nqdx>2月22日 17:11:26</span> <a href="https://github.com/afoim/fuwari/commit/488a734c4fc731c87da77b15077e0245698440e6" target="_blank" class="text-[var(--primary)] hover:underline font-mono" data-astro-cid-egg7nqdx> 488a734 </a> </div> <p class="text-white/60 break-all" data-astro-cid-egg7nqdx>feat(scripts): 添加 imgf 脚本以自动修复相邻图片间的空行</p> </div><div class="flex flex-col text-xs bg-white/5 p-2" data-astro-cid-egg7nqdx> <div class="flex justify-between items-center mb-1" data-astro-cid-egg7nqdx> <span class="font-bold text-white/70" data-astro-cid-egg7nqdx>2月9日 07:50:52</span> <a href="https://github.com/afoim/fuwari/commit/f6e3e174da195c05ef0feecca16cf79496e3374b" target="_blank" class="text-[var(--primary)] hover:underline font-mono" data-astro-cid-egg7nqdx> f6e3e17 </a> </div> <p class="text-white/60 break-all" data-astro-cid-egg7nqdx>压缩图片</p> </div><div class="flex flex-col text-xs bg-white/5 p-2" data-astro-cid-egg7nqdx> <div class="flex justify-between items-center mb-1" data-astro-cid-egg7nqdx> <span class="font-bold text-white/70" data-astro-cid-egg7nqdx>2月4日 12:10:53</span> <a href="https://github.com/afoim/fuwari/commit/44ae8f6371aa2a5890248f4b3d78105f82bf8013" target="_blank" class="text-[var(--primary)] hover:underline font-mono" data-astro-cid-egg7nqdx> 44ae8f6 </a> </div> <p class="text-white/60 break-all" data-astro-cid-egg7nqdx>chore: 重新启用图片压缩并移除不支持Sharp压缩的图片后缀源文件</p> </div><div class="flex flex-col text-xs bg-white/5 p-2" data-astro-cid-egg7nqdx> <div class="flex justify-between items-center mb-1" data-astro-cid-egg7nqdx> <span class="font-bold text-white/70" data-astro-cid-egg7nqdx>1月9日 13:13:34</span> <a href="https://github.com/afoim/fuwari/commit/3b002c586ee5dcff7946f5ea4d0935bcc922db1a" target="_blank" class="text-[var(--primary)] hover:underline font-mono" data-astro-cid-egg7nqdx> 3b002c5 </a> </div> <p class="text-white/60 break-all" data-astro-cid-egg7nqdx>feat(scripts): 添加删除图片路径空格的脚本</p> </div><div class="flex flex-col text-xs bg-white/5 p-2" data-astro-cid-egg7nqdx> <div class="flex justify-between items-center mb-1" data-astro-cid-egg7nqdx> <span class="font-bold text-white/70" data-astro-cid-egg7nqdx>1月4日 03:08:39</span> <a href="https://github.com/afoim/fuwari/commit/d30a29e0ecc1c675e7eb9890a511712a96a25656" target="_blank" class="text-[var(--primary)] hover:underline font-mono" data-astro-cid-egg7nqdx> d30a29e </a> </div> <p class="text-white/60 break-all" data-astro-cid-egg7nqdx>docs(posts): 更新uptimeflare文档并添加新图片</p> </div><div class="flex flex-col text-xs bg-white/5 p-2" data-astro-cid-egg7nqdx> <div class="flex justify-between items-center mb-1" data-astro-cid-egg7nqdx> <span class="font-bold text-white/70" data-astro-cid-egg7nqdx>1月4日 02:53:52</span> <a href="https://github.com/afoim/fuwari/commit/6f048e8964430eb1d791aea1fed48c09707e2c28" target="_blank" class="text-[var(--primary)] hover:underline font-mono" data-astro-cid-egg7nqdx> 6f048e8 </a> </div> <p class="text-white/60 break-all" data-astro-cid-egg7nqdx>posts: 更新uptimeflare文章添加迁移指南</p> </div><div class="flex flex-col text-xs bg-white/5 p-2" data-astro-cid-egg7nqdx> <div class="flex justify-between items-center mb-1" data-astro-cid-egg7nqdx> <span class="font-bold text-white/70" data-astro-cid-egg7nqdx>1月4日 02:46:53</span> <a href="https://github.com/afoim/fuwari/commit/a141943dd710c143c773a2762b06cc16cd785d2e" target="_blank" class="text-[var(--primary)] hover:underline font-mono" data-astro-cid-egg7nqdx> a141943 </a> </div> <p class="text-white/60 break-all" data-astro-cid-egg7nqdx>posts: 更新了uptimeflare.md文档内容，将KV存储改为D1数据库，并替换了相关图片资源。同时简化了配置示例，移除了过时的代码片段，使文档更加简洁清晰。</p> </div><div class="flex flex-col text-xs bg-white/5 p-2" data-astro-cid-egg7nqdx> <div class="flex justify-between items-center mb-1" data-astro-cid-egg7nqdx> <span class="font-bold text-white/70" data-astro-cid-egg7nqdx>1月3日 04:03:32</span> <a href="https://github.com/afoim/fuwari/commit/f880afd0d69cbbf48c1dc97c1f854a987e7a6a2e" target="_blank" class="text-[var(--primary)] hover:underline font-mono" data-astro-cid-egg7nqdx> f880afd </a> </div> <p class="text-white/60 break-all" data-astro-cid-egg7nqdx>posts: 添加UptimeFlare监控服务的文章</p> </div> </div> </details> </div> </div> </div> <div class="relative transition overflow-hidden bg-[var(--license-block-bg)] py-5 px-6 mb-6 rounded-xl license-container onload-animation"> <div class="transition font-bold text-white/75"> 超高校级的监控服务：UptimeFlare！基于CF Worker！自托管！声明式！新手友好！ </div> <a id="current-link" style="display:none;" class="link text-[var(--primary)]"></a> <script type="module">const t=document.getElementById("current-link");if(t){const l=window.location.href,n=new URL(l);n.search="",n.hash.includes("giscus-")&&(n.hash="");const e=n.toString();l!==e&&console.log(`[license] replaced url: ${l} -> ${e}`),t.textContent=e,t.href=e,t.style.display="inline"}</script> <div class="flex gap-6 mt-2"> <div> <div class="transition text-white/30 text-sm">作者</div> <div class="transition text-white/75 line-clamp-2">二叉树树</div> </div> <div> <div class="transition text-white/30 text-sm">发布于</div> <div class="transition text-white/75 line-clamp-2">1月3日 03:10:53</div> </div> <div> <div class="transition text-white/30 text-sm">许可协议</div> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" class="link text-[var(--primary)] line-clamp-2">CC BY-NC-SA 4.0</a> </div> </div> <svg width="0.97em" height="1em" class="transition text-[15rem] absolute pointer-events-none right-6 top-1/2 -translate-y-1/2 text-white/5" data-icon="creative-commons">   <symbol id="ai:local:creative-commons" viewBox="0 0 496 512"><path fill="currentColor" d="m245.83 214.87-33.22 17.28c-9.43-19.58-25.24-19.93-27.46-19.93-22.13 0-33.22 14.61-33.22 43.84 0 23.57 9.21 43.84 33.22 43.84 14.47 0 24.65-7.09 30.57-21.26l30.55 15.5c-6.17 11.51-25.69 38.98-65.1 38.98-22.6 0-73.96-10.32-73.96-77.05 0-58.69 43-77.06 72.63-77.06 30.72-.01 52.7 11.95 65.99 35.86m143.05 0-32.78 17.28c-9.5-19.77-25.72-19.93-27.9-19.93-22.14 0-33.22 14.61-33.22 43.84 0 23.55 9.23 43.84 33.22 43.84 14.45 0 24.65-7.09 30.54-21.26l31 15.5c-2.1 3.75-21.39 38.98-65.09 38.98-22.69 0-73.96-9.87-73.96-77.05 0-58.67 42.97-77.06 72.63-77.06 30.71-.01 52.58 11.95 65.56 35.86M247.56 8.05C104.74 8.05 0 123.11 0 256.05c0 138.49 113.6 248 247.56 248 129.93 0 248.44-100.87 248.44-248 0-137.87-106.62-248-248.44-248m.87 450.81c-112.54 0-203.7-93.04-203.7-202.81 0-105.42 85.43-203.27 203.72-203.27 112.53 0 202.82 89.46 202.82 203.26-.01 121.69-99.68 202.82-202.84 202.82"/></symbol><use href="#ai:local:creative-commons"></use>  </svg> </div> <!-- Giscus 评论区 --> <div id="giscus-container" class="giscus" data-swup-ignore-script data-repo="afoim/giscus-fuwari" data-repo-id="R_kgDOOi8quw" data-category="Announcements" data-category-id="DIC_kwDOOi8qu84CprDV" data-mapping="pathname" data-strict="1" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-lang="zh-CN" data-loading="lazy" data-astro-cid-egg7nqdx></div> <br data-astro-cid-egg7nqdx> <div class="flex flex-col md:flex-row justify-between mb-4 gap-4 overflow-hidden w-full" data-astro-cid-egg7nqdx> <a href="/posts/shorter-url/" class="w-full font-bold overflow-hidden active:scale-95" data-astro-cid-egg7nqdx> <div class="btn-card w-full h-[3.75rem] max-w-full px-4 flex items-center !justify-start gap-4 border-t border-white/10" data-astro-cid-egg7nqdx> <svg width="1em" height="1em" class="text-[2rem] text-[var(--primary)]" data-astro-cid-egg7nqdx="true" data-icon="material-symbols:chevron-left-rounded">   <symbol id="ai:material-symbols:chevron-left-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="m10.8 12l3.9 3.9q.275.275.275.7t-.275.7t-.7.275t-.7-.275l-4.6-4.6q-.15-.15-.212-.325T8.425 12t.063-.375t.212-.325l4.6-4.6q.275-.275.7-.275t.7.275t.275.7t-.275.7z"/></symbol><use href="#ai:material-symbols:chevron-left-rounded"></use>  </svg> <div class="overflow-hidden transition overflow-ellipsis whitespace-nowrap max-w-[calc(100%_-_3rem)] text-white/75" data-astro-cid-egg7nqdx> 无需服务器！从零教你自建一个短链服务！ </div> </div> </a> <a href="/posts/random-url-gen/" class="w-full font-bold overflow-hidden active:scale-95" data-astro-cid-egg7nqdx> <div class="btn-card w-full h-[3.75rem] max-w-full px-4 flex items-center !justify-end gap-4 border-t border-white/10" data-astro-cid-egg7nqdx> <div class="overflow-hidden transition overflow-ellipsis whitespace-nowrap max-w-[calc(100%_-_3rem)] text-white/75" data-astro-cid-egg7nqdx> 完全免费！从架构，开发到部署，一条龙实打实的教你做一言/随机图等随机URL的最佳实践 </div> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-[2rem] text-[var(--primary)]" data-astro-cid-egg7nqdx="true" data-icon="material-symbols:chevron-right-rounded">   <use href="#ai:material-symbols:chevron-right-rounded"></use>  </svg> </div> </a> </div> </div>  <script>(function(){const siteConfig = {"customDomain":"2x.nz","title":"《二叉树树》官方网站","subtitle":"AcoFork","description":"《二叉树树》是一个专注于IT/互联网技术分享与实践的个人技术博客，在这里你可以找到众多前沿技术的分享与实践经验。","keywords":["二叉树树","二叉树树官网","树","二叉树","二叉","博客","AcoFork Blog","AcoFork","Blog","acofork blog","acofork","blog"],"lang":"zh_CN","themeColor":{"hue":255,"fixed":true},"banner":{"enable":false,"src":"/xinghui.avif","position":"center","credit":{"enable":true,"text":"Pixiv @chokei","url":"https://www.pixiv.net/artworks/122782209"}},"background":{"enable":true,"src":"","position":"center","size":"cover","repeat":"no-repeat","attachment":"fixed","opacity":1},"toc":{"enable":true,"depth":2},"favicon":[{"src":"https://q2.qlogo.cn/headimg_dl?dst_uin=2726730791&spec=0"}],"officialSites":[{"url":"https://acofork.com","alias":"CN"},{"url":"https://2x.nz","alias":"Global"}],"server":[{"url":"","text":"Blog"},{"url":"https://u.2x.nz","text":"Umami"},{"url":"https://p.2x.nz","text":"RandomPic"}]};
+
+    // 图片加载处理 (仅用于图片回退逻辑)
+    function setupImageLoading() {
+        // 保留此函数用于将来的其他处理，或者彻底删除
+    }
+
+    function setupCodeFolding() {
+        const codeBlocks = document.querySelectorAll('.expressive-code .frame');
+
+        codeBlocks.forEach((block) => {
+            if (block.querySelector('.code-expand-btn')) return;
+
+            const pre = block.querySelector('pre');
+            if (!pre) return;
+
+            const threshold = window.innerHeight * 0.3;
+            if (pre.scrollHeight <= threshold) return;
+
+            block.classList.add('is-collapsed');
+
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'code-expand-btn';
+            btn.setAttribute('aria-label', '展开代码');
+            btn.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            `;
+
+            btn.onclick = () => {
+                block.classList.remove('is-collapsed');
+                block.classList.add('is-expanded');
+                btn.style.display = 'none';
+            };
+
+            block.appendChild(btn);
+        });
+    }
+
+    function setupPostPageEnhancements() {
+        setupImageLoading();
+        setupCodeFolding();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupPostPageEnhancements, { once: true });
+    } else {
+        setupPostPageEnhancements();
+    }
+
+    document.addEventListener('swup:contentReplaced', setupPostPageEnhancements);
+})();</script> </div> </div> </div> </main> <div id="swup-footer" class="footer col-span-1 row-start-3 lg:col-span-1 lg:col-start-2 lg:row-start-2 md:col-span-1 md:col-start-2 md:row-start-2 transition-swup-fade"> <!--<div class="border-t border-[var(--primary)] mx-16 border-dashed py-8 max-w-[var(--page-width)] flex flex-col items-center justify-center px-6">--><div class="transition border-t border-white/15 my-10 border-dashed mx-4 md:mx-32"></div> <div class="w-fit mx-auto mt-4 mb-4"> <div class="transition text-50 text-sm text-center p-6">
+&copy; <span id="copyright-year">2024 - 2026</span> <a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://space.bilibili.com/325903362"> 二叉树树 </a>，采用
+<a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可
+<br> <a class="transition link text-[var(--primary)] font-medium" target="_blank" href="/rss.xml">RSS</a> /
+<a class="transition link text-[var(--primary)] font-medium" target="_blank" href="/sitemap.xml">网站地图</a> /
+<!-- Below is the link that users can use to open Preferences Center to change their preferences. Do not modify the ID parameter. Place it where appropriate, style it as needed. --> <a class="transition link text-[var(--primary)] font-medium" href="#" id="open_preferences_center">更新您的Cookie</a> <br>
+由
+<a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://astro.build">Astro</a> 和
+<a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://github.com/saicaca/fuwari">Fuwari</a> 强力驱动
+<br>
+感谢
+<a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://www.cloudflare.com/">Cloudflare</a> 提供的 CDN 与 DDoS 防护服务
+<br>
+本网站代码
+<a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://github.com/afoim/fuwari">已开源</a> <a class="transition link text-white/30 hover:text-[var(--primary)] text-xs ml-1" target="_blank" href="https://github.com/afoim/fuwari/commit/5f28bcc">(5f28bcc @ 2026-04-12 01:19:09)</a> <br> <!-- <a class="transition link text-[var(--primary)] font-medium inline-flex items-center" href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank"><img alt="" src="/favicon/foot-icp.png" width="16" height="16" class="h-4 mr-1">皖ICP备2025099787号-2</a>
+        <br> --> <!-- <div class="server-info-container flex flex-col items-center justify-center gap-1 mt-1">
+            什么？你问我TM的节点显示去哪了？拜托！我都不分流了看那玩意也没集贸用了，所以看集贸看！别看了！
+            Server info will be injected here
+        </div>--> <!-- <a class="transition link text-[var(--primary)] font-medium inline-flex items-center" href="https://beian.mps.gov.cn/#/query/webSearch?code=34010302002608" target="_blank"><img alt="" src="/favicon/foot-ga.png" class="h-4 mr-1">皖公网安备34010302002608号</a>
+        <br> 
+    </div>
+</div>
+
+<script is:inline define:vars={{ serverConfig: siteConfig.server || [] }}>
+    (() => {
+        if (window.__footerServerInit) return;
+        window.__footerServerInit = true;
+
+        function normalizeUrl(input) {
+            if (!input) return "";
+            return input.trim().replace(/:+$/, "");
+        }
+
+        function createServerEntry(config) {
+            const div = document.createElement('div');
+            div.className = 'flex items-center justify-center';
+
+            const label = document.createElement('span');
+            label.className = 'text-white/30 text-xs mr-1';
+            label.innerText = `${config.text}：`;
+            div.appendChild(label);
+
+            const valueSpan = document.createElement('span');
+            valueSpan.className = 'server-value text-white/30 text-xs';
+            valueSpan.innerText = '检测中...';
+            div.appendChild(valueSpan);
+
+            const iconImg = document.createElement('img');
+            iconImg.className = 'server-icon h-4 ml-1 hidden';
+            iconImg.alt = 'Server Icon';
+            div.appendChild(iconImg);
+
+            return { div, valueSpan, iconImg };
+        }
+
+        function updateEntryDisplay(elements, server) {
+            const { valueSpan, iconImg } = elements;
+            
+            if (server) {
+                const serverLower = server.toLowerCase();
+                let iconSrc = null;
+
+                if (serverLower.includes('esa')) {
+                    iconSrc = '/cdn/esa.svg';
+                } else if (serverLower.includes('edgeone')) {
+                    iconSrc = '/cdn/eo.svg';
+                } else if (serverLower.includes('cloudflare')) {
+                    iconSrc = '/cdn/cf.svg';
+                } else if (serverLower.includes('github')) {
+                    iconSrc = '/cdn/gh.svg';
+                }
+
+                if (iconSrc) {
+                    iconImg.src = iconSrc;
+                    iconImg.classList.remove('hidden');
+                    valueSpan.classList.add('hidden');
+                } else {
+                    valueSpan.innerText = server;
+                    iconImg.classList.add('hidden');
+                    valueSpan.classList.remove('hidden');
+                }
+            } else {
+                valueSpan.innerText = "未知";
+                iconImg.classList.add('hidden');
+                valueSpan.classList.remove('hidden');
+            }
+        }
+
+        async function checkServer(url) {
+            try {
+                const targetUrl = normalizeUrl(url) || window.location.href;
+                const response = await fetch(targetUrl, { method: "HEAD" });
+                return response.headers.get('server');
+            } catch (error) {
+                console.warn(`Failed to fetch server info for ${url}:`, error);
+                return null;
+            }
+        }
+
+        async function initServerInfo() {
+            const containers = document.querySelectorAll('.server-info-container');
+            if (containers.length === 0) return;
+
+            // Check for Dev Mode
+            const isDevMode = localStorage.getItem("dev-mode") === "true";
+            if (isDevMode) {
+                const devServer = localStorage.getItem("dev-server");
+                containers.forEach(container => {
+                    container.innerHTML = '';
+                    const elements = createServerEntry({ text: 'Dev Node' });
+                    container.appendChild(elements.div);
+                    updateEntryDisplay(elements, devServer);
+                });
+                return;
+            }
+
+            window.__serverInfoCache = window.__serverInfoCache || {};
+            const cache = window.__serverInfoCache;
+
+            const getServerInfo = (url) => {
+                const key = normalizeUrl(url);
+                if (cache[key]) return cache[key];
+                cache[key] = checkServer(key);
+                return cache[key];
+            };
+
+            containers.forEach(container => {
+                container.innerHTML = '';
+
+                if (!serverConfig || serverConfig.length === 0) {
+                    const elements = createServerEntry({ text: '访问节点' });
+                    container.appendChild(elements.div);
+                    getServerInfo('').then(server => updateEntryDisplay(elements, server));
+                    return;
+                }
+
+                serverConfig.forEach((config) => {
+                    const elements = createServerEntry(config);
+                    container.appendChild(elements.div);
+                    getServerInfo(config.url).then(server => updateEntryDisplay(elements, server));
+                });
+            });
+        }
+
+        initServerInfo();
+        document.addEventListener('astro:after-swap', initServerInfo);
+        document.addEventListener('content:replace', initServerInfo);
+    })();
+</script> --></div></div> </div> </div> <!-- There can't be a filter on parent element, or it will break `fixed` --><div class="back-to-top-wrapper hidden lg:block" data-astro-cid-eymb5ayk> <div id="go-to-comments-btn" class="back-to-top-btn hide flex items-center rounded-2xl overflow-hidden transition" onclick="goToComments()" data-astro-cid-eymb5ayk> <button aria-label="Go to Comments" class="btn-card h-[3.75rem] w-[3.75rem]" data-astro-cid-eymb5ayk> <svg width="1em" height="1em" class="mx-auto" data-astro-cid-eymb5ayk="true" data-icon="mingcute:comment-fill">   <symbol id="ai:mingcute:comment-fill" viewBox="0 0 24 24"><g fill="none"><path d="m12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.018-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z"/><path fill="currentColor" d="M19 10a3 3 0 0 1 3 3v3a3 3 0 0 1-3 3v.966c0 1.06-1.236 1.639-2.05.96L14.638 19H12a3 3 0 0 1-3-3v-3a3 3 0 0 1 3-3zm-3-6a3 3 0 0 1 3 3v1h-8a4 4 0 0 0-4 4v4c0 1.044.4 1.996 1.056 2.708L7 19.5c-.824.618-2 .03-2-1V17a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3z"/></g></symbol><use href="#ai:mingcute:comment-fill"></use>  </svg> </button> </div> <div id="back-to-top-btn" class="back-to-top-btn hide flex items-center rounded-2xl overflow-hidden transition" onclick="backToTop()" data-astro-cid-eymb5ayk> <button aria-label="Back to Top" class="btn-card h-[3.75rem] w-[3.75rem]" data-astro-cid-eymb5ayk> <svg width="1em" height="1em" class="mx-auto" data-astro-cid-eymb5ayk="true" data-icon="material-symbols:keyboard-arrow-up-rounded">   <symbol id="ai:material-symbols:keyboard-arrow-up-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="m12 10.8l-3.9 3.9q-.275.275-.7.275t-.7-.275t-.275-.7t.275-.7l4.6-4.6q.3-.3.7-.3t.7.3l4.6 4.6q.275.275.275.7t-.275.7t-.7.275t-.7-.275z"/></symbol><use href="#ai:material-symbols:keyboard-arrow-up-rounded"></use>  </svg> </button> </div> </div>  <script>
+function backToTop() {
+    window.scroll({ top: 0, behavior: 'smooth' });
+}
+
+function goToComments() {
+    const comments = document.getElementById('giscus-container');
+    if (comments) {
+        comments.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+</script> </div> </div>  <div class="absolute w-full z-0 hidden min-[1600px]:block"> <div class="relative max-w-[var(--page-width)] mx-auto"> <!-- TOC component --> <div id="toc-wrapper" class="transition absolute top-0 -right-[var(--toc-width)] w-[var(--toc-width)] flex items-center"> <div id="toc-inner-wrapper" class="fixed top-14 w-[var(--toc-width)] h-[calc(100vh_-_20rem)] overflow-y-scroll overflow-x-hidden"> <div id="toc" class="w-full h-full transition-swup-fade "> <div class="h-8 w-full"></div> <table-of-contents class="group block relative z-0 bg-[var(--float-panel-bg-opaque)] rounded-xl p-2"><ol class="space-y-1"><li><a href="#从kv迁移" class="px-2 flex gap-2 relative transition w-full min-h-9 rounded-xl hover:bg-[var(--toc-btn-hover)] active:bg-[var(--toc-btn-active)] py-2"><div class="transition w-5 h-5 shrink-0 rounded-lg text-xs flex items-center justify-center font-bold bg-[var(--toc-badge-bg)] text-[var(--btn-content)]">1</div><div class="transition text-sm min-w-0 flex-1 break-words text-50">从KV迁移</div></a></li><li><a href="#前言" class="px-2 flex gap-2 relative transition w-full min-h-9 rounded-xl hover:bg-[var(--toc-btn-hover)] active:bg-[var(--toc-btn-active)] py-2"><div class="transition w-5 h-5 shrink-0 rounded-lg text-xs flex items-center justify-center font-bold bg-[var(--toc-badge-bg)] text-[var(--btn-content)]">2</div><div class="transition text-sm min-w-0 flex-1 break-words text-50">前言</div></a></li><li><a href="#原理" class="px-2 flex gap-2 relative transition w-full min-h-9 rounded-xl hover:bg-[var(--toc-btn-hover)] active:bg-[var(--toc-btn-active)] py-2"><div class="transition w-5 h-5 shrink-0 rounded-lg text-xs flex items-center justify-center font-bold bg-[var(--toc-badge-bg)] text-[var(--btn-content)]">3</div><div class="transition text-sm min-w-0 flex-1 break-words text-50">原理</div></a></li><li><a href="#正式开始" class="px-2 flex gap-2 relative transition w-full min-h-9 rounded-xl hover:bg-[var(--toc-btn-hover)] active:bg-[var(--toc-btn-active)] py-2"><div class="transition w-5 h-5 shrink-0 rounded-lg text-xs flex items-center justify-center font-bold bg-[var(--toc-badge-bg)] text-[var(--btn-content)]">4</div><div class="transition text-sm min-w-0 flex-1 break-words text-50">正式开始</div></a></li></ol><div id="active-indicator" class="-z-10 absolute bg-[var(--toc-btn-hover)] left-2 right-2 rounded-xl transition-all group-hover:bg-transparent border-2 border-[var(--toc-btn-hover)] group-hover:border-[var(--toc-btn-active)] border-dashed"></div></table-of-contents><script type="module">class o extends HTMLElement{tocEl=null;visibleClass="visible";observer;anchorNavTarget=null;headingIdxMap=new Map;headings=[];sections=[];tocEntries=[];active=[];activeIndicator=null;constructor(){super(),this.observer=new IntersectionObserver(this.markVisibleSection,{threshold:0})}markVisibleSection=t=>{if(t.forEach(e=>{const i=e.target.children[0]?.getAttribute("id"),s=i?this.headingIdxMap.get(i):void 0;s!=null&&(this.active[s]=e.isIntersecting),e.isIntersecting&&this.anchorNavTarget==e.target.firstChild&&(this.anchorNavTarget=null)}),!this.active.includes(!0)){this.activeIndicator?.setAttribute("style","display: none;"),this.fallback();return}this.update()};toggleActiveHeading=()=>{let t=this.active.length-1,e=this.active.length-1,i=0;for(;t>=0&&!this.active[t];)this.tocEntries[t].classList.remove(this.visibleClass),t--;for(;t>=0&&this.active[t];)this.tocEntries[t].classList.add(this.visibleClass),e=Math.min(e,t),i=Math.max(i,t),t--;for(;t>=0;)this.tocEntries[t].classList.remove(this.visibleClass),t--;let s=this.tocEntries[e].offsetTop,n=this.tocEntries[i].offsetTop+this.tocEntries[i].offsetHeight;this.activeIndicator?.setAttribute("style",`display: block; top: ${s}px; height: ${n-s}px`)};scrollToActiveHeading=()=>{if(this.anchorNavTarget||!this.tocEl)return;const t=document.querySelectorAll(`#toc .${this.visibleClass}`);if(!t.length)return;const e=t[0],i=t[t.length-1],s=this.tocEl.clientHeight;let n;i.getBoundingClientRect().bottom-e.getBoundingClientRect().top<.9*s?n=e.offsetTop-32:n=i.offsetTop-s*.8,this.tocEl.scrollTo({top:n,left:0,behavior:"smooth"})};update=()=>{requestAnimationFrame(()=>{this.toggleActiveHeading(),this.scrollToActiveHeading()})};fallback=()=>{if(this.sections.length)for(let t=0;t<this.sections.length;t++){let e=this.sections[t].getBoundingClientRect().top,i=this.sections[t].getBoundingClientRect().bottom;if(this.isInRange(e,0,window.innerHeight)||this.isInRange(i,0,window.innerHeight)||e<0&&i>window.innerHeight)this.markActiveHeading(t);else if(e>window.innerHeight)break}};markActiveHeading=t=>{this.active[t]=!0};handleAnchorClick=t=>{const e=t.composedPath().find(i=>i instanceof HTMLAnchorElement);if(e){const i=decodeURIComponent(e.hash?.substring(1)),s=this.headingIdxMap.get(i);s!==void 0?this.anchorNavTarget=this.headings[s]:this.anchorNavTarget=null}};isInRange(t,e,i){return e<t&&t<i}connectedCallback(){const t=document.querySelector(".prose");t?t.addEventListener("animationend",()=>{this.init()},{once:!0}):console.debug("Animation element not found")}init(){if(this.tocEl=document.getElementById("toc-inner-wrapper"),!!this.tocEl&&(this.tocEl.addEventListener("click",this.handleAnchorClick,{capture:!0}),this.activeIndicator=document.getElementById("active-indicator"),this.tocEntries=Array.from(document.querySelectorAll("#toc a[href^='#']")),this.tocEntries.length!==0)){this.sections=new Array(this.tocEntries.length),this.headings=new Array(this.tocEntries.length);for(let t=0;t<this.tocEntries.length;t++){const e=decodeURIComponent(this.tocEntries[t].hash?.substring(1)),i=document.getElementById(e),s=i?.parentElement;i instanceof HTMLElement&&s instanceof HTMLElement&&(this.headings[t]=i,this.sections[t]=s,this.headingIdxMap.set(e,t))}this.active=new Array(this.tocEntries.length).fill(!1),this.sections.forEach(t=>this.observer.observe(t)),this.fallback(),this.update()}}disconnectedCallback(){this.sections.forEach(t=>this.observer.unobserve(t)),this.observer.disconnect(),this.tocEl?.removeEventListener("click",this.handleAnchorClick)}}customElements.get("table-of-contents")||customElements.define("table-of-contents",o);</script> <div class="h-8 w-full"></div> </div> </div> </div> <!-- #toc needs to exist for Swup to work normally -->  </div> </div> <script>
+    // Google Ads Anchor Ad support
+    function initGoogleAnchorAdSupport() {
+        const updateNavbarOffset = () => {
+            const bodyPaddingTop = document.body.style.paddingTop;
+            if (bodyPaddingTop && bodyPaddingTop !== '0px') {
+                document.documentElement.style.setProperty('--navbar-offset', bodyPaddingTop);
+            } else {
+                document.documentElement.style.removeProperty('--navbar-offset');
+            }
+        };
+
+        const existingObserver = window.__googleAnchorAdSupportObserver;
+        if (existingObserver) {
+            existingObserver.disconnect();
+        }
+
+        const observer = new MutationObserver(updateNavbarOffset);
+        observer.observe(document.body, { attributes: true, attributeFilter: ['style'] });
+        window.__googleAnchorAdSupportObserver = observer;
+        updateNavbarOffset();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initGoogleAnchorAdSupport, { once: true });
+    } else {
+        initGoogleAnchorAdSupport();
+    }
+    document.addEventListener('swup:contentReplaced', initGoogleAnchorAdSupport);
+</script>  <!-- increase the page height during page transition to prevent the scrolling animation from jumping --> <div id="page-height-extend" class="hidden h-[300vh]" data-astro-cid-sckkx6r4 style="--bannerOffset: 15vh;--banner-height-home: 65vh;--banner-height: 35vh;--configHue: 255;--page-width: 75rem;--bg-src: url(https://p.2x.nz/api/random);--bg-enable: 1;--bg-position: center;--bg-size: cover;--bg-repeat: no-repeat;--bg-attachment: fixed;--bg-opacity: 0.15;--configHue: 255;"></div> <script type="module">(function(){const n=()=>document.querySelector('video[data-dashjs-player], [data-dashjs], video source[type="application/dash+xml"]'),t=()=>{if(!n())return;const e=document.createElement("script");e.src="https://cdn.dashjs.org/latest/dash.all.min.js",e.async=!0,document.body.appendChild(e)};if(document.readyState==="complete"){t();return}window.addEventListener("load",t,{once:!0})})();</script>  <script type="module" src="/_astro/Layout.astro_astro_type_script_index_1_lang.BVPlemWn.js"></script> <script type="module">function m(e,t,a,s){let n=null;const i=o=>{n||(n=o);const r=Math.min((o-n)/s,1);e.innerHTML=Math.floor(r*(a-t)+t),r<1?window.requestAnimationFrame(i):e.innerHTML=a};window.requestAnimationFrame(i)}function u(e,t,a,s,n=""){let i=null;const o=r=>{i||(i=r);const l=Math.min((r-i)/s,1);e.innerHTML=`${Math.floor(l*(a-t)+t)} ${n}`,l<1?window.requestAnimationFrame(o):e.innerHTML=`${a} ${n}`};window.requestAnimationFrame(o)}window.animateValue=m;window.animateValueWithSuffix=u;</script> <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" aria-hidden="true"> <defs> <filter id="liquid-glass"> <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" result="noise"></feTurbulence> <feDisplacementMap in="SourceGraphic" in2="noise" scale="20" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap> </filter> </defs> </svg></body></html>
