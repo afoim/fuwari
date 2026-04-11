@@ -686,22 +686,22 @@ const lastUpdated = "2026-04-04 22:52:13 +0800";
     updateNotice();
 
     document.addEventListener('swup:contentReplaced', updateNotice);
-})();</script> <div data-pagefind-body class="prose prose-invert prose-base !max-w-none custom-md break-words mb-6 markdown-content onload-animation"> <!--<div class="prose prose-invert max-w-none custom-md">--> <!--<div class="max-w-none custom-md">-->  <section><h1 id="从kv迁移">从KV迁移<a class="anchor" href="#从kv迁移"><span class="anchor-icon" data-pagefind-ignore="">#</span></a></h1><p>由于原项目于26/1/3将数据存储从KV迁移到了D1，并且配备了完备的i18n，如果你仍在运营旧版的UptimeFlare，建议升级，下面是迁移教程</p><p>首先，将你之前配置的Cloudflare API令牌添加一个新的权限 <strong>编辑D1</strong></p><p>然后备份根目录的 <code>uptime.config.ts</code> ，直接 把原仓库删了（但是不要删KV，Worker，Page），Fork我的仓库</p><a id="GChz24by-card" class="card-github fetch-waiting no-styling" href="https://github.com/afoim/UptimeFlare" target="_blank" repo="afoim/UptimeFlare" rel="nofollow"><div class="gc-titlebar"><div class="gc-titlebar-left"><div class="gc-owner"><div id="GChz24by-avatar" class="gc-avatar"></div><div class="gc-user">afoim</div></div><div class="gc-divider">/</div><div class="gc-repo">UptimeFlare</div></div><div class="github-logo"></div></div><div id="GChz24by-description" class="gc-description">Waiting for api.github.com...</div><div class="gc-infobar"><div id="GChz24by-stars" class="gc-stars">00K</div><div id="GChz24by-forks" class="gc-forks">0K</div><div id="GChz24by-license" class="gc-license">0K</div><span id="GChz24by-language" class="gc-language">Waiting...</span></div><script id="GChz24by-script" type="text/javascript" defer>
+})();</script> <div data-pagefind-body class="prose prose-invert prose-base !max-w-none custom-md break-words mb-6 markdown-content onload-animation"> <!--<div class="prose prose-invert max-w-none custom-md">--> <!--<div class="max-w-none custom-md">-->  <section><h1 id="从kv迁移">从KV迁移<a class="anchor" href="#从kv迁移"><span class="anchor-icon" data-pagefind-ignore="">#</span></a></h1><p>由于原项目于26/1/3将数据存储从KV迁移到了D1，并且配备了完备的i18n，如果你仍在运营旧版的UptimeFlare，建议升级，下面是迁移教程</p><p>首先，将你之前配置的Cloudflare API令牌添加一个新的权限 <strong>编辑D1</strong></p><p>然后备份根目录的 <code>uptime.config.ts</code> ，直接 把原仓库删了（但是不要删KV，Worker，Page），Fork我的仓库</p><a id="GCbqwxui-card" class="card-github fetch-waiting no-styling" href="https://github.com/afoim/UptimeFlare" target="_blank" repo="afoim/UptimeFlare" rel="nofollow"><div class="gc-titlebar"><div class="gc-titlebar-left"><div class="gc-owner"><div id="GCbqwxui-avatar" class="gc-avatar"></div><div class="gc-user">afoim</div></div><div class="gc-divider">/</div><div class="gc-repo">UptimeFlare</div></div><div class="github-logo"></div></div><div id="GCbqwxui-description" class="gc-description">Waiting for api.github.com...</div><div class="gc-infobar"><div id="GCbqwxui-stars" class="gc-stars">00K</div><div id="GCbqwxui-forks" class="gc-forks">0K</div><div id="GCbqwxui-license" class="gc-license">0K</div><span id="GCbqwxui-language" class="gc-language">Waiting...</span></div><script id="GCbqwxui-script" type="text/javascript" defer>
       fetch('https://api.github.com/repos/afoim/UptimeFlare', { referrerPolicy: "no-referrer" }).then(response => response.json()).then(data => {
-        document.getElementById('GChz24by-description').innerText = data.description?.replace(/:[a-zA-Z0-9_]+:/g, '') || "Description not set";
-        document.getElementById('GChz24by-language').innerText = data.language;
-        document.getElementById('GChz24by-forks').innerText = Intl.NumberFormat('en-us', { notation: "compact", maximumFractionDigits: 1 }).format(data.forks).replaceAll(" ", '');
-        document.getElementById('GChz24by-stars').innerText = Intl.NumberFormat('en-us', { notation: "compact", maximumFractionDigits: 1 }).format(data.stargazers_count).replaceAll(" ", '');
-        const avatarEl = document.getElementById('GChz24by-avatar');
+        document.getElementById('GCbqwxui-description').innerText = data.description?.replace(/:[a-zA-Z0-9_]+:/g, '') || "Description not set";
+        document.getElementById('GCbqwxui-language').innerText = data.language;
+        document.getElementById('GCbqwxui-forks').innerText = Intl.NumberFormat('en-us', { notation: "compact", maximumFractionDigits: 1 }).format(data.forks).replaceAll(" ", '');
+        document.getElementById('GCbqwxui-stars').innerText = Intl.NumberFormat('en-us', { notation: "compact", maximumFractionDigits: 1 }).format(data.stargazers_count).replaceAll(" ", '');
+        const avatarEl = document.getElementById('GCbqwxui-avatar');
         avatarEl.style.backgroundImage = 'url(' + data.owner.avatar_url + ')';
         avatarEl.style.backgroundColor = 'transparent';
-        document.getElementById('GChz24by-license').innerText = data.license?.spdx_id || "no-license";
-        document.getElementById('GChz24by-card').classList.remove("fetch-waiting");
-        console.log("[GITHUB-CARD] Loaded card for afoim/UptimeFlare | GChz24by.")
+        document.getElementById('GCbqwxui-license').innerText = data.license?.spdx_id || "no-license";
+        document.getElementById('GCbqwxui-card').classList.remove("fetch-waiting");
+        console.log("[GITHUB-CARD] Loaded card for afoim/UptimeFlare | GCbqwxui.")
       }).catch(err => {
-        const c = document.getElementById('GChz24by-card');
+        const c = document.getElementById('GCbqwxui-card');
         c?.classList.add("fetch-error");
-        console.warn("[GITHUB-CARD] (Error) Loading card for afoim/UptimeFlare | GChz24by.")
+        console.warn("[GITHUB-CARD] (Error) Loading card for afoim/UptimeFlare | GCbqwxui.")
       })
     </script></a><p>接下来编辑新的 <code>uptime.config.ts</code></p><p>参阅 <a href="https://github.com/afoim/UptimeFlare/blob/main/uptime.config.ts" rel="nofollow" target="_blank">UptimeFlare/uptime.config.ts at main · afoim/UptimeFlare</a> 主要就是将自定义callback迁移到官方的WebHook方法</p><p>编辑后推送，会自动触发Github Action的自动部署，它会自动将KV内的数据迁移到D1</p><p>这迁移到D1何意味
 <img src="https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/uptimeflare-16.webp" alt=""></p></section>
@@ -711,22 +711,22 @@ const lastUpdated = "2026-04-04 22:52:13 +0800";
 <li><strong>后端</strong>：放在Cloudflare Worker，通过 Worker 自带的 <strong>Cron</strong> 每分钟 检查站点状态，并将状态持久化进 <strong>D1</strong>
 <img src="https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/uptimeflare-1.webp" alt=""></li>
 </ul><p><img src="https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/uptimeflare-14.webp" alt=""></p></section>
-<section><h1 id="正式开始">正式开始<a class="anchor" href="#正式开始"><span class="anchor-icon" data-pagefind-ignore="">#</span></a></h1><p>首先我们需要 <strong>Fork</strong> 项目，建议Fork我的项目（由于原项目不知道为什么不给在某些地方注入环境变量，所以建议Fork我的）</p><a id="GCzznfx7-card" class="card-github fetch-waiting no-styling" href="https://github.com/afoim/UptimeFlare" target="_blank" repo="afoim/UptimeFlare" rel="nofollow"><div class="gc-titlebar"><div class="gc-titlebar-left"><div class="gc-owner"><div id="GCzznfx7-avatar" class="gc-avatar"></div><div class="gc-user">afoim</div></div><div class="gc-divider">/</div><div class="gc-repo">UptimeFlare</div></div><div class="github-logo"></div></div><div id="GCzznfx7-description" class="gc-description">Waiting for api.github.com...</div><div class="gc-infobar"><div id="GCzznfx7-stars" class="gc-stars">00K</div><div id="GCzznfx7-forks" class="gc-forks">0K</div><div id="GCzznfx7-license" class="gc-license">0K</div><span id="GCzznfx7-language" class="gc-language">Waiting...</span></div><script id="GCzznfx7-script" type="text/javascript" defer>
+<section><h1 id="正式开始">正式开始<a class="anchor" href="#正式开始"><span class="anchor-icon" data-pagefind-ignore="">#</span></a></h1><p>首先我们需要 <strong>Fork</strong> 项目，建议Fork我的项目（由于原项目不知道为什么不给在某些地方注入环境变量，所以建议Fork我的）</p><a id="GC2asisd-card" class="card-github fetch-waiting no-styling" href="https://github.com/afoim/UptimeFlare" target="_blank" repo="afoim/UptimeFlare" rel="nofollow"><div class="gc-titlebar"><div class="gc-titlebar-left"><div class="gc-owner"><div id="GC2asisd-avatar" class="gc-avatar"></div><div class="gc-user">afoim</div></div><div class="gc-divider">/</div><div class="gc-repo">UptimeFlare</div></div><div class="github-logo"></div></div><div id="GC2asisd-description" class="gc-description">Waiting for api.github.com...</div><div class="gc-infobar"><div id="GC2asisd-stars" class="gc-stars">00K</div><div id="GC2asisd-forks" class="gc-forks">0K</div><div id="GC2asisd-license" class="gc-license">0K</div><span id="GC2asisd-language" class="gc-language">Waiting...</span></div><script id="GC2asisd-script" type="text/javascript" defer>
       fetch('https://api.github.com/repos/afoim/UptimeFlare', { referrerPolicy: "no-referrer" }).then(response => response.json()).then(data => {
-        document.getElementById('GCzznfx7-description').innerText = data.description?.replace(/:[a-zA-Z0-9_]+:/g, '') || "Description not set";
-        document.getElementById('GCzznfx7-language').innerText = data.language;
-        document.getElementById('GCzznfx7-forks').innerText = Intl.NumberFormat('en-us', { notation: "compact", maximumFractionDigits: 1 }).format(data.forks).replaceAll(" ", '');
-        document.getElementById('GCzznfx7-stars').innerText = Intl.NumberFormat('en-us', { notation: "compact", maximumFractionDigits: 1 }).format(data.stargazers_count).replaceAll(" ", '');
-        const avatarEl = document.getElementById('GCzznfx7-avatar');
+        document.getElementById('GC2asisd-description').innerText = data.description?.replace(/:[a-zA-Z0-9_]+:/g, '') || "Description not set";
+        document.getElementById('GC2asisd-language').innerText = data.language;
+        document.getElementById('GC2asisd-forks').innerText = Intl.NumberFormat('en-us', { notation: "compact", maximumFractionDigits: 1 }).format(data.forks).replaceAll(" ", '');
+        document.getElementById('GC2asisd-stars').innerText = Intl.NumberFormat('en-us', { notation: "compact", maximumFractionDigits: 1 }).format(data.stargazers_count).replaceAll(" ", '');
+        const avatarEl = document.getElementById('GC2asisd-avatar');
         avatarEl.style.backgroundImage = 'url(' + data.owner.avatar_url + ')';
         avatarEl.style.backgroundColor = 'transparent';
-        document.getElementById('GCzznfx7-license').innerText = data.license?.spdx_id || "no-license";
-        document.getElementById('GCzznfx7-card').classList.remove("fetch-waiting");
-        console.log("[GITHUB-CARD] Loaded card for afoim/UptimeFlare | GCzznfx7.")
+        document.getElementById('GC2asisd-license').innerText = data.license?.spdx_id || "no-license";
+        document.getElementById('GC2asisd-card').classList.remove("fetch-waiting");
+        console.log("[GITHUB-CARD] Loaded card for afoim/UptimeFlare | GC2asisd.")
       }).catch(err => {
-        const c = document.getElementById('GCzznfx7-card');
+        const c = document.getElementById('GC2asisd-card');
         c?.classList.add("fetch-error");
-        console.warn("[GITHUB-CARD] (Error) Loading card for afoim/UptimeFlare | GCzznfx7.")
+        console.warn("[GITHUB-CARD] (Error) Loading card for afoim/UptimeFlare | GC2asisd.")
       })
     </script></a><p>首先，我们先尝试将其部署到Cloudflare</p><p>创建一个Cloudflare API Token <strong>编辑Workers</strong> 和 <strong>D1</strong></p><p>接下来将该Token绑定到你的Github仓库
 <img src="https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/uptimeflare-4.webp" alt=""></p><p>最后，来到 <code>Action</code> 页面，手动创建一个 <code>Deploy to Cloudflare</code> 的工作流
@@ -737,13 +737,13 @@ const lastUpdated = "2026-04-04 22:52:13 +0800";
 <img src="https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/uptimeflare-10.webp" alt=""></p><p>接下来，我们开始自定义该监控</p><p>编辑根目录的 <code>uptime.config.ts</code></p><p>如果服务故障如何做通知？</p><p>UptimeFlare非常自由，你可以在 <code>callbacks</code> 中编写故障时要做的任何事情，这里以发送 <code>POST</code> 请求让 <code>Resend</code> 发送邮件给你举例</p><p>首先前往 <a href="https://resend.com/" rel="nofollow" target="_blank">https://resend.com/</a></p><p>添加一个域名（作为你的发信域名）
 <img src="https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/uptimeflare-11.webp" alt=""></p><p>创建一个发信API Key
 <img src="https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/uptimeflare-12.webp" alt=""></p><p>添加环境变量： <code>RESEND_API_KEY</code> 将其绑定到 <strong>Action</strong></p><p><img src="https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/uptimeflare-13.webp" alt=""></p><p>编辑 <code>uptime.config.ts</code> 的 <code>webhook.payload</code> 部分</p><p>示例代码：</p><div class="expressive-code"><link rel="stylesheet" href="/_astro/ec.4l8yc.css"><script type="module" src="/_astro/ec.g1fg5.js"></script><figure class="frame"><figcaption class="header"></figcaption><pre data-language="ts" class="wrap" style="--ecMaxLine:52ch"><code><div class="ec-line" style="--ecIndent:8ch"><div class="gutter"><div class="ln" aria-hidden="true">1</div></div><div class="code"><span class="indent">        </span><span style="--0:#B392F0;--1:#B392F0">payload</span><span style="--0:#E1E4E8;--1:#E1E4E8">: {</span></div></div><div class="ec-line" style="--ecIndent:8ch"><div class="gutter"><div class="ln" aria-hidden="true">2</div></div><div class="code"><span class="indent">        </span><span style="--0:#9ECBFF;--1:#9ECBFF">"from"</span><span style="--0:#E1E4E8;--1:#E1E4E8">: </span><span style="--0:#9ECBFF;--1:#9ECBFF">"系统状态更新 &#x3C;uptimeflare@update.2x.nz>"</span><span style="--0:#E1E4E8;--1:#E1E4E8">,</span></div></div><div class="ec-line" style="--ecIndent:8ch"><div class="gutter"><div class="ln" aria-hidden="true">3</div></div><div class="code"><span class="indent">        </span><span style="--0:#9ECBFF;--1:#9ECBFF">"to"</span><span style="--0:#E1E4E8;--1:#E1E4E8">: [</span><span style="--0:#9ECBFF;--1:#9ECBFF">"acofork@foxmail.com"</span><span style="--0:#E1E4E8;--1:#E1E4E8">],</span></div></div><div class="ec-line" style="--ecIndent:8ch"><div class="gutter"><div class="ln" aria-hidden="true">4</div></div><div class="code"><span class="indent">        </span><span style="--0:#9ECBFF;--1:#9ECBFF">"subject"</span><span style="--0:#E1E4E8;--1:#E1E4E8">: </span><span style="--0:#9ECBFF;--1:#9ECBFF">"UptimeFlare 状态更新"</span><span style="--0:#E1E4E8;--1:#E1E4E8">,</span></div></div><div class="ec-line" style="--ecIndent:8ch"><div class="gutter"><div class="ln" aria-hidden="true">5</div></div><div class="code"><span class="indent">        </span><span style="--0:#9ECBFF;--1:#9ECBFF">"text"</span><span style="--0:#E1E4E8;--1:#E1E4E8">: </span><span style="--0:#9ECBFF;--1:#9ECBFF">"$MSG"</span></div></div><div class="ec-line" style="--ecIndent:6ch"><div class="gutter"><div class="ln" aria-hidden="true">6</div></div><div class="code"><span class="indent"><span style="--0:#E1E4E8;--1:#E1E4E8">      </span></span><span style="--0:#E1E4E8;--1:#E1E4E8">},</span></div></div></code><button class="copy-btn" aria-label="Copy code"><div class="copy-btn-icon"><svg viewBox="0 -960 960 960" xmlns="http://www.w3.org/2000/svg" class="copy-btn-icon copy-icon"><path d="M368.37-237.37q-34.48 0-58.74-24.26-24.26-24.26-24.26-58.74v-474.26q0-34.48 24.26-58.74 24.26-24.26 58.74-24.26h378.26q34.48 0 58.74 24.26 24.26 24.26 24.26 58.74v474.26q0 34.48-24.26 58.74-24.26 24.26-58.74 24.26H368.37Zm0-83h378.26v-474.26H368.37v474.26Zm-155 238q-34.48 0-58.74-24.26-24.26-24.26-24.26-58.74v-515.76q0-17.45 11.96-29.48 11.97-12.02 29.33-12.02t29.54 12.02q12.17 12.03 12.17 29.48v515.76h419.76q17.45 0 29.48 11.96 12.02 11.97 12.02 29.33t-12.02 29.54q-12.03 12.17-29.48 12.17H213.37Zm155-238v-474.26 474.26Z"></path></svg><svg viewBox="0 -960 960 960" xmlns="http://www.w3.org/2000/svg" class="copy-btn-icon success-icon"><path d="m389-377.13 294.7-294.7q12.58-12.67 29.52-12.67 16.93 0 29.61 12.67 12.67 12.68 12.67 29.53 0 16.86-12.28 29.14L419.07-288.41q-12.59 12.67-29.52 12.67-16.94 0-29.62-12.67L217.41-430.93q-12.67-12.68-12.79-29.45-.12-16.77 12.55-29.45 12.68-12.67 29.62-12.67 16.93 0 29.28 12.67L389-377.13Z"></path></svg></div></button></pre></figure></div><p>接下来，当服务故障/重新上线就会通知你啦~
-<img src="https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/1dc1a98a404db83e909c1f87e8a115cf.webp" alt=""></p><p>最终效果：</p><a id="UCk8vhnr-card" class="card-url fetch-waiting no-styling" href="https://ok.2x.nz" target="_blank" url="https://ok.2x.nz" rel="nofollow"><div id="UCk8vhnr-container" class="uc-container"><div class="uc-content"><div class="uc-titlebar"><div class="uc-titlebar-left"><div id="UCk8vhnr-favicon" class="uc-favicon"></div><div class="uc-domain">ok.2x.nz</div></div></div><div id="UCk8vhnr-title" class="uc-title-text">Loading...</div><div id="UCk8vhnr-description" class="uc-description">Waiting for metadata...</div></div><div id="UCk8vhnr-image" class="uc-image"></div></div><script id="UCk8vhnr-script" type="text/javascript" defer>
+<img src="https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/1dc1a98a404db83e909c1f87e8a115cf.webp" alt=""></p><p>最终效果：</p><a id="UC3ywuil-card" class="card-url fetch-waiting no-styling" href="https://ok.2x.nz" target="_blank" url="https://ok.2x.nz" rel="nofollow"><div id="UC3ywuil-container" class="uc-container"><div class="uc-content"><div class="uc-titlebar"><div class="uc-titlebar-left"><div id="UC3ywuil-favicon" class="uc-favicon"></div><div class="uc-domain">ok.2x.nz</div></div></div><div id="UC3ywuil-title" class="uc-title-text">Loading...</div><div id="UC3ywuil-description" class="uc-description">Waiting for metadata...</div></div><div id="UC3ywuil-image" class="uc-image"></div></div><script id="UC3ywuil-script" type="text/javascript" defer>
       fetch('https://icon.2x.nz/?url=https://ok.2x.nz').then(response => response.json()).then(meta => {
         if (meta && meta.url) {
-            document.getElementById('UCk8vhnr-title').innerText = meta.title || "https://ok.2x.nz";
-            document.getElementById('UCk8vhnr-description').innerText = meta.description || "No description available";
+            document.getElementById('UC3ywuil-title').innerText = meta.title || "https://ok.2x.nz";
+            document.getElementById('UC3ywuil-description').innerText = meta.description || "No description available";
             
-            const faviconEl = document.getElementById('UCk8vhnr-favicon');
+            const faviconEl = document.getElementById('UC3ywuil-favicon');
             if (meta.favicon) {
                 faviconEl.style.backgroundImage = 'url(' + meta.favicon + ')';
                 faviconEl.style.backgroundColor = 'transparent';
@@ -751,23 +751,23 @@ const lastUpdated = "2026-04-04 22:52:13 +0800";
                  faviconEl.style.display = 'none';
             }
 
-            const imageEl = document.getElementById('UCk8vhnr-image');
+            const imageEl = document.getElementById('UC3ywuil-image');
             // The new API currently does not seem to return a large image preview (meta.image)
             // So we default to hiding it to match the new structure
             imageEl.style.display = 'none';
-            document.getElementById('UCk8vhnr-container').classList.add('no-image');
+            document.getElementById('UC3ywuil-container').classList.add('no-image');
 
-            document.getElementById('UCk8vhnr-card').classList.remove("fetch-waiting");
-            console.log("[URL-CARD] Loaded card for https://ok.2x.nz | UCk8vhnr.")
+            document.getElementById('UC3ywuil-card').classList.remove("fetch-waiting");
+            console.log("[URL-CARD] Loaded card for https://ok.2x.nz | UC3ywuil.")
         } else {
             throw new Error('API returned invalid data');
         }
       }).catch(err => {
-        const c = document.getElementById('UCk8vhnr-card');
+        const c = document.getElementById('UC3ywuil-card');
         c?.classList.add("fetch-error");
-        document.getElementById('UCk8vhnr-title').innerText = "Error loading preview";
-        document.getElementById('UCk8vhnr-description').innerText = "Failed to fetch metadata for https://ok.2x.nz";
-        console.warn("[URL-CARD] (Error) Loading card for https://ok.2x.nz | UCk8vhnr.", err)
+        document.getElementById('UC3ywuil-title').innerText = "Error loading preview";
+        document.getElementById('UC3ywuil-description').innerText = "Failed to fetch metadata for https://ok.2x.nz";
+        console.warn("[URL-CARD] (Error) Loading card for https://ok.2x.nz | UC3ywuil.", err)
       })
     </script></a></section>  </div> <script type="module" src="/_astro/Markdown.astro_astro_type_script_index_0_lang.BLA7U4X1.js"></script>  <!-- 文章反馈与编辑区域 --> <div class="mb-4 p-4 bg-[var(--license-block-bg)] border-t border-b border-[var(--line-divider)] onload-animation" data-astro-cid-egg7nqdx> <!-- 反馈区域 --> <div class="flex items-center justify-between mb-4" data-astro-cid-egg7nqdx> <div class="flex items-center gap-3" data-astro-cid-egg7nqdx> <div class="h-5 w-5 bg-[var(--primary)] flex items-center justify-center" data-astro-cid-egg7nqdx> <svg width="1em" height="1em" class="text-[0.75rem] text-black/70" data-astro-cid-egg7nqdx="true" data-icon="material-symbols:help-outline">   <symbol id="ai:material-symbols:help-outline" viewBox="0 0 24 24"><path fill="currentColor" d="M12.838 17.638q.362-.363.362-.888t-.362-.888t-.888-.362t-.887.363t-.363.887t.363.888t.887.362t.888-.363M11.05 14.15h1.85q0-.825.188-1.3t1.062-1.3q.65-.65 1.025-1.238T15.55 8.9q0-1.4-1.025-2.15T12.1 6q-1.425 0-2.312.75T8.55 8.55l1.65.65q.125-.45.563-.975T12.1 7.7q.8 0 1.2.438t.4.962q0 .5-.3.938t-.75.812q-1.1.975-1.35 1.475t-.25 1.825M12 22q-2.075 0-3.9-.787t-3.175-2.138T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12t-2.325-5.675T12 4T6.325 6.325T4 12t2.325 5.675T12 20m0-8"/></symbol><use href="#ai:material-symbols:help-outline"></use>  </svg> </div> <p class="text-white/80 text-sm" data-astro-cid-egg7nqdx>这篇文章是否对你有帮助？</p> </div> <div class="flex gap-2" data-astro-cid-egg7nqdx> <a href="/posts/pin/" class="group flex items-center gap-1 px-3 py-1.5 bg-[var(--btn-regular-bg)] hover:bg-[var(--btn-regular-bg-hover)] active:bg-[var(--btn-regular-bg-active)] text-[var(--btn-content)] text-xs font-medium transition-all active:scale-95" data-astro-cid-egg7nqdx> <svg width="1em" height="1em" class="text-[0.875rem] group-hover:scale-110 transition-transform" data-astro-cid-egg7nqdx="true" data-icon="material-symbols:contact-mail-outline">   <symbol id="ai:material-symbols:contact-mail-outline" viewBox="0 0 24 24"><path fill="currentColor" d="M14 11h7V6h-7zm3.5-1.25L15 8V7l2.5 1.75L20 7v1zM2 21q-.825 0-1.412-.587T0 19V5q0-.825.588-1.412T2 3h20q.825 0 1.413.588T24 5v14q0 .825-.587 1.413T22 21zm13.9-2H22V5H2v14h.1q1.05-1.875 2.9-2.937T9 15t4 1.063T15.9 19m-4.775-5.875Q12 12.25 12 11t-.875-2.125T9 8t-2.125.875T6 11t.875 2.125T9 14t2.125-.875M4.55 19h8.9q-.85-.95-2.013-1.475T9 17t-2.425.525T4.55 19m3.737-7.288Q8 11.425 8 11t.288-.712T9 10t.713.288T10 11t-.288.713T9 12t-.712-.288M12 12"/></symbol><use href="#ai:material-symbols:contact-mail-outline"></use>  </svg>
 联系
@@ -838,11 +838,10 @@ const lastUpdated = "2026-04-04 22:52:13 +0800";
 <a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://astro.build">Astro</a> 和
 <a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://github.com/saicaca/fuwari">Fuwari</a> 强力驱动
 <br>
-感谢
-<a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://www.cloudflare.com/">Cloudflare</a> 提供的 CDN 与 DDoS 防护服务
+您正在使用 AcoFork CDN 浏览此页面
 <br>
 本网站代码
-<a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://github.com/afoim/fuwari">已开源</a> <a class="transition link text-white/30 hover:text-[var(--primary)] text-xs ml-1" target="_blank" href="https://github.com/afoim/fuwari/commit/7fcc523">(7fcc523 @ 2026-04-12 03:44:31)</a> <br> <!-- <a class="transition link text-[var(--primary)] font-medium inline-flex items-center" href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank"><img alt="" src="/favicon/foot-icp.png" width="16" height="16" class="h-4 mr-1">皖ICP备2025099787号-2</a>
+<a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://github.com/afoim/fuwari">已开源</a> <a class="transition link text-white/30 hover:text-[var(--primary)] text-xs ml-1" target="_blank" href="https://github.com/afoim/fuwari/commit/b4f6f51">(b4f6f51 @ 2026-04-12 03:52:12)</a> <br> <!-- <a class="transition link text-[var(--primary)] font-medium inline-flex items-center" href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank"><img alt="" src="/favicon/foot-icp.png" width="16" height="16" class="h-4 mr-1">皖ICP备2025099787号-2</a>
         <br> --> <!-- <div class="server-info-container flex flex-col items-center justify-center gap-1 mt-1">
             什么？你问我TM的节点显示去哪了？拜托！我都不分流了看那玩意也没集贸用了，所以看集贸看！别看了！
             Server info will be injected here
