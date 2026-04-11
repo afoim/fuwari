@@ -21,7 +21,7 @@
 &lt;h1&gt;思路&lt;/h1&gt;
 &lt;p&gt;首先，我们需要一个Web服务器，用来提供HTML内容，因为我是静态博客。所有我们不需要高级功能，故选择最快的 &lt;a href=&quot;https://github.com/static-web-server/static-web-server&quot;&gt;static-web-server/static-web-server: A cross-platform, high-performance and asynchronous web server for static files-serving. ⚡&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;其次，我们还需要为它配置SSL，这里使用最简单的 https://acme.sh&lt;/p&gt;
-&lt;p&gt;最后，我们需要让他支持CICD。好巧不巧，我曾经写过一个基于Python的 &lt;a href=&quot;https://github.com/afoim/vps-cicd&quot;&gt;afoim/vps-cicd: 简易的VPS CI/CD&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;最后，我们需要让他实时更新。嘛，最简单的就是写个定时任务，按照固定频次强制拉取远程仓库的最新更改&lt;/p&gt;
 &lt;p&gt;所以流程图最终大致如下&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;flowchart TD
 
@@ -37,11 +37,9 @@
 
     Acme2 --&amp;gt; |签发SSL|2
 
-    up[推送提交] --&amp;gt; ghw
+    cron[定时任务] --&amp;gt; |拉取更新内容|1
 
-    ghw[Github WebHook] --&amp;gt; |触发新构建|1
-
-    ghw --&amp;gt; |触发新构建|2
+    cron --&amp;gt; |拉取更新内容|2
 
     s1 --&amp;gt; r[静态博客]
 
@@ -56,6 +54,193 @@
 tar -xzvf static-web-server-v2.42.0-x86_64-unknown-linux-gnu.tar.gz
 rm static-web-server-v2.42.0-x86_64-unknown-linux-gnu.tar.gz
 &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;然后我们创建 &lt;code&gt;sws.toml&lt;/code&gt; 。启用HTTP跳转HTTPS，配置SSL（和上面ACME部署的路径一样）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+[general]
+
+#### Address &amp;amp; Root dir
+host = &quot;0.0.0.0&quot;
+port = 443
+root = &quot;/root/fuwari&quot;
+
+#### Logging
+log-level = &quot;error&quot;
+
+#### Cache Control headers
+cache-control-headers = true
+
+#### Auto Compression
+compression = false
+compression-level = &quot;best&quot;
+
+#### Error pages
+# Note: If a relative path is used then it will be resolved under the root directory.
+page404 = &quot;./404.html&quot;
+page50x = &quot;./50x.html&quot;
+
+#### HTTP/2 + TLS
+http2 = true
+http2-tls-cert = &quot;/root/ssl/2x_nz_cert.pem&quot;
+http2-tls-key = &quot;/root/ssl/2x_nz_key.pem&quot;
+https-redirect = true
+https-redirect-host = &quot;2x.nz&quot;
+https-redirect-from-port = 80
+https-redirect-from-hosts = &quot;2x.nz&quot;
+
+#### CORS &amp;amp; Security headers
+security-headers = true
+cors-allow-origins = &quot;*&quot;
+
+#### Directory listing
+directory-listing = false
+
+#### Directory listing sorting code
+directory-listing-order = 1
+
+#### Directory listing content format
+directory-listing-format = &quot;html&quot;
+
+#### Directory listing download format
+directory-listing-download = []
+
+#### Basic Authentication
+# basic-auth = &quot;&quot;
+
+#### File descriptor binding
+# fd = &quot;&quot;
+
+#### Worker threads
+threads-multiplier = 1
+
+#### Grace period after a graceful shutdown
+grace-period = 0
+
+#### Page fallback for 404s
+# page-fallback = &quot;&quot;
+
+#### Log request Remote Address if available
+log-remote-address = false
+
+#### Log real IP from X-Forwarded-For header if available
+log-forwarded-for = false
+
+#### IPs to accept the X-Forwarded-For header from. Empty means all
+trusted-proxies = []
+
+#### Redirect to trailing slash in the requested directory uri
+redirect-trailing-slash = true
+
+#### Check for existing pre-compressed files
+compression-static = true
+
+#### Health-check endpoint (GET or HEAD `/health`)
+health = false
+
+#### Markdown content negotiation
+accept-markdown = false
+
+#### List of index files
+# index-files = &quot;index.html, index.htm&quot;
+#### Maintenance Mode
+
+maintenance-mode = false
+# maintenance-mode-status = 503
+# maintenance-mode-file = &quot;./maintenance.html&quot;
+
+### Windows Only
+
+#### Run the web server as a Windows Service
+# windows-service = false
+
+
+[advanced]
+
+#### HTTP Headers customization (examples only)
+
+#### a. Oneline version
+[[advanced.headers]]
+source = &quot;*&quot;
+headers = { Server = &quot;AcoForkCDN&quot; }
+
+#### b. Multiline version
+# [[advanced.headers]]
+# source = &quot;/index.html&quot;
+# [advanced.headers.headers]
+# Cache-Control = &quot;public, max-age=36000&quot;
+# Content-Security-Policy = &quot;frame-ancestors &apos;self&apos;&quot;
+# Strict-Transport-Security = &quot;max-age=63072000; includeSubDomains; preload&quot;
+
+#### c. Multiline version with explicit key (dotted)
+# [[advanced.headers]]
+# source = &quot;**/*.{jpg,jpeg,png,ico,gif}&quot;
+# headers.Strict-Transport-Security = &quot;max-age=63072000; includeSubDomains; preload&quot;
+
+
+### URL Redirects (examples only)
+
+# [[advanced.redirects]]
+# source = &quot;**/*.{jpg,jpeg}&quot;
+# destination = &quot;/images/generic1.png&quot;
+# kind = 301
+
+# [[advanced.redirects]]
+# source = &quot;/index.html&quot;
+# destination = &quot;https://static-web-server.net&quot;
+# kind = 302
+
+### URL Rewrites (examples only)
+
+# [[advanced.rewrites]]
+# source = &quot;**/*.{png,ico,gif}&quot;
+# destination = &quot;/assets/favicon.ico&quot;
+## Optional redirection
+# redirect = 301
+
+# [[advanced.rewrites]]
+# source = &quot;**/*.{jpg,jpeg}&quot;
+# destination = &quot;/images/sws.png&quot;
+
+### Virtual Hosting
+
+# [[advanced.virtual-hosts]]
+## But if the &quot;Host&quot; header matches this...
+# host = &quot;sales.example.com&quot;
+## ...then files will be served from here instead
+# root = &quot;/var/sales/html&quot;
+
+# [[advanced.virtual-hosts]]
+# host = &quot;blog.example.com&quot;
+# root = &quot;/var/blog/html&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;接下来我们创建一个系统服务&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[Unit]
+Description=Static Web Server (sws)
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/root/sws/static-web-server-v2.42.0-x86_64-unknown-linux-gnu/static-web-server \
+  --config-file /root/sws/static-web-server-v2.42.0-x86_64-unknown-linux-gnu/sws.toml
+
+Restart=always
+RestartSec=5
+
+# 安全 &amp;amp; 稳定性
+LimitNOFILE=1048576
+PrivateTmp=true
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;然后重载systemd，并且让服务开机自启&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;systemctl daemon-reexec
+systemctl daemon-reload
+
+systemctl enable sws
+systemctl start sws
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;再然后安装 https://acme.sh&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;apt install cron
 curl https://get.acme.sh | sh -s email=my@example.com
@@ -64,12 +249,29 @@ curl https://get.acme.sh | sh -s email=my@example.com
 &lt;pre&gt;&lt;code&gt;./acme.sh --issue --dns dns_cf -d 2x.nz -d &apos;*.2x.nz&apos;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&quot;https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/self-host-cdn-2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;签发完毕后需要安装证书，指定一个目录&lt;/p&gt;
+&lt;p&gt;签发完毕后需要安装证书，指定一个目录。和刚才我们启动的SWS的SSL目录要一致&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;acme.sh --install-cert -d 2x.nz \
 --key-file       /root/ssl/2x_nz_key.pem  \
 --fullchain-file /root/ssl/2x_nz_cert.pem \
 --reloadcmd     &quot;service sws force-reload&quot;
 &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;最后配上定时任务&lt;/p&gt;
+&lt;p&gt;首先写一个简单的脚本用以强制同步远程仓库的最新更改&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;cd /root/fuwari
+git fetch origin
+git reset --hard origin/page
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;接着创建一个一分钟执行一次该脚本的定时任务&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;crontab -e
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;写入：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;* * * * * /root/vps-cicd/build.sh &amp;gt;&amp;gt; /var/log/vps-cicd-build.log 2&amp;gt;&amp;amp;1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1&gt;接入&lt;/h1&gt;
+&lt;p&gt;将两个甲骨文IP写入 &lt;code&gt;oraclecdn.2x.nz&lt;/code&gt; 中&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/self-host-cdn-3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;接着将 &lt;code&gt;2x.nz&lt;/code&gt; CNAME &lt;code&gt;oracle.2x.nz&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/self-host-cdn-4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 </content:encoded></item><item><title>WTF？免费优质线路2c4g VPS！免费GLM模型无限用！免费Opus 4.6！</title><link>https://2x.nz/posts/what-the-fuck-claw-replit/</link><guid isPermaLink="true">https://2x.nz/posts/what-the-fuck-claw-replit/</guid><description>2026年4月6日，这天凌晨...神了...</description><pubDate>Sun, 05 Apr 2026 18:17:20 GMT</pubDate><content:encoded>&lt;h1&gt;免费优质线路2c4g VPS + 免费GLM无限用&lt;/h1&gt;
 &lt;p&gt;前往 &lt;a href=&quot;https://open.claw.cloud/r/NMB9N9UFZ7JY&quot;&gt;https://open.claw.cloud&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;默认会给你个龙虾 &lt;em&gt;你可能会觉得这没什么？那如果我说...&lt;/em&gt;&lt;/p&gt;
