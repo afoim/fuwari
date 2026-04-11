@@ -1,0 +1,1 @@
+import{b as o,r as e}from"./fancybox.C6ctk1jQ.js";const i=".custom-md img, #post-cover img";o(i);window.addEventListener("keydown",t=>{t.key==="Escape"&&setTimeout(e,0)});document.addEventListener("click",()=>{setTimeout(e,0)},!0);
