@@ -24,6 +24,22 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
+      - name: Check if PR is from fork
+        if: ${{ github.event_name == 'pull_request_target' }}
+        run: |
+          # 检查 PR 是否来自 fork
+          IS_FORK=$(jq -r '.pull_request.head.repo.fork' "$GITHUB_EVENT_PATH")
+          if [ "$IS_FORK" == "true" ]; then
+            echo "::notice::检测到 PR 来自 fork。请勿使用 fork 创建 PR，请在原仓库创建 patch 文件后通过以下方式提交："
+            echo "::notice::1. 在你的仓库中准备好修改内容"
+            echo "::notice::2. 使用以下命令生成 patch：git format-patch -1 <commit>"
+            echo "::notice::3. 将 patch 文件内容复制到剪贴板"
+            echo "::notice::4. 在目标仓库创建新的 PR 或 issue，粘贴 patch 内容"
+            echo "::notice::或者直接在目标仓库的 src/data/friends/ 或 src/data/sponsors/ 目录下直接创建/编辑文件来提交 PR"
+            echo "::error::Fork PR 无法被自动合并，请重新在仓库内创建 PR"
+            exit 1
+          fi
+
       - name: Label PR by changed paths
         uses: actions/github-script@v7
         with:
