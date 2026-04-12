@@ -25,7 +25,7 @@
 &lt;p&gt;所以流程图最终大致如下&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;flowchart TD
 
-    用户 --&amp;gt; |DNS解析|cdn[oraclecdn.2x.nz] --&amp;gt; 1[Oracle1]
+    用户 --&amp;gt; 2x.nz --&amp;gt; |DNS解析|cdn[oraclecdn.2x.nz] --&amp;gt; 1[Oracle1]
 
     cdn --&amp;gt; 2[Oracle2]
 
@@ -256,7 +256,10 @@ curl https://get.acme.sh | sh -s email=my@example.com
 --reloadcmd     &quot;service sws force-reload&quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;最后配上定时任务&lt;/p&gt;
-&lt;p&gt;首先写一个简单的脚本用以强制同步远程仓库的最新更改&lt;/p&gt;
+&lt;p&gt;但是先等等！我们还需要手动拉取一次我们的博客源码。由于Github Action每次都会自动帮我们构建好，所以我们仅需拉取 &lt;code&gt;page&lt;/code&gt; 分支，并且不需要拉取历史&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git clone -b page --single-branch --depth=1 https://github.com/afoim/fuwari.git
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;然后写一个简单的脚本用以强制同步远程仓库的最新更改&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;cd /root/fuwari
 git fetch origin
 git reset --hard origin/page
