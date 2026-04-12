@@ -2901,7 +2901,7 @@ Umami，用于在网站插入一个JS来进行访客统计以及展示访客信�
 &lt;li&gt;&lt;s&gt;自建优选：https://www.bilibili.com/video/BV1H38vzoEcq/https://www.bilibili.com/video/BV1zpgBz7EHK/&lt;/s&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;[!info]
+&lt;p&gt;[!tip]
 所有优选一个域名即可，无需两个域名。如： &lt;code&gt;s.2x.nz&lt;/code&gt; 和 &lt;code&gt;s-s.2x.nz&lt;/code&gt; 即可完成优选&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h4&gt;未优选&lt;/h4&gt;
