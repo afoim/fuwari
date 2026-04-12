@@ -1,0 +1,1 @@
+import{b as e}from"./client.Ccp8ABPK.js";async function o(){const t=await e("/api/config");return{turnstileEnabled:!!t.turnstile_enabled,turnstileSiteKey:t.turnstile_site_key,allowRegistration:t.allow_registration,userCount:t.user_count}}export{o as g};
