@@ -683,22 +683,22 @@ const lastUpdated = "2026-04-04 22:52:13 +0800";
 })();</script> <div data-pagefind-body class="prose prose-invert prose-base !max-w-none custom-md break-words mb-6 markdown-content onload-animation"> <!--<div class="prose prose-invert max-w-none custom-md">--> <!--<div class="max-w-none custom-md">-->  <section><h1 id="前言">前言<a class="anchor" href="#前言"><span class="anchor-icon" data-pagefind-ignore="">#</span></a></h1><p>原本这篇内容更适合写进仓库的 <code>README</code>，因为它本质上就是一个简洁的自部署教程。不过在实际整理时，我发现如果强行拆成 GitHub Pages + Cloudflare Worker 的前后端分离方案，反而会增加不少额外工作。实际上，这个项目只需要一个 Cloudflare Worker 就能跑起来，所以干脆单独写成一篇文章，方便说明整体思路。</p></section>
 <section><h1 id="项目原理">项目原理<a class="anchor" href="#项目原理"><span class="anchor-icon" data-pagefind-ignore="">#</span></a></h1><p>这个项目和上一篇短链项目的思路比较接近，不过整体做得更精简一些。</p><p>首先，这个项目把前后端逻辑合并到了同一套体系里。前端基本不做复杂校验，主要校验工作都放在后端处理，这样就不用在两个项目之间来回维护规则。</p><p>由于前端部分非常简单，只有两个 HTML 页面（一个用于创建短链，一个用于跳转），因此合并后也不会显得臃肿。</p><p>另外，这个项目不再依赖 Cloudflare 服务端提供的 301/302 重定向规则，因此也绕开了 2000 条静态重定向的数量限制。它的做法是：当 CDN 请求静态资源命中 404 时，回退到 <code>404.html</code>，再由其中的 JavaScript 负责查询短链规则并执行跳转，思路上有些类似 Nginx 的伪静态。</p><p>如果某个 <code>pathname</code> 没有命中任何规则，也会统一落到默认回退源，这样就能兼容类似 <code>https://2x.nz/posts/pin/ --> https://blog.acofork.com/posts/pin/</code> 这样的场景。</p><p>创建短链的逻辑和上一个项目也比较相似：由 Worker 代理访问 GitHub，修改对应的 JS 文件并新增一条短链规则，然后推送到仓库。提交完成后会自动触发 Cloudflare Worker 的重新构建，稍等片刻后，新路径就能正常跳转。</p><p>最后，这个项目还支持有效期。实现方式也很直接：前端在创建短链时把过期时间一并传给后端，后端将其写入规则文件，再借助 GitHub Action 定时巡检并清理过期短链。</p></section>
 <section><h1 id="在哪搞个短链">在哪搞个短链<a class="anchor" href="#在哪搞个短链"><span class="anchor-icon" data-pagefind-ignore="">#</span></a></h1><p>我的 <code>2x.nz</code> 是在 <a href="https://porkbun.com" rel="nofollow" target="_blank">https://porkbun.com</a> 购买的，价格大概是一年一百元左右。其他后缀也可以考虑，比如 <code>.im</code>、<code>.mk</code>。</p></section>
-<section><h1 id="正式搭建你的短链服务">正式搭建你的短链服务<a class="anchor" href="#正式搭建你的短链服务"><span class="anchor-icon" data-pagefind-ignore="">#</span></a></h1><p>首先，Fork仓库</p><a id="GCzog1vh-card" class="card-github fetch-waiting no-styling" href="https://github.com/afoim/Static_Redirect_Group" target="_blank" repo="afoim/Static_Redirect_Group" rel="nofollow"><div class="gc-titlebar"><div class="gc-titlebar-left"><div class="gc-owner"><div id="GCzog1vh-avatar" class="gc-avatar"></div><div class="gc-user">afoim</div></div><div class="gc-divider">/</div><div class="gc-repo">Static_Redirect_Group</div></div><div class="github-logo"></div></div><div id="GCzog1vh-description" class="gc-description">Waiting for api.github.com...</div><div class="gc-infobar"><div id="GCzog1vh-stars" class="gc-stars">00K</div><div id="GCzog1vh-forks" class="gc-forks">0K</div><div id="GCzog1vh-license" class="gc-license">0K</div><span id="GCzog1vh-language" class="gc-language">Waiting...</span></div><script id="GCzog1vh-script" type="text/javascript" defer>
+<section><h1 id="正式搭建你的短链服务">正式搭建你的短链服务<a class="anchor" href="#正式搭建你的短链服务"><span class="anchor-icon" data-pagefind-ignore="">#</span></a></h1><p>首先，Fork仓库</p><a id="GC4uh9fn-card" class="card-github fetch-waiting no-styling" href="https://github.com/afoim/Static_Redirect_Group" target="_blank" repo="afoim/Static_Redirect_Group" rel="nofollow"><div class="gc-titlebar"><div class="gc-titlebar-left"><div class="gc-owner"><div id="GC4uh9fn-avatar" class="gc-avatar"></div><div class="gc-user">afoim</div></div><div class="gc-divider">/</div><div class="gc-repo">Static_Redirect_Group</div></div><div class="github-logo"></div></div><div id="GC4uh9fn-description" class="gc-description">Waiting for api.github.com...</div><div class="gc-infobar"><div id="GC4uh9fn-stars" class="gc-stars">00K</div><div id="GC4uh9fn-forks" class="gc-forks">0K</div><div id="GC4uh9fn-license" class="gc-license">0K</div><span id="GC4uh9fn-language" class="gc-language">Waiting...</span></div><script id="GC4uh9fn-script" type="text/javascript" defer>
       fetch('https://api.github.com/repos/afoim/Static_Redirect_Group', { referrerPolicy: "no-referrer" }).then(response => response.json()).then(data => {
-        document.getElementById('GCzog1vh-description').innerText = data.description?.replace(/:[a-zA-Z0-9_]+:/g, '') || "Description not set";
-        document.getElementById('GCzog1vh-language').innerText = data.language;
-        document.getElementById('GCzog1vh-forks').innerText = Intl.NumberFormat('en-us', { notation: "compact", maximumFractionDigits: 1 }).format(data.forks).replaceAll(" ", '');
-        document.getElementById('GCzog1vh-stars').innerText = Intl.NumberFormat('en-us', { notation: "compact", maximumFractionDigits: 1 }).format(data.stargazers_count).replaceAll(" ", '');
-        const avatarEl = document.getElementById('GCzog1vh-avatar');
+        document.getElementById('GC4uh9fn-description').innerText = data.description?.replace(/:[a-zA-Z0-9_]+:/g, '') || "Description not set";
+        document.getElementById('GC4uh9fn-language').innerText = data.language;
+        document.getElementById('GC4uh9fn-forks').innerText = Intl.NumberFormat('en-us', { notation: "compact", maximumFractionDigits: 1 }).format(data.forks).replaceAll(" ", '');
+        document.getElementById('GC4uh9fn-stars').innerText = Intl.NumberFormat('en-us', { notation: "compact", maximumFractionDigits: 1 }).format(data.stargazers_count).replaceAll(" ", '');
+        const avatarEl = document.getElementById('GC4uh9fn-avatar');
         avatarEl.style.backgroundImage = 'url(' + data.owner.avatar_url + ')';
         avatarEl.style.backgroundColor = 'transparent';
-        document.getElementById('GCzog1vh-license').innerText = data.license?.spdx_id || "no-license";
-        document.getElementById('GCzog1vh-card').classList.remove("fetch-waiting");
-        console.log("[GITHUB-CARD] Loaded card for afoim/Static_Redirect_Group | GCzog1vh.")
+        document.getElementById('GC4uh9fn-license').innerText = data.license?.spdx_id || "no-license";
+        document.getElementById('GC4uh9fn-card').classList.remove("fetch-waiting");
+        console.log("[GITHUB-CARD] Loaded card for afoim/Static_Redirect_Group | GC4uh9fn.")
       }).catch(err => {
-        const c = document.getElementById('GCzog1vh-card');
+        const c = document.getElementById('GC4uh9fn-card');
         c?.classList.add("fetch-error");
-        console.warn("[GITHUB-CARD] (Error) Loading card for afoim/Static_Redirect_Group | GCzog1vh.")
+        console.warn("[GITHUB-CARD] (Error) Loading card for afoim/Static_Redirect_Group | GC4uh9fn.")
       })
     </script></a><p>接下来，先修改一些硬编码内容。由于 Cloudflare Worker 在处理静态资源时不能直接使用环境变量，因此部分信息是直接写在 HTML 里的。你可以在所有 HTML 文件中搜索 <code>afoim</code> 并替换成自己的内容；如果你愿意，也可以额外增加一层配置，并在构建阶段注入这些值。</p><p>然后，请修改 <code>js</code> 文件夹中的短链规则，替换成你自己的配置。</p><p>再接着，创建一个 GitHub Token，只需要授予 <code>repo</code> 权限即可。</p><p>继续，绑定机密环境变量，使用 <code>wrangler secret put XXX</code></p>
 
@@ -802,7 +802,7 @@ const lastUpdated = "2026-04-04 22:52:13 +0800";
 您正在使用 AcoFork CDN 浏览此页面
 <br>
 本网站代码
-<a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://github.com/afoim/fuwari">已开源</a> <a class="transition link text-white/30 hover:text-[var(--primary)] text-xs ml-1" target="_blank" href="https://github.com/afoim/fuwari/commit/78ff456">(78ff456 @ 2026-04-12 13:47:59)</a> <br> <!-- <a class="transition link text-[var(--primary)] font-medium inline-flex items-center" href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank"><img alt="" src="/favicon/foot-icp.png" width="16" height="16" class="h-4 mr-1">皖ICP备2025099787号-2</a>
+<a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://github.com/afoim/fuwari">已开源</a> <a class="transition link text-white/30 hover:text-[var(--primary)] text-xs ml-1" target="_blank" href="https://github.com/afoim/fuwari/commit/52257cb">(52257cb @ 2026-04-12 13:50:55)</a> <br> <!-- <a class="transition link text-[var(--primary)] font-medium inline-flex items-center" href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank"><img alt="" src="/favicon/foot-icp.png" width="16" height="16" class="h-4 mr-1">皖ICP备2025099787号-2</a>
         <br> --> <!-- <div class="server-info-container flex flex-col items-center justify-center gap-1 mt-1">
             什么？你问我TM的节点显示去哪了？拜托！我都不分流了看那玩意也没集贸用了，所以看集贸看！别看了！
             Server info will be injected here

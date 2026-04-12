@@ -275,6 +275,14 @@ git reset --hard origin/page
 &lt;p&gt;&lt;img src=&quot;https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/self-host-cdn-3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;接着将 &lt;code&gt;2x.nz&lt;/code&gt; CNAME &lt;code&gt;oracle.2x.nz&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://cnb.cool/2x.nz/fuwari/-/git/raw/main/src/content/assets/images/self-host-cdn-4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;h1&gt;高级&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;由于我们有两台Linux的完整控制权限，我们就可以实现一些高级功能...&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;通过 iptables 在L4层丢弃拨测IP发送的包，做到拨测网站全红😋&lt;/li&gt;
+&lt;li&gt;通过 iptables 设置L4层的TCP连接数速率限制，实现L4层防DDoS&lt;/li&gt;
+&lt;/ul&gt;
 </content:encoded></item><item><title>WTF？免费优质线路2c4g VPS！免费GLM模型无限用！免费Opus 4.6！</title><link>https://2x.nz/posts/what-the-fuck-claw-replit/</link><guid isPermaLink="true">https://2x.nz/posts/what-the-fuck-claw-replit/</guid><description>2026年4月6日，这天凌晨...神了...</description><pubDate>Sun, 05 Apr 2026 18:17:20 GMT</pubDate><content:encoded>&lt;h1&gt;免费优质线路2c4g VPS + 免费GLM无限用&lt;/h1&gt;
 &lt;p&gt;前往 &lt;a href=&quot;https://open.claw.cloud/r/NMB9N9UFZ7JY&quot;&gt;https://open.claw.cloud&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;默认会给你个龙虾 &lt;em&gt;你可能会觉得这没什么？那如果我说...&lt;/em&gt;&lt;/p&gt;
