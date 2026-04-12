@@ -675,16 +675,8 @@ window.__h82AlnkH6D91__("WyJwdWItMTY4MzY4NjM0NTAzOTcwMCIsW251bGwsbnVsbCxudWxsLCJ
             const pageViews = data.views || 0;
             
             const viewsElement = document.getElementById(`page-views-${slug}`);
-            
             if (viewsElement) {
-                const currentViews = parseInt(viewsElement.textContent) || 0;
-                if (currentViews !== pageViews) {
-                    if (currentViews === 0) {
-                         animateValueWithSuffix(viewsElement, currentViews, pageViews, 1000, '次');
-                    } else {
-                         viewsElement.innerHTML = `${pageViews} 次`;
-                    }
-                }
+                viewsElement.innerHTML = `${pageViews} 次`;
             }
         } catch (error) {
             console.error('Error fetching page views:', error);
@@ -700,7 +692,7 @@ window.__h82AlnkH6D91__("WyJwdWItMTY4MzY4NjM0NTAzOTcwMCIsW251bGwsbnVsbCxudWxsLCJ
 })();</script> <!-- word count, read time and page views --> <div class="text-sm text-white/30 flex gap-4 transition" data-astro-cid-iyiqi2so style="--coverWidth: 28%;"> <div data-astro-cid-iyiqi2so style="--coverWidth: 28%;">1006 字</div> <div data-astro-cid-iyiqi2so style="--coverWidth: 28%;">|</div> <div data-astro-cid-iyiqi2so style="--coverWidth: 28%;">5 分钟</div> </div> </div>  <div class="!flex btn-regular w-[3.25rem]
          absolute right-3 top-0 bottom-0 bg-[var(--enter-btn-bg)]
          group-hover:bg-[var(--enter-btn-bg-hover)] group-active:bg-[var(--enter-btn-bg-active)] active:scale-95
-        " data-astro-cid-iyiqi2so style="--coverWidth: 28%;"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="transition text-[var(--primary)] text-4xl mx-auto" data-astro-cid-iyiqi2so="true" data-icon="material-symbols:chevron-right-rounded">   <use href="#ai:material-symbols:chevron-right-rounded"></use>  </svg> </div> </a>  <script type="module">async function c(){document.querySelectorAll(".post-pageviews").forEach(async t=>{if(t.classList.contains("processed")&&t.textContent!=="0")return;t.classList.add("processed");const n=t.dataset.url,o=t.dataset.umamiBaseUrl,i=t.dataset.umamiShareId,r=t.dataset.umamiTimezone;if(!(!o||!i))try{if(typeof window.fetchUmamiStats!="function")return;const e=await window.fetchUmamiStats(o,i,{url:n,timezone:r}),a=e.pageviews&&e.pageviews.value||e.pageviews||0;if(e._fromCache){t.innerHTML=a;return}const s=parseInt(t.textContent)||0;s!==a&&(s===0?animateValue(t,s,a,1e3):t.innerHTML=a)}catch(e){console.error("Failed to load stats for",n,e)}})}document.addEventListener("DOMContentLoaded",c);</script> </article><article class=""> <a href="/posts/ai-wife/" aria-label="手把手教你跑一个二次元AI老婆！" class="group card-base card-hover flex flex-col w-full relative py-6" style="undefined; --coverWidth: 28%;" data-astro-cid-iyiqi2so> <div class="pl-9 pr-2 relative w-[calc(100%_-_var(--coverWidth)_-_12px)]" data-astro-cid-iyiqi2so style="--coverWidth: 28%;"> <h2 class="transition w-full block font-bold mb-2 md:mb-3 text-xl md:text-3xl text-90 relative
+        " data-astro-cid-iyiqi2so style="--coverWidth: 28%;"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="transition text-[var(--primary)] text-4xl mx-auto" data-astro-cid-iyiqi2so="true" data-icon="material-symbols:chevron-right-rounded">   <use href="#ai:material-symbols:chevron-right-rounded"></use>  </svg> </div> </a>  <script type="module">async function i(){document.querySelectorAll(".post-pageviews").forEach(async t=>{if(t.classList.contains("processed")&&t.textContent!=="0")return;t.classList.add("processed");const a=t.dataset.url,s=t.dataset.umamiBaseUrl,n=t.dataset.umamiShareId,r=t.dataset.umamiTimezone;if(!(!s||!n))try{if(typeof window.fetchUmamiStats!="function")return;const e=await window.fetchUmamiStats(s,n,{url:a,timezone:r}),o=e.pageviews&&e.pageviews.value||e.pageviews||0;if(e._fromCache){t.innerHTML=o;return}t.innerHTML=o}catch(e){console.error("Failed to load stats for",a,e)}})}document.addEventListener("DOMContentLoaded",i);</script> </article><article class=""> <a href="/posts/ai-wife/" aria-label="手把手教你跑一个二次元AI老婆！" class="group card-base card-hover flex flex-col w-full relative py-6" style="undefined; --coverWidth: 28%;" data-astro-cid-iyiqi2so> <div class="pl-9 pr-2 relative w-[calc(100%_-_var(--coverWidth)_-_12px)]" data-astro-cid-iyiqi2so style="--coverWidth: 28%;"> <h2 class="transition w-full block font-bold mb-2 md:mb-3 text-xl md:text-3xl text-90 relative
         group-hover:text-[var(--primary)]
         group-active:text-[var(--title-active)]
         before:w-1 before:h-5 before:rounded-md before:bg-[var(--primary)]
@@ -716,16 +708,8 @@ window.__h82AlnkH6D91__("WyJwdWItMTY4MzY4NjM0NTAzOTcwMCIsW251bGwsbnVsbCxudWxsLCJ
             const pageViews = data.views || 0;
             
             const viewsElement = document.getElementById(`page-views-${slug}`);
-            
             if (viewsElement) {
-                const currentViews = parseInt(viewsElement.textContent) || 0;
-                if (currentViews !== pageViews) {
-                    if (currentViews === 0) {
-                         animateValueWithSuffix(viewsElement, currentViews, pageViews, 1000, '次');
-                    } else {
-                         viewsElement.innerHTML = `${pageViews} 次`;
-                    }
-                }
+                viewsElement.innerHTML = `${pageViews} 次`;
             }
         } catch (error) {
             console.error('Error fetching page views:', error);
@@ -754,16 +738,8 @@ window.__h82AlnkH6D91__("WyJwdWItMTY4MzY4NjM0NTAzOTcwMCIsW251bGwsbnVsbCxudWxsLCJ
             const pageViews = data.views || 0;
             
             const viewsElement = document.getElementById(`page-views-${slug}`);
-            
             if (viewsElement) {
-                const currentViews = parseInt(viewsElement.textContent) || 0;
-                if (currentViews !== pageViews) {
-                    if (currentViews === 0) {
-                         animateValueWithSuffix(viewsElement, currentViews, pageViews, 1000, '次');
-                    } else {
-                         viewsElement.innerHTML = `${pageViews} 次`;
-                    }
-                }
+                viewsElement.innerHTML = `${pageViews} 次`;
             }
         } catch (error) {
             console.error('Error fetching page views:', error);
@@ -792,16 +768,8 @@ window.__h82AlnkH6D91__("WyJwdWItMTY4MzY4NjM0NTAzOTcwMCIsW251bGwsbnVsbCxudWxsLCJ
             const pageViews = data.views || 0;
             
             const viewsElement = document.getElementById(`page-views-${slug}`);
-            
             if (viewsElement) {
-                const currentViews = parseInt(viewsElement.textContent) || 0;
-                if (currentViews !== pageViews) {
-                    if (currentViews === 0) {
-                         animateValueWithSuffix(viewsElement, currentViews, pageViews, 1000, '次');
-                    } else {
-                         viewsElement.innerHTML = `${pageViews} 次`;
-                    }
-                }
+                viewsElement.innerHTML = `${pageViews} 次`;
             }
         } catch (error) {
             console.error('Error fetching page views:', error);
@@ -830,16 +798,8 @@ window.__h82AlnkH6D91__("WyJwdWItMTY4MzY4NjM0NTAzOTcwMCIsW251bGwsbnVsbCxudWxsLCJ
             const pageViews = data.views || 0;
             
             const viewsElement = document.getElementById(`page-views-${slug}`);
-            
             if (viewsElement) {
-                const currentViews = parseInt(viewsElement.textContent) || 0;
-                if (currentViews !== pageViews) {
-                    if (currentViews === 0) {
-                         animateValueWithSuffix(viewsElement, currentViews, pageViews, 1000, '次');
-                    } else {
-                         viewsElement.innerHTML = `${pageViews} 次`;
-                    }
-                }
+                viewsElement.innerHTML = `${pageViews} 次`;
             }
         } catch (error) {
             console.error('Error fetching page views:', error);
@@ -868,16 +828,8 @@ window.__h82AlnkH6D91__("WyJwdWItMTY4MzY4NjM0NTAzOTcwMCIsW251bGwsbnVsbCxudWxsLCJ
             const pageViews = data.views || 0;
             
             const viewsElement = document.getElementById(`page-views-${slug}`);
-            
             if (viewsElement) {
-                const currentViews = parseInt(viewsElement.textContent) || 0;
-                if (currentViews !== pageViews) {
-                    if (currentViews === 0) {
-                         animateValueWithSuffix(viewsElement, currentViews, pageViews, 1000, '次');
-                    } else {
-                         viewsElement.innerHTML = `${pageViews} 次`;
-                    }
-                }
+                viewsElement.innerHTML = `${pageViews} 次`;
             }
         } catch (error) {
             console.error('Error fetching page views:', error);
@@ -906,16 +858,8 @@ window.__h82AlnkH6D91__("WyJwdWItMTY4MzY4NjM0NTAzOTcwMCIsW251bGwsbnVsbCxudWxsLCJ
             const pageViews = data.views || 0;
             
             const viewsElement = document.getElementById(`page-views-${slug}`);
-            
             if (viewsElement) {
-                const currentViews = parseInt(viewsElement.textContent) || 0;
-                if (currentViews !== pageViews) {
-                    if (currentViews === 0) {
-                         animateValueWithSuffix(viewsElement, currentViews, pageViews, 1000, '次');
-                    } else {
-                         viewsElement.innerHTML = `${pageViews} 次`;
-                    }
-                }
+                viewsElement.innerHTML = `${pageViews} 次`;
             }
         } catch (error) {
             console.error('Error fetching page views:', error);
@@ -944,16 +888,8 @@ window.__h82AlnkH6D91__("WyJwdWItMTY4MzY4NjM0NTAzOTcwMCIsW251bGwsbnVsbCxudWxsLCJ
             const pageViews = data.views || 0;
             
             const viewsElement = document.getElementById(`page-views-${slug}`);
-            
             if (viewsElement) {
-                const currentViews = parseInt(viewsElement.textContent) || 0;
-                if (currentViews !== pageViews) {
-                    if (currentViews === 0) {
-                         animateValueWithSuffix(viewsElement, currentViews, pageViews, 1000, '次');
-                    } else {
-                         viewsElement.innerHTML = `${pageViews} 次`;
-                    }
-                }
+                viewsElement.innerHTML = `${pageViews} 次`;
             }
         } catch (error) {
             console.error('Error fetching page views:', error);
@@ -1010,7 +946,7 @@ const prefix = "/date-asc";
 您正在使用 AcoFork CDN 浏览此页面
 <br>
 本网站代码
-<a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://github.com/afoim/fuwari">已开源</a> <a class="transition link text-white/30 hover:text-[var(--primary)] text-xs ml-1" target="_blank" href="https://github.com/afoim/fuwari/commit/2790e68">(2790e68 @ 2026-04-12 21:38:04)</a> <br> <!-- <a class="transition link text-[var(--primary)] font-medium inline-flex items-center" href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank"><img alt="" src="/favicon/foot-icp.png" width="16" height="16" class="h-4 mr-1">皖ICP备2025099787号-2</a>
+<a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://github.com/afoim/fuwari">已开源</a> <a class="transition link text-white/30 hover:text-[var(--primary)] text-xs ml-1" target="_blank" href="https://github.com/afoim/fuwari/commit/3602d77">(3602d77 @ 2026-04-12 21:54:25)</a> <br> <!-- <a class="transition link text-[var(--primary)] font-medium inline-flex items-center" href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank"><img alt="" src="/favicon/foot-icp.png" width="16" height="16" class="h-4 mr-1">皖ICP备2025099787号-2</a>
         <br> --> <!-- <div class="server-info-container flex flex-col items-center justify-center gap-1 mt-1">
             什么？你问我TM的节点显示去哪了？拜托！我都不分流了看那玩意也没集贸用了，所以看集贸看！别看了！
             Server info will be injected here
