@@ -78,16 +78,16 @@
 	<lastmod>2024-10-27</lastmod>
 	</url>
 	<url>
-	<loc>https://2x.nz/posts/asf/</loc>
-	<priority>0.7</priority>
-	<changefreq>weekly</changefreq>
-	<lastmod>2024-12-17</lastmod>
-	</url>
-	<url>
 	<loc>https://2x.nz/posts/anuneko/</loc>
 	<priority>0.7</priority>
 	<changefreq>weekly</changefreq>
 	<lastmod>2025-12-02</lastmod>
+	</url>
+	<url>
+	<loc>https://2x.nz/posts/asf/</loc>
+	<priority>0.7</priority>
+	<changefreq>weekly</changefreq>
+	<lastmod>2024-12-17</lastmod>
 	</url>
 	<url>
 	<loc>https://2x.nz/posts/atpx-fun-blog/</loc>
@@ -126,18 +126,6 @@
 	<lastmod>2026-02-23</lastmod>
 	</url>
 	<url>
-	<loc>https://2x.nz/posts/cbjq-unzip/</loc>
-	<priority>0.7</priority>
-	<changefreq>weekly</changefreq>
-	<lastmod>2025-08-23</lastmod>
-	</url>
-	<url>
-	<loc>https://2x.nz/posts/autobangumi/</loc>
-	<priority>0.7</priority>
-	<changefreq>weekly</changefreq>
-	<lastmod>2025-02-24</lastmod>
-	</url>
-	<url>
 	<loc>https://2x.nz/posts/astrov3-redirects/</loc>
 	<priority>0.7</priority>
 	<changefreq>weekly</changefreq>
@@ -148,6 +136,18 @@
 	<priority>0.7</priority>
 	<changefreq>weekly</changefreq>
 	<lastmod>2025-04-24</lastmod>
+	</url>
+	<url>
+	<loc>https://2x.nz/posts/cbjq-unzip/</loc>
+	<priority>0.7</priority>
+	<changefreq>weekly</changefreq>
+	<lastmod>2025-08-23</lastmod>
+	</url>
+	<url>
+	<loc>https://2x.nz/posts/autobangumi/</loc>
+	<priority>0.7</priority>
+	<changefreq>weekly</changefreq>
+	<lastmod>2025-02-24</lastmod>
 	</url>
 	<url>
 	<loc>https://2x.nz/posts/cf-fastip/</loc>
@@ -174,16 +174,16 @@
 	<lastmod>2026-04-04</lastmod>
 	</url>
 	<url>
-	<loc>https://2x.nz/posts/check-notebook/</loc>
-	<priority>0.7</priority>
-	<changefreq>weekly</changefreq>
-	<lastmod>2025-11-09</lastmod>
-	</url>
-	<url>
 	<loc>https://2x.nz/posts/chevereto/</loc>
 	<priority>0.7</priority>
 	<changefreq>weekly</changefreq>
 	<lastmod>2025-07-15</lastmod>
+	</url>
+	<url>
+	<loc>https://2x.nz/posts/check-notebook/</loc>
+	<priority>0.7</priority>
+	<changefreq>weekly</changefreq>
+	<lastmod>2025-11-09</lastmod>
 	</url>
 	<url>
 	<loc>https://2x.nz/posts/cloudflare-bandwidth-alliance/</loc>
@@ -196,6 +196,30 @@
 	<priority>0.7</priority>
 	<changefreq>weekly</changefreq>
 	<lastmod>2026-01-30</lastmod>
+	</url>
+	<url>
+	<loc>https://2x.nz/posts/cyberduck/</loc>
+	<priority>0.7</priority>
+	<changefreq>weekly</changefreq>
+	<lastmod>2025-08-30</lastmod>
+	</url>
+	<url>
+	<loc>https://2x.nz/posts/deepwiki/</loc>
+	<priority>0.7</priority>
+	<changefreq>weekly</changefreq>
+	<lastmod>2026-02-11</lastmod>
+	</url>
+	<url>
+	<loc>https://2x.nz/posts/codex-unlimited-blade-works/</loc>
+	<priority>0.7</priority>
+	<changefreq>weekly</changefreq>
+	<lastmod>2026-03-06</lastmod>
+	</url>
+	<url>
+	<loc>https://2x.nz/posts/coxp/</loc>
+	<priority>0.7</priority>
+	<changefreq>weekly</changefreq>
+	<lastmod>2026-02-02</lastmod>
 	</url>
 	<url>
 	<loc>https://2x.nz/posts/cfvideo/</loc>
@@ -216,34 +240,16 @@
 	<lastmod>2025-04-03</lastmod>
 	</url>
 	<url>
-	<loc>https://2x.nz/posts/cyberduck/</loc>
-	<priority>0.7</priority>
-	<changefreq>weekly</changefreq>
-	<lastmod>2025-08-30</lastmod>
-	</url>
-	<url>
-	<loc>https://2x.nz/posts/deepwiki/</loc>
-	<priority>0.7</priority>
-	<changefreq>weekly</changefreq>
-	<lastmod>2026-02-11</lastmod>
-	</url>
-	<url>
 	<loc>https://2x.nz/posts/del-git-commit/</loc>
 	<priority>0.7</priority>
 	<changefreq>weekly</changefreq>
 	<lastmod>2026-01-23</lastmod>
 	</url>
 	<url>
-	<loc>https://2x.nz/posts/codex-unlimited-blade-works/</loc>
+	<loc>https://2x.nz/posts/discourse/</loc>
 	<priority>0.7</priority>
 	<changefreq>weekly</changefreq>
-	<lastmod>2026-03-06</lastmod>
-	</url>
-	<url>
-	<loc>https://2x.nz/posts/coxp/</loc>
-	<priority>0.7</priority>
-	<changefreq>weekly</changefreq>
-	<lastmod>2026-02-02</lastmod>
+	<lastmod>2025-05-01</lastmod>
 	</url>
 	<url>
 	<loc>https://2x.nz/posts/concurrently/</loc>
@@ -258,10 +264,10 @@
 	<lastmod>2025-03-11</lastmod>
 	</url>
 	<url>
-	<loc>https://2x.nz/posts/discourse/</loc>
+	<loc>https://2x.nz/posts/double-monitior/</loc>
 	<priority>0.7</priority>
 	<changefreq>weekly</changefreq>
-	<lastmod>2025-05-01</lastmod>
+	<lastmod>2026-01-09</lastmod>
 	</url>
 	<url>
 	<loc>https://2x.nz/posts/edgeone/</loc>
@@ -270,22 +276,10 @@
 	<lastmod>2025-06-21</lastmod>
 	</url>
 	<url>
-	<loc>https://2x.nz/posts/double-monitior/</loc>
-	<priority>0.7</priority>
-	<changefreq>weekly</changefreq>
-	<lastmod>2026-01-09</lastmod>
-	</url>
-	<url>
 	<loc>https://2x.nz/posts/email-posts-sub/</loc>
 	<priority>0.7</priority>
 	<changefreq>weekly</changefreq>
 	<lastmod>2026-04-03</lastmod>
-	</url>
-	<url>
-	<loc>https://2x.nz/posts/eo-cf/</loc>
-	<priority>0.7</priority>
-	<changefreq>weekly</changefreq>
-	<lastmod>2025-06-26</lastmod>
 	</url>
 	<url>
 	<loc>https://2x.nz/posts/eo-function/</loc>
@@ -294,16 +288,16 @@
 	<lastmod>2025-07-31</lastmod>
 	</url>
 	<url>
+	<loc>https://2x.nz/posts/eo-cf/</loc>
+	<priority>0.7</priority>
+	<changefreq>weekly</changefreq>
+	<lastmod>2025-06-26</lastmod>
+	</url>
+	<url>
 	<loc>https://2x.nz/posts/eo-umami/</loc>
 	<priority>0.7</priority>
 	<changefreq>weekly</changefreq>
 	<lastmod>2026-01-19</lastmod>
-	</url>
-	<url>
-	<loc>https://2x.nz/posts/eovsesa/</loc>
-	<priority>0.7</priority>
-	<changefreq>weekly</changefreq>
-	<lastmod>2026-01-16</lastmod>
 	</url>
 	<url>
 	<loc>https://2x.nz/posts/disable-astro-generating-optimized-images/</loc>
@@ -316,6 +310,12 @@
 	<priority>0.7</priority>
 	<changefreq>weekly</changefreq>
 	<lastmod>2025-08-12</lastmod>
+	</url>
+	<url>
+	<loc>https://2x.nz/posts/eovsesa/</loc>
+	<priority>0.7</priority>
+	<changefreq>weekly</changefreq>
+	<lastmod>2026-01-16</lastmod>
 	</url>
 	<url>
 	<loc>https://2x.nz/posts/fenliu/</loc>
@@ -354,16 +354,16 @@
 	<lastmod>2025-07-22</lastmod>
 	</url>
 	<url>
-	<loc>https://2x.nz/posts/gh-cf/</loc>
-	<priority>0.7</priority>
-	<changefreq>weekly</changefreq>
-	<lastmod>2026-03-10</lastmod>
-	</url>
-	<url>
 	<loc>https://2x.nz/posts/gemini-nano-banana/</loc>
 	<priority>0.7</priority>
 	<changefreq>weekly</changefreq>
 	<lastmod>2025-09-01</lastmod>
+	</url>
+	<url>
+	<loc>https://2x.nz/posts/gh-cf/</loc>
+	<priority>0.7</priority>
+	<changefreq>weekly</changefreq>
+	<lastmod>2026-03-10</lastmod>
 	</url>
 	<url>
 	<loc>https://2x.nz/posts/giscus-akismet/</loc>
@@ -426,16 +426,16 @@
 	<lastmod>2025-10-15</lastmod>
 	</url>
 	<url>
-	<loc>https://2x.nz/posts/index-tts2/</loc>
-	<priority>0.7</priority>
-	<changefreq>weekly</changefreq>
-	<lastmod>2025-10-13</lastmod>
-	</url>
-	<url>
 	<loc>https://2x.nz/posts/improve-seo/</loc>
 	<priority>0.7</priority>
 	<changefreq>weekly</changefreq>
 	<lastmod>2025-07-29</lastmod>
+	</url>
+	<url>
+	<loc>https://2x.nz/posts/index-tts2/</loc>
+	<priority>0.7</priority>
+	<changefreq>weekly</changefreq>
+	<lastmod>2025-10-13</lastmod>
 	</url>
 	<url>
 	<loc>https://2x.nz/posts/ip6-arpa/</loc>
@@ -540,16 +540,16 @@
 	<lastmod>2025-04-03</lastmod>
 	</url>
 	<url>
-	<loc>https://2x.nz/posts/new-nas/</loc>
-	<priority>0.7</priority>
-	<changefreq>weekly</changefreq>
-	<lastmod>2025-02-22</lastmod>
-	</url>
-	<url>
 	<loc>https://2x.nz/posts/nezha/</loc>
 	<priority>0.7</priority>
 	<changefreq>weekly</changefreq>
 	<lastmod>2025-09-02</lastmod>
+	</url>
+	<url>
+	<loc>https://2x.nz/posts/new-nas/</loc>
+	<priority>0.7</priority>
+	<changefreq>weekly</changefreq>
+	<lastmod>2025-02-22</lastmod>
 	</url>
 	<url>
 	<loc>https://2x.nz/posts/obs-realtime-process-name/</loc>
@@ -636,16 +636,16 @@
 	<lastmod>2025-09-08</lastmod>
 	</url>
 	<url>
-	<loc>https://2x.nz/posts/remote/</loc>
-	<priority>0.7</priority>
-	<changefreq>weekly</changefreq>
-	<lastmod>2025-11-24</lastmod>
-	</url>
-	<url>
 	<loc>https://2x.nz/posts/record/</loc>
 	<priority>0.7</priority>
 	<changefreq>weekly</changefreq>
 	<lastmod>1998-12-31</lastmod>
+	</url>
+	<url>
+	<loc>https://2x.nz/posts/remote/</loc>
+	<priority>0.7</priority>
+	<changefreq>weekly</changefreq>
+	<lastmod>2025-11-24</lastmod>
 	</url>
 	<url>
 	<loc>https://2x.nz/posts/rename/</loc>
@@ -666,16 +666,16 @@
 	<lastmod>2025-04-03</lastmod>
 	</url>
 	<url>
-	<loc>https://2x.nz/posts/review-ddos/</loc>
-	<priority>0.7</priority>
-	<changefreq>weekly</changefreq>
-	<lastmod>2026-02-10</lastmod>
-	</url>
-	<url>
 	<loc>https://2x.nz/posts/rewrite-qa/</loc>
 	<priority>0.7</priority>
 	<changefreq>weekly</changefreq>
 	<lastmod>2024-11-27</lastmod>
+	</url>
+	<url>
+	<loc>https://2x.nz/posts/review-ddos/</loc>
+	<priority>0.7</priority>
+	<changefreq>weekly</changefreq>
+	<lastmod>2026-02-10</lastmod>
 	</url>
 	<url>
 	<loc>https://2x.nz/posts/rj45/</loc>
@@ -684,22 +684,16 @@
 	<lastmod>2026-03-23</lastmod>
 	</url>
 	<url>
-	<loc>https://2x.nz/posts/s3cloudrive/</loc>
-	<priority>0.7</priority>
-	<changefreq>weekly</changefreq>
-	<lastmod>2025-05-04</lastmod>
-	</url>
-	<url>
 	<loc>https://2x.nz/posts/rvc/</loc>
 	<priority>0.7</priority>
 	<changefreq>weekly</changefreq>
 	<lastmod>2025-10-13</lastmod>
 	</url>
 	<url>
-	<loc>https://2x.nz/posts/secbit/</loc>
+	<loc>https://2x.nz/posts/s3cloudrive/</loc>
 	<priority>0.7</priority>
 	<changefreq>weekly</changefreq>
-	<lastmod>2025-07-01</lastmod>
+	<lastmod>2025-05-04</lastmod>
 	</url>
 	<url>
 	<loc>https://2x.nz/posts/self-host-fastip/</loc>
@@ -712,6 +706,12 @@
 	<priority>0.7</priority>
 	<changefreq>weekly</changefreq>
 	<lastmod>2025-08-19</lastmod>
+	</url>
+	<url>
+	<loc>https://2x.nz/posts/secbit/</loc>
+	<priority>0.7</priority>
+	<changefreq>weekly</changefreq>
+	<lastmod>2025-07-01</lastmod>
 	</url>
 	<url>
 	<loc>https://2x.nz/posts/self-host-matrix/</loc>
@@ -750,16 +750,16 @@
 	<lastmod>2025-08-02</lastmod>
 	</url>
 	<url>
-	<loc>https://2x.nz/posts/starrail-fast/</loc>
-	<priority>0.7</priority>
-	<changefreq>weekly</changefreq>
-	<lastmod>2025-04-14</lastmod>
-	</url>
-	<url>
 	<loc>https://2x.nz/posts/self-host-cdn/</loc>
 	<priority>0.7</priority>
 	<changefreq>weekly</changefreq>
 	<lastmod>2026-04-11</lastmod>
+	</url>
+	<url>
+	<loc>https://2x.nz/posts/starrail-fast/</loc>
+	<priority>0.7</priority>
+	<changefreq>weekly</changefreq>
+	<lastmod>2025-04-14</lastmod>
 	</url>
 	<url>
 	<loc>https://2x.nz/posts/static-redirect-group/</loc>
@@ -840,22 +840,34 @@
 	<lastmod>2025-09-01</lastmod>
 	</url>
 	<url>
-	<loc>https://2x.nz/posts/vpn/</loc>
-	<priority>0.7</priority>
-	<changefreq>weekly</changefreq>
-	<lastmod>2024-11-21</lastmod>
-	</url>
-	<url>
 	<loc>https://2x.nz/posts/waf/</loc>
 	<priority>0.7</priority>
 	<changefreq>weekly</changefreq>
 	<lastmod>2026-01-17</lastmod>
 	</url>
 	<url>
+	<loc>https://2x.nz/posts/vpn/</loc>
+	<priority>0.7</priority>
+	<changefreq>weekly</changefreq>
+	<lastmod>2024-11-21</lastmod>
+	</url>
+	<url>
 	<loc>https://2x.nz/posts/warden-worker/</loc>
 	<priority>0.7</priority>
 	<changefreq>weekly</changefreq>
 	<lastmod>2026-01-26</lastmod>
+	</url>
+	<url>
+	<loc>https://2x.nz/posts/whois/</loc>
+	<priority>0.7</priority>
+	<changefreq>weekly</changefreq>
+	<lastmod>2025-05-27</lastmod>
+	</url>
+	<url>
+	<loc>https://2x.nz/posts/what-the-fuck-claw-replit/</loc>
+	<priority>0.7</priority>
+	<changefreq>weekly</changefreq>
+	<lastmod>2026-04-05</lastmod>
 	</url>
 	<url>
 	<loc>https://2x.nz/posts/watermark/</loc>
@@ -868,18 +880,6 @@
 	<priority>0.7</priority>
 	<changefreq>weekly</changefreq>
 	<lastmod>2026-02-14</lastmod>
-	</url>
-	<url>
-	<loc>https://2x.nz/posts/what-the-fuck-claw-replit/</loc>
-	<priority>0.7</priority>
-	<changefreq>weekly</changefreq>
-	<lastmod>2026-04-05</lastmod>
-	</url>
-	<url>
-	<loc>https://2x.nz/posts/whois/</loc>
-	<priority>0.7</priority>
-	<changefreq>weekly</changefreq>
-	<lastmod>2025-05-27</lastmod>
 	</url>
 	<url>
 	<loc>https://2x.nz/posts/why-not-icp/</loc>
@@ -912,16 +912,16 @@
 	<lastmod>2025-07-26</lastmod>
 	</url>
 	<url>
-	<loc>https://2x.nz/posts/you-is-me-huh/</loc>
-	<priority>0.7</priority>
-	<changefreq>weekly</changefreq>
-	<lastmod>2025-08-12</lastmod>
-	</url>
-	<url>
 	<loc>https://2x.nz/posts/zeabur/</loc>
 	<priority>0.7</priority>
 	<changefreq>weekly</changefreq>
 	<lastmod>2025-09-02</lastmod>
+	</url>
+	<url>
+	<loc>https://2x.nz/posts/you-is-me-huh/</loc>
+	<priority>0.7</priority>
+	<changefreq>weekly</changefreq>
+	<lastmod>2025-08-12</lastmod>
 	</url>
 	<url>
 	<loc>https://2x.nz/posts/zte-f450-bridge/</loc>
