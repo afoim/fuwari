@@ -7,20 +7,41 @@ on:
     types: [created]
 
 permissions:
-  contents: write
-  pull-requests: write
-  issues: write
-
-env:
-  PAT: ${{ secrets.PAT }}
+  contents: read
 
 concurrency:
   group: auto-pr-${{ github.event.pull_request.number || github.event.issue.number }}
   cancel-in-progress: true
 
 jobs:
+  authorize:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      allowed: ${{ steps.permission.outputs.allowed }}
+    steps:
+      - id: permission
+        uses: actions/github-script@v9
+        env:
+          GH_TOKEN: ${{ github.token }}
+        with:
+          github-token: ${{ github.token }}
+          script: |
+            const username = context.eventName === 'issue_comment'
+              ? context.payload.comment.user.login : context.payload.pull_request.user.login;
+            const { data } = await github.rest.repos.getCollaboratorPermissionLevel({
+              ...context.repo, username
+            });
+            core.setOutput('allowed', ['admin', 'maintain', 'write'].includes(data.permission));
+
   triage:
-    if: ${{ github.event_name == 'pull_request_target' }}
+    needs: authorize
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+    if: ${{ needs.authorize.outputs.allowed == 'true' && github.event_name == 'pull_request_target' }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -36,8 +57,10 @@ jobs:
           
       - name: Label PR by changed paths
         uses: actions/github-script@v7
+        env:
+          GH_TOKEN: ${{ github.token }}
         with:
-          github-token: ${{ secrets.PAT }}
+          github-token: ${{ github.token }}
           script: |
             const owner = context.repo.owner
             const repo = context.repo.repo
@@ -450,7 +473,7 @@ jobs:
                     }
 
                     if (isDelete) {
-                      await github.rest.pulls.merge({ owner, repo, pull_number, merge_method: 'squash' })
+                      await github.rest.pulls.merge({ owner, repo, pull_number, merge_method: 'squash', sha: context.payload.pull_request.head.sha })
                       return
                     }
                   }
@@ -586,7 +609,7 @@ jobs:
             // Auto merge if it is an edit (modified) and all checks pass
             if (relevant.length === 1 && relevant[0].status === 'modified' && allOk) {
                try {
-                  await github.rest.pulls.merge({ owner, repo, pull_number, merge_method: 'squash' })
+                  await github.rest.pulls.merge({ owner, repo, pull_number, merge_method: 'squash', sha: context.payload.pull_request.head.sha })
                   return
                 } catch {}
             }
@@ -736,7 +759,7 @@ jobs:
                 core.info('bidir: verified ok -> merge')
 
                 try {
-                  await github.rest.pulls.merge({ owner, repo, pull_number, merge_method: 'squash' })
+                  await github.rest.pulls.merge({ owner, repo, pull_number, merge_method: 'squash', sha: context.payload.pull_request.head.sha })
                 } catch (e) {
                   await createComment(`${MSG.MERGE_FAIL}${e?.message || e}`)
                   return
@@ -744,7 +767,12 @@ jobs:
               }
 
   verify_and_merge:
-    if: ${{ github.event_name == 'issue_comment' && github.event.issue.pull_request && github.event.comment.body == '准备完毕' }}
+    needs: authorize
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+    if: ${{ needs.authorize.outputs.allowed == 'true' && github.event_name == 'issue_comment' && github.event.issue.pull_request && github.event.comment.body == '准备完毕' }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -760,8 +788,10 @@ jobs:
           
       - name: Auto-merge
         uses: actions/github-script@v7
+        env:
+          GH_TOKEN: ${{ github.token }}
         with:
-          github-token: ${{ env.PAT }}
+          github-token: ${{ github.token }}
           script: |
             const owner = context.repo.owner
             const repo = context.repo.repo
@@ -1021,7 +1051,7 @@ jobs:
                     }
 
                     if (isDelete) {
-                      await github.rest.pulls.merge({ owner, repo, pull_number, merge_method: 'squash' })
+                      await github.rest.pulls.merge({ owner, repo, pull_number, merge_method: 'squash', sha: pr.data.head.sha })
                       return
                     }
                   }
@@ -1197,7 +1227,7 @@ jobs:
             // Auto merge if it is an edit (modified) and all checks pass
             if (relevant.length === 1 && relevant[0].status === 'modified' && allOk) {
                try {
-                  await github.rest.pulls.merge({ owner, repo, pull_number, merge_method: 'squash' })
+                  await github.rest.pulls.merge({ owner, repo, pull_number, merge_method: 'squash', sha: pr.data.head.sha })
                   return
                 } catch {}
             }
@@ -1208,7 +1238,7 @@ jobs:
             }
 
             try {
-              await github.rest.pulls.merge({ owner, repo, pull_number, merge_method: 'squash' })
+              await github.rest.pulls.merge({ owner, repo, pull_number, merge_method: 'squash', sha: pr.data.head.sha })
             } catch (e) {
               core.error(`merge failed: status=${e?.status || ''}`)
               core.error(`merge failed: message=${e?.message || e}`)
